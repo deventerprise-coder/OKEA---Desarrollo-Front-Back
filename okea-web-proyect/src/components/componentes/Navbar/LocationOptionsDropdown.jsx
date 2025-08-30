@@ -27,7 +27,7 @@ export default function LocationOptionsDropdown({ options, position, onClose }) 
       {options.map((item, i) => (
         <div
           key={i}
-          className="flex items-center gap-2 px-4 py-2 hover:bg-[#5a6ca3] cursor-pointer text-white rounded-lg transition-colors duration-150"
+          className="flex items-center gap-2 px-4 py-2 hover:bg-[#E4E66666] cursor-pointer text-white rounded-full transition-colors duration-150"
           onClick={onClose}
         >
           <Location1 stroke="#FFFFFF" />
