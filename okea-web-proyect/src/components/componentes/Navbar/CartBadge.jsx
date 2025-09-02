@@ -1,4 +1,4 @@
-import { CartIcon } from "./Icons";
+import { CartIcon } from "../../../assets/iconos/Icons";
 
 export default function CartBadge({ count = 0 }) {
   return (

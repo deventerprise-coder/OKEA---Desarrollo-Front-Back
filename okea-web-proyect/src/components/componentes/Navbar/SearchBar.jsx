@@ -1,4 +1,4 @@
-import { MenuIcon, SearchIcon } from "./Icons";
+import { MenuIcon, SearchIcon } from "../../../assets/iconos/Icons";
 import { useState } from "react";
 
 export default function SearchBar({ onToggleCategorias, categoriasDropdownOpen }) {

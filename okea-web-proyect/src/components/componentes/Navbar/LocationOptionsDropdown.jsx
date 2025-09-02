@@ -1,4 +1,4 @@
-import { Location1 } from './Icons';
+import { Location1 } from '../../../assets/iconos/Icons';
 
 export default function LocationOptionsDropdown({ options, position, onClose }) {
   return (
