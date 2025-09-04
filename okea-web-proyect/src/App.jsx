@@ -1,12 +1,12 @@
 import React from 'react';
-import Navbar from './components/componentes/Navbar/Navbar';
-import Footer from './components/componentes/Footer/Footer';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 import PageMockup from './pages/PagePrueba';
-import SocialBar from './components/componentes/SocialBar';
-import FloatingActionButton from './components/componentes/FloatingActionButton';
-import PreguntasFrecuentes from './components/componentes/PreguntasFrecuentes';
-import BloqueDeServicios from './components/componentes/BloqueDeServicios';
-import MarcasDestacadas from './components/componentes/MarcasDestacadas';
+import SocialBar from './components/SocialBar';
+import FloatingActionButton from './components/FloatingActionButton';
+import PreguntasFrecuentes from './components/PreguntasFrecuentes';
+import BloqueDeServicios from './components/BloqueDeServicios';
+import MarcasDestacadas from './components/MarcasDestacadas';
 
 function App() {
   return (

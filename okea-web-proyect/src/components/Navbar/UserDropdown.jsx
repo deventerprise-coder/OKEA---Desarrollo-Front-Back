@@ -4,7 +4,7 @@ import {
   PromocionesIcon,
   FavoritosIcon,
   CerrarSesionIcon,
-} from '../../../assets/iconos/Icons';
+} from '../../assets/iconos/Icons';
 
 export default function UserDropdown({ onLogout, onSelect, style }) {
   const buttons = [

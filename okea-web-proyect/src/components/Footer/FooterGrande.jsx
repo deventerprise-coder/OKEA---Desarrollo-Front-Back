@@ -1,15 +1,15 @@
 import React from 'react';
-import LibroReclamaciones from '../../../assets/iconos/LibroReclamaciones.svg';
-import VISAIcon from '../../../assets/iconos/VISAIcono.svg';
-import MCIcon from '../../../assets/iconos/MCIcon.svg';
-import AMEXIcon from '../../../assets/iconos/AMEXIcon.svg';
-import PyPIcon from '../../../assets/iconos/PyPIcon.svg';
-import WUIcon from '../../../assets/iconos/WUIcon.svg';
-import Facebook from '../../../assets/iconos/Facebook.svg';
-import Instagram from '../../../assets/iconos/Instagram.svg';
-import YouTube from '../../../assets/iconos/YouTube.svg';
-import LinkedIn from '../../../assets/iconos/LinkedIn.svg';
-import TikTok from '../../../assets/iconos/TikTok.svg';
+import LibroReclamaciones from '../../assets/iconos/LibroReclamaciones.svg';
+import VISAIcon from '../../assets/iconos/VISAIcono.svg';
+import MCIcon from '../../assets/iconos/MCIcon.svg';
+import AMEXIcon from '../../assets/iconos/AMEXIcon.svg';
+import PyPIcon from '../../assets/iconos/PyPIcon.svg';
+import WUIcon from '../../assets/iconos/WUIcon.svg';
+import Facebook from '../../assets/iconos/Facebook.svg';
+import Instagram from '../../assets/iconos/Instagram.svg';
+import YouTube from '../../assets/iconos/YouTube.svg';
+import LinkedIn from '../../assets/iconos/LinkedIn.svg';
+import TikTok from '../../assets/iconos/TikTok.svg';
 
 export default function FooterGrande() {
   return (

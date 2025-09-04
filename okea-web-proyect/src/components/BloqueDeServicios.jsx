@@ -4,7 +4,7 @@ import {
   SeguridadIcon,
   SeguimientoIcon,
   DevolucionesIcon
-} from "../../assets/iconos/Icons";
+} from "../assets/iconos/Icons";
 
 const servicios = [
   {

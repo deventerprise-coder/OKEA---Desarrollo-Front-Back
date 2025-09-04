@@ -1,5 +1,5 @@
 
-import okeaLogoCategorias from '../../../assets/iconos/okea_logo_categorias.svg';
+import okeaLogoCategorias from '../../assets/iconos/okea_logo_categorias.svg';
 import {
   TechnologyIcon,
   LavadoIcon,
@@ -17,7 +17,7 @@ import {
   SupermercadoIcon,
   LlantaIcon,
   SalirIcon,
-} from '../../../assets/iconos/Icons';
+} from '../../assets/iconos/Icons';
 import { categoriasDetalle } from './categoriasDetalle';
 import CategoriaDetalleDropdown from './CategoriaDetalleDropdown';
 import { useState } from 'react';

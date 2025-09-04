@@ -1,6 +1,6 @@
-import { Flecha1 } from '../../../assets/iconos/Icons';
-import { Lupa1 } from '../../../assets/iconos/Icons';
-import { Location1 } from '../../../assets/iconos/Icons';
+import { Flecha1 } from '../../assets/iconos/Icons';
+import { Lupa1 } from '../../assets/iconos/Icons';
+import { Location1 } from '../../assets/iconos/Icons';
 
 import { useEffect, useRef, useState } from 'react';
 

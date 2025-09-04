@@ -1,5 +1,5 @@
 // Ejemplo de estructura de datos para los dropdowns de categorías
-import { TechnologyIcon, LavadoIcon, MuebleIcon, ToallaIcon, HombreIcon, MujerIcon, CalzadoIcon, AnilloIcon, SaludIcon, JugueteIcon, DecoracionIcon, MascotaIcon, SupermercadoIcon, LlantaIcon } from '../../../assets/iconos/Icons';
+import { TechnologyIcon, LavadoIcon, MuebleIcon, ToallaIcon, HombreIcon, MujerIcon, CalzadoIcon, AnilloIcon, SaludIcon, JugueteIcon, DecoracionIcon, MascotaIcon, SupermercadoIcon, LlantaIcon } from '../../assets/iconos/Icons';
 
 export const categoriasDetalle = {
   "Tecnología": {

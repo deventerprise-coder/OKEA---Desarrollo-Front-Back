@@ -1,6 +1,6 @@
 // Recibe data de categoriasDetalle[cat], información referencial, luego supongo que se cargara desde el back
 
-import { FlechaDerecha } from "../../../assets/iconos/Icons";
+import { FlechaDerecha } from "../../assets/iconos/Icons";
 
 export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClose }) {
   if (!data) return null;

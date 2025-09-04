@@ -1,8 +1,8 @@
 
 import React, { useEffect, useRef, useState } from 'react';
-import AudifonosJBL from '../../../assets/imagenes/AudifonosJBL.png';
-import AguaCieloGas from '../../../assets/imagenes/AguaCieloGas.png';
-import MuebleCenizasBlanco from '../../../assets/imagenes/MuebleCenizasBlanco.png';
+import AudifonosJBL from '../../assets/imagenes/AudifonosJBL.png';
+import AguaCieloGas from '../../assets/imagenes/AguaCieloGas.png';
+import MuebleCenizasBlanco from '../../assets/imagenes/MuebleCenizasBlanco.png';
 
 function StarIcon({ color = '#DFE162' }) {
   return (

@@ -1,4 +1,4 @@
-import okeaLogo from '../../../assets/iconos/okea_logo.svg';
+import okeaLogo from '../../assets/iconos/okea_logo.svg';
 
 export default function Logo() {
   return (

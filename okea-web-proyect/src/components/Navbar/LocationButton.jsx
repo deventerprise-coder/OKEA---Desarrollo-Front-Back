@@ -1,4 +1,4 @@
-import { LocationIcon } from "../../../assets/iconos/Icons";
+import { LocationIcon } from "../../assets/iconos/Icons";
 
 export default function LocationButton({ onClick }) {
   return (

@@ -1,4 +1,4 @@
-import { SunIcon, MoonIcon } from "../../../assets/iconos/Icons";
+import { SunIcon, MoonIcon } from "../../assets/iconos/Icons";
 import { useState } from "react";
 
 export default function ThemeToggle() {

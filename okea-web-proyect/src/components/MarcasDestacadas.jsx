@@ -1,10 +1,10 @@
-import iphoneImg from "../../assets/imagenes/MarcasDestacadas/iphone.png";
-import nikeImg from "../../assets/imagenes/MarcasDestacadas/nike.png";
-import samsungImg from "../../assets/imagenes/MarcasDestacadas/samsung.png";
-import bataImg from "../../assets/imagenes/MarcasDestacadas/bata.png";
-import xiaomiImg from "../../assets/imagenes/MarcasDestacadas/xiaomi.png";
+import iphoneImg from "../assets/imagenes/MarcasDestacadas/iphone.png";
+import nikeImg from "../assets/imagenes/MarcasDestacadas/nike.png";
+import samsungImg from "../assets/imagenes/MarcasDestacadas/samsung.png";
+import bataImg from "../assets/imagenes/MarcasDestacadas/bata.png";
+import xiaomiImg from "../assets/imagenes/MarcasDestacadas/xiaomi.png";
 import { useState } from "react";
-
+//marcas, se puede cambiar
 const marcas = [
   { nombre: "iPhone", imagen: iphoneImg },
   { nombre: "Nike", imagen: nikeImg },
@@ -43,7 +43,6 @@ export default function MarcasDestacadas() {
     </section>
   );
 }
-
 function MarcaCard({ imagen, nombre }) {
   const [hovered, setHovered] = useState(false);
 

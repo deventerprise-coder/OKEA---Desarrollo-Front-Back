@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { WhatSappIcon, ChatBotIcon, MensajeIcon } from '../../assets/iconos/Icons';
+import { WhatSappIcon, ChatBotIcon, MensajeIcon } from '../assets/iconos/Icons';
 
 const icons = [
   {

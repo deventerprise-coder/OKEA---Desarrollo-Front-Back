@@ -1,4 +1,4 @@
-import { UserIcon } from "../../../assets/iconos/Icons";
+import { UserIcon } from "../../assets/iconos/Icons";
 import { forwardRef } from "react";
 
 const UserLogin = forwardRef((props, ref) => {

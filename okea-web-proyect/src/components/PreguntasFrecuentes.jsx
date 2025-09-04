@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PreguntaIcon, ChevronDownIcon, MessageIcon } from "../../assets/iconos/Icons";
+import { PreguntaIcon, ChevronDownIcon, MessageIcon } from "../assets/iconos/Icons";
 
 const preguntas = [
   {
