@@ -7,6 +7,7 @@ import FloatingActionButton from './components/FloatingActionButton';
 import PreguntasFrecuentes from './components/PreguntasFrecuentes';
 import BloqueDeServicios from './components/BloqueDeServicios';
 import MarcasDestacadas from './components/MarcasDestacadas';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Navbar />
       <SocialBar />
       <FloatingActionButton />
-      <PageMockup />{/* <------ ATENCION = ESTA PAGINA LA CREE PARA PROBRAR, ESTO SE DEBERAR BORRAR CUANDO SE QUIERA AGREGAR LAS VERDADERAS PAGE -- sebasteusd*/}
+      <Home />
       <MarcasDestacadas />
       <PreguntasFrecuentes />
       <BloqueDeServicios />
