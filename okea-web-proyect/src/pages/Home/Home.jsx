@@ -55,12 +55,12 @@ import {WineBottleIcon, ArrowLeftGrayBlueIcon, ArrowLeftNormal, ArrowRightBlackI
 export default function Home() {
 // --- Estados presentación ---
 const [currentPres, setCurrentPres] = useState(0);
-const [prevPres, setPrevPres] = useState(0);
+const [setPrevPres] = useState(0);
 const [circleGrow, setCircleGrow] = useState(false);
 
 // --- Estados categorías ---
 const [currentCat, setCurrentCat] = useState(0);
-const [prevCat, setPrevCat] = useState(0);
+const [setPrevCat] = useState(0);
 
 // --- Autoplay para presentación ---
 useEffect(() => {
@@ -68,7 +68,7 @@ useEffect(() => {
     nextSlidePresentacion();
   }, 10000);
   return () => clearInterval(interval);
-}, []);
+},);
 
 // --- Animación círculo (solo afecta presentación) ---
 useEffect(() => {
@@ -422,7 +422,7 @@ const prevSlideCategorias = () => {
             {/* Indicadores */}
             <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-3 mt-1">
               {slidesPresentacion.map((_, index) => (
-                <div key={index} onClick={() => { setPrev(currentPres); setCurrent(index); }} className={`w-4 h-4 rounded-full cursor-pointer transition-transform ${ currentPres === index ? "bg-gray-400/50 scale-150" : "bg-gray-400/50" }`}></div>
+                <div key={index} onClick={() => { setPrevPres(currentPres); setCurrentPres(index); }} className={`w-4 h-4 rounded-full cursor-pointer transition-transform ${ currentPres === index ? "bg-gray-400/50 scale-150" : "bg-gray-400/50" }`}></div>
               ))}
             </div>
 

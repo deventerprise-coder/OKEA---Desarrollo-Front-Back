@@ -1,5 +1,5 @@
-
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AudifonosJBL from '../../assets/imagenes/AudifonosJBL.png';
 import AguaCieloGas from '../../assets/imagenes/AguaCieloGas.png';
 import MuebleCenizasBlanco from '../../assets/imagenes/MuebleCenizasBlanco.png';
@@ -44,6 +44,7 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
   const [show, setShow] = useState(false);
   const [cartItems, setCartItems] = useState(products);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setShow(true);
@@ -96,6 +97,7 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
         <button
           className="ml-2 px-6 py-2 rounded-full font-poppins text-[15px] font-medium bg-[#DFE162] text-[#484900] hover:bg-[#e4e666] transition"
           style={{ minWidth: 120 }}
+          onClick={() => navigate('/carrito')}
         >
           Ir al carrito
         </button>

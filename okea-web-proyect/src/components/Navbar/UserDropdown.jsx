@@ -4,7 +4,9 @@ import {
   PromocionesIcon,
   FavoritosIcon,
   CerrarSesionIcon,
+  FlechaDerecha,
 } from '../../assets/iconos/Icons';
+
 
 export default function UserDropdown({ onLogout, onSelect, style }) {
   const buttons = [
@@ -36,7 +38,7 @@ export default function UserDropdown({ onLogout, onSelect, style }) {
           return (
             <button
               key={btn.key}
-              className="text-white font-poppins font-medium text-[16px] leading-6 tracking-[0.15px] px-4 rounded-full transition flex items-center gap-3"
+              className="group text-white font-poppins font-medium text-[16px] leading-6 tracking-[0.15px] px-4 rounded-full transition flex items-center justify-between"
               style={{
                 fontFamily: 'Poppins, sans-serif',
                 fontWeight: 400,
@@ -55,12 +57,19 @@ export default function UserDropdown({ onLogout, onSelect, style }) {
               }}
               onClick={() => onSelect && onSelect(btn.key)}
             >
-              {Icon && (
-                <span className="flex items-center justify-center w-5 h-5">
-                  <Icon />
-                </span>
-              )}
-              <span className="flex items-center flex-grow">{btn.label}</span>
+              <div className="flex items-center gap-3">
+                {Icon && (
+                  <span className="flex items-center justify-center w-5 h-5">
+                    <Icon />
+                  </span>
+                )}
+                <span className="flex items-center">{btn.label}</span>
+              </div>
+
+              {/* Flecha derecha visible solo en hover */}
+              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                <FlechaDerecha stroke="#FFFFFF" size={25} strokeWidth={0.2} />
+              </div>
             </button>
           );
         })}

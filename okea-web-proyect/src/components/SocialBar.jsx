@@ -27,16 +27,16 @@ export default function SocialBar() {
         justifyContent: 'center',
       }}
     >
-      <a href="#" aria-label="Facebook" style={{ marginBottom: 12 }}>
+      <a href="#" aria-label="Facebook" style={{ marginBottom: 20 }}>
         <FacebookIcon width={28} height={28} />
       </a>
-      <a href="#" aria-label="Instagram" style={{ marginBottom: 12 }}>
+      <a href="#" aria-label="Instagram" style={{ marginBottom: 20 }}>
         <InstagramIcon width={28} height={28} />
       </a>
-      <a href="#" aria-label="YouTube" style={{ marginBottom: 12 }}>
+      <a href="#" aria-label="YouTube" style={{ marginBottom: 20 }}>
         <YouTubeIcon width={28} height={28} />
       </a>
-      <a href="#" aria-label="LinkedIn" style={{ marginBottom: 12 }}>
+      <a href="#" aria-label="LinkedIn" style={{ marginBottom: 20 }}>
         <LinkedInIcon width={28} height={28} />
       </a>
       <a href="#" aria-label="TikTok">
