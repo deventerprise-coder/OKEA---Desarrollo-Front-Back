@@ -98,14 +98,12 @@ CREATE TABLE attributes (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL, -- Color, Talla, Material
     slug VARCHAR(100) NOT NULL, -- color, talla, material
-    is_variation BOOLEAN DEFAULT TRUE, -- Se usa para crear variantes
     
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
     PRIMARY KEY (id),
-    UNIQUE KEY uk_attributes_slug (slug),
-    INDEX idx_attributes_variation (is_variation)
+    UNIQUE KEY uk_attributes_slug (slug)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- TABLA DE TÉRMINOS/VALORES
@@ -179,11 +177,11 @@ INSERT INTO categories (name, slug, description, parent_id, level, is_active) VA
 ('Running', 'running', 'Artículos para corredores', 4, 1, TRUE);
 
 -- INSERTAR ATRIBUTOS
-INSERT INTO attributes (name, slug, is_variation) VALUES
-('Color', 'color', TRUE),
-('Talla', 'talla', TRUE),
-('Capacidad', 'capacidad', TRUE),
-('Talla Zapatilla', 'talla-zapatilla', TRUE);
+INSERT INTO attributes (name, slug) VALUES
+('Color', 'color'),
+('Talla', 'talla'),
+('Capacidad', 'capacidad'),
+('Talla Zapatilla', 'talla-zapatilla');
 
 -- INSERTAR VALORES DE ATRIBUTOS
 -- Color
