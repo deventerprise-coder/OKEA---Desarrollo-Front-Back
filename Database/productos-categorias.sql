@@ -122,7 +122,6 @@ CREATE TABLE attribute_values (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- TABLA DE RELACIÓN PRODUCTO-ATRIBUTOS
--- Solo para productos tipo 'variant' y opcionalmente 'simple'
 CREATE TABLE product_attributes (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     product_id BIGINT UNSIGNED NOT NULL,
