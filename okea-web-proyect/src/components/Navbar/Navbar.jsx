@@ -101,7 +101,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="absolute top-[4px] left-0 right-0 mx-auto max-w-[99vw] z-50 backdrop-blur-md border border-[#DAE2FF66] rounded-full px-6 py-3 flex items-center justify-between"
+        className="absolute top-[4px] left-0 right-0 mx-auto max-w-[98vw] z-50 backdrop-blur-md border border-[#DAE2FF66] rounded-full px-6 py-3 flex items-center justify-between"
         style={{ backgroundColor: '#DAE2FF66' }}
         onClick={closeDropdown}
       >

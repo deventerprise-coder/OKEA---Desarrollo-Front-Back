@@ -60,7 +60,7 @@ const [circleGrow, setCircleGrow] = useState(false);
 
 // --- Estados categorías ---
 const [currentCat, setCurrentCat] = useState(0);
-const [setPrevCat] = useState(0);
+
 
 // --- Autoplay para presentación ---
 useEffect(() => {
@@ -79,34 +79,29 @@ useEffect(() => {
 
 // --- Funciones presentación ---
 const prevSlidePresentacion = () => {
-  setPrevPres(currentPres);
   setCurrentPres(i =>
     i === 0 ? slidesPresentacion.length - 1 : i - 1
   );
 };
 
 const nextSlidePresentacion = () => {
-  setPrevPres(currentPres);
   setCurrentPres(i =>
     i === slidesPresentacion.length - 1 ? 0 : i + 1
   );
 };
+// ...existing code...
 
-// --- Funciones categorías ---
 const nextSlideCategorias = () => {
-  if (currentCat < slidesCategorias.length - 1) {
-    setPrevCat(currentCat);
-    setCurrentCat(currentCat + 1);
-  }
+  setCurrentCat(i =>
+    i < slidesCategorias.length - 1 ? i + 1 : i
+  );
 };
 
 const prevSlideCategorias = () => {
-  if (currentCat > 0) {
-    setPrevCat(currentCat);
-    setCurrentCat(currentCat - 1);
-  }
+  setCurrentCat(i =>
+    i > 0 ? i - 1 : i
+  );
 };
-
   //CountdownTimer
   const CountdownTimer = () => {
   // ⏱️ Definicion de duración inicial (5h 5m 10s)
