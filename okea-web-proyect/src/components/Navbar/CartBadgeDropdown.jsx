@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AudifonosJBL from '../../assets/imagenes/AudifonosJBL.png';
 import AguaCieloGas from '../../assets/imagenes/AguaCieloGas.png';
@@ -40,16 +40,42 @@ const exampleProducts = [
   },
 ];
 
-export default function CartBadgeDropdown({ products = exampleProducts, subtotal = 240 }) {
-  const [show, setShow] = useState(false);
+const animations = `
+  @keyframes cartFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes cartFadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  .cart-enter {
+    animation: cartFadeIn 0.3s ease-out forwards;
+  }
+
+  .cart-exit {
+    animation: cartFadeOut 0.3s ease-out forwards;
+  }
+`;
+
+export default function CartBadgeDropdown({ products = exampleProducts, subtotal = 240, isVisible }) {
   const [cartItems, setCartItems] = useState(products);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setShow(true);
-    return () => setShow(false);
-  }, []);
 
   const handleQuantityChange = (id, delta) => {
     setCartItems(items =>
@@ -64,7 +90,9 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
   return (
     <div
       ref={dropdownRef}
-      className={`shadow-lg border flex flex-col relative ${show ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
+      className={`shadow-lg border flex flex-col relative ${
+        isVisible ? 'cart-enter' : 'cart-exit'
+      }`}
       style={{
         backgroundColor: 'rgba(44, 80, 158, 0.5)',
         backdropFilter: 'blur(12px)',
@@ -75,12 +103,12 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
         border: '1.5px solid rgba(255,255,255,0.15)',
         padding: '16px',
         gap: '20px',
-        transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1), transform 1000ms cubic-bezier(0.4, 0, 0.2, 1)',
         top: '17px',
         right: '0px',
         overflowY: 'auto',
       }}
     >
+      <style>{animations}</style>
       {/* Subtotal y boton del carrito */}
       <div
         className="flex items-center justify-between rounded-2xl px-4 py-3 mb-2 backdrop-blur-md"

@@ -1,4 +1,3 @@
-
 import okeaLogoCategorias from '../../assets/iconos/okea_logo_categorias.svg';
 import {
   TechnologyIcon,
@@ -22,7 +21,62 @@ import { categoriasDetalle } from './categoriasDetalle';
 import CategoriaDetalleDropdown from './CategoriaDetalleDropdown';
 import { useState } from 'react';
 
-export default function CategoriasDropdown({ onClose }) {
+const animations = `
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+  }
+
+  .menu-enter {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  .menu-exit {
+    animation: fadeOut 0.3s ease-out forwards;
+  }
+
+  /* Agregar estos estilos para ocultar la barra de scroll */
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* Para Internet Explorer y Edge */
+    scrollbar-width: none;     /* Para Firefox */
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;  /* Para Chrome, Safari y Opera */
+  }
+`;
+
+export default function CategoriasDropdown({isVisible }) {
+  const [categoriaActiva, setCategoriaActiva] = useState(null);
+
+  // Agregar esta nueva función para manejar el toggle
+  const handleCategoriaClick = (categoria) => {
+    if (categoriaActiva === categoria) {
+      // Si la categoría clickeada es la misma que está activa, la cerramos
+      setCategoriaActiva(null);
+    } else {
+      // Si es una categoría diferente, la activamos
+      setCategoriaActiva(categoria);
+    }
+  };
+
   const categorias = [
     "Tecnología",
     "Electrohogar",
@@ -40,12 +94,12 @@ export default function CategoriasDropdown({ onClose }) {
     "Automotriz",
   ];
 
-  const [categoriaActiva, setCategoriaActiva] = useState(null);
-
   return (
     <>
       <div
-        className="fixed top-0 left-0 z-[1100] backdrop-blur-xl shadow-lg border border-[#DAE2FF] p-4"
+        className={`fixed top-0 left-0 z-[1100] backdrop-blur-xl shadow-lg border border-[#DAE2FF] p-4 hide-scrollbar ${
+          isVisible ? 'menu-enter' : 'menu-exit'
+        }`}
         style={{
           left: 3,
           top: 0,
@@ -60,28 +114,7 @@ export default function CategoriasDropdown({ onClose }) {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Botón para cerrar categorias, aunque se puede cerrar clickeando afuera tambien*/}
-        <button
-          onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: 16,
-            right: 16,
-            background: 'transparent',
-            border: 'none',
-            padding: 0,
-            cursor: 'pointer',
-            zIndex: 1001,
-          }}
-          aria-label="Cerrar menú de categorías"
-        >
-          <SalirIcon />
-        </button>
-        <style>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
+        <style>{animations}</style>
 
         <img
           src={okeaLogoCategorias}
@@ -148,8 +181,10 @@ export default function CategoriasDropdown({ onClose }) {
             return (
               <li
                 key={i}
-                className="text-white text-sm font-poppins px-3 py-2 rounded-lg hover:bg-[#5a6ca3] cursor-pointer transition-colors flex items-center gap-2"
-                onClick={() => setCategoriaActiva(cat)}
+                className={`text-white text-sm font-poppins px-3 py-2 rounded-lg hover:bg-[#5a6ca3] cursor-pointer transition-colors flex items-center gap-2 ${
+                  categoriaActiva === cat ? 'bg-[#5a6ca3]' : ''
+                }`}
+                onClick={() => handleCategoriaClick(cat)}
               >
                 <span className="flex items-center justify-center" style={{ paddingLeft: 12 }}>
                   <IconComponent />

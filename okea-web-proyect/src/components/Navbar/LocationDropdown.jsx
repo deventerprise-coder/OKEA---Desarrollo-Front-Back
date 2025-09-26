@@ -2,16 +2,42 @@ import { Flecha1 } from '../../assets/iconos/Icons';
 import { Lupa1 } from '../../assets/iconos/Icons';
 import { Location1 } from '../../assets/iconos/Icons';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef} from 'react';
 
-export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex }) {
-  const [show, setShow] = useState(false);
+const animations = `
+  @keyframes locationFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes locationFadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  .location-enter {
+    animation: locationFadeIn 0.3s ease-out forwards;
+  }
+
+  .location-exit {
+    animation: locationFadeOut 0.3s ease-out forwards;
+  }
+`;
+
+export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, isVisible }) {
   const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    setShow(true);
-    return () => setShow(false);
-  }, []);
 
   const labels = ['Departamento', 'Provincia', 'Distrito'];
 
@@ -23,7 +49,9 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex }
   return (
     <div
       ref={dropdownRef}
-  className={`shadow-lg border flex flex-col relative ${show ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
+      className={`shadow-lg border flex flex-col relative ${
+        isVisible ? 'location-enter' : 'location-exit'
+      }`}
       style={{
         backgroundColor: 'rgba(44, 80, 158, 0.5)',
         backdropFilter: 'blur(0px)',
@@ -36,9 +64,9 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex }
         border: '1.5px solid rgba(255,255,255,0.15)',
         padding: '16px',
         gap: '20px',
-        transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1), transform 1000ms cubic-bezier(0.4, 0, 0.2, 1)',
       }}
     >
+      <style>{animations}</style>
 
       <div style={{ marginTop: '12px' }}>
         <div className="flex items-center gap-2" style={{ marginLeft: '14px' }}>

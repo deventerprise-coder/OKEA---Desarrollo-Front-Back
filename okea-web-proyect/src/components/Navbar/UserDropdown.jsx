@@ -7,8 +7,39 @@ import {
   FlechaDerecha,
 } from '../../assets/iconos/Icons';
 
+const animations = `
+  @keyframes userFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-export default function UserDropdown({ onLogout, onSelect, style }) {
+  @keyframes userFadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  .user-enter {
+    animation: userFadeIn 0.3s ease-out forwards;
+  }
+
+  .user-exit {
+    animation: userFadeOut 0.3s ease-out forwards;
+  }
+`;
+
+export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
   const buttons = [
     { label: 'Mi cuenta', key: 'cuenta' },
     { label: 'Mis Compras', key: 'compras' },
@@ -20,7 +51,9 @@ export default function UserDropdown({ onLogout, onSelect, style }) {
 
   return (
     <div
-      className="shadow-lg border flex flex-col backdrop-blur-xl transition-all duration-500 ease-out opacity-100 translate-y-0"
+      className={`shadow-lg border flex flex-col backdrop-blur-xl ${
+        isVisible ? 'user-enter' : 'user-exit'
+      }`}
       style={{
         width: 258,
         height: 296,
@@ -32,6 +65,7 @@ export default function UserDropdown({ onLogout, onSelect, style }) {
         ...style,
       }}
     >
+      <style>{animations}</style>
       <div className="flex flex-col gap-2 flex-1">
         {buttons.map((btn, idx) => {
           const Icon = icons[idx] || null;

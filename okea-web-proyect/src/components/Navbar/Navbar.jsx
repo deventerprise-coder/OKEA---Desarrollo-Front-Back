@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Logo from './Logo';
 import LocationButton from './LocationButton';
 import LocationDropdown from './LocationDropdown';
@@ -21,6 +21,11 @@ export default function Navbar() {
   const [userDropdownPosition, setUserDropdownPosition] = useState({ top: 0, left: 0 });
   const [showCartDropdown, setShowCartDropdown] = useState(false);
   const [cartDropdownPosition, setCartDropdownPosition] = useState({ top: 0, left: 0 });
+  const [isCategoriasVisible, setIsCategoriasVisible] = useState(true);
+  const [isLocationVisible, setIsLocationVisible] = useState(true);
+  const [isUserVisible, setIsUserVisible] = useState(true);
+  const [isCartVisible, setIsCartVisible] = useState(true);
+  const [theme, setTheme] = useState('light');
 
   const userButtonRef = useRef(null);
   const cartButtonRef = useRef(null);
@@ -32,17 +37,33 @@ export default function Navbar() {
     Distrito: ['Callao', 'Bellavista', 'La Perla', 'La Punta'],
   };
 
-  const toggleDropdown = () => {
-    setShowLocationDropdown(prev => {
-      const next = !prev;
-      if (next) {
-        setShowCategoriasDropdown(false);
-        setShowUserDropdown(false);
-      } else {
-        setActiveDropdownIndex(null);
-      }
-      return next;
+  useEffect(() => {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+        }
+      });
     });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const toggleDropdown = () => {
+    if (showLocationDropdown) {
+      setIsLocationVisible(false);
+      setTimeout(() => {
+        setShowLocationDropdown(false);
+      }, 300);
+    } else {
+      setIsLocationVisible(true);
+      setShowLocationDropdown(true);
+    }
   };
 
   const closeDropdown = () => {
@@ -53,23 +74,27 @@ export default function Navbar() {
     setShowCartDropdown(false);
   };
   const toggleCartDropdown = () => {
-    setShowCartDropdown(prev => {
-      const next = !prev;
-      if (next) {
-        setShowLocationDropdown(false);
-        setShowCategoriasDropdown(false);
-        setShowUserDropdown(false);
-        setActiveDropdownIndex(null);
-        if (cartButtonRef.current) {
-          const rect = cartButtonRef.current.getBoundingClientRect();
-          setCartDropdownPosition({
-            top: rect.bottom + 22,
-            left: rect.left - 320,
-          });
-        }
+    if (showCartDropdown) {
+      setIsCartVisible(false);
+      setTimeout(() => {
+        setShowCartDropdown(false);
+      }, 300);
+    } else {
+      setIsCartVisible(true);
+      setShowCartDropdown(true);
+      setShowLocationDropdown(false);
+      setShowCategoriasDropdown(false);
+      setShowUserDropdown(false);
+      setActiveDropdownIndex(null);
+      
+      if (cartButtonRef.current) {
+        const rect = cartButtonRef.current.getBoundingClientRect();
+        setCartDropdownPosition({
+          top: rect.bottom + 22,
+          left: rect.left - 320,
+        });
       }
-      return next;
-    });
+    }
   };
 
   const handleOpenDropdown = (index, rect) => {
@@ -85,41 +110,65 @@ export default function Navbar() {
   };
 
   const toggleUserDropdown = () => {
-    setShowUserDropdown(prev => {
-      const next = !prev;
-      if (next && userButtonRef.current) {
+    if (showUserDropdown) {
+      setIsUserVisible(false);
+      setTimeout(() => {
+        setShowUserDropdown(false);
+      }, 300);
+    } else {
+      setIsUserVisible(true);
+      setShowUserDropdown(true);
+      setShowLocationDropdown(false);
+      setShowCategoriasDropdown(false);
+      setActiveDropdownIndex(null);
+      setShowCartDropdown(false);
+      
+      if (userButtonRef.current) {
         const rect = userButtonRef.current.getBoundingClientRect();
         setUserDropdownPosition({
-          top: rect.bottom + 22, 
-          left: rect.left - 40,  
+          top: rect.bottom + 22,
+          left: rect.left - 40,
         });
       }
-      return next;
-    });
+    }
+  };
+
+  const handleToggleCategorias = () => {
+    if (showCategoriasDropdown) {
+      setIsCategoriasVisible(false);
+      setTimeout(() => {
+        setShowCategoriasDropdown(false);
+      }, 300);
+    } else {
+      setIsCategoriasVisible(true);
+      setShowCategoriasDropdown(true);
+      // Cerrar otros dropdowns
+      setShowLocationDropdown(false);
+      setActiveDropdownIndex(null);
+      setShowUserDropdown(false);
+    }
+  };
+
+  const getThemeStyles = () => {
+    return {
+      backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : '#DAE2FF66',
+      borderColor: theme === 'dark' ? '#B1C5FFA8' : '#DAE2FF66',
+      color: theme === 'dark' ? '#ffffff' : '#000000'
+    };
   };
 
   return (
     <>
       <header
-        className="absolute top-[4px] left-0 right-0 mx-auto max-w-[98vw] z-50 backdrop-blur-md border border-[#DAE2FF66] rounded-full px-6 py-3 flex items-center justify-between"
-        style={{ backgroundColor: '#DAE2FF66' }}
+        className="absolute top-[4px] left-0 right-0 mx-auto max-w-[98vw] z-50 backdrop-blur-md border rounded-full px-6 py-3 flex items-center justify-between transition-colors duration-300"
+        style={getThemeStyles()}
         onClick={closeDropdown}
       >
         <Logo />
         <div onClick={(e) => e.stopPropagation()}>
           <LocationButton onClick={toggleDropdown} />
         </div>
-        <SearchBar onToggleCategorias={() => {
-          setShowCategoriasDropdown(prev => {
-            const next = !prev;
-            if (next) {
-              setShowLocationDropdown(false);
-              setActiveDropdownIndex(null);
-              setShowUserDropdown(false);
-            }
-            return next;
-          });
-        }} />
+        <SearchBar onToggleCategorias={handleToggleCategorias} />
         <div className="flex items-center gap-[10px] relative">
           <div
             onClick={(e) => {
@@ -150,13 +199,13 @@ export default function Navbar() {
         <>
           <ScreenDimmer onClick={closeDropdown} />
           <div
-            className={`absolute z-[1100] transition-all duration-500 ease-out ${showCartDropdown ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
+            className="absolute z-[1100]"
             style={{
               top: cartDropdownPosition.top,
               left: cartDropdownPosition.left,
             }}
           >
-            <CartBadgeDropdown />
+            <CartBadgeDropdown isVisible={isCartVisible} />
           </div>
         </>
       )}
@@ -164,17 +213,16 @@ export default function Navbar() {
       {showUserDropdown && (
         <>
           <div
-            className={`absolute z-[1100] transition-all duration-500 ease-out ${
-              showUserDropdown ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-            }`}
+            className="absolute z-[1100]"
             style={{
               top: userDropdownPosition.top,
               left: userDropdownPosition.left,
             }}
           >
             <UserDropdown
-              onSelect={() => setShowUserDropdown(false)}
-              onLogout={() => setShowUserDropdown(false)}
+              onSelect={() => toggleUserDropdown()}
+              onLogout={() => toggleUserDropdown()}
+              isVisible={isUserVisible}
             />
           </div>
           <ScreenDimmer onClick={closeDropdown} />
@@ -183,10 +231,11 @@ export default function Navbar() {
 
       {showLocationDropdown && (
         <>
-          <div className="absolute left-1/2 top-[90px] transform -translate-x-1/2 z-50">
+          <div className="absolute left-1/2 top-[65px] transform -translate-x-1/2 z-50">
             <LocationDropdown
               onOpenDropdown={handleOpenDropdown}
               activeDropdownIndex={activeDropdownIndex}
+              isVisible={isLocationVisible}
             />
           </div>
           <ScreenDimmer onClick={closeDropdown} />
@@ -204,7 +253,11 @@ export default function Navbar() {
 
       {showCategoriasDropdown && (
         <>
-          <CategoriasDropdown onClose={() => setShowCategoriasDropdown(false)} />
+          <CategoriasDropdown 
+            isOpen={showCategoriasDropdown}
+            isVisible={isCategoriasVisible}
+            onClose={() => handleToggleCategorias()} 
+          />
           <ScreenDimmer onClick={closeDropdown} />
         </>
       )}
