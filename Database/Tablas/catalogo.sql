@@ -228,30 +228,3 @@ WHERE p.activo = TRUE
 AND c.activo = TRUE 
 AND m.activo = TRUE
 AND p.stock > 0;
-
--- categorías de ejemplo
-INSERT INTO categorias (nombre_categoria, slug, descripcion) VALUES
-('Electrónicos', 'electronicos', 'Dispositivos electrónicos y tecnología'),
-('Ropa y Accesorios', 'ropa-y-accesorios', 'Vestimenta y complementos de moda'),
-('Hogar y Jardín', 'hogar-y-jardin', 'Artículos para el hogar y jardinería'),
-('Deportes', 'deportes', 'Equipamiento y ropa deportiva'),
-('Libros', 'libros', 'Literatura, educación y entretenimiento'),
-('Juguetes', 'juguetes', 'Juguetes y juegos para todas las edades');
-
--- marcas de ejemplo
-INSERT INTO marcas (nombre_marca, slug, descripcion) VALUES
-('Samsung', 'samsung', 'Tecnología innovadora coreana'),
-('Apple', 'apple', 'Productos premium de tecnología'),
-('Nike', 'nike', 'Marca deportiva líder mundial'),
-('Adidas', 'adidas', 'Calzado y ropa deportiva'),
-('Sony', 'sony', 'Electrónicos y entretenimiento'),
-('LG', 'lg', 'Electrodomésticos y tecnología'),
-('Zara', 'zara', 'Moda contemporánea'),
-('H&M', 'hm', 'Moda accesible y sostenible');
-
--- productos de ejemplo
-INSERT INTO productos (nombre, slug, descripcion, precio, stock, id_categoria, id_marca, imagen_url, galeria_imagenes) VALUES
-('iPhone 15 Pro', 'iphone-15-pro', 'El último smartphone de Apple con chip A17 Pro y cámara avanzada con zoom óptico de 3x y grabación de video en 4K ProRes.', 1199.99, 50, 1, 2, 'url1', '["url1.1", "url1.2", "url1.3"]'),
-('Galaxy S24 Ultra', 'galaxy-s24-ultra', 'Smartphone Samsung con S Pen integrado y cámara de 200MP con inteligencia artificial para fotografía profesional.', 1299.99, 30, 1, 1, 'url2', '["url2.1", "url2.2"]'),
-('Air Jordan 1', 'air-jordan-1', 'Zapatillas icónicas de basketball Jordan Brand con diseño clásico y tecnología Nike Air para máximo confort.', 170.00, 100, 4, 3, 'url3', '["url3.1", "url3.2"]'),
-('Camiseta Deportiva Adidas', 'camiseta-deportiva-adidas', 'Camiseta técnica para entrenamientos con tecnología Climacool que mantiene la piel seca y fresca durante el ejercicio.', 45.00, 200, 4, 4, 'url4', '["url4.1", "url4.2"]');
