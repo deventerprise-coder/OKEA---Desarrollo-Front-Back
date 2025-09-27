@@ -1,18 +1,58 @@
-// Recibe data de categoriasDetalle[cat], información referencial, luego supongo que se cargara desde el back
-
+import { useState} from 'react';
 import { FlechaDerecha } from "../../assets/iconos/Icons";
 
+const animations = `
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-100%);  // Cambiado de 100% a -100%
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideOut {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  }
+
+  .detail-enter {
+    animation: slideIn 0.4s ease-out forwards;
+  }
+
+  .detail-exit {
+    animation: slideOut 0.4s ease-out forwards;
+  }
+`;
+
 export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClose }) {
+  const [isVisible, setIsVisible] = useState(true);
+  
   if (!data) return null;
   const Icon = data.icon;
 
-  const left = 340; 
+  const left = 340;
   const width = 900;
+
+  const handleClose = () => {
+    setIsVisible(false);
+    setTimeout(onClose, 400); // Espera a que termine la animación
+  };
 
   return (
     <>
+      <style>{animations}</style>
       {/* Header verde separado */}
       <div
+        className={isVisible ? 'detail-enter' : 'detail-exit'}
         style={{
           position: 'fixed',
           top: 0,
@@ -48,7 +88,7 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
           letterSpacing: '0.25px',
         }}>{nombreCategoria || data.nombre || data.titulo || 'Categoría'}</span>
         <button
-          onClick={onClose}
+          onClick={handleClose}  // Cambiado de onClose a handleClose
           style={{
             marginLeft: 'auto',
             background: 'none',
@@ -79,8 +119,10 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
           />
         </span>
       </div>
+
       {/* Contenido separado */}
       <div
+        className={isVisible ? 'detail-enter' : 'detail-exit'}
         style={{
           position: 'fixed',
           top: 116,

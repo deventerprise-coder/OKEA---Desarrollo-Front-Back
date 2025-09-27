@@ -3,6 +3,8 @@
 export const AvatarNuevo = ({
   size = 40,
   className = '',
+  color = '#1C4390',
+  pathColor = '#E3E1F1'
 }) => (
   <svg
     width={size}
@@ -12,16 +14,16 @@ export const AvatarNuevo = ({
     xmlns="http://www.w3.org/2000/svg"
     className={className}
   >
-    <rect width="40" height="40" rx="20" fill="#1C4390" />
+    <rect width="40" height="40" rx="20" fill={color} />
     <path
       fillRule="evenodd"
       clipRule="evenodd"
       d="M26.0002 16C26.0002 19.3137 23.314 22 20.0002 22C16.6865 22 14.0002 19.3137 14.0002 16C14.0002 12.6863 16.6865 10 20.0002 10C23.314 10 26.0002 12.6863 26.0002 16ZM24.0002 16C24.0002 18.2091 22.2094 20 20.0002 20C17.7911 20 16.0002 18.2091 16.0002 16C16.0002 13.7909 17.7911 12 20.0002 12C22.2094 12 24.0002 13.7909 24.0002 16Z"
-      fill="#E3E1F1"
+      fill={pathColor}
     />
     <path
       d="M20.0002 25C13.5259 25 8.00952 28.8284 5.9082 34.192C6.4201 34.7004 6.95934 35.1812 7.52353 35.6321C9.08827 30.7077 13.997 27 20.0002 27C26.0035 27 30.9122 30.7077 32.477 35.6321C33.0412 35.1812 33.5804 34.7004 34.0923 34.1921C31.991 28.8284 26.4746 25 20.0002 25Z"
-      fill="#E3E1F1"
+      fill={pathColor}
     />
   </svg>
 );
@@ -603,12 +605,13 @@ export const LavadoIcon = ({ size = 31, color = '#E4E666', ...props }) => (
   </svg>
 )
 
-export const LocationIcon = () => (
+export const LocationIcon = ({ color = '#1C4390', ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
-    fill="#1C4390"
+    fill={color}
     className="size-5"
+    {...props}
   >
     <path
       fillRule="evenodd"
@@ -624,8 +627,14 @@ export const MenuIcon = () => (
   </svg>
 );
 
-export const SearchIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#1C4390" className="size-5">
+export const SearchIcon = ({ color = '#1C4390', ...props }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 20 20" 
+    fill={color} 
+    className="size-5"
+    {...props}
+  >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -662,11 +671,22 @@ export const SunIcon = () => (
 
 );
 
-export const MoonIcon = () => (
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#E3E1F1" className="size-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-</svg>
-
+export const MoonIcon = ({ color = '#C6C4E3', ...props }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    strokeWidth={1.5} 
+    stroke={color} 
+    className="size-6"
+    {...props}
+  >
+    <path 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" 
+    />
+  </svg>
 );
 export const CartIcon = () => (
   <svg
