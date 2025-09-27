@@ -10,6 +10,7 @@ import MarcasDestacadas from './components/MarcasDestacadas';
 import Home from './pages/Home/Home';
 import CarritoPage from './pages/CarritoPage';
 import ScrollToTop from './components/ScrollToTop';
+import Categoria from './pages/Catalogo/Catergoria';
 
 function App() {
   return (
@@ -17,13 +18,13 @@ function App() {
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <SocialBar />
-        <FloatingActionButton />
         <Routes>
           <Route
             path="/"
             element={
               <>
+                <SocialBar />
+                <FloatingActionButton />
                 <Home />
                 <MarcasDestacadas />
                 <PreguntasFrecuentes />
@@ -32,6 +33,15 @@ function App() {
             }
           />
           <Route path="/carrito" element={<CarritoPage />} />
+          <Route 
+            path="/catalogo" 
+            element={
+              <>
+                <Categoria />
+                <BloqueDeServicios />
+              </>
+            }
+          />
         </Routes>
         <Footer />
       </div>
