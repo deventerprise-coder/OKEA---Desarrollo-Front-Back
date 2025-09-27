@@ -1,7 +1,8 @@
 -- =====================================================
--- OKEA E-COMMERCE - SCRIPT EJECUTABLE EN WORKBENCH
+-- OKEA E-COMMERCE - ESTRUCTURA DE TABLAS
 -- Base de datos: okea_marketing
--- Fecha: 2025-01-25
+-- Fecha: 2025-09-26
+-- Descripción: Creación de todas las tablas del sistema
 -- =====================================================
 
 -- Crear la base de datos si no existe
@@ -12,7 +13,7 @@ CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE okea_marketing;
 
 -- =====================================================
--- VERIFICAR Y LIMPIAR TABLAS EXISTENTES (OPCIONAL)
+-- LIMPIAR TABLAS EXISTENTES (OPCIONAL)
 -- =====================================================
 
 -- Desactivar verificación de claves foráneas temporalmente
@@ -25,13 +26,32 @@ DROP TABLE IF EXISTS ofertas;
 DROP TABLE IF EXISTS newsletter;
 DROP TABLE IF EXISTS cupones;
 DROP TABLE IF EXISTS banners;
+DROP TABLE IF EXISTS auditoria_seguridad;
 
 -- Reactivar verificación de claves foráneas
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- =====================================================
--- CREAR TODAS LAS TABLAS
+-- CREACIÓN DE TABLAS
 -- =====================================================
+
+-- Tabla de auditoría de seguridad
+CREATE TABLE auditoria_seguridad (
+    id_auditoria INT AUTO_INCREMENT PRIMARY KEY,
+    tabla_afectada VARCHAR(50) NOT NULL,
+    operacion ENUM('INSERT', 'UPDATE', 'DELETE') NOT NULL,
+    id_registro INT,
+    usuario VARCHAR(100) DEFAULT NULL,
+    ip_address VARCHAR(45) DEFAULT NULL,
+    datos_anteriores JSON DEFAULT NULL,
+    datos_nuevos JSON DEFAULT NULL,
+    fecha_operacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    observaciones TEXT DEFAULT NULL,
+
+    KEY idx_tabla_fecha (tabla_afectada, fecha_operacion),
+    KEY idx_usuario (usuario),
+    KEY idx_operacion (operacion)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tabla de banners
 CREATE TABLE banners (
@@ -47,10 +67,13 @@ CREATE TABLE banners (
     fecha_fin DATETIME DEFAULT NULL,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    usuario_creacion VARCHAR(100) DEFAULT NULL,
+    usuario_modificacion VARCHAR(100) DEFAULT NULL,
 
     KEY idx_seccion_orden (seccion, orden),
     KEY idx_activo (activo),
-    KEY idx_vigencia (fecha_inicio, fecha_fin, activo)
+    KEY idx_vigencia (fecha_inicio, fecha_fin, activo),
+    KEY idx_usuario_creacion (usuario_creacion)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tabla de cupones
@@ -68,10 +91,18 @@ CREATE TABLE cupones (
     activo TINYINT(1) DEFAULT 1,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    usuario_creacion VARCHAR(100) DEFAULT NULL,
+    usuario_modificacion VARCHAR(100) DEFAULT NULL,
 
     KEY idx_codigo (codigo),
     KEY idx_fechas (fecha_inicio, fecha_fin),
-    KEY idx_activo (activo)
+    KEY idx_activo (activo),
+    KEY idx_usuario_creacion (usuario_creacion),
+
+    CONSTRAINT chk_valor_descuento CHECK (valor_descuento > 0),
+    CONSTRAINT chk_porcentaje_maximo CHECK (
+        tipo_descuento != 'porcentaje' OR valor_descuento <= 100
+    )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tabla de newsletter
@@ -84,10 +115,13 @@ CREATE TABLE newsletter (
     fecha_confirmacion TIMESTAMP NULL DEFAULT NULL,
     token_confirmacion VARCHAR(100) DEFAULT NULL,
     fecha_baja TIMESTAMP NULL DEFAULT NULL,
+    motivo_baja TEXT DEFAULT NULL,
+    ip_suscripcion VARCHAR(45) DEFAULT NULL,
 
     KEY idx_email (email),
     KEY idx_estado (estado),
-    KEY idx_fecha_suscripcion (fecha_suscripcion)
+    KEY idx_fecha_suscripcion (fecha_suscripcion),
+    KEY idx_token (token_confirmacion)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tabla de ofertas
@@ -103,11 +137,18 @@ CREATE TABLE ofertas (
     activo TINYINT(1) DEFAULT 1,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    usuario_creacion VARCHAR(100) DEFAULT NULL,
+    usuario_modificacion VARCHAR(100) DEFAULT NULL,
 
     KEY idx_producto (id_producto),
     KEY idx_fechas (fecha_inicio, fecha_fin),
     KEY idx_activo (activo),
-    KEY idx_vigente (fecha_inicio, fecha_fin, activo)
+    KEY idx_vigente (fecha_inicio, fecha_fin, activo),
+    KEY idx_usuario_creacion (usuario_creacion),
+
+    CONSTRAINT chk_descuento_porcentaje CHECK (descuento_porcentaje > 0 AND descuento_porcentaje <= 100),
+    CONSTRAINT chk_precio_oferta CHECK (precio_oferta > 0),
+    CONSTRAINT chk_fechas_oferta CHECK (fecha_fin > fecha_inicio)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tabla de favoritos
@@ -118,6 +159,7 @@ CREATE TABLE favoritos (
     email_usuario VARCHAR(255) DEFAULT NULL,
     nombre_producto VARCHAR(255) DEFAULT NULL,
     creado_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ip_usuario VARCHAR(45) DEFAULT NULL,
 
     UNIQUE KEY unique_favorito_temp (id_usuario, id_producto),
 
@@ -136,6 +178,8 @@ CREATE TABLE cupones_uso (
     email_usuario VARCHAR(255) DEFAULT NULL,
     monto_pedido DECIMAL(10,2) DEFAULT NULL,
     fecha_uso TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ip_usuario VARCHAR(45) DEFAULT NULL,
+    detalles_uso JSON DEFAULT NULL,
 
     FOREIGN KEY (id_cupon) REFERENCES cupones(id_cupon) ON DELETE CASCADE ON UPDATE CASCADE,
 
@@ -147,69 +191,12 @@ CREATE TABLE cupones_uso (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================================
--- INSERTAR DATOS DE PRUEBA
+-- CONFIGURACIÓN DE SEGURIDAD
 -- =====================================================
 
--- Banners de prueba
-INSERT INTO banners (titulo, subtitulo, imagen_url, seccion, orden, activo) VALUES
-('¡Bienvenido a OKEA!', 'Las mejores ofertas del mercado te esperan', '/images/banners/banner-principal.jpg', 'home_principal', 1, 1),
-('Ofertas de Enero 2025', 'Hasta 50% de descuento en tecnología', '/images/banners/banner-ofertas.jpg', 'home_secundario', 1, 1),
-('Nueva Colección Verano', 'Descubre las últimas tendencias', '/images/banners/banner-moda.jpg', 'home_secundario', 2, 1),
-('Envío Gratis', 'En compras superiores a $100', '/images/banners/envio-gratis.jpg', 'footer', 1, 1);
+-- Activar logs binarios para auditoría
+SET GLOBAL log_bin_trust_function_creators = 1;
 
--- Cupones de prueba
-INSERT INTO cupones (codigo, descripcion, tipo_descuento, valor_descuento, monto_minimo, usos_maximos, fecha_inicio, fecha_fin, activo) VALUES
-('BIENVENIDO10', 'Descuento del 10% para nuevos usuarios', 'porcentaje', 10.00, 50.00, 100, NOW(), DATE_ADD(NOW(), INTERVAL 30 DAY), 1),
-('ENVIOGRATIS', 'Envío gratis en compras mayores a $100', 'monto_fijo', 15.00, 100.00, NULL, NOW(), DATE_ADD(NOW(), INTERVAL 60 DAY), 1),
-('TECH25', 'Descuento especial en tecnología', 'porcentaje', 25.00, 200.00, 50, NOW(), DATE_ADD(NOW(), INTERVAL 15 DAY), 1),
-('PRIMERAVEZ', 'Descuento para primera compra', 'monto_fijo', 20.00, 80.00, 200, NOW(), DATE_ADD(NOW(), INTERVAL 90 DAY), 1);
-
--- Newsletter de prueba
-INSERT INTO newsletter (email, nombre, estado) VALUES
-('marketing@okea.com', 'Equipo Marketing OKEA', 'activo'),
-('luis@okea.com', 'Luis - Backend Marketing', 'activo'),
-('test1@ejemplo.com', 'Usuario Test 1', 'activo'),
-('test2@ejemplo.com', 'Usuario Test 2', 'inactivo'),
-('spam@bloqueado.com', NULL, 'bloqueado');
-
--- Ofertas de prueba
-INSERT INTO ofertas (id_producto, nombre_producto, descuento_porcentaje, precio_original, precio_oferta, fecha_inicio, fecha_fin) VALUES
-(1, 'iPhone 15 Pro 256GB', 15.00, 1299.99, 1104.99, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
-(2, 'Samsung Galaxy S24 Ultra', 10.00, 1199.99, 1079.99, NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY)),
-(3, 'MacBook Air M3', 20.00, 1499.99, 1199.99, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY)),
-(4, 'Nike Air Max 270', 25.00, 159.99, 119.99, NOW(), DATE_ADD(NOW(), INTERVAL 3 DAY));
-
--- Favoritos de prueba
-INSERT INTO favoritos (id_usuario, id_producto, email_usuario, nombre_producto) VALUES
-(1, 1, 'usuario1@test.com', 'iPhone 15 Pro 256GB'),
-(1, 3, 'usuario1@test.com', 'MacBook Air M3'),
-(2, 2, 'usuario2@test.com', 'Samsung Galaxy S24 Ultra'),
-(2, 4, 'usuario2@test.com', 'Nike Air Max 270'),
-(3, 1, 'usuario3@test.com', 'iPhone 15 Pro 256GB');
-
--- Uso de cupones de prueba
-INSERT INTO cupones_uso (id_cupon, id_usuario, email_usuario, monto_pedido) VALUES
-(1, 1, 'usuario1@test.com', 1299.99),
-(2, 2, 'usuario2@test.com', 150.00),
-(3, 3, 'usuario3@test.com', 299.99);
-
--- =====================================================
--- MENSAJE DE ÉXITO
--- =====================================================
-
-SELECT 'Base de datos OKEA Marketing creada exitosamente!' as mensaje;
-SELECT 'Tablas creadas: banners, cupones, newsletter, ofertas, favoritos, cupones_uso' as detalles;
-
--- Mostrar estadísticas
-SELECT 'ESTADÍSTICAS DE DATOS INSERTADOS:' as titulo;
-SELECT 'Banners' as tabla, COUNT(*) as registros FROM banners
-UNION ALL
-SELECT 'Cupones' as tabla, COUNT(*) as registros FROM cupones
-UNION ALL
-SELECT 'Newsletter' as tabla, COUNT(*) as registros FROM newsletter
-UNION ALL
-SELECT 'Ofertas' as tabla, COUNT(*) as registros FROM ofertas
-UNION ALL
-SELECT 'Favoritos' as tabla, COUNT(*) as registros FROM favoritos
-UNION ALL
-SELECT 'Uso Cupones' as tabla, COUNT(*) as registros FROM cupones_uso;
+-- Mensaje de confirmación
+SELECT 'Estructura de base de datos OKEA Marketing creada exitosamente!' as mensaje;
+SELECT 'Tablas creadas: auditoria_seguridad, banners, cupones, newsletter, ofertas, favoritos, cupones_uso' as detalles;
