@@ -1,6 +1,30 @@
 import { FlechaDerecha, Location1 } from '../../assets/iconos/Icons';
+import { useState, useEffect } from 'react';
 
 export default function LocationOptionsDropdown({ options, position, onClose }) {
+  const [theme, setTheme] = useState(() => {
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  });
+
+  useEffect(() => {
+    setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
       className="fixed z-[999] rounded-xl shadow-lg max-h-[40 0px] overflow-y-auto"
@@ -10,7 +34,7 @@ export default function LocationOptionsDropdown({ options, position, onClose }) 
         left: position.left,
         transform: 'translateX(-310px)',
         width: '310px',
-        backgroundColor: '#2C509E66',
+        backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : '#2C509E66',
         backdropFilter: 'blur(60px)',
         WebkitBackdropFilter: 'blur(60px)',
         padding: '20px 8px', 

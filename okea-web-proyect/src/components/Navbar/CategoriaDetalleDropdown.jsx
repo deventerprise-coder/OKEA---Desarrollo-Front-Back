@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 import { FlechaDerecha } from "../../assets/iconos/Icons";
 
 const animations = `
@@ -35,6 +35,28 @@ const animations = `
 
 export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClose }) {
   const [isVisible, setIsVisible] = useState(true);
+  const [theme, setTheme] = useState(() => {
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  });
+
+  useEffect(() => {
+    setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
   
   if (!data) return null;
   const Icon = data.icon;
@@ -45,6 +67,12 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
   const handleClose = () => {
     setIsVisible(false);
     setTimeout(onClose, 400); // Espera a que termine la animación
+  };
+
+  const getThemeStyles = () => {
+    return {
+      background: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : '#2C509E66'
+    };
   };
 
   return (
@@ -124,12 +152,12 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
       <div
         className={isVisible ? 'detail-enter' : 'detail-exit'}
         style={{
+          ...getThemeStyles(),
           position: 'fixed',
           top: 116,
           left,
           width,
           height: 908,
-          background: '#2C509E66',
           borderRadius: 32,
           borderWidth: 1,
           borderStyle: 'solid',

@@ -19,7 +19,7 @@ import {
 } from '../../assets/iconos/Icons';
 import { categoriasDetalle } from './categoriasDetalle';
 import CategoriaDetalleDropdown from './CategoriaDetalleDropdown';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const animations = `
   @keyframes fadeIn {
@@ -65,6 +65,35 @@ const animations = `
 
 export default function CategoriasDropdown({isVisible }) {
   const [categoriaActiva, setCategoriaActiva] = useState(null);
+  const [theme, setTheme] = useState(() => {
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  });
+
+  useEffect(() => {
+    setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const getThemeStyles = () => {
+    return {
+      backgroundColor: theme === 'dark' ? 'rgba(22, 18, 60, 0.4)' : 'rgba(44, 80, 158, 0.5)',
+      border: '1px solid #DAE2FF',
+    };
+  };
 
   // Agregar esta nueva función para manejar el toggle
   const handleCategoriaClick = (categoria) => {
@@ -107,7 +136,7 @@ export default function CategoriasDropdown({isVisible }) {
           maxHeight: 960,
           borderRadius: 32,
           borderWidth: 1,
-          backgroundColor: 'rgba(44, 80, 158, 0.5)',
+          ...getThemeStyles(),
           overflowY: 'auto',
           paddingTop: 40,
           position: 'fixed',
