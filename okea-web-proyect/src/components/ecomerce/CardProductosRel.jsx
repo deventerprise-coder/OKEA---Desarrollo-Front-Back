@@ -1,4 +1,4 @@
-import {HeartIcon, ShoppingCartIcon } from "../../assets/iconos/iconoHome";
+import {HeartIconblack, ShoppingCartIcon } from "../../assets/iconos/iconoHome";
 import { EstrellaIcon, FavoritoCardIcon } from "../../assets/iconos/Icons";
 import { useState } from "react";
 import laptopImg from "../../assets/imagenes/laptop.png";
