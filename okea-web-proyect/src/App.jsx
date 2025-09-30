@@ -11,9 +11,11 @@ import MarcasDestacadas from './components/MarcasDestacadas';
 import Home from './pages/Home/Home';
 import CarritoPage from './pages/CarritoPage';
 import ScrollToTop from './components/ScrollToTop';
+import Categoria from './pages/Catalogo/Catergoria';
 
 function App() {
   return (
+<<<<<<< HEAD
     <ThemeProvider>
       <Router>
         <ScrollToTop />
@@ -39,6 +41,40 @@ function App() {
         </div>
       </Router>
     </ThemeProvider>
+=======
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <SocialBar />
+                <FloatingActionButton />
+                <Home />
+                <MarcasDestacadas />
+                <PreguntasFrecuentes />
+                <BloqueDeServicios />
+              </>
+            }
+          />
+          <Route path="/carrito" element={<CarritoPage />} />
+          <Route 
+            path="/catalogo" 
+            element={
+              <>
+                <Categoria />
+                <BloqueDeServicios />
+              </>
+            }
+          />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
+>>>>>>> ac7a4063ca7d48ed8df6e526ad4124f5c0d16f75
   );
 }
 
