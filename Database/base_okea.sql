@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS categorias (
     slug VARCHAR(150) NOT NULL UNIQUE,
     descripcion TEXT,
 
-    activo BOOLEAN DEFAULT TRUE,
+    activo TINYINT(1) NOT NULL DEFAULT 1,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     fecha_modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS marcas (
     slug VARCHAR(150) NOT NULL UNIQUE,
 
     descripcion TEXT,
-    activo BOOLEAN DEFAULT TRUE,
+    activo TINYINT(1) NOT NULL DEFAULT 1,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     fecha_modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
@@ -103,16 +103,15 @@ CREATE TABLE IF NOT EXISTS productos (
     peso DECIMAL(10,3) DEFAULT NULL,
     largo DECIMAL(10,2) DEFAULT NULL,
     ancho DECIMAL(10,2) DEFAULT NULL,
-    alto DECIMAL(10,2) DEFAULT NULL;
+    alto DECIMAL(10,2) DEFAULT NULL,
     descripcion TEXT,
     precio DECIMAL(10,2) NOT NULL,
     stock INT NOT NULL DEFAULT 0,
     id_categoria INT NOT NULL,
     id_marca INT NOT NULL,
     imagen_url VARCHAR(500),
-    activo BOOLEAN DEFAULT TRUE,
+    activo TINYINT(1) NOT NULL DEFAULT 1,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
     galeria_imagenes JSON,
     fecha_modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     
@@ -200,7 +199,8 @@ CREATE TABLE IF NOT EXISTS direcciones (
   pais VARCHAR(100) NULL,
   tipo ENUM('envio','facturacion') NOT NULL DEFAULT 'envio',
   CONSTRAINT fk_direcciones_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE,
-  INDEX idx_dir_usuario (id_usuario)
+
+  INDEX idx_dir_usuario (id_usuario),
   INDEX idx_dir_tipo (tipo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -222,8 +222,6 @@ CREATE TABLE IF NOT EXISTS favoritos (
     id_favorito INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT NOT NULL,
     id_producto INT NOT NULL,
-    email_usuario VARCHAR(255) DEFAULT NULL,
-    nombre_producto VARCHAR(255) DEFAULT NULL,
     creado_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     ip_usuario VARCHAR(45) DEFAULT NULL,
 
@@ -364,7 +362,7 @@ CREATE TABLE IF NOT EXISTS pagos (
 CREATE TABLE IF NOT EXISTS logs (
     id_log BIGINT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT NULL,
-    user_agent VARCHAR(255) DEFAULT NULL;
+    user_agent VARCHAR(255) DEFAULT NULL,
     operacion ENUM('INSERT', 'UPDATE', 'DELETE', 'OTHER') NOT NULL DEFAULT 'OTHER',
     accion VARCHAR(255) NOT NULL,
     descripcion TEXT NULL,
