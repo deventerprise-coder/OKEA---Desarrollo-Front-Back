@@ -1,7 +1,73 @@
 import { useTheme } from "../components/ThemeContext";
+import ProductCardV2 from "../components/ProductCardV2";
+import { useState } from "react";
 
 export default function CarritoPage() {
   const { isLight } = useTheme();
+
+  // Estado para manejar productos
+  const [products, setProducts] = useState([
+    {
+      id: 1,
+      image: "/api/placeholder/300/300",
+      discount: "-50%",
+      label: "APPLE",
+      title: "iPhone 15 Plus",
+      price: "$3,250.00",
+      oldPrice: "$6,500.00",
+      rating: "4.9",
+      liked: false,
+      added: false
+    },
+    {
+      id: 2,
+      image: "/api/placeholder/300/300",
+      discount: "-30%",
+      label: "SAMSUNG",
+      title: "Galaxy S24 Ultra",
+      price: "$2,800.00",
+      oldPrice: "$4,000.00",
+      rating: "4.8",
+      liked: false,
+      added: false
+    },
+    {
+      id: 3,
+      image: "/api/placeholder/300/300",
+      discount: "-25%",
+      label: "XIAOMI",
+      title: "Mi 13 Pro",
+      price: "$1,500.00",
+      oldPrice: "$2,000.00",
+      rating: "4.7",
+      liked: false,
+      added: false
+    },
+    {
+      id: 4,
+      image: "/api/placeholder/300/300",
+      discount: "-40%",
+      label: "GOOGLE",
+      title: "Pixel 8 Pro",
+      price: "$1,800.00",
+      oldPrice: "$3,000.00",
+      rating: "4.6",
+      liked: false,
+      added: false
+    }
+  ]);
+
+  const handleLike = (id) => {
+    setProducts(products.map(product => 
+      product.id === id ? { ...product, liked: !product.liked } : product
+    ));
+  };
+
+  const handleAdd = (id) => {
+    setProducts(products.map(product => 
+      product.id === id ? { ...product, added: !product.added } : product
+    ));
+  };
 
   const getBackgroundStyle = () => {
     return {
@@ -29,14 +95,14 @@ export default function CarritoPage() {
 
   const getTextStyle = () => {
     return {
-      color: isLight ? '#1C4390' : '#DFE162',
+      color: isLight ? '#434651' : '#FFFFFF',
       transition: 'color 0.3s ease'
     };
   };
 
   const getCardStyle = () => {
     return {
-      backgroundColor: isLight ? '#F5F5F5' : '#2a2a4a',
+      backgroundColor: isLight ? '#ffffffff' : '#292272',
       color: isLight ? '#000000' : '#ffffff',
       transition: 'all 0.3s ease'
     };
@@ -69,6 +135,34 @@ export default function CarritoPage() {
         <p className="max-w-2xl mx-auto text-lg" style={{ color: isLight ? '#000000' : '#ffffff' }}>
           Tu plataforma digital para encontrar todo tipo de productos, desde los más simples hasta los más sofisticados
         </p>
+      </section>
+
+      {/* Nueva sección de productos */}
+      <section className="px-6 py-12" style={getSectionStyle()}>
+        <h2 className="text-3xl font-semibold mb-8 text-center" style={getTextStyle()}>
+          Productos Destacados
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+          {products.map((product) => (
+            <ProductCardV2
+              key={product.id}
+              id={product.id}
+              image={product.image}
+              discount={product.discount}
+              label={product.label}
+              title={product.title}
+              price={product.price}
+              oldPrice={product.oldPrice}
+              rating={product.rating}
+              liked={product.liked}
+              added={product.added}
+              onLike={handleLike}
+              onAdd={handleAdd}
+              getCardStyle={getCardStyle}
+              getTextStyle={getTextStyle}
+            />
+          ))}
+        </div>
       </section>
 
       <section className="px-6 py-12" style={getSectionStyle()}>

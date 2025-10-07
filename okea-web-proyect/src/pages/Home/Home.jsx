@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "../../components/ThemeContext";
+import ProductCard from "../../components/ProductCard.jsx";
 import promocion from "../../assets/imagenes/Home/promocion.png";
 import apple from "../../assets/imagenes/Home/apple.png";
 import iphone from "../../assets/imagenes/Home/iphone.png";
@@ -109,13 +110,6 @@ const { isLight } = useTheme();
     };
   };
 
-  const getButtonStyle = () => {
-    return {
-      backgroundColor: isLight ? '#1C4390' : '#DFE162',
-      color: isLight ? '#ffffff' : '#1C4390',
-      transition: 'all 0.3s ease'
-    };
-  };
 
 
 // --- Autoplay para presentación ---
@@ -847,342 +841,109 @@ const prevSlideCategorias = () => {
                         <h1 className=''><ArrowLeftNormal/></h1>
                     </button>
                     <div className="carrusel flex gap-4">
-                        {/*Producto1*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group" style={getCardStyle()}>
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto1")}>
-                                    <HeartIconblack isActive={liked["producto1"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl' style={getTextStyle()}>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm ' style={getTextStyle()}>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
+                      {/*Producto1*/}
+                        <ProductCard
+                          id="producto1Muebles"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto1Muebles"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
 
-                            <button
-                              onClick={() => handleClick(1)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[1] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[1] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[1] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[1] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
                         {/*Producto2*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto2")}>
-                                    <HeartIconblack isActive={liked["producto2"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(2)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[2] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[2] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[2] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[2] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto2Muebles"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto2Muebles"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto3*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto3")}>
-                                    <HeartIconblack isActive={liked["producto3"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(3)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[3] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[3] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[3] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[3] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto3Muebles"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto3Muebles"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto4*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto4")}>
-                                    <HeartIconblack isActive={liked["producto4"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(4)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[4] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[4] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[4] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[4] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto4Muebles"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto4Muebles"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto5*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto5")}>
-                                    <HeartIconblack isActive={liked["producto5"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(5)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[5] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[5] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[5] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[5] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto5Muebles"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto5Muebles"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto6*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto6")}>
-                                    <HeartIconblack isActive={liked["producto6"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(6)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[6] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[6] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[6] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[6] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto6Muebles"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto6Muebles"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                     </div>
                 <button className="text-4xl mx-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                     <h1 className=''><ArrowRightNormal/></h1>
@@ -1299,232 +1060,76 @@ const prevSlideCategorias = () => {
               {/*Fila 1*/}
               <div className="flex gap-4 pb-4">                
                   {/*Producto7*/}
-                  <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto7")}>
-                                    <HeartIconblack isActive={liked["producto7"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(7)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[7] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[7] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[7] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[7] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                  </div>
+                  <ProductCard
+                    id="producto1Calzado"
+                    image={muebleMesitaNoche}
+                    discount="-50%"
+                    label="Label"
+                    title="Wooden Sofa Chair"
+                    price="$80.00"
+                    oldPrice="s/ 160.00"
+                    rating="4.9"
+                    liked={liked["producto1Calzado"]}
+                    added={addedItems[1]}
+                    onLike={toggleLike}
+                    onAdd={handleClick}
+                    getCardStyle={getCardStyle}
+                    getTextStyle={getTextStyle}
+                  /> 
                   {/*Producto8*/}
-                  <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto8")}>
-                                    <HeartIconblack isActive={liked["producto8"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(8)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[8] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[8] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[8] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[8] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                  </div>
+                  <ProductCard
+                    id="producto2Calzado"
+                    image={muebleMesitaNoche}
+                    discount="-50%"
+                    label="Label"
+                    title="Wooden Sofa Chair"
+                    price="$80.00"
+                    oldPrice="s/ 160.00"
+                    rating="4.9"
+                    liked={liked["producto2Calzado"]}
+                    added={addedItems[1]}
+                    onLike={toggleLike}
+                    onAdd={handleClick}
+                    getCardStyle={getCardStyle}
+                    getTextStyle={getTextStyle}
+                  /> 
               </div>
               {/*Fila 2*/}
               <div className="flex gap-4 pb-4">                
                   {/*Producto9*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto9")}>
-                                    <HeartIconblack isActive={liked["producto9"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(9)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[9] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[9] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[9] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[9] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                   <ProductCard
+                    id="producto3Calzado"
+                    image={muebleMesitaNoche}
+                    discount="-50%"
+                    label="Label"
+                    title="Wooden Sofa Chair"
+                    price="$80.00"
+                    oldPrice="s/ 160.00"
+                    rating="4.9"
+                    liked={liked["producto3Calzado"]}
+                    added={addedItems[1]}
+                    onLike={toggleLike}
+                    onAdd={handleClick}
+                    getCardStyle={getCardStyle}
+                    getTextStyle={getTextStyle}
+                  /> 
                   {/*Producto10*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto10")}>
-                                    <HeartIconblack isActive={liked["producto10"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(10)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[10] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[10] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[10] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[10] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                   <ProductCard
+                    id="producto4Calzado"
+                    image={muebleMesitaNoche}
+                    discount="-50%"
+                    label="Label"
+                    title="Wooden Sofa Chair"
+                    price="$80.00"
+                    oldPrice="s/ 160.00"
+                    rating="4.9"
+                    liked={liked["producto4Calzado"]}
+                    added={addedItems[1]}
+                    onLike={toggleLike}
+                    onAdd={handleClick}
+                    getCardStyle={getCardStyle}
+                    getTextStyle={getTextStyle}
+                  /> 
               </div>
             </div>     
           </div>
@@ -1603,345 +1208,108 @@ const prevSlideCategorias = () => {
                         </button>
                         <div className="carrusel flex gap-4">
                         {/*Producto11*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto11")}>
-                                    <HeartIconblack isActive={liked["producto11"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(11)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[11] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[11] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[11] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[11] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto1Supermercado"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto1Supermercado"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        /> 
                         {/*Producto12*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto12")}>
-                                    <HeartIconblack isActive={liked["producto12"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(12)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[12] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[12] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[12] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[12] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto2Supermercado"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto2Supermercado"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        /> 
                         {/*Producto13*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto13")}>
-                                    <HeartIconblack isActive={liked["producto13"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(13)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[13] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[13] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[13] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[13] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto3Supermercado"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto3Supermercado"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto14*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto14")}>
-                                    <HeartIconblack isActive={liked["producto14"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(14)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[14] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[14] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[14] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[4] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto4Supermercado"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto4Supermercado"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto15*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto15")}>
-                                    <HeartIconblack isActive={liked["producto15"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(15)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[15] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[15] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[5] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[15] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto5Supermercado"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto5Supermercado"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto16*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto16")}>
-                                    <HeartIconblack isActive={liked["producto16"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
+                        <ProductCard
+                          id="producto6Supermercado"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto6Supermercado"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(6)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[16] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[16] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[16] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[16] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
-                        </div>
-                        <button className="text-4xl mx-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
-                            <h1 className=''><ArrowRightNormal/></h1>
-                        </button> 
                     </div>
                 </div> 
             </div>
@@ -1991,341 +1359,107 @@ const prevSlideCategorias = () => {
                     </button>
                     <div className="carrusel flex gap-4">
                         {/*Producto17*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto17")}>
-                                    <HeartIconblack isActive={liked["producto17"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(17)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[17] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[17] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[17] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[17] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto1Recomendados"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto1Recomendados"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto18*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto18")}>
-                                    <HeartIconblack isActive={liked["producto18"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(18)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[18] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[18] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[18] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[18] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto2Recomendados"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto2Recomendados"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto19*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto19")}>
-                                    <HeartIconblack isActive={liked["producto19"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(19)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[19] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[19] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[19] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[19] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto3Recomendados"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto3Recomendados"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto20*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto20")}>
-                                    <HeartIconblack isActive={liked["producto20"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(20)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[20] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[20] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[20] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[20] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto4Recomendados"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto4Recomendados"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto21*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                          <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                              <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                  <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                              </div> 
-                              <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                              <div className="relative">
-                                  <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto21")}>
-                                      <HeartIconblack isActive={liked["producto21"]} />
-                                  </div>
-                              </div>
-                              <div className="flex justify-center">    
-                                  <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                      <div className="relojIcon pt-0.5">
-                                          <ClockIcon />
-                                      </div>
-                                      <div className="">05</div>
-                                      <div className="text-xs font-extralight pt-1">|</div>
-                                      <div className="">05</div>
-                                      <div className="text-xs font-extralight pt-1">|</div>
-                                      <div className="">00</div>    
-                                  </div>    
-                              </div>
-                          </div>
-                          <div className="info font-popins pt-4 px-3 z-10 ">
-                              <div className="flex  text-black justify-between">
-                                  <h1 className='text-2xl'>Label</h1>
-                                  <div className="flex p-0.5">
-                                      <div className="staricon"> <StarIcon /></div>
-                                      <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                  </div>
-                              </div>
-                              <h1>Wooden Sofa Chair</h1>
-                              <div className="flex">
-                                  <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                  <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                              </div>
-                                    
-                              <button
-                                onClick={() => handleClick(21)}
-                                className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                                ${addedItems[21] ? "bg-blue-500 text-white" : ""}`}>
-                                <div
-                                    className={`flex items-center gap-2 transition-all duration-900 ${
-                                    addedItems[21] ? "flex-row-reverse" : "flex-row"}`}>
-                                  <ShoppingCartIcon
-                                    className={`w-5 h-5 transition-all duration-500 ${
-                                      addedItems[21] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                  <h1 className="font-popins text-sm">
-                                    {addedItems[21] ? "Item agregado" : "Agregar al carrito"}
-                                  </h1>
-                                </div>
-                              </button>
-                          </div>
-                        </div>
+                        <ProductCard
+                          id="producto5Recomendados"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto5Recomendados"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />
                         {/*Producto22*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto22")}>
-                                    <HeartIconblack isActive={liked["product22"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(22)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[22] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[22] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[22] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[22] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto6Recomendados"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto6Recomendados"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />  
                     </div>
                 <button className="text-4xl mx-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                     <h1 className=''><ArrowRightNormal/></h1>
@@ -2372,341 +1506,107 @@ const prevSlideCategorias = () => {
                 </button>
                 <div className="carrusel flex gap-4">
                         {/*Producto23*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto23")}>
-                                    <HeartIconblack isActive={liked["producto23"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(23)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[23] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[23] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[23] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[23] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto1Vendidos"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto1Vendidos"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />  
                         {/*Producto24*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto24")}>
-                                    <HeartIconblack isActive={liked["producto24"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(24)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[24] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[24] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[24] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[24] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto2Vendidos"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto2Vendidos"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />  
                         {/*Producto25*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto25")}>
-                                    <HeartIconblack isActive={liked["producto25"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(25)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[25] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[25] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[25] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[25] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto3Vendidos"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto3Vendidos"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        />  
                         {/*Producto26*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto26")}>
-                                    <HeartIconblack isActive={liked["producto26"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(26)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[26] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[26] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[26] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[26] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto4Vendidos"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto4Vendidos"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        /> 
                         {/*Producto27*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto27")}>
-                                    <HeartIconblack isActive={liked["producto27"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(27)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[27] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[27] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[27] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[27] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto5Vendidos"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto5Vendidos"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        /> 
                         {/*Producto28*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
-                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
-                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
-                            </div> 
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
-                            <div className="relative">
-                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto28")}>
-                                    <HeartIconblack isActive={liked["producto28"]} />
-                                </div>
-                            </div>
-                            <div className="flex justify-center">    
-                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                    <div className="relojIcon pt-0.5">
-                                        <ClockIcon />
-                                    </div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">05</div>
-                                    <div className="text-xs font-extralight pt-1">|</div>
-                                    <div className="">00</div>    
-                                </div>    
-                            </div>
-                        </div>
-                        <div className="info font-popins pt-4 px-3 z-10 ">
-                            <div className="flex  text-black justify-between">
-                                <h1 className='text-2xl'>Label</h1>
-                                <div className="flex p-0.5">
-                                    <div className="staricon"> <StarIcon /></div>
-                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                </div>
-                            </div>
-                            <h1>Wooden Sofa Chair</h1>
-                            <div className="flex">
-                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                            </div>
-
-                            <button
-                              onClick={() => handleClick(28)}
-                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
-                              ${addedItems[28] ? "bg-blue-500 text-white" : ""}`}>
-                              <div
-                                  className={`flex items-center gap-2 transition-all duration-900 ${
-                                  addedItems[28] ? "flex-row-reverse" : "flex-row"}`}>
-                                <ShoppingCartIcon
-                                  className={`w-5 h-5 transition-all duration-500 ${
-                                    addedItems[28] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
-                                <h1 className="font-popins text-sm">
-                                  {addedItems[28] ? "Item agregado" : "Agregar al carrito"}
-                                </h1>
-                              </div>
-                            </button>
-                        </div>
-                        </div>
+                        <ProductCard
+                          id="producto6Vendidos"
+                          image={muebleMesitaNoche}
+                          discount="-50%"
+                          label="Label"
+                          title="Wooden Sofa Chair"
+                          price="$80.00"
+                          oldPrice="s/ 160.00"
+                          rating="4.9"
+                          liked={liked["producto6Vendidos"]}
+                          added={addedItems[1]}
+                          onLike={toggleLike}
+                          onAdd={handleClick}
+                          getCardStyle={getCardStyle}
+                          getTextStyle={getTextStyle}
+                        /> 
                 </div>
             <button className="text-4xl mx-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                 <h1 className=''><ArrowRightNormal/></h1>
