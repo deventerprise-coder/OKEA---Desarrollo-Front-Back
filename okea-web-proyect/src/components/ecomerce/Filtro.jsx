@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { TechnologyIcon, FiltroIcon, MarcaIcon, FlechaFiltro, Pedido, AyudaIcon, SoporteIcon,
-  PrecioIcon, ColorIcon, GeneracionIcon, TamanoIcon, PesoIcon, CalificacionIcon, RAguaIcon, SOIcon, CheckOptionIcon
+import { TechnologyIcon, FiltroIcon, FlechaFiltro, Pedido, AyudaIcon, SoporteIcon, CheckOptionIcon, CalificacionFiltroOptionIcon,
+  ModaIcon, MuebleIcon, CalzadoFilterIcon, DormitorioIcon, AccesoriosIcon, JuguetesIcon, DecoracionFilterIcon, MascotasIcon, SupermercadoFilterIcon,
+  ElectrohogarIcon
 } from "../../assets/iconos/Icons";
+import * as filters from "../../mocks/filtersLists";
 
 function FilterSection({ title, icon: IconComponent, children }) {
   const [open, setOpen] = useState(false);
@@ -11,26 +13,36 @@ function FilterSection({ title, icon: IconComponent, children }) {
 
   return (
     <div
-      className={`filter-section${open ? " active" : ""}`}
+      className={`relative flex flex-col items-stretch w-[300px] h-[40.85px] border border-gray-200 mb-2 rounded-full justify-center px-10 transition-colors duration-700 hover:bg-[#385BAA] group ${open ? "bg-[#385BAA]" : ""}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <button className="filter-header" onClick={() => setOpen(!open)}>
-        <div className="filter-header-content">
-          <span className="filter-title">
+      <button className="flex w-full h-[24.51px] bg-auto border-none px-1 py-0.5 text-sm rounded-md cursor-pointer justify-center items-center" onClick={() => setOpen(!open)}>
+        <div className="flex justify-between w-full items-center">
+          <span className={`flex items-center text-center font-['Inter',sans-serif] font-normal text-[#1F3A58] group-hover:text-white transition-colors duration-300 ${open ? "text-white" : ""}`}>
             {IconComponent && (
-              <span className="filter-icon">
-                <IconComponent stroke={iconColor} className="filtro-str" />
+              <span className="mr-1.5 flex items-center">
+                <IconComponent stroke={iconColor} className="transition-all duration-300" />
               </span>
             )}{" "}
             {title}
           </span>
-          <span className={`arrow ${open ? "open" : ""}`}>
+          <span className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`}>
             <FlechaFiltro fill={iconColor}/>
           </span>
         </div>
       </button>
-      {open && <div className="filter-content">{children}</div>}
+      {open && <div className="absolute left-1/2 top-12 w-[330px] h-[180px] bg-white/10 backdrop-blur-[8px] rounded-[5px] shadow-lg z-10 border border-[#1F3A5880] text-sm flex flex-col items-center transform -translate-x-1/2 justify-center">{children}</div>}
+    </div>
+  );
+}
+
+export function CalificacionOptions({calificacion,cantidad}) {
+  return (
+    <div className="flex items-center gap-2">
+      {Array.from({ length: calificacion }, (_, index) => (
+        <CalificacionFiltroOptionIcon key={index} />
+      ))} <span>{cantidad}</span>
     </div>
   );
 }
@@ -54,11 +66,11 @@ function UserOptions({ title, icon: IconComponent }) {
   const iconColor = hover ? "#FFF" : "#1F3A58";
 
   return (
-    <div className="option-section" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-      <section className="option-header">
-          <span className="option-title">
+    <div className="flex flex-row items-center w-[300px] h-[40.85px] border border-gray-200 mb-2 rounded-full pl-[20%] bg-gray-50 text-[#1F3A58] hover:bg-[#385BAA] hover:text-white transition-all duration-700" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+      <section className="h-[24.51px] border-none px-1 py-0.5 text-sm rounded-md cursor-pointer items-center bg-transparent">
+          <span className="flex items-center text-center text-sm font-['Inter',sans-serif] font-normal">
           {IconComponent && (
-              <span className="filter-icon">
+              <span className="mr-6 flex items-center">
                 <IconComponent fill={iconColor}/>
               </span>
             )}{" "} 
@@ -69,115 +81,55 @@ function UserOptions({ title, icon: IconComponent }) {
   );
 }
 
-export function SidebarMenu() {
-  const filtros = {
-    marca: {
-      icon: MarcaIcon,
-      nombre: "Marca",
-      opciones: [
-        { valor: "samsung", etiqueta: "Samsung" },
-        { valor: "apple", etiqueta: "Apple" },
-        { valor: "xiaomi", etiqueta: "Xiaomi" },
-      ],
-    },
-    precio: {
-      icon: PrecioIcon,
-      nombre: "Precio",
-      opciones: [
-        { valor: "samsung", etiqueta: "Samsung" },
-        { valor: "apple", etiqueta: "Apple" },
-        { valor: "xiaomi", etiqueta: "Xiaomi" },
-      ],
-    },
-    color: {
-      icon: ColorIcon,
-      nombre: "Color",
-      opciones: [
-        { valor: "samsung", etiqueta: "Samsung" },
-        { valor: "apple", etiqueta: "Apple" },
-        { valor: "xiaomi", etiqueta: "Xiaomi" },
-      ],
-    },
-    sistemaOperativo: {
-      icon: SOIcon,
-      nombre: "Sistema Operativo",
-      opciones: [
-        { valor: "samsung", etiqueta: "Samsung" },
-        { valor: "apple", etiqueta: "Apple" },
-        { valor: "xiaomi", etiqueta: "Xiaomi" },
-      ],
-    },
-    generacion: {
-      icon: GeneracionIcon,
-      nombre: "Generación",
-      opciones: [
-        { valor: "samsung", etiqueta: "Samsung" },
-        { valor: "apple", etiqueta: "Apple" },
-        { valor: "xiaomi", etiqueta: "Xiaomi" },
-      ],
-    },
-    tamanio: {
-      icon: TamanoIcon,
-      nombre: "Tamaño",
-      opciones: [
-        { valor: "samsung", etiqueta: "Samsung" },
-        { valor: "apple", etiqueta: "Apple" },
-        { valor: "xiaomi", etiqueta: "Xiaomi" },
-      ],
-    },
-    peso: {
-      icon: PesoIcon,
-      nombre: "Peso",
-      opciones: [
-        { valor: "samsung", etiqueta: "Samsung" },
-        { valor: "apple", etiqueta: "Apple" },
-        { valor: "xiaomi", etiqueta: "Xiaomi" },
-      ],
-    },
-    rAgua: {
-      icon: RAguaIcon,
-      nombre: "Resistente al agua",
-      opciones: [
-        { valor: "samsung", etiqueta: "Samsung" },
-        { valor: "apple", etiqueta: "Apple" },
-        { valor: "xiaomi", etiqueta: "Xiaomi" },
-      ],
-    },
-    calificacion: {
-      icon: CalificacionIcon,
-      nombre: "Calificación",
-      opciones: [
-        { valor: "samsung", etiqueta: "Samsung" },
-        { valor: "apple", etiqueta: "Apple" },
-        { valor: "xiaomi", etiqueta: "Xiaomi" },
-      ],
-    },
-  };
-  
+export function SidebarMenu({categoria, subcategoria}) {
+
+  const filtroActual = categoria === "Tecnología" ? filters.filtrosTec
+    : categoria === "Muebles y Organización" ? filters.filtrosMuebles
+    : categoria === "Calzado" ? filters.filtrosCalzado
+    : categoria === "Dormitorio y Baños" ? filters.filtrosDormitorio
+    : categoria === "Accesorios de Moda" ? filters.filtrosAccesorios
+    : categoria === "Salud y Bienestar" ? filters.filtrosSalud
+    : categoria === "Juguetes" ? filters.filtrosJuguetes
+    : categoria === "Decoración" ? filters.filtrosDecoracion
+    : categoria === "Mascotas" ? filters.filtrosMascotas
+    : categoria === "Supermercado" ? filters.filtrosSupermercado
+    : categoria === "Electrohogar" ? filters.filtrosElectrohogar
+    : categoria === "Moda Hombre" ? filters.filtrosModaHombre
+    : categoria === "Moda Mujer" ? filters.filtrosModaMujer
+    : null;
+
+    const Icon = categoria === "Tecnología" ? TechnologyIcon
+    : categoria === "Muebles y Organización" ? MuebleIcon
+    : categoria === "Calzado" ? CalzadoFilterIcon
+    : categoria === "Dormitorio y Baños" ? DormitorioIcon
+    : categoria === "Accesorios de Moda" ? AccesoriosIcon
+    : categoria === "Salud y Bienestar" ? SoporteIcon
+    : categoria === "Juguetes" ? JuguetesIcon
+    : categoria === "Decoración" ? DecoracionFilterIcon
+    : categoria === "Mascotas" ? MascotasIcon
+    : categoria === "Supermercado" ? SupermercadoFilterIcon
+    : categoria === "Electrohogar" ? ElectrohogarIcon
+    : categoria === "Moda Hombre" ? ModaIcon
+    : categoria === "Moda Mujer" ? ModaIcon
+    : null;
+
   return (
-    <aside className="sidebar mr-9">
-      <div className="sidebar-container"> 
-        <button className="category-btn"> <TechnologyIcon color="#fff" className="icon" /> Tecnología</button>
-          <p className="subtitle">Celulares</p>
-          <hr className="divider" />
-          <p className="subtitle"><span style={{ marginRight: '15px' }}>Filtros</span><FiltroIcon/></p>
-          <hr className="divider" />
+    <aside className="flex flex-col items-center w-[380px] h-[980px] border border-gray-200 rounded-2xl px-2 py-4 bg-white font-sans ml-[54px] justify-between mr-9">
+      <div className="flex flex-col items-center justify-center w-[330px] mb-3"> 
+        <button className={`flex items-center justify-center text-white bg-[#385BAA] w-[330px] h-12 rounded-[10px] p-2.5 ${categoria === "Tecnología" ? "text-[18px]" : "text-[16px]"} tracking-wide font-['Inter',sans-serif] font-normal`}> <Icon color="#fff" fill="#fff"/> <span className="ml-3">{categoria}</span></button>
+          <p className="flex items-center justify-center w-[326px] h-[34.72px] mt-[15px] text-base text-[#1F3A58] text-center font-['Inter',sans-serif] font-normal">{subcategoria}</p>
+          <hr className="border-t border-gray-200 my-2 w-[90%] mx-auto" />
+          <p className="flex items-center justify-center w-[326px] h-[34.72px] mt-[15px] text-base text-[#1F3A58] text-center font-['Inter',sans-serif] font-normal"><span style={{ marginRight: '15px' }}>Filtros</span><FiltroIcon/></p>
+          <hr className="border-t border-gray-200 my-2 w-[90%] mx-auto" />
       </div>
 
-      <div className="filters-container">
-        {Object.entries(filtros).map(([key, filtro]) => (
+      <div className="flex flex-col items-center justify-center h-[60%] w-full gap-[13px]">
+        {Object.entries(filtroActual).map(([key, filtro]) => (
         <FilterSection key={key} title={filtro.nombre} icon={filtro.icon}>
-          <div className="radio-group flex flex-col gap-2">
+          <div className={`flex flex-col ${key === 'calificacion' ? '' : 'gap-2'}`}>
             {filtro.opciones.map((op) => (
-              <label key={op.valor} className="radio-label">
+              <label key={op.etiqueta} className="flex items-center font-['Inter',sans-serif] font-normal text-[15px] text-[#1F3A58] cursor-pointer mb-2">
                 <OptionFilter title={op.etiqueta}/>
-                {/* <input
-                  type="radio"
-                  name={key}
-                  value={op.valor}
-                  className="radio-input"
-                />
-                {op.etiqueta} */}
               </label>
             ))}
           </div>
@@ -185,309 +137,12 @@ export function SidebarMenu() {
       ))}
       </div>
 
-      <div className="sidebar-container">
-        <hr className="divider" style={{marginBottom: '20px'}}/>
+      <div className="flex flex-col items-center justify-center w-[330px] mb-3">
+        <hr className="border-t border-gray-200 my-2 w-[90%] mx-auto" style={{marginBottom: '20px'}}/>
         <UserOptions title="Mis pedidos" icon={Pedido}/>
         <UserOptions title="Centro de ayuda" icon={AyudaIcon}/>
         <UserOptions title="Soporte técnico" icon={SoporteIcon}/>
       </div>
-    
-      <style>{`
-        .sidebar {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 380px;
-          height: 980px;
-          border: 1px solid #eee;
-          border-radius: 16px;
-          padding: 16px 8px;
-          background: #fff;
-          font-family: sans-serif;
-          margin-left: 54px;
-          justify-content: space-between;
-        }
-
-        .sidebar-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          width: 330px;
-          margin-bottom: 12px;
-        }
-
-        .divider {
-          border-top: 1px solid #eee;
-          margin: 8px 0;
-          width: 90%;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        
-        .divider-const {
-          border-top: 1px solid #eee;
-          margin: 8px 0;
-          width: 83%;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .category-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color : #fff;
-          background: #385BAA;
-          width: 330px;
-          height: 48px;
-          border-radius: 10px;
-          padding: 10px;
-          font-size: 18px;
-          letter-spacing: 0.5px;
-          font-family: 'Inter', sans-serif;
-          font-weight: 400;
-          font-style: normal;
-        }
-        
-       
-        .subtitle {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 326px;
-          height: 34.72px;
-          margin-top: 15px;
-          font-size: 16px;
-          color: #1F3A58;
-          text-align: center;
-          font-family: 'Inter', sans-serif;
-          font-weight: 400;
-          font-style: normal;
-        }
-
-        .filter-section {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          width: 300px;
-          height: 40.85px;
-          border: 1px solid #eee;
-          margin-bottom: 8px;
-          border-radius: 100px;
-          justify-content: center;
-          padding: 0px 40px;
-        }
-
-        .filter-header {
-          display: flex;
-          width: 100%;
-          height: 24.51px;
-          background: auto;
-          border: none;
-          padding: 2px 3px;
-          font-size: 14px;
-          border-radius: 6px;
-          cursor: pointer;
-          justify-content: center;
-          align-items: center; 
-        }
-
-        .filter-icon {
-          margin-right: 6px;
-          display: flex;
-          align-items: center;
-        }
-
-        .filter-header-content {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-          align-items: center;
-        }
-
-        .option-section {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          width: 300px;
-          height: 40.85px;
-          border: 1px solid #eee;
-          margin-bottom: 8px;
-          border-radius: 100px;
-          padding-left: 20%;
-          background: #f9f9f9;
-          color: #1F3A58;
-        }
-
-        .option-header {
-          height: 24.51px;
-          border: none;
-          padding: 2px 3px;
-          font-size: 14px;
-          border-radius: 6px;
-          cursor: pointer;
-          align-items: center; 
-        }
-
-        .option-icon {
-          margin-right: 25px;
-          display: flex;
-          align-items: center;
-        }
-
-      
-
-        .option-title {
-          display: flex;
-          align-items: center;
-          text-align: center;
-          font-size: 14px;
-          font-family: 'Inter', sans-serif;
-          font-weight: 400;
-          font-style: normal;
-        }
-
-        .category-btn .icon {
-          margin-right: 15px;
-        }
-
-        .filter-title {
-          display: flex;
-          align-items: center;
-          color: #1F3A58;
-          text-align: center;
-          font-family: 'Inter', sans-serif;
-          font-weight: 400;
-          font-style: normal;
-        }
-
-        .arrow {
-          transition: transform 0.3s;
-        }
-        .arrow.open {
-          transform: rotate(180deg);
-        }
-
-        .filter-content {
-          position: absolute;
-          left: 50%;
-          top: 48px;
-          width: 330px;
-          height: 180px;
-          background: rgba(255,255,255,0.1);
-          backdrop-filter: blur(8px);
-          border-radius: 10px;
-          box-shadow: 0 2px 8px rgba(44,80,158,0.08);
-          z-index: 10;
-          border: 1px solid rgba(31, 58, 88, 1) ;
-          padding: 8px 12px;
-          font-size: 14px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          transform: translateX(-50%);
-          justify-content: center;
-        }
-
-        .filter-content label {
-          display: block;
-          margin-bottom: 6px;
-        }
-
-        select {
-          width: 100%;
-          padding: 6px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-        }
-
-        .extra-links {
-          margin-top: 16px;
-        }
-
-        .extra-links button {
-          display: block;
-          width: 100%;
-          background: #f5f5f5;
-          border: none;
-          padding: 10px;
-          border-radius: 6px;
-          margin-bottom: 8px;
-          cursor: pointer;
-          font-size: 14px;
-        }
-
-        .extra-links button:hover {
-          background: #e5e5e5;
-        }
-
-        .filters-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          height: 60%;
-          width: 100%;
-          gap: 13px;
-        }
-
-        .radio-label {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-family: 'Inter', sans-serif;
-          font-weight: 400;
-          font-style: normal;
-          font-size: 15px;
-          color: #1F3A58;
-          cursor: pointer;
-          margin-bottom: 8px;
-        }
-
-        .radio-input {
-          accent-color: #385BAA;
-          width: 26px;
-          height: 26px;
-          border-radius: 50%;
-          vertical-align: middle;
-          margin-right: 8px;
-        }
-
-        .filter-section:hover{
-          background: #385BAA;
-          transition: background-color 0.7s;
-        }
-
-        .filter-section:hover .filter-title {
-          color: #fff;
-          transition: color 0.4s;
-        }
-
-         .filter-section.active {
-          background: #385BAA;
-        }
-
-        .filter-section.active .filter-title {
-          color: #fff;
-        }
-
-        .option-header {
-          background: transparent;
-        }
-
-        .option-section:hover {
-          background: #385BAA;
-          color: #fff;
-          transition: background-color 0.7s, color 0.4s;
-        }
-
-        .filtro-str{
-          transition: stroke 0.4s, fill 0.4s;
-        }
-
-      `}</style>
     </aside>
   );
 }
