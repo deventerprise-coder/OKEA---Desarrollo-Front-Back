@@ -164,6 +164,23 @@ CREATE TABLE IF NOT EXISTS ofertas (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
+-- Tabla Direcciones
+CREATE TABLE IF NOT EXISTS direcciones (
+  id_direccion INT AUTO_INCREMENT PRIMARY KEY,
+  id_usuario INT NOT NULL,
+  calle VARCHAR(255) NOT NULL,
+  telefono VARCHAR(20) DEFAULT NULL,
+  ciudad VARCHAR(100) NOT NULL,
+  provincia VARCHAR(100) NULL,
+  codigo_postal VARCHAR(20) NULL,
+  pais VARCHAR(100) NULL,
+  tipo ENUM('envio','facturacion') NOT NULL DEFAULT 'envio',
+  CONSTRAINT fk_direcciones_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE,
+
+  INDEX idx_dir_usuario (id_usuario),
+  INDEX idx_dir_tipo (tipo)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Tabla Carrito
 CREATE TABLE IF NOT EXISTS carrito (
     id_carrito INT AUTO_INCREMENT PRIMARY KEY,
@@ -186,23 +203,6 @@ CREATE TABLE IF NOT EXISTS pedidos (
     CONSTRAINT fk_pedidos_direccion FOREIGN KEY (id_direccion) REFERENCES direcciones(id_direccion)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-
--- Tabla Direcciones
-CREATE TABLE IF NOT EXISTS direcciones (
-  id_direccion INT AUTO_INCREMENT PRIMARY KEY,
-  id_usuario INT NOT NULL,
-  calle VARCHAR(255) NOT NULL,
-  telefono VARCHAR(20) DEFAULT NULL,
-  ciudad VARCHAR(100) NOT NULL,
-  provincia VARCHAR(100) NULL,
-  codigo_postal VARCHAR(20) NULL,
-  pais VARCHAR(100) NULL,
-  tipo ENUM('envio','facturacion') NOT NULL DEFAULT 'envio',
-  CONSTRAINT fk_direcciones_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE,
-
-  INDEX idx_dir_usuario (id_usuario),
-  INDEX idx_dir_tipo (tipo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 -- Tabla Detalle_pedido
