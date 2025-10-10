@@ -599,8 +599,8 @@ SELECT
         ELSE 'Dirección secundaria'
     END AS tipo_direccion,
     CASE
-        WHEN d.tipo = 'envio' THEN '📦 Envío'
-        WHEN d.tipo = 'facturacion' THEN '🧾 Facturación'
+        WHEN d.tipo = 'envio' THEN ' Envío'
+        WHEN d.tipo = 'facturacion' THEN ' Facturación'
     END AS icono_tipo
 FROM direcciones d
 INNER JOIN usuarios u ON d.id_usuario = u.id_usuario
