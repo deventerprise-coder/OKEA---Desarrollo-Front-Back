@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { WhatSappIcon, ChatBotIcon, MensajeIcon } from '../assets/iconos/Icons';
+import ChatWindow from './ChatWindow';
 
 const icons = [
   {
@@ -22,6 +23,7 @@ const icons = [
 export default function FloatingActionButton() {
   const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);
+  const [showChat, setShowChat] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,9 +34,16 @@ export default function FloatingActionButton() {
 
   const handleToggle = () => setOpen((prev) => !prev);
 
+  const handleChatClick = (e) => {
+    e.preventDefault();
+    setShowChat(true);
+    setOpen(false);
+  };
+
   return (
     <>
-      {/* Dropdown que se activa despues de presionar el boton */}
+      {showChat && <ChatWindow onClose={() => setShowChat(false)} />}
+      
       {open && (
         <div
           style={{
@@ -50,6 +59,7 @@ export default function FloatingActionButton() {
         >
           <a
             href="#"
+            onClick={handleChatClick}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -90,7 +100,6 @@ export default function FloatingActionButton() {
           </a>
         </div>
       )}
-      {/* Boton flotante, el que tiene whatsapp, chatbot, etc */}
       <button
         aria-label="Floating Action Button"
         onClick={handleToggle}

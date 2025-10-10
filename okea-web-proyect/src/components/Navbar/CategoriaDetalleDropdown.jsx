@@ -1,4 +1,5 @@
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FlechaDerecha } from "../../assets/iconos/Icons";
 
 const animations = `
@@ -35,6 +36,29 @@ const animations = `
 
 export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClose }) {
   const [isVisible, setIsVisible] = useState(true);
+  const navigate = useNavigate();
+  const [theme, setTheme] = useState(() => {
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  });
+
+  useEffect(() => {
+    setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
   
   if (!data) return null;
   const Icon = data.icon;
@@ -45,6 +69,32 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
   const handleClose = () => {
     setIsVisible(false);
     setTimeout(onClose, 400); // Espera a que termine la animación
+  };
+
+  const categoriaRuta = nombreCategoria === "Tecnología" ? "tecnologia"
+    : nombreCategoria === "Electrohogar" ? "electrohogar"
+    : nombreCategoria === "Muebles y Organización" ? "muebles-y-organizacion"
+    : nombreCategoria === "Dormitorio y Baños" ? "dormitorio-y-banos"
+    : nombreCategoria === "Moda Hombre" ? "moda-hombre"
+    : nombreCategoria === "Moda Mujer" ? "moda-mujer"
+    : nombreCategoria === "Mascotas" ? "mascotas"
+    : nombreCategoria === "Supermercado" ? "supermercado"
+    : nombreCategoria === "Calzado" ? "calzado"
+    : nombreCategoria === "Salud y Bienestar" ? "salud-y-bienestar"
+    : nombreCategoria === "Juguetes, Autos y Vehículos" ? "juguetes"
+    : nombreCategoria === "Accesorios de moda" ? "accesorios-de-moda"
+    : nombreCategoria === "Decoración e Iluminación" ? "decoracion-e-iluminacion"
+    : "";
+
+  const handleNavigateToAll = () => {
+    navigate(`/catalogo/${categoriaRuta}`);
+    handleClose();
+  };
+
+  const getThemeStyles = () => {
+    return {
+      background: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : '#2C509E66'
+    };
   };
 
   return (
@@ -124,12 +174,12 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
       <div
         className={isVisible ? 'detail-enter' : 'detail-exit'}
         style={{
+          ...getThemeStyles(),
           position: 'fixed',
           top: 116,
           left,
           width,
           height: 908,
-          background: '#2C509E66',
           borderRadius: 32,
           borderWidth: 1,
           borderStyle: 'solid',
@@ -163,7 +213,7 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
                 {col.icon && <col.icon width={18} height={18} />} {col.titulo}
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                <li style={{ color: '#B8C4E6', fontSize: 14, marginBottom: 6, cursor: 'pointer' }}>Ver todo</li>
+                <li style={{ color: '#B8C4E6', fontSize: 14, marginBottom: 6, cursor: 'pointer' }} onClick={handleNavigateToAll}>Ver todo</li>
                 {col.items.map((item, i) => (
                   <li key={i} style={{ color: '#fff', fontSize: 13, fontWeight: 300,marginBottom: 15, cursor: 'pointer' }}>{item}</li>
                 ))}

@@ -1,17 +1,8 @@
 import { SunIcon, MoonIcon } from "../../assets/iconos/Icons";
-import { useState } from "react";
+import { useTheme } from "../ThemeContext";
 
 export default function ThemeToggle() {
-  const [isLight, setIsLight] = useState(true);
-
-  const toggleTheme = () => {
-    setIsLight(!isLight);
-    if (!isLight) {
-      document.documentElement.removeAttribute("data-theme");
-    } else {
-      document.documentElement.setAttribute("data-theme", "dark");
-    }
-  };
+  const { isLight, toggleTheme } = useTheme();
 
   const getThemeStyles = () => {
     return {

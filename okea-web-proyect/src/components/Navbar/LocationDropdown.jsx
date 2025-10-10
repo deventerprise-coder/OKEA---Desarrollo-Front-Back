@@ -1,8 +1,5 @@
-import { Flecha1 } from '../../assets/iconos/Icons';
-import { Lupa1 } from '../../assets/iconos/Icons';
-import { Location1 } from '../../assets/iconos/Icons';
-
-import { useRef} from 'react';
+import { Flecha1, Lupa1, Location1 } from '../../assets/iconos/Icons';
+import { useRef, useState, useEffect } from 'react';
 
 const animations = `
   @keyframes locationFadeIn {
@@ -38,6 +35,45 @@ const animations = `
 
 export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, isVisible }) {
   const dropdownRef = useRef(null);
+  const [theme, setTheme] = useState(() => {
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  });
+
+  useEffect(() => {
+    setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const getThemeStyles = () => {
+    return {
+      backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : 'rgba(44, 80, 158, 0.5)',
+      border: '1.5px solid rgba(255, 255, 255, 0.5)', // Increased opacity for more visible white border
+      backdropFilter: 'blur(0px)',
+      WebkitBackdropFilter: 'blur(0px)',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Optional: adds depth to make border more visible
+    };
+  };
+
+  const getInputStyles = () => {
+    return {
+      backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : 'rgba(44, 80, 158, 0.5)',
+      color: theme === 'dark' ? '#ffffff' : '#ffffff',
+    };
+  };
 
   const labels = ['Departamento', 'Provincia', 'Distrito'];
 
@@ -49,19 +85,16 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
   return (
     <div
       ref={dropdownRef}
-      className={`shadow-lg border flex flex-col relative ${
+      className={`shadow-lg flex flex-col relative ${
         isVisible ? 'location-enter' : 'location-exit'
       }`}
       style={{
-        backgroundColor: 'rgba(44, 80, 158, 0.5)',
-        backdropFilter: 'blur(0px)',
-        WebkitBackdropFilter: 'blur(0px)',
+        ...getThemeStyles(),
         width: '400px',
         height: '272px',
         top: '17px',
         right: '550px',
         borderRadius: '32px',
-        border: '1.5px solid rgba(255,255,255,0.15)',
         padding: '16px',
         gap: '20px',
       }}
@@ -70,10 +103,11 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
 
       <div style={{ marginTop: '12px' }}>
         <div className="flex items-center gap-2" style={{ marginLeft: '14px' }}>
-          <Location1 />
+          <Location1 color={theme === 'dark' ? '#ffffff' : '#ffffff'} />
           <h3
-            className="text-white font-poppins"
+            className="font-poppins"
             style={{
+              color: theme === 'dark' ? '#ffffff' : '#ffffff',
               fontWeight: 400,
               fontSize: '14px',
               lineHeight: '20px',
@@ -85,49 +119,50 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
         </div>
       </div>
 
-      {/* Campos de localidad*/}
       <div className="flex flex-col" style={{ gap: '10px' }}>
         {labels.map((label, index) => (
           <div key={index} className="relative">
             <div className="flex">
-              {/* Input para cada campo (en proceso la logica de rastreo)*/}
               <div
                 className="flex items-center px-5 transition-colors duration-200 location-input-container"
                 style={{
-                  backgroundColor: 'rgba(44, 80, 158, 0.5)',
+                  ...getInputStyles(),
                   width: '310px',
                   height: '56px',
                   borderRadius: '28px 4px 4px 28px',
                 }}
               >
                 <div style={{ marginLeft: '4px' }}>
-                  <Lupa1 />
+                  <Lupa1 color={theme === 'dark' ? '#ffffff' : '#ffffff'} />
                 </div>
                 <input
                   type="text"
                   placeholder={label}
-                  className="flex-1 bg-transparent text-white focus:outline-none placeholder-white pl-3"
+                  className="flex-1 bg-transparent focus:outline-none pl-3"
                   style={{
                     fontFamily: 'Poppins, sans-serif',
                     fontSize: '14px',
                     lineHeight: '20px',
                     letterSpacing: '0.1px',
+                    color: theme === 'dark' ? '#ffffff' : '#ffffff',
                   }}
                 />
               </div>
 
-              {/* Botón flecha */}
               <button
                 onClick={(e) => handleToggle(index, e)}
-                className="ml-0.5 flex items-center justify-center text-white transition-colors duration-200 focus:outline-none pt-[15px] pr-[17px] pb-[15px] pl-[13px] location-arrow-btn"
+                className="ml-0.5 flex items-center justify-center transition-colors duration-200 focus:outline-none pt-[15px] pr-[17px] pb-[15px] pl-[13px] location-arrow-btn"
                 style={{
-                  backgroundColor: 'rgba(44, 80, 158, 0.5)',
+                  ...getInputStyles(),
                   width: '56px',
                   height: '56px',
                   borderRadius: '4px 28px 28px 4px',
                 }}
               >
-                <Flecha1 isOpen={activeDropdownIndex === index} />
+                <Flecha1 
+                  isOpen={activeDropdownIndex === index}
+                  color={theme === 'dark' ? '#ffffff' : '#ffffff'}
+                />
               </button>
             </div>
           </div>
@@ -135,10 +170,13 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
       </div>
       <style>{`
         .location-input-container:hover {
-          background-color: #5a6ca3 !important;
+          background-color: ${theme === 'dark' ? '#070047' : '#5a6ca3'} !important;
         }
         .location-arrow-btn:hover {
-          background-color: #5a6ca3 !important;
+          background-color: ${theme === 'dark' ? '#070047' : '#5a6ca3'} !important;
+        }
+        input::placeholder {
+          color: ${theme === 'dark' ? '#ffffff' : '#ffffff'};
         }
       `}</style>
     </div>

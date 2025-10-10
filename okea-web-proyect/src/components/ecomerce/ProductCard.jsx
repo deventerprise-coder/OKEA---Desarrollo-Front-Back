@@ -2,21 +2,27 @@ import { useState } from "react";
 import {FavoritoCardIcon, EstrellaIcon} from "../../assets/iconos/Icons";
 import {ShoppingCartIcon} from "../../assets/iconos/iconoHome";
 
-export function ProductCard({imagen, marca, modelo, descripcion, precio, precioSinDescuento, etiqueta, calificacion}) {
+export function ProductCard({imagen, marca, modelo, descripcion, precio, precioSinDescuento, etiqueta, calificacion, categoria}) {
   const [liked, setLiked] = useState(false);
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
 
   const iconColor = hover || added ? "#FFFFFF" : "#484900";
+  const etiquetaBg = etiqueta === "Standard"
+  ? "#385BAA"
+  : etiqueta === "New"
+    ? "#FBC101"
+    : "#EB5A45";
   return (
-    <div className="bg-white shadow-sm border border-gray-200 overflow-hidden p-4 flex flex-col items-center relative hover:border-[#E4E666] transition-colors duration-300 ease-out"
+    <div className="bg-white shadow-sm border border-gray-200 overflow-hidden flex flex-col items-center relative hover:border-[#E4E666] transition-colors duration-300 ease-out"
      style={{
       width: 305,
       height: 685,
       borderRadius: 10,
     }}>
-      <div className="absolute top-3 left-3 bg-red-500 text-white font-semibold px-2 py-1 rounded-full" style={{
+      <div className="absolute top-3 left-3 text-white font-semibold px-2 py-1 rounded-full" style={{
         fontFamily: 'Inter, sans-serif',
+        backgroundColor: etiquetaBg,
         fontSize: 14,
         fontWeight: 500,
         lineHeight: '20px',
@@ -32,13 +38,13 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
         {liked ? <FavoritoCardIcon color="#EB5A45"/> : <FavoritoCardIcon color="#C4C6D3"/>}
       </button>
       
-      <div className="w-full flex justify-center items-center mt-25 max-h-md h-70">
-        <img className="object-contain"
+      <div className="w-full flex justify-center items-center h-[400px]">
+        <img className={`w-full h-full ${categoria === "Calzado" || categoria === "Juguetes" || categoria === "Supermercado" ? "object-contain" : "object-cover"}`}        
         src={imagen}
         alt="iPhone"
       />
       </div>
-      <div className="w-full mt-3 text-left mt-10">
+      <div className="w-full text-left px-4 mt-10 ">
         <p className="text-gray-400 text-xs font-medium"
         style={{
           fontFamily: 'Inter, sans-serif',
@@ -75,7 +81,7 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
 
       </div>
 
-      <div className="flex text-yellow-500 mt-1 w-full justify-end items-center mt-1">
+      <div className="flex text-yellow-500 mt-1 w-full justify-end items-center mt-1 pr-4">
           <EstrellaIcon TamanoIcon="18"/>
           <span className="ml-1 text-gray-700" style={{
             fontFamily: 'Inter, sans-serif',

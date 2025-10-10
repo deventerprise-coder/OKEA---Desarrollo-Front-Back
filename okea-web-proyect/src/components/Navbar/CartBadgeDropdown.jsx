@@ -74,6 +74,9 @@ const animations = `
 
 export default function CartBadgeDropdown({ products = exampleProducts, subtotal = 240, isVisible }) {
   const [cartItems, setCartItems] = useState(products);
+  const [theme, setTheme] = useState(() => {
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  });
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
@@ -87,6 +90,18 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
     );
   };
 
+  const getThemeStyles = () => {
+    return {
+      backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : 'rgba(44, 80, 158, 0.5)',
+    };
+  };
+
+  const getContainerStyles = () => {
+    return {
+      backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : 'rgba(44, 80, 158, 0.1)',
+    };
+  };
+
   return (
     <div
       ref={dropdownRef}
@@ -94,7 +109,7 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
         isVisible ? 'cart-enter' : 'cart-exit'
       }`}
       style={{
-        backgroundColor: 'rgba(44, 80, 158, 0.5)',
+        ...getThemeStyles(),
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         width: '352px',
@@ -109,36 +124,46 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
       }}
     >
       <style>{animations}</style>
+      
       {/* Subtotal y boton del carrito */}
       <div
         className="flex items-center justify-between rounded-2xl px-4 py-3 mb-2 backdrop-blur-md"
         style={{
-          backgroundColor: 'rgba(44, 80, 158, 0.1)',
+          ...getContainerStyles(),
           borderRadius: '20px',
           minHeight: 60,
         }}
       >
         <div className="flex flex-col">
           <span className="text-white font-poppins text-[15px] font-light">Subtotal</span>
-          <span className="text-[#DFE162] font-poppins text-[22px] font-light leading-6">s/ {subtotal.toFixed(2)}</span>
+          <span 
+            className="font-poppins text-[22px] font-light leading-6"
+            style={{ color: theme === 'dark' ? 'rgba(245, 246, 146, 1)' : '#DFE162' }}
+          >
+            s/ {subtotal.toFixed(2)}
+          </span>
         </div>
         <button
-          className="ml-2 px-6 py-2 rounded-full font-poppins text-[15px] font-medium bg-[#DFE162] text-[#484900] hover:bg-[#e4e666] transition"
-          style={{ minWidth: 120 }}
+          className="ml-2 px-6 py-2 rounded-full font-poppins text-[15px] font-medium transition"
+          style={{ 
+            minWidth: 120,
+            backgroundColor: theme === 'dark' ? 'rgba(245, 246, 146, 1)' : '#DFE162',
+            color: theme === 'dark' ? 'rgba(50, 50, 0, 1)' : '#484900'
+          }}
           onClick={() => navigate('/carrito')}
         >
           Ir al carrito
         </button>
       </div>
 
-      {/* Informacion de cada producto*/}
+      {/* Informacion de cada producto */}
       <div className="flex flex-col gap-3 overflow-y-auto" style={{ maxHeight: 420 }}>
         {cartItems.map((item) => (
           <div
             key={item.id}
             className="flex flex-row items-center justify-between rounded-2xl px-4 py-3 backdrop-blur-md"
             style={{
-              backgroundColor: 'rgba(59, 91, 170, 0.1)',
+              ...getContainerStyles(),
               backdropFilter: 'blur(12px)',
               WebkitBackdropFilter: 'blur(12px)',
               minHeight: 110,

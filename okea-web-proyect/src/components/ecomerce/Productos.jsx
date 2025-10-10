@@ -1,33 +1,31 @@
+import { useState } from "react";
 import { ProductCard } from "./ProductCard";
-import iphoneImg from "../../assets/imagenes/Iphone.png";
-export function Products() {
-    const products = [{
-        id: 1,
-        imagen: iphoneImg,
-        marca: "Marca A",
-        modelo: "Modelo X",  
-        descripcion: "Descripción del producto 1", 
-        precio: "100", 
-        precioSinDescuento: "120",
-        etiqueta: "-20 %",
-        calificacion: "4.5"
-    },
-    {
-        id: 2,
-        imagen: iphoneImg,
-        marca: "Marca B",
-        modelo: "Modelo Y",
-        descripcion: "Descripción del producto 2",
-        precio: "100", 
-        precioSinDescuento: "",
-        etiqueta: "-20 %",
-        calificacion: "4.5"
-    }];
+import { PaginacionBar } from "./PaginacionBar";
+export function Products({ products , categoria}) {
+    const [page, setPage] = useState(1);
+    const productsPerPage = 20;
+    const totalPages = Math.ceil(products.length / productsPerPage);
+    const start = (page - 1) * productsPerPage;
+    const end = start + productsPerPage;
+    const productsToShow = products.slice(start, end);
     return (
-        <div className="grid grid-cols-4 gap-3 w-[1295px] h-[3525px] ">
-            {products.map(product => (
-                <ProductCard key={product.id} {...product} />
-            ))}
+        <div className="flex flex-col items-center">
+            <PaginacionBar
+                page={page}
+                setPage={setPage}
+                totalPages={totalPages}
+            />
+            <div className="grid grid-cols-4 gap-3 w-[1295px] max-h-[3525px] mt-6 mb-6">
+                {productsToShow.map(product => (
+                    <ProductCard key={product.id} {...product} categoria={categoria}/>
+                ))}
+            </div>
+            <PaginacionBar
+                page={page}
+                setPage={setPage}
+                totalPages={totalPages}
+            />
         </div>
+        
     );
 }

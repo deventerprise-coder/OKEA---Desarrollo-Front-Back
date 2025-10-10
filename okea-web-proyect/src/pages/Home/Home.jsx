@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTheme } from "../../components/ThemeContext";
 import promocion from "../../assets/imagenes/Home/promocion.png";
 import apple from "../../assets/imagenes/Home/apple.png";
 import iphone from "../../assets/imagenes/Home/iphone.png";
@@ -48,11 +49,14 @@ import ultimoImagen7 from "../../assets/imagenes/Home/ultimoImagen7.png"
 import ultimoImagen8 from "../../assets/imagenes/Home/ultimoImagen8.png"
 import ultimoImagen9 from "../../assets/imagenes/Home/ultimoImagen9.png"
 import ultimoImagen10 from "../../assets/imagenes/Home/ultimoImagen10.png"
+import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 
 
-import {WineBottleIcon, ArrowLeftGrayBlueIcon, ArrowLeftNormal, ArrowRightBlackIconwhitout, ArrowRightBrownIcon, ArrowRightGrayBlueIcon, ArrowRightIcon, ArrowRightIconBlack, ArrowRightNormal, ClockIcon, CursorIcon, FacebookIcon, FootIcon, HandBagIcon, HeartIcon, InstagramIcon, ShoppingCartIcon, SofaIcon, StarIcon, TagIcon, TecnologyIcon, TruckIcon, TwitterIcon, YouTubeIcon } from "../../assets/iconos/iconoHome.jsx";
+import {WineBottleIcon, ArrowLeftGrayBlueIcon, ArrowLeftNormal, ArrowRightBlackIconwhitout, ArrowRightBrownIcon, ArrowRightGrayBlueIcon, ArrowRightIcon, ArrowRightIconBlack, ArrowRightNormal, ClockIcon, CursorIcon, FacebookIcon, FootIcon, HandBagIcon, HeartIconblack, InstagramIcon, ShoppingCartIcon, SofaIcon, StarIcon, TagIcon, TecnologyIcon, TruckIcon, TwitterIcon, YouTubeIcon } from "../../assets/iconos/iconoHome.jsx";
 
 export default function Home() {
+
+  
 // --- Estados presentación ---
 const [currentPres, setCurrentPres] = useState(0);
 const [setPrevPres] = useState(0);
@@ -60,6 +64,58 @@ const [circleGrow, setCircleGrow] = useState(false);
 
 // --- Estados categorías ---
 const [currentCat, setCurrentCat] = useState(0);
+
+//estado para productos
+const [liked, setLiked] = useState(false);
+const [addedItems, setAddedItems] = useState({});
+
+const { isLight } = useTheme();
+
+  const getBackgroundStyle = () => {
+    return {
+      backgroundColor: isLight ? '#ffffff' : '#120F31',
+      color: isLight ? '#000000' : '#ffffff',
+      minHeight: '100vh',
+      transition: 'background-color 0.3s ease, color 0.3s ease'
+    };
+  };
+
+  const getSectionStyle = (customBg = null) => {
+    if (customBg) {
+      return {
+        backgroundColor: isLight ? customBg : 'rgba(16, 16, 30, 0.9)',
+        color: isLight ? '#000000' : '#ffffff',
+        transition: 'all 0.3s ease'
+      };
+    }
+    return {
+      backgroundColor: isLight ? '#ffffff' : 'rgba(16, 16, 30, 0.8)',
+      color: isLight ? '#000000' : '#ffffff',
+      transition: 'all 0.3s ease'
+    };
+  };
+
+  const getTextStyle = () => {
+    return {
+      color: isLight ? '#434651' : '#FFFFFF',
+      transition: 'color 0.3s ease'
+    };
+  };
+
+  const getCardStyle = () => {
+    return {
+      backgroundColor: isLight ? '#FFFFFF' : '#292272',
+      transition: 'all 0.3s ease'
+    };
+  };
+
+  const getButtonStyle = () => {
+    return {
+      backgroundColor: isLight ? '#1C4390' : '#DFE162',
+      color: isLight ? '#ffffff' : '#1C4390',
+      transition: 'all 0.3s ease'
+    };
+  };
 
 
 // --- Autoplay para presentación ---
@@ -102,6 +158,20 @@ const prevSlideCategorias = () => {
     i > 0 ? i - 1 : i
   );
 };
+  const toggleLike = (id) => {
+    setLiked((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const handleClick = (id) => {
+     setAddedItems((prev) => ({
+         ...prev,
+     [id]: !prev[id], // solo cambia el botón clickeado
+     }));
+  };
+
   //CountdownTimer
   const CountdownTimer = () => {
   // ⏱️ Definicion de duración inicial (5h 5m 10s)
@@ -111,7 +181,7 @@ const prevSlideCategorias = () => {
 
   useEffect(() => {
     if (timeLeft <= 0) {
-      setTimeLeft(initialDuration); // 🔄 Reinicia el contador cuando llega a 0
+      setTimeLeft(initialDuration); //  Reinicia el contador cuando llega a 0
       return;
     }
 
@@ -395,7 +465,7 @@ const prevSlideCategorias = () => {
   ];
 
   return (
-    <section className="Home">
+    <section className="Home" style={getBackgroundStyle()}>
       {/*Presentacion*/}
       <section className="Presentacion">
       {/* Carrusel de Presentación */}
@@ -432,7 +502,7 @@ const prevSlideCategorias = () => {
       {/*Categorias*/}
       <section className="Categorias">
         {/* Titulo */}
-        <div className="text-4xl  w-400 mx-40 font-popins text-[#434651] text-center pt-20 pb-8">
+        <div className="text-4xl  w-400 mx-40 font-popins text-[#434651] text-center pt-20 pb-8" style={getTextStyle()}>
           Revisa todas nuestras categorías
         </div>
 
@@ -494,7 +564,7 @@ const prevSlideCategorias = () => {
       {/*Ofertas*/}
       <section className="Ofertas">
         <div className="text-center">
-          <h1 className='text-[57px] tracking-tight  w-400 mx-40  text-[#434651] mb-4'>Ofertas del día</h1>
+          <h1 className='text-[57px] tracking-tight  w-400 mx-40  text-[#434651] mb-4' style={getTextStyle()}>Ofertas del día</h1>
           <div className="w-400 mx-40  rounded-4xl  bg-[#EB5A45] py-4 px-31 h-52 flex items-center">
               <div className="size-29 mr-2">
                  <TagIcon /> 
@@ -529,13 +599,19 @@ const prevSlideCategorias = () => {
       <section className="Tecnologia">
         <div className="mt-16">
             {/*Titulo*/}
-            <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]">
+            <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"         
+            style={{
+          background: isLight
+            ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
+            : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+          ...getSectionStyle(),
+        }}>
                 <div className=" mr-5 ">
                     <TecnologyIcon />
                 </div>
-                <h1 className='text-4xl p-0.5 font-popins  text-[#434651]'>Tecnología</h1>
+                <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Tecnología</h1>
                 <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
-                <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]'>Equipamos tu mundo digital</p>
+                <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]' style={getTextStyle()}>Equipamos tu mundo digital</p>
                 <button className='flex  bg-[#DFE162]  text-[#484900] py-2.5 px-4  h-10 rounded-4xl'>
                     <h1 className='font-popins text-sm'>Ver todo</h1>
                     <div className='scale-60 -my-0.5'>
@@ -657,13 +733,19 @@ const prevSlideCategorias = () => {
       <section className="Muebles">
         <div className="mt-16">
             {/*Titulo*/}
-            <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]">
+            <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+             style={{
+            background: isLight
+              ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
+              : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+              ...getSectionStyle(),
+              }}>
                 <div className=" mr-5 ">
                     <SofaIcon />
                 </div>
-                <h1 className='text-4xl p-0.5 font-popins  text-[#434651]'>Muebles</h1>
+                <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Muebles</h1>
                 <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
-                <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]'>Diseño y confort para tu espacio</p>
+                <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]' style={getTextStyle()}>Diseño y confort para tu espacio</p>
                 <button className='flex  bg-[#DFE162]  text-[#484900] py-2.5 px-4  h-10 rounded-4xl'>
                     <h1 className='font-popins text-sm'>Ver todo</h1>
                     <div className='scale-60 -my-0.5'>
@@ -755,262 +837,351 @@ const prevSlideCategorias = () => {
             {/*Fila 2*/}
             <div className="mt-3">
                 {/*Cuadro 3*/}
-                <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]">
+                <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"             style={{
+                 background: isLight
+                   ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
+                   : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+                 ...getSectionStyle(),
+               }}>
                     <button className="text-4xl mr-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                         <h1 className=''><ArrowLeftNormal/></h1>
                     </button>
                     <div className="carrusel flex gap-4">
                         {/*Producto1*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group" style={getCardStyle()}>
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto1")}>
+                                    <HeartIconblack isActive={liked["producto1"]} />
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl' style={getTextStyle()}>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm ' style={getTextStyle()}>4.9</h1>
                                 </div>
                             </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(1)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[1] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[1] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[1] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[1] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
                         </div>
                         {/*Producto2*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto2")}>
+                                    <HeartIconblack isActive={liked["producto2"]} />
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className=' text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(2)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[2] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[2] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[2] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[2] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
                         </div>
                         {/*Producto3*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto3")}>
+                                    <HeartIconblack isActive={liked["producto3"]} />
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(3)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[3] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[3] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[3] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[3] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
                         </div>
                         {/*Producto4*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto4")}>
+                                    <HeartIconblack isActive={liked["producto4"]} />
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(4)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[4] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[4] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[4] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[4] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
                         </div>
                         {/*Producto5*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto5")}>
+                                    <HeartIconblack isActive={liked["producto5"]} />
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
-                                </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
                             </div>
                         </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                                </div>
+                            </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(5)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[5] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[5] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[5] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[5] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
                         {/*Producto6*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto6")}>
+                                    <HeartIconblack isActive={liked["producto6"]} />
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(6)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[6] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[6] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[6] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[6] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
                         </div>
                     </div>
                 <button className="text-4xl mx-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
@@ -1025,13 +1196,19 @@ const prevSlideCategorias = () => {
       <section className="Calzado">
         <div className='mt-16'>
           {/* Titulo */}
-          <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]">
+          <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+          style={{
+              background: isLight
+                ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
+                : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+              ...getSectionStyle(),
+            }}>
             <div className=" mr-5 ">
               <FootIcon />
             </div>
-            <h1 className='text-4xl p-0.5 font-popins  text-[#434651]'>Calzado</h1>
+            <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Calzado</h1>
             <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
-            <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]'>Diseño y confort para tu espacio</p>
+            <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]' style={getTextStyle()}>Diseño y confort para tu espacio</p>
             <button className='flex  bg-[#DFE162]  text-[#484900] py-2.5 px-4  h-10 rounded-4xl'>
               <h1 className='font-popins text-sm'>Ver todo</h1>
               <div className='scale-60 -my-0.5'>
@@ -1112,180 +1289,242 @@ const prevSlideCategorias = () => {
                 </div>
               </div>
             </div>
-            <div className="col-start-5 col-end-7 h-196 p-4 rounded-4xl overflow-hidden bg-gradient-to-l from-[#DFE162]  via-[#DFE162]/50  to-[#B1C5FF]">
+            <div className="col-start-5 col-end-7 h-196 p-4 rounded-4xl overflow-hidden bg-gradient-to-l from-[#DFE162]  via-[#DFE162]/50  to-[#B1C5FF]"            
+            style={{
+               background: isLight
+                 ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
+                 : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+               ...getSectionStyle(),
+             }}>
               {/*Fila 1*/}
               <div className="flex gap-4 pb-4">                
-                  {/*Producto1*/}
-                  <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                    <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                      <div className="imagenMueble"></div>
-                      <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                      <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                      <div className="flex justify-center">    
-                        <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                          <div className="relojIcon pt-0.5">
-                            <ClockIcon />
-                          </div>
-                          <div className="">05</div>
-                          <div className="text-xs font-extralight pt-1">|</div>
-                          <div className="">05</div>
-                          <div className="text-xs font-extralight pt-1">|</div>
-                          <div className="">00</div>    
-                        </div>    
-                      </div>
-                    </div>
-                    <div className="info font-popins pt-4 px-3 ">
-                      <div className="flex  text-black justify-between">
-                        <h1 className='text-2xl'>Label</h1>
-                        <div className="flex p-0.5">
-                          <div className="staricon"> <StarIcon /></div>
-                          <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                  {/*Producto7*/}
+                  <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto7")}>
+                                    <HeartIconblack isActive={liked["producto7"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
+                                    </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
                         </div>
-                      </div>
-                      <h1>Wooden Sofa Chair</h1>
-                      <div className="flex">
-                        <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                        <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                      </div>
-                      <div className="justify-center flex">
-                        <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                          <div className="scale-120 flex -mb-3">    
-                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                            <h1 className='text-xs'>Agregar al carrito</h1>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                                </div>
+                            </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(7)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[7] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[7] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[7] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[7] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
                   </div>
-                  {/*Producto2*/}
-                  <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                    <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                      <div className="imagenMueble"></div>
-                      <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                      <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                      <div className="flex justify-center">    
-                        <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                          <div className="relojIcon pt-0.5">
-                            <ClockIcon />
-                          </div>
-                          <div className="">05</div>
-                          <div className="text-xs font-extralight pt-1">|</div>
-                          <div className="">05</div>
-                          <div className="text-xs font-extralight pt-1">|</div>
-                          <div className="">00</div>    
-                        </div>    
-                      </div>
-                    </div>
-                    <div className="info font-popins pt-4 px-3 ">
-                      <div className="flex  text-black justify-between">
-                        <h1 className='text-2xl'>Label</h1>
-                        <div className="flex p-0.5">
-                          <div className="staricon"> <StarIcon /></div>
-                          <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                  {/*Producto8*/}
+                  <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto8")}>
+                                    <HeartIconblack isActive={liked["producto8"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
+                                    </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
                         </div>
-                      </div>
-                      <h1>Wooden Sofa Chair</h1>
-                      <div className="flex">
-                        <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                        <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                      </div>
-                      <div className="justify-center flex">
-                        <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                          <div className="scale-120 flex -mb-3">    
-                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                            <h1 className='text-xs'>Agregar al carrito</h1>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                                </div>
+                            </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(8)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[8] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[8] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[8] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[8] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
                   </div>
               </div>
               {/*Fila 2*/}
               <div className="flex gap-4 pb-4">                
-                  {/*Producto1*/}
-                  <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                    <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                      <div className="imagenMueble"></div>
-                      <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                      <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                      <div className="flex justify-center">    
-                        <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                          <div className="relojIcon pt-0.5">
-                            <ClockIcon />
-                          </div>
-                          <div className="">05</div>
-                          <div className="text-xs font-extralight pt-1">|</div>
-                          <div className="">05</div>
-                          <div className="text-xs font-extralight pt-1">|</div>
-                          <div className="">00</div>    
-                        </div>    
-                      </div>
-                    </div>
-                    <div className="info font-popins pt-4 px-3 ">
-                      <div className="flex  text-black justify-between">
-                        <h1 className='text-2xl'>Label</h1>
-                        <div className="flex p-0.5">
-                          <div className="staricon"> <StarIcon /></div>
-                          <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                  {/*Producto9*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto9")}>
+                                    <HeartIconblack isActive={liked["producto9"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
+                                    </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
                         </div>
-                      </div>
-                      <h1>Wooden Sofa Chair</h1>
-                      <div className="flex">
-                        <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                        <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                      </div>
-                      <div className="justify-center flex">
-                        <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                          <div className="scale-120 flex -mb-3">    
-                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                            <h1 className='text-xs'>Agregar al carrito</h1>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  {/*Producto2*/}
-                  <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                    <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                      <div className="imagenMueble"></div>
-                      <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                      <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                      <div className="flex justify-center">    
-                        <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                          <div className="relojIcon pt-0.5">
-                            <ClockIcon />
-                          </div>
-                          <div className="">05</div>
-                          <div className="text-xs font-extralight pt-1">|</div>
-                          <div className="">05</div>
-                          <div className="text-xs font-extralight pt-1">|</div>
-                          <div className="">00</div>    
-                        </div>    
-                      </div>
-                    </div>
-                    <div className="info font-popins pt-4 px-3 ">
-                      <div className="flex  text-black justify-between">
-                        <h1 className='text-2xl'>Label</h1>
-                        <div className="flex p-0.5">
-                          <div className="staricon"> <StarIcon /></div>
-                          <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                                </div>
+                            </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(9)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[9] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[9] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[9] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[9] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
                         </div>
-                      </div>
-                      <h1>Wooden Sofa Chair</h1>
-                      <div className="flex">
-                        <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                        <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                      </div>
-                      <div className="justify-center flex">
-                        <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                          <div className="scale-120 flex -mb-3">    
-                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                            <h1 className='text-xs'>Agregar al carrito</h1>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                        </div>
+                  {/*Producto10*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto10")}>
+                                    <HeartIconblack isActive={liked["producto10"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
+                                    </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                                </div>
+                            </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(10)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[10] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[10] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[10] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[10] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
               </div>
             </div>     
           </div>
@@ -1308,13 +1547,19 @@ const prevSlideCategorias = () => {
       <section className="Supermercado">
         <div className="mt-16">
             {/*Título*/}
-            <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]">
+            <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+            style={{
+                background: isLight
+                  ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
+                  : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+                ...getSectionStyle(),
+              }}>
                 <div className=" mr-5 ">
                     <WineBottleIcon />
                 </div>
-                <h1 className='text-4xl p-0.5 font-popins  text-[#434651]'>Supermercado</h1>
+                <h1 className='text-4xl p-0.5 font-popins  text-[#434651]'style={getTextStyle()}>Supermercado</h1>
                 <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
-                <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]'>Todo lo que necesitas, en un solo lugar</p>
+                <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]' style={getTextStyle()}>Todo lo que necesitas, en un solo lugar</p>
                 <button className='flex  bg-[#DFE162]  text-[#484900] py-2.5 px-4  h-10 rounded-4xl'>
                     <h1 className='font-popins text-sm'>Ver todo</h1>
                     <div className='scale-60 -my-0.5'>
@@ -1346,263 +1591,353 @@ const prevSlideCategorias = () => {
             {/*Fila2*/}
             <div className="fila2">
                 <div className="cuadroImagen3 mt-3">
-                    <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]">
+                    <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"            
+                     style={{
+                       background: isLight
+                         ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
+                         : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+                       ...getSectionStyle(),
+                     }}>
                         <button className="text-4xl mr-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                             <h1 className=''><ArrowLeftNormal/></h1>
                         </button>
                         <div className="carrusel flex gap-4">
-                            {/*Producto1*/}
-                            <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                                <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
-                                </div>
-                                </div>
-                                <div className="info font-popins pt-4 px-3 ">
-                                    <div className="flex  text-black justify-between">
-                                        <h1 className='text-2xl'>Label</h1>
-                                        <div className="flex p-0.5">
-                                            <div className="staricon"> <StarIcon /></div>
-                                            <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                        </div>
-                                    </div>
-                                    <h1>Wooden Sofa Chair</h1>
-                                    <div className="flex">
-                                        <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                        <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                    </div>
-                                    <div className="justify-center flex">
-                                        <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                            <div className="scale-120 flex -mb-3">    
-                                                <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                                <h1 className='text-xs'>Agregar al carrito</h1>
-                                            </div>
-                                        </button>
-                                    </div>
+                        {/*Producto11*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto11")}>
+                                    <HeartIconblack isActive={liked["producto11"]} />
                                 </div>
                             </div>
-                            {/*Producto2*/}
-                            <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                                <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
-                                </div>
-                                </div>
-                                <div className="info font-popins pt-4 px-3 ">
-                                    <div className="flex  text-black justify-between">
-                                        <h1 className='text-2xl'>Label</h1>
-                                        <div className="flex p-0.5">
-                                            <div className="staricon"> <StarIcon /></div>
-                                            <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                        </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                    <h1>Wooden Sofa Chair</h1>
-                                    <div className="flex">
-                                        <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                        <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                    </div>
-                                    <div className="justify-center flex">
-                                        <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                            <div className="scale-120 flex -mb-3">    
-                                                <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                                <h1 className='text-xs'>Agregar al carrito</h1>
-                                            </div>
-                                        </button>
-                                    </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
-                            {/*Producto3*/}
-                            <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                                <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
-                                </div>
-                                </div>
-                                <div className="info font-popins pt-4 px-3 ">
-                                    <div className="flex  text-black justify-between">
-                                        <h1 className='text-2xl'>Label</h1>
-                                        <div className="flex p-0.5">
-                                            <div className="staricon"> <StarIcon /></div>
-                                            <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                        </div>
-                                    </div>
-                                    <h1>Wooden Sofa Chair</h1>
-                                    <div className="flex">
-                                        <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                        <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                    </div>
-                                    <div className="justify-center flex">
-                                        <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                            <div className="scale-120 flex -mb-3">    
-                                                <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                                <h1 className='text-xs'>Agregar al carrito</h1>
-                                            </div>
-                                        </button>
-                                    </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(11)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[11] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[11] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[11] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[11] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
+                        {/*Producto12*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto12")}>
+                                    <HeartIconblack isActive={liked["producto12"]} />
                                 </div>
                             </div>
-                            {/*Producto4*/}
-                            <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                                <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
-                                </div>
-                                </div>
-                                <div className="info font-popins pt-4 px-3 ">
-                                    <div className="flex  text-black justify-between">
-                                        <h1 className='text-2xl'>Label</h1>
-                                        <div className="flex p-0.5">
-                                            <div className="staricon"> <StarIcon /></div>
-                                            <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                        </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                    <h1>Wooden Sofa Chair</h1>
-                                    <div className="flex">
-                                        <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                        <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                    </div>
-                                    <div className="justify-center flex">
-                                        <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                            <div className="scale-120 flex -mb-3">    
-                                                <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                                <h1 className='text-xs'>Agregar al carrito</h1>
-                                            </div>
-                                        </button>
-                                    </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
-                            {/*Producto5*/}
-                             <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                                <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
-                                </div>
-                                </div>
-                                <div className="info font-popins pt-4 px-3 ">
-                                    <div className="flex  text-black justify-between">
-                                        <h1 className='text-2xl'>Label</h1>
-                                        <div className="flex p-0.5">
-                                            <div className="staricon"> <StarIcon /></div>
-                                            <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                        </div>
-                                    </div>
-                                    <h1>Wooden Sofa Chair</h1>
-                                    <div className="flex">
-                                        <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                        <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                    </div>
-                                    <div className="justify-center flex">
-                                        <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                            <div className="scale-120 flex -mb-3">    
-                                                <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                                <h1 className='text-xs'>Agregar al carrito</h1>
-                                            </div>
-                                        </button>
-                                    </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(12)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[12] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[12] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[12] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[12] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
+                        {/*Producto13*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto13")}>
+                                    <HeartIconblack isActive={liked["producto13"]} />
                                 </div>
                             </div>
-                            {/*Producto6*/}
-                            <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                                <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
-                                </div>
-                                </div>
-                                <div className="info font-popins pt-4 px-3 ">
-                                    <div className="flex  text-black justify-between">
-                                        <h1 className='text-2xl'>Label</h1>
-                                        <div className="flex p-0.5">
-                                            <div className="staricon"> <StarIcon /></div>
-                                            <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                        </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                    <h1>Wooden Sofa Chair</h1>
-                                    <div className="flex">
-                                        <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                        <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                    </div>
-                                    <div className="justify-center flex">
-                                        <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                            <div className="scale-120 flex -mb-3">    
-                                                <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                                <h1 className='text-xs'>Agregar al carrito</h1>
-                                            </div>
-                                        </button>
-                                    </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(13)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[13] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[13] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[13] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[13] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
+                        {/*Producto14*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto14")}>
+                                    <HeartIconblack isActive={liked["producto14"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
+                                    </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                                </div>
+                            </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(14)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[14] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[14] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[14] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[4] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
+                        {/*Producto15*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto15")}>
+                                    <HeartIconblack isActive={liked["producto15"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
+                                    </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                                </div>
+                            </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(15)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[15] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[15] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[5] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[15] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
+                        {/*Producto16*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto16")}>
+                                    <HeartIconblack isActive={liked["producto16"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
+                                    </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
+                            </div>
+                        </div>
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                                </div>
+                            </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(6)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[16] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[16] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[16] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[16] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
                         </div>
                         <button className="text-4xl mx-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                             <h1 className=''><ArrowRightNormal/></h1>
@@ -1639,267 +1974,357 @@ const prevSlideCategorias = () => {
       <section className="Recomendados">
         <div className="mt-16">
             {/*titulo*/}
-            <div className="text-5xl font-popins w-400 mx-40 text-[#434651] text-center">
+            <div className="text-5xl font-popins w-400 mx-40 text-[#434651] text-center" style={getTextStyle()}>
                 Recomendados para ti
             </div>
             {/*fila*/}
             <div className="cuadroImagen3 mt-4">
-                <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]">
+                <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+                style={{
+          background: isLight
+            ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
+            : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+          ...getSectionStyle(),
+        }}>
                     <button className="text-4xl mr-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                         <h1 className=''><ArrowLeftNormal/></h1>
                     </button>
                     <div className="carrusel flex gap-4">
-                        {/*Producto1*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        {/*Producto17*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto17")}>
+                                    <HeartIconblack isActive={liked["producto17"]} />
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
-                                </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
                             </div>
                         </div>
-                        {/*Producto2*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(17)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[17] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[17] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[17] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[17] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
+                        {/*Producto18*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto18")}>
+                                    <HeartIconblack isActive={liked["producto18"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
-                                </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
                             </div>
                         </div>
-                        {/*Producto3*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(18)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[18] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[18] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[18] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[18] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
+                        {/*Producto19*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto19")}>
+                                    <HeartIconblack isActive={liked["producto19"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
-                                </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
                             </div>
                         </div>
-                        {/*Producto4*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(19)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[19] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[19] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[19] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[19] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
+                        {/*Producto20*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto20")}>
+                                    <HeartIconblack isActive={liked["producto20"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
-                                </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
                             </div>
                         </div>
-                        {/*Producto5*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                            </div>
+
+                            <button
+                              onClick={() => handleClick(20)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[20] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[20] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[20] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[20] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
+                        </div>
+                        {/*Producto21*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                          <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                              <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                  <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                              </div> 
+                              <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                              <div className="relative">
+                                  <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto21")}>
+                                      <HeartIconblack isActive={liked["producto21"]} />
+                                  </div>
+                              </div>
+                              <div className="flex justify-center">    
+                                  <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                      <div className="relojIcon pt-0.5">
+                                          <ClockIcon />
+                                      </div>
+                                      <div className="">05</div>
+                                      <div className="text-xs font-extralight pt-1">|</div>
+                                      <div className="">05</div>
+                                      <div className="text-xs font-extralight pt-1">|</div>
+                                      <div className="">00</div>    
+                                  </div>    
+                              </div>
+                          </div>
+                          <div className="info font-popins pt-4 px-3 z-10 ">
+                              <div className="flex  text-black justify-between">
+                                  <h1 className='text-2xl'>Label</h1>
+                                  <div className="flex p-0.5">
+                                      <div className="staricon"> <StarIcon /></div>
+                                      <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
+                                  </div>
+                              </div>
+                              <h1>Wooden Sofa Chair</h1>
+                              <div className="flex">
+                                  <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                  <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
+                              </div>
+                                    
+                              <button
+                                onClick={() => handleClick(21)}
+                                className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                                ${addedItems[21] ? "bg-blue-500 text-white" : ""}`}>
+                                <div
+                                    className={`flex items-center gap-2 transition-all duration-900 ${
+                                    addedItems[21] ? "flex-row-reverse" : "flex-row"}`}>
+                                  <ShoppingCartIcon
+                                    className={`w-5 h-5 transition-all duration-500 ${
+                                      addedItems[21] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                  <h1 className="font-popins text-sm">
+                                    {addedItems[21] ? "Item agregado" : "Agregar al carrito"}
+                                  </h1>
+                                </div>
+                              </button>
+                          </div>
+                        </div>
+                        {/*Producto22*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto22")}>
+                                    <HeartIconblack isActive={liked["product22"]} />
+                                </div>
+                            </div>
+                            <div className="flex justify-center">    
+                                <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
+                                    <div className="relojIcon pt-0.5">
+                                        <ClockIcon />
                                     </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
-                                </div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">05</div>
+                                    <div className="text-xs font-extralight pt-1">|</div>
+                                    <div className="">00</div>    
+                                </div>    
                             </div>
                         </div>
-                        {/*Producto6*/}
-                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                            <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                                <div className="imagenMueble"></div>
-                                <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                                <div className="absolute top-2 right-3"> <HeartIcon /></div>
-                                <div className="flex justify-center">    
-                                    <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
-                                        <div className="relojIcon pt-0.5">
-                                            <ClockIcon />
-                                        </div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">05</div>
-                                        <div className="text-xs font-extralight pt-1">|</div>
-                                        <div className="">00</div>    
-                                    </div>    
+                        <div className="info font-popins pt-4 px-3 z-10 ">
+                            <div className="flex  text-black justify-between">
+                                <h1 className='text-2xl'>Label</h1>
+                                <div className="flex p-0.5">
+                                    <div className="staricon"> <StarIcon /></div>
+                                    <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
                                 </div>
                             </div>
-                            <div className="info font-popins pt-4 px-3 ">
-                                <div className="flex  text-black justify-between">
-                                    <h1 className='text-2xl'>Label</h1>
-                                    <div className="flex p-0.5">
-                                        <div className="staricon"> <StarIcon /></div>
-                                        <h1 className='py-1 font-popins-light text-sm'>4.9</h1>
-                                    </div>
-                                </div>
-                                <h1>Wooden Sofa Chair</h1>
-                                <div className="flex">
-                                    <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
-                                    <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
-                                </div>
-                                <div className="justify-center flex">
-                                    <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                        <div className="scale-120 flex -mb-3">    
-                                            <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                            <h1 className='text-xs'>Agregar al carrito</h1>
-                                        </div>
-                                    </button>
-                                </div>
+                            <h1>Wooden Sofa Chair</h1>
+                            <div className="flex">
+                                <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
+                                <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
                             </div>
+
+                            <button
+                              onClick={() => handleClick(22)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[22] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[22] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[22] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[22] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
+                        </div>
                         </div>
                     </div>
                 <button className="text-4xl mx-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
@@ -1915,7 +2340,7 @@ const prevSlideCategorias = () => {
       <section className="Vendidos">
         <div className='mt-16'>
         {/*titulo*/}
-        <div className="text-5xl font-popins w-400 mx-40 text-[#434651] text-center">
+        <div className="text-5xl font-popins w-400 mx-40 text-[#434651] text-center" style={getTextStyle()}>
             Los más vendidos
         </div>
         {/*fila 1*/}
@@ -1935,17 +2360,29 @@ const prevSlideCategorias = () => {
         </div>
         {/*fila 2*/}
         <div className="cuadroImagen3 mt-4">
-            <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]">
+            <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"             
+            style={{
+          background: isLight
+            ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
+            : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+          ...getSectionStyle(),
+        }}>
                 <button className="text-4xl mr-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                     <h1 className=''><ArrowLeftNormal/></h1>
                 </button>
                 <div className="carrusel flex gap-4">
-                    {/*Producto1*/}
-                    <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                            <div className="imagenMueble"></div>
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                            <div className="absolute top-2 right-3"> <HeartIcon /></div>
+                        {/*Producto23*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto23")}>
+                                    <HeartIconblack isActive={liked["producto23"]} />
+                                </div>
+                            </div>
                             <div className="flex justify-center">    
                                 <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
                                     <div className="relojIcon pt-0.5">
@@ -1959,7 +2396,7 @@ const prevSlideCategorias = () => {
                                 </div>    
                             </div>
                         </div>
-                        <div className="info font-popins pt-4 px-3 ">
+                        <div className="info font-popins pt-4 px-3 z-10 ">
                             <div className="flex  text-black justify-between">
                                 <h1 className='text-2xl'>Label</h1>
                                 <div className="flex p-0.5">
@@ -1972,22 +2409,36 @@ const prevSlideCategorias = () => {
                                 <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
                                 <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
                             </div>
-                            <div className="justify-center flex">
-                                <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                    <div className="scale-120 flex -mb-3">    
-                                        <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                        <h1 className='text-xs'>Agregar al carrito</h1>
-                                    </div>
-                                </button>
-                            </div>
+
+                            <button
+                              onClick={() => handleClick(23)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[23] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[23] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[23] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[23] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
                         </div>
-                    </div>
-                    {/*Producto2*/}
-                    <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                            <div className="imagenMueble"></div>
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                            <div className="absolute top-2 right-3"> <HeartIcon /></div>
+                        </div>
+                        {/*Producto24*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto24")}>
+                                    <HeartIconblack isActive={liked["producto24"]} />
+                                </div>
+                            </div>
                             <div className="flex justify-center">    
                                 <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
                                     <div className="relojIcon pt-0.5">
@@ -2001,7 +2452,7 @@ const prevSlideCategorias = () => {
                                 </div>    
                             </div>
                         </div>
-                        <div className="info font-popins pt-4 px-3 ">
+                        <div className="info font-popins pt-4 px-3 z-10 ">
                             <div className="flex  text-black justify-between">
                                 <h1 className='text-2xl'>Label</h1>
                                 <div className="flex p-0.5">
@@ -2014,22 +2465,36 @@ const prevSlideCategorias = () => {
                                 <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
                                 <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
                             </div>
-                            <div className="justify-center flex">
-                                <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                    <div className="scale-120 flex -mb-3">    
-                                        <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                        <h1 className='text-xs'>Agregar al carrito</h1>
-                                    </div>
-                                </button>
-                            </div>
+
+                            <button
+                              onClick={() => handleClick(24)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[24] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[24] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[24] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[24] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
                         </div>
-                    </div>
-                    {/*Producto3*/}
-                    <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                            <div className="imagenMueble"></div>
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                            <div className="absolute top-2 right-3"> <HeartIcon /></div>
+                        </div>
+                        {/*Producto25*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto25")}>
+                                    <HeartIconblack isActive={liked["producto25"]} />
+                                </div>
+                            </div>
                             <div className="flex justify-center">    
                                 <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
                                     <div className="relojIcon pt-0.5">
@@ -2043,7 +2508,7 @@ const prevSlideCategorias = () => {
                                 </div>    
                             </div>
                         </div>
-                        <div className="info font-popins pt-4 px-3 ">
+                        <div className="info font-popins pt-4 px-3 z-10 ">
                             <div className="flex  text-black justify-between">
                                 <h1 className='text-2xl'>Label</h1>
                                 <div className="flex p-0.5">
@@ -2056,22 +2521,36 @@ const prevSlideCategorias = () => {
                                 <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
                                 <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
                             </div>
-                            <div className="justify-center flex">
-                                <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                    <div className="scale-120 flex -mb-3">    
-                                        <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                        <h1 className='text-xs'>Agregar al carrito</h1>
-                                    </div>
-                                </button>
-                            </div>
+
+                            <button
+                              onClick={() => handleClick(25)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[25] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[25] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[25] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[25] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
                         </div>
-                    </div>
-                    {/*Producto4*/}
-                    <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                            <div className="imagenMueble"></div>
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                            <div className="absolute top-2 right-3"> <HeartIcon /></div>
+                        </div>
+                        {/*Producto26*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto26")}>
+                                    <HeartIconblack isActive={liked["producto26"]} />
+                                </div>
+                            </div>
                             <div className="flex justify-center">    
                                 <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
                                     <div className="relojIcon pt-0.5">
@@ -2085,7 +2564,7 @@ const prevSlideCategorias = () => {
                                 </div>    
                             </div>
                         </div>
-                        <div className="info font-popins pt-4 px-3 ">
+                        <div className="info font-popins pt-4 px-3 z-10 ">
                             <div className="flex  text-black justify-between">
                                 <h1 className='text-2xl'>Label</h1>
                                 <div className="flex p-0.5">
@@ -2098,22 +2577,36 @@ const prevSlideCategorias = () => {
                                 <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
                                 <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
                             </div>
-                            <div className="justify-center flex">
-                                <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                    <div className="scale-120 flex -mb-3">    
-                                        <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                        <h1 className='text-xs'>Agregar al carrito</h1>
-                                    </div>
-                                </button>
-                            </div>
+
+                            <button
+                              onClick={() => handleClick(26)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[26] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[26] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[26] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[26] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
                         </div>
-                    </div>
-                    {/*Producto5*/}
-                    <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                            <div className="imagenMueble"></div>
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                            <div className="absolute top-2 right-3"> <HeartIcon /></div>
+                        </div>
+                        {/*Producto27*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto27")}>
+                                    <HeartIconblack isActive={liked["producto27"]} />
+                                </div>
+                            </div>
                             <div className="flex justify-center">    
                                 <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
                                     <div className="relojIcon pt-0.5">
@@ -2127,7 +2620,7 @@ const prevSlideCategorias = () => {
                                 </div>    
                             </div>
                         </div>
-                        <div className="info font-popins pt-4 px-3 ">
+                        <div className="info font-popins pt-4 px-3 z-10 ">
                             <div className="flex  text-black justify-between">
                                 <h1 className='text-2xl'>Label</h1>
                                 <div className="flex p-0.5">
@@ -2140,22 +2633,36 @@ const prevSlideCategorias = () => {
                                 <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
                                 <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
                             </div>
-                            <div className="justify-center flex">
-                                <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                    <div className="scale-120 flex -mb-3">    
-                                        <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                        <h1 className='text-xs'>Agregar al carrito</h1>
-                                    </div>
-                                </button>
-                            </div>
+
+                            <button
+                              onClick={() => handleClick(27)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[27] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[27] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[27] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[27] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
                         </div>
-                    </div>
-                    {/*Producto6*/}
-                    <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden">
-                        <div className="relative w-57.5 h-50 bg-[#EEEDF4]">
-                            <div className="imagenMueble"></div>
-                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2">-50%</div>
-                            <div className="absolute top-2 right-3"> <HeartIcon /></div>
+                        </div>
+                        {/*Producto28*/}
+                        <div className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group">
+                        <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+                            <div className="w-57  rounded-2xl ml-8 mr-5 ">
+                                <div className="absolute -bottom-60 h-160 w-150  decoration-cyan-50 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"  style={{ backgroundImage: `url(${muebleMesitaNoche})` }}></div>
+                            </div> 
+                            <div className=" absolute top-3 rounded-3xl bg-[#EB5A45] w-15 font-popins text-sm text-white text-center ml-2 pt-1">-50%</div>
+                            <div className="relative">
+                                <div className="absolute top-2 right-3 cursor-pointer" onClick={() => toggleLike("producto28")}>
+                                    <HeartIconblack isActive={liked["producto28"]} />
+                                </div>
+                            </div>
                             <div className="flex justify-center">    
                                 <div className="flex absolute bottom-1 text-lg font-popins-light text-white w-30 h-7 rounded-3xl  pl-1 pr-2 justify-between bg-[#EB5A45] ">
                                     <div className="relojIcon pt-0.5">
@@ -2169,7 +2676,7 @@ const prevSlideCategorias = () => {
                                 </div>    
                             </div>
                         </div>
-                        <div className="info font-popins pt-4 px-3 ">
+                        <div className="info font-popins pt-4 px-3 z-10 ">
                             <div className="flex  text-black justify-between">
                                 <h1 className='text-2xl'>Label</h1>
                                 <div className="flex p-0.5">
@@ -2182,16 +2689,24 @@ const prevSlideCategorias = () => {
                                 <h1 className='text-2xl text-[#EB5A45]'>$80.00</h1>
                                 <h1 className='font-popins-light text-[#747782] line-through text-xs pt-2 ml-4'>s/ 160.00</h1>    
                             </div>
-                            <div className="justify-center flex">
-                                <button className='flex  bg-[#DFE162]/80  text-[#484900] py-3  w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl'>
-                                    <div className="scale-120 flex -mb-3">    
-                                        <div className="scale-60 mb-4"> <ShoppingCartIcon /></div>
-                                        <h1 className='text-xs'>Agregar al carrito</h1>
-                                    </div>
-                                </button>
-                            </div>
+
+                            <button
+                              onClick={() => handleClick(28)}
+                              className={`flex bg-[#DFE162]/80 text-[#484900] py-3 w-49.5 px-7 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600
+                              ${addedItems[28] ? "bg-blue-500 text-white" : ""}`}>
+                              <div
+                                  className={`flex items-center gap-2 transition-all duration-900 ${
+                                  addedItems[28] ? "flex-row-reverse" : "flex-row"}`}>
+                                <ShoppingCartIcon
+                                  className={`w-5 h-5 transition-all duration-500 ${
+                                    addedItems[28] ? "text-white translate-x-2" : "text-[#484900] translate-x-0"}`}/>
+                                <h1 className="font-popins text-sm">
+                                  {addedItems[28] ? "Item agregado" : "Agregar al carrito"}
+                                </h1>
+                              </div>
+                            </button>
                         </div>
-                    </div>
+                        </div>
                 </div>
             <button className="text-4xl mx-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                 <h1 className=''><ArrowRightNormal/></h1>
@@ -2205,7 +2720,7 @@ const prevSlideCategorias = () => {
       <section className="Ultimmo">
         <div className="mt-16">
             {/*titulo*/}
-            <div className="text-5xl font-popins  w-400 mx-40 text-[#434651] text-center">
+            <div className="text-5xl font-popins  w-400 mx-40 text-[#434651] text-center" style={getTextStyle()}>
                 Últimos lanzamientos
             </div>
             {/*Fila 1*/}

@@ -34,8 +34,8 @@ export default function CustomSelect({isFocused}) {
       </div>
       {isOpen && (
         <ul
-          className="absolute z-10 mt-1 w-[230px] h-[161px] bg-white border border-gray-300 rounded-lg shadow-lg 
-                     max-h-60 overflow-auto left-1/2 -translate-x-1/2 backdrop-blur-2xl py-2"
+          className="absolute z-10 mt-1 w-[230px] h-[161px] bg-white/20 border border-gray-300 rounded-lg shadow-lg 
+                     max-h-60 overflow-auto left-1/2 -translate-x-1/2 backdrop-blur-[30px] py-2"
         >
           {options.map((option) => (
             <li
@@ -56,9 +56,7 @@ export default function CustomSelect({isFocused}) {
   );
 }
 
-export function PaginacionBar() {
-  const [page, setPage] = useState(1);
-  const totalPages = 3;
+export function PaginacionBar({ page, setPage, totalPages }) {
   const [isFocused, setIsFocused] = useState(false);
 
   const handlePrev = () => {
@@ -70,7 +68,7 @@ export function PaginacionBar() {
   };
 
   return (
-    <div className="w-[1395px] h-[80px] flex items-center justify-between border border-gray-200 rounded-[10px] px-10 bg-white shadow-sm mb-6">
+    <div className="w-[1395px] h-[80px] flex items-center justify-between border border-gray-200 rounded-[10px] px-10 bg-white shadow-sm">
 
         <div className="flex flex-col gap-2 text-gray-600 group cursor-pointer group">
             <div onClick={() => setIsFocused(!isFocused)} className="order-2">

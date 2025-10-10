@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   MiCuentaIcon,
   MisComprasIcon,
@@ -40,6 +41,41 @@ const animations = `
 `;
 
 export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
+  const [theme, setTheme] = useState(() => {
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  });
+
+  useEffect(() => {
+    setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const getThemeStyles = () => {
+    return {
+      backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : 'rgba(44, 80, 158, 0.5)',
+    };
+  };
+
+  const getLogoutButtonStyles = () => {
+    return {
+      backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : '#2C509E66',
+    };
+  };
+
   const buttons = [
     { label: 'Mi cuenta', key: 'cuenta' },
     { label: 'Mis Compras', key: 'compras' },
@@ -61,7 +97,7 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
         border: '1px solid rgba(44, 80, 158, 0.15)',
         gap: 32,
         padding: 16,
-        backgroundColor: 'rgba(44, 80, 158, 0.5)',
+        ...getThemeStyles(),
         ...style,
       }}
     >
@@ -110,8 +146,9 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
       </div>
 
       <button
-        className="bg-[#2C509E66] text-white hover:bg-[#16336e] transition flex items-center justify-center gap-3 rounded-full"
+        className="text-white hover:bg-[#16336e] transition flex items-center justify-center gap-3 rounded-full"
         style={{
+          ...getLogoutButtonStyles(),
           fontFamily: 'Poppins, sans-serif',
           fontWeight: 400,
           fontStyle: 'normal',
