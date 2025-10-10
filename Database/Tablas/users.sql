@@ -147,5 +147,3 @@ SELECT u.id_usuario, r.id_rol
 FROM usuarios u, roles r
 WHERE u.email='admin@okea.com' AND r.nombre_rol='admin'
 ON DUPLICATE KEY UPDATE usuarios_roles.id_usuario = usuarios_roles.id_usuario;
-
-
