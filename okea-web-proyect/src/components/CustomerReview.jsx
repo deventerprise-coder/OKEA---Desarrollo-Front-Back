@@ -15,14 +15,14 @@ const CustomerReview = ({
   const { isLight } = useTheme();
 
   const getCardStyle = () => ({
-    backgroundColor: isLight ? '#F5F6920D' : '#2a2a4a',
+    backgroundColor: isLight ? '#F5F6920D' : '#24224933',
     borderRadius: '16px',
     padding: '24px',
     boxShadow: isLight 
       ? '0 4px 12px rgba(0, 0, 0, 0.15)' 
       : '0 4px 12px rgba(0, 0, 0, 0.3)',
     transition: 'all 0.3s ease',
-    border: isLight ? '1px solid #F5F692' : '1px solid #374151'
+    border: isLight ? '1px solid #F5F692' : '1px solid #3E3B6B'
   });
 
   const getTextStyle = () => ({

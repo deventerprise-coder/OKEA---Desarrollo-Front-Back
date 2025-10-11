@@ -32,6 +32,7 @@ function App() {
                   <MarcasDestacadas />
                   <PreguntasFrecuentes />
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
