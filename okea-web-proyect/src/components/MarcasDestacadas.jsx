@@ -3,8 +3,8 @@ import nikeImg from "../assets/imagenes/MarcasDestacadas/nike.png";
 import samsungImg from "../assets/imagenes/MarcasDestacadas/samsung.png";
 import bataImg from "../assets/imagenes/MarcasDestacadas/bata.png";
 import xiaomiImg from "../assets/imagenes/MarcasDestacadas/xiaomi.png";
-import { useState } from "react";
-//marcas, se puede cambiar
+import { useState, useEffect } from "react";
+
 const marcas = [
   { nombre: "iPhone", imagen: iphoneImg },
   { nombre: "Nike", imagen: nikeImg },
@@ -14,18 +14,53 @@ const marcas = [
 ];
 
 export default function MarcasDestacadas() {
+  const [theme, setTheme] = useState(() => {
+    return document.documentElement.getAttribute('data-theme') || 'light';
+  });
+
+  useEffect(() => {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          setTheme(document.documentElement.getAttribute('data-theme') || 'light');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const getSectionStyles = () => {
+    return {
+      width: "100%",
+      background: theme === 'dark' ? '#120F31' : '#fff',
+      padding: "32px 0",
+      transition: "all 0.3s ease"
+    };
+  };
+
+  const getTitleStyles = () => {
+    return {
+      textAlign: "center",
+      fontFamily: "Poppins, sans-serif",
+      fontWeight: 400,
+      fontSize: 40,
+      color: theme === 'dark' ? '#E5E2E1' : '#434651',
+      marginBottom: 32,
+      transition: "color 0.3s ease"
+    };
+  };
+
   return (
-    <section style={{ width: "100%", background: "#fff", padding: "32px 0" }}>
-      <h2
-        style={{
-          textAlign: "center",
-          fontFamily: "Poppins, sans-serif",
-          fontWeight: 400,
-          fontSize: 40,
-          color: "#434651",
-          marginBottom: 32
-        }}
+    <section style={getSectionStyles()}
       >
+      <h2 style={getTitleStyles()}
+        >
         Marcas destacadas
       </h2>
       <div
@@ -37,30 +72,54 @@ export default function MarcasDestacadas() {
         }}
       >
         {marcas.map((marca, idx) => (
-          <MarcaCard key={idx} imagen={marca.imagen} nombre={marca.nombre} />
+          <MarcaCard key={idx} imagen={marca.imagen} nombre={marca.nombre} theme={theme} />
         ))}
       </div>
     </section>
   );
 }
-function MarcaCard({ imagen, nombre }) {
+
+function MarcaCard({ imagen, nombre, theme }) {
   const [hovered, setHovered] = useState(false);
+
+  const getCardStyles = () => {
+    return {
+      position: "relative",
+      width: 320,
+      height: 400,
+      borderRadius: 20,
+      overflow: "hidden",
+      boxShadow: theme === 'dark' 
+        ? "0 1px 4px 0 rgba(0,0,0,0.3)" 
+        : "0 1px 4px 0 rgba(44,80,158,0.04)",
+      background: theme === 'dark' ? '#1F1A57' : '#faf8ff',
+      marginBottom: 12,
+      cursor: "pointer",
+      transition: "all 0.3s ease"
+    };
+  };
+
+  const getOverlayStyles = () => {
+    return {
+      position: "absolute",
+      left: 0,
+      top: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: theme === 'dark' 
+        ? "rgba(7, 0, 71, 0.4)" 
+        : "rgba(44, 80, 158, 0.2)",
+      opacity: hovered ? 1 : 0,
+      transition: "opacity 0.3s ease",
+      zIndex: 2
+    };
+  };
 
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{
-        position: "relative",
-        width: 320,
-        height: 400,
-        borderRadius: 20,
-        overflow: "hidden",
-        boxShadow: "0 1px 4px 0 rgba(44,80,158,0.04)",
-        background: "#faf8ff",
-        marginBottom: 12,
-        cursor: "pointer"
-      }}
+      style={getCardStyles()}
     >
       <img
         src={imagen}
@@ -75,19 +134,7 @@ function MarcaCard({ imagen, nombre }) {
           zIndex: 1
         }}
       />
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(44, 80, 158, 0.2)",
-          opacity: hovered ? 1 : 0,
-          transition: "opacity 0.3s ease",
-          zIndex: 2
-        }}
-      />
+      <div style={getOverlayStyles()} />
     </div>
   );
 }

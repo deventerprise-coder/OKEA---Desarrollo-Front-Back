@@ -1,148 +1,260 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PreguntaIcon, ChevronDownIcon, MessageIcon } from "../assets/iconos/Icons";
 
 const preguntas = [
-  {
-    pregunta: "¿Necesito una cuenta para comprar?",
-    respuesta: "No es obligatorio crear una cuenta para realizar una compra. Puedes comprar como invitado, aunque recomendamos registrarte para seguir tus pedidos más fácilmente y acceder a promociones exclusivas."
-  },
-  {
-    pregunta: "¿Cuánto tarda en llegar mi pedido?",
-    respuesta: "El tiempo de entrega depende de tu ubicación y el tipo de envío seleccionado. En general, los pedidos nacionales tardan entre 2 y 7 días hábiles. Recibirás un correo con el número de seguimiento una vez que tu pedido sea enviado."
-  },
-  {
-    pregunta: "¿Es seguro pagar en su sitio?",
-    respuesta: "Sí, nuestro sitio utiliza protocolos de seguridad avanzados (SSL) para proteger tus datos personales y bancarios. Trabajamos con plataformas de pago confiables y tus transacciones están completamente encriptadas."
-  },
-  {
-    pregunta: "¿Qué métodos de pago aceptan?",
-    respuesta: "Aceptamos tarjetas de crédito y débito (Visa, Mastercard, American Express), transferencias bancarias, PayPal y otros métodos locales dependiendo de tu país. Verás todas las opciones disponibles al finalizar tu compra."
-  },
-  {
-    pregunta: "¿Puedo modificar o cancelar mi pedido?",
-    respuesta: "Sí, puedes modificar o cancelar tu pedido siempre que aún no haya sido enviado. Contáctanos lo antes posible a través de nuestro servicio al cliente con tu número de pedido. Una vez que el pedido esté en camino, ya no será posible hacer cambios."
-  }
+	{
+		pregunta: "¿Necesito una cuenta para comprar?",
+		respuesta:
+			"No es obligatorio crear una cuenta para realizar una compra. Puedes comprar como invitado, aunque recomendamos registrarte para seguir tus pedidos más fácilmente y acceder a promociones exclusivas.",
+	},
+	{
+		pregunta: "¿Cuánto tarda en llegar mi pedido?",
+		respuesta:
+			"El tiempo de entrega depende de tu ubicación y el tipo de envío seleccionado. En general, los pedidos nacionales tardan entre 2 y 7 días hábiles. Recibirás un correo con el número de seguimiento una vez que tu pedido sea enviado.",
+	},
+	{
+		pregunta: "¿Es seguro pagar en su sitio?",
+		respuesta:
+			"Sí, nuestro sitio utiliza protocolos de seguridad avanzados (SSL) para proteger tus datos personales y bancarios. Trabajamos con plataformas de pago confiables y tus transacciones están completamente encriptadas.",
+	},
+	{
+		pregunta: "¿Qué métodos de pago aceptan?",
+		respuesta:
+			"Aceptamos tarjetas de crédito y débito (Visa, Mastercard, American Express), transferencias bancarias, PayPal y otros métodos locales dependiendo de tu país. Verás todas las opciones disponibles al finalizar tu compra.",
+	},
+	{
+		pregunta: "¿Puedo modificar o cancelar mi pedido?",
+		respuesta:
+			"Sí, puedes modificar o cancelar tu pedido siempre que aún no haya sido enviado. Contáctanos lo antes posible a través de nuestro servicio al cliente con tu número de pedido. Una vez que el pedido esté en camino, ya no será posible hacer cambios.",
+	},
 ];
 
 export default function PreguntasFrecuentes() {
-  const [abiertas, setAbiertas] = useState([]);
-  const [hovered, setHovered] = useState(null);
+	const [abiertas, setAbiertas] = useState([]);
+	const [hovered, setHovered] = useState(null);
+	const [theme, setTheme] = useState(() => {
+		return document.documentElement.getAttribute("data-theme") || "light";
+	});
 
-  const togglePregunta = (idx) => {
-    setAbiertas((prev) =>
-      prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
-    );
-  };
+	useEffect(() => {
+		const observer = new MutationObserver((mutations) => {
+			mutations.forEach((mutation) => {
+				if (mutation.attributeName === "data-theme") {
+					setTheme(document.documentElement.getAttribute("data-theme") || "light");
+				}
+			});
+		});
 
-  return (
-    <section style={{ width: "100%", background: "#fff", padding: "64px 0 32px 0" }}>
-      <h2
-        style={{
-          textAlign: "center",
-          fontFamily: "Poppins, sans-serif",
-          fontWeight: 400,
-          fontSize: 36,
-          color: "#3A3D46",
-          marginBottom: 40,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 16
-        }}
-      >
-        <PreguntaIcon width={36} height={36} style={{ color: "#3A3D46" }} />
-        Preguntas frecuentes
-      </h2>
-      <div style={{ maxWidth: 1062, margin: "0 auto", display: "flex", flexDirection: "column", gap: 10 }}>
-        {preguntas.map((item, idx) => {
-          const isOpen = abiertas.includes(idx);
-          const isHovered = hovered === idx && !isOpen;
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["data-theme"],
+		});
 
-          const backgroundColor = isOpen
-            ? "#EEEDF4"
-            : isHovered
-            ? "#2C509E"
-            : "#FAF8FF";
+		return () => observer.disconnect();
+	}, []);
 
-          const colorBase = "#434651";
-          const colorTexto = isHovered ? "#fff" : isOpen ? colorBase : "#434651";
-          const colorIcono = isHovered ? "#fff" : isOpen ? colorBase : "#434651";
-          const colorChevron = isHovered ? "#fff" : isOpen ? colorBase : "#434651";
+	const togglePregunta = (idx) => {
+		setAbiertas((prev) =>
+			prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
+		);
+	};
 
-          return (
-            <div key={idx}>
-              {/* Pregunta */}
-              <div
-                style={{
-                  background: backgroundColor,
-                  borderRadius: 16,
-                  padding: "18px 32px",
-                  minHeight: 72,
-                  display: "flex",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  boxShadow: "0 1px 4px 0 rgba(44,80,158,0.04)",
-                  transition: "background 0.2s"
-                }}
-                onClick={() => togglePregunta(idx)}
-                onMouseEnter={() => !isOpen && setHovered(idx)}
-                onMouseLeave={() => setHovered(null)}
-              >
-                <MessageIcon
-                  width={20}
-                  height={20}
-                  style={{ color: colorIcono, marginRight: 30 }}
-                />
-                <span
-                  style={{
-                    flex: 1,
-                    fontFamily: "Poppins, sans-serif",
-                    fontWeight: 500,
-                    fontSize: 16,
-                    color: colorTexto,
-                    transition: "color 0.2s"
-                  }}
-                >
-                  {item.pregunta}
-                </span>
-                <span
-                  style={{
-                    marginLeft: 16,
-                    transition: "transform 0.2s, color 0.2s",
-                    transform: isOpen ? "rotate(180deg)" : "none",
-                    color: colorChevron
-                  }}
-                >
-                  <ChevronDownIcon
-                    width={24}
-                    height={24}
-                    style={{ color: colorChevron }}
-                  />
-                </span>
-              </div>
+	const getThemeColors = (isOpen, isHovered) => {
+		if (theme === "dark") {
+			if (isOpen) {
+				return {
+					backgroundColor: "#2D257D",
+					textColor: "#C3C7CB",
+					iconColor: "#C3C7CB",
+					chevronColor: "#C3C7CB",
+				};
+			} else if (isHovered) {
+				return {
+					backgroundColor: "#C6C4E3",
+					textColor: "#251F67",
+					iconColor: "#251F67",
+					chevronColor: "#251F67",
+				};
+			} else {
+				return {
+					backgroundColor: "#1F1A57",
+					textColor: "#E5E2E1",
+					iconColor: "#E5E2E1",
+					chevronColor: "#E5E2E1",
+				};
+			}
+		} else {
+			// Tema light (colores originales)
+			const colorBase = "#434651";
+			if (isOpen) {
+				return {
+					backgroundColor: "#EEEDF4",
+					textColor: colorBase,
+					iconColor: colorBase,
+					chevronColor: colorBase,
+				};
+			} else if (isHovered) {
+				return {
+					backgroundColor: "#2C509E",
+					textColor: "#fff",
+					iconColor: "#fff",
+					chevronColor: "#fff",
+				};
+			} else {
+				return {
+					backgroundColor: "#FAF8FF",
+					textColor: "#434651",
+					iconColor: "#434651",
+					chevronColor: "#434651",
+				};
+			}
+		}
+	};
 
-              {/* Respuesta */}
-              {isOpen && (
-                <div
-                  style={{
-                    marginTop: 5,
-                    fontFamily: "Poppins, sans-serif",
-                    fontWeight: 400,
-                    fontSize: 14,
-                    color: "#5A5D6A",
-                    background: "#EEEDF4",
-                    borderRadius: 12,
-                    padding: "30px 35px",
-                    boxShadow: "0 1px 4px 0 rgba(44,80,158,0.04)"
-                  }}
-                >
-                  {item.respuesta}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
+	const getSectionStyles = () => {
+		return {
+			width: "100%",
+			background: theme === "dark" ? "#120F31" : "#fff",
+			padding: "64px 0 32px 0",
+      transition: "all 0.3s ease"
+		};
+	};
+
+	const getTitleColor = () => {
+		return theme === "dark" ? "#E5E2E1" : "#3A3D46";
+	};
+
+	const getResponseStyles = () => {
+		if (theme === "dark") {
+			return {
+				marginTop: 5,
+				fontFamily: "Poppins, sans-serif",
+				fontWeight: 400,
+				fontSize: 14,
+				color: "#C3C7CB",
+				background: "#2D257D",
+				borderRadius: 12,
+				padding: "30px 35px",
+				boxShadow: "0 1px 4px 0 rgba(44,80,158,0.04)",
+			};
+		} else {
+			return {
+				marginTop: 5,
+				fontFamily: "Poppins, sans-serif",
+				fontWeight: 400,
+				fontSize: 14,
+				color: "#5A5D6A",
+				background: "#EEEDF4",
+				borderRadius: 12,
+				padding: "30px 35px",
+				boxShadow: "0 1px 4px 0 rgba(44,80,158,0.04)",
+			};
+		}
+	};
+
+	return (
+		<section style={getSectionStyles()}>
+			<h2
+				style={{
+					textAlign: "center",
+					fontFamily: "Poppins, sans-serif",
+					fontWeight: 400,
+					fontSize: 36,
+					color: getTitleColor(),
+					marginBottom: 40,
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+					gap: 16,
+				}}
+			>
+				<PreguntaIcon
+					width={36}
+					height={36}
+					style={{ color: getTitleColor() }}
+				/>
+				Preguntas frecuentes
+			</h2>
+			<div
+				style={{
+					maxWidth: 1062,
+					margin: "0 auto",
+					display: "flex",
+					flexDirection: "column",
+					gap: 10,
+				}}
+			>
+				{preguntas.map((item, idx) => {
+					const isOpen = abiertas.includes(idx);
+					const isHovered = hovered === idx && !isOpen;
+					const colors = getThemeColors(isOpen, isHovered);
+
+					return (
+						<div key={idx}>
+							{/* Pregunta */}
+							<div
+								style={{
+									background: colors.backgroundColor,
+									borderRadius: 16,
+									padding: "18px 32px",
+									minHeight: 72,
+									display: "flex",
+									alignItems: "center",
+									cursor: "pointer",
+									boxShadow: "0 1px 4px 0 rgba(44,80,158,0.04)",
+									transition: "background 0.2s",
+								}}
+								onClick={() => togglePregunta(idx)}
+								onMouseEnter={() => !isOpen && setHovered(idx)}
+								onMouseLeave={() => setHovered(null)}
+							>
+								<MessageIcon
+									width={20}
+									height={20}
+									style={{
+										color: colors.iconColor,
+										marginRight: 30,
+									}}
+								/>
+								<span
+									style={{
+										flex: 1,
+										fontFamily: "Poppins, sans-serif",
+										fontWeight: 500,
+										fontSize: 16,
+										color: colors.textColor,
+										transition: "color 0.2s",
+									}}
+								>
+									{item.pregunta}
+								</span>
+								<span
+									style={{
+										marginLeft: 16,
+										transition:
+											"transform 0.2s, color 0.2s",
+										transform: isOpen ? "rotate(180deg)" : "none",
+										color: colors.chevronColor,
+									}}
+								>
+									<ChevronDownIcon
+										width={24}
+										height={24}
+										style={{ color: colors.chevronColor }}
+									/>
+								</span>
+							</div>
+
+							{/* Respuesta */}
+							{isOpen && (
+								<div style={getResponseStyles()}>
+									{item.respuesta}
+								</div>
+							)}
+						</div>
+					);
+				})}
+			</div>
+		</section>
+	);
 }

@@ -1,6 +1,9 @@
 import { Flecha1, Lupa1, Location1 } from '../../assets/iconos/Icons';
 import { useRef, useState, useEffect } from 'react';
 
+// =======================
+// 1. ANIMACIONES CSS PARA APARICIÓN/DESAPARICIÓN
+// =======================
 const animations = `
   @keyframes locationFadeIn {
     from {
@@ -33,15 +36,25 @@ const animations = `
   }
 `;
 
+// =======================
+// 2. COMPONENTE PRINCIPAL
+// =======================
 export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, isVisible }) {
+  // Referencia al dropdown para posibles cálculos de posición
   const dropdownRef = useRef(null);
+
+  // Estado para el tema actual (claro/oscuro)
   const [theme, setTheme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
   });
 
+  // =======================
+  // 3. EFECTO: OBSERVAR CAMBIO DE TEMA
+  // =======================
   useEffect(() => {
     setTheme(document.documentElement.getAttribute('data-theme') || 'light');
 
+    // Observa cambios en el atributo data-theme del documento
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
@@ -55,16 +68,20 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
       attributeFilter: ['data-theme'],
     });
 
+    // Limpia el observer al desmontar
     return () => observer.disconnect();
   }, []);
 
+  // =======================
+  // 4. ESTILOS SEGÚN TEMA
+  // =======================
   const getThemeStyles = () => {
     return {
       backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : 'rgba(44, 80, 158, 0.5)',
-      border: '1.5px solid rgba(255, 255, 255, 0.5)', // Increased opacity for more visible white border
+      border: '1.5px solid rgba(255, 255, 255, 0.5)',
       backdropFilter: 'blur(0px)',
       WebkitBackdropFilter: 'blur(0px)',
-      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Optional: adds depth to make border more visible
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     };
   };
 
@@ -75,13 +92,23 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
     };
   };
 
+  // =======================
+  // 5. CONSTANTES DE ETIQUETAS
+  // =======================
   const labels = ['Departamento', 'Provincia', 'Distrito'];
 
+  // =======================
+  // 6. MANEJADOR DE BOTÓN DE FLECHA
+  // =======================
+  // Llama a la función recibida con el índice y la posición del botón
   const handleToggle = (index, event) => {
     const rect = event.currentTarget.getBoundingClientRect();
     onOpenDropdown(index, rect);
   };
 
+  // =======================
+  // 7. RENDER
+  // =======================
   return (
     <div
       ref={dropdownRef}
@@ -92,15 +119,15 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
         ...getThemeStyles(),
         width: '400px',
         height: '272px',
-        top: '17px',
-        right: '550px',
         borderRadius: '32px',
         padding: '16px',
         gap: '20px',
       }}
     >
+      {/* Animaciones CSS */}
       <style>{animations}</style>
 
+      {/* Título e icono de ubicación */}
       <div style={{ marginTop: '12px' }}>
         <div className="flex items-center gap-2" style={{ marginLeft: '14px' }}>
           <Location1 color={theme === 'dark' ? '#ffffff' : '#ffffff'} />
@@ -119,10 +146,12 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
         </div>
       </div>
 
+      {/* Inputs para Departamento, Provincia y Distrito */}
       <div className="flex flex-col" style={{ gap: '10px' }}>
         {labels.map((label, index) => (
           <div key={index} className="relative">
             <div className="flex">
+              {/* Input de búsqueda */}
               <div
                 className="flex items-center px-5 transition-colors duration-200 location-input-container"
                 style={{
@@ -149,6 +178,7 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
                 />
               </div>
 
+              {/* Botón de flecha para abrir opciones */}
               <button
                 onClick={(e) => handleToggle(index, e)}
                 className="ml-0.5 flex items-center justify-center transition-colors duration-200 focus:outline-none pt-[15px] pr-[17px] pb-[15px] pl-[13px] location-arrow-btn"
@@ -168,6 +198,7 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
           </div>
         ))}
       </div>
+      {/* Estilos extra para hover y placeholder */}
       <style>{`
         .location-input-container:hover {
           background-color: ${theme === 'dark' ? '#070047' : '#5a6ca3'} !important;
