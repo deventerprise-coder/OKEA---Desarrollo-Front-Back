@@ -63,7 +63,7 @@ const animations = `
   }
 `;
 
-export default function CategoriasDropdown({isVisible }) {
+export default function CategoriasDropdown({isVisible, onClose }) {
   const [categoriaActiva, setCategoriaActiva] = useState(null);
   const [theme, setTheme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
@@ -246,6 +246,10 @@ export default function CategoriasDropdown({isVisible }) {
           data={categoriasDetalle[categoriaActiva]}
           nombreCategoria={categoriaActiva}
           onClose={() => setCategoriaActiva(null)}
+          onCloseAll={() => {
+            setCategoriaActiva(null);
+            onClose && onClose();
+          }}
         />
       )}
     </>

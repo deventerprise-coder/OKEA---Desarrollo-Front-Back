@@ -79,7 +79,7 @@ export default function DynamicComponent({ firstWord = "iPho", secondWord = "ne"
         </div>
     )
 };
-export function BreadCrum({categoria, subcategoria }) {
+export function BreadCrum({categoria, subcategoria, isLight}) {
     const navigate = useNavigate();
     
     const splitDynamicText = (categoria) => {
@@ -101,15 +101,15 @@ export function BreadCrum({categoria, subcategoria }) {
     const { firstWord, secondWord } = splitDynamicText(categoria);
     
     return (
-        <div className="w-[1922px] h-[115px] flex items-center justify-between mt-20" style={{fontFamily: 'Inter'}}>
+        <div className="w-full h-[115px] flex items-center justify-between mt-20" style={{fontFamily: 'Inter'}}>
             <div className="flex items-center gap-5 ml-16"> 
-                <HomeBreadcrumIcon />
-                <ArrowBreadcrumIcon />
-                <a className="text-[14px] font-regular text-[#333333] cursor-pointer" style={{fontFamily: 'Inter'}} onClick={() => navigate(`/`)}>Inicio</a>
-                <ArrowBreadcrumIcon />
-                <a className="text-[14px] font-regular text-[#333333] cursor-pointer" style={{fontFamily: 'Inter'}}>{categoria}</a>
-                <ArrowBreadcrumIcon />
-                <a className="text-[14px] font-bold text-[#333333] cursor-pointer" style={{fontFamily: 'Inter'}}>{subcategoria}</a>
+                <HomeBreadcrumIcon color={isLight ? "#333333" : "#FFFFFF"}/>
+                <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
+                <a className={`text-[14px] font-regular ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} style={{fontFamily: 'Inter'}} onClick={() => navigate(`/`)}>Inicio</a>
+                <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
+                <a className={`text-[14px] font-regular ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{categoria}</a>
+                <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
+                <a className={`text-[14px] font-bold ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{subcategoria}</a>
             </div>
             <DynamicComponent firstWord={firstWord} secondWord={secondWord} categoria={categoria} />
         </div>
