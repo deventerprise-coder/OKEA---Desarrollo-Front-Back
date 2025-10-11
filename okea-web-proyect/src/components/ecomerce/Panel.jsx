@@ -19,12 +19,12 @@ function ModelosDestcados({nombre, imagen, categoria}) {
     const [isHovered, setIsHovered] = useState(false);
    return (
         <div
-            className="flex items-center transition-all duration-300 ease-in-out ml-[5px]"
+            className={`flex items-center transition-all duration-300 ease-in-out ml-[5px]`}
             onMouseLeave={() => setIsHovered(false)}
             onMouseEnter={() => setIsHovered(true)}
         >
             <button
-            className={`z-20 flex-shrink-0 w-[123px] h-[123px] rounded-full bg-white text-[#1C4390] font-popins-bold text-[20px] border-[3px] border-transparent overflow-hidden items-center justify-center flex transform transition-transform duration-300 ease-in-out ${
+            className={`z-20 flex-shrink-0 w-[123px] h-[123px] rounded-full bg-white text-[#1C4390] font-popins-bold text-[20px] border-[3px] border-transparent overflow-hidden items-center justify-center flex transform transition-translate duration-500 fade-in ${
                 isHovered ? "-translate-x-10" : ""
             }`}
             >
@@ -35,9 +35,9 @@ function ModelosDestcados({nombre, imagen, categoria}) {
             />
             </button>
             
-            <div className={`z-10 overflow-hidden transition-[gap, opacity] duration-300 fade-in ${
+            <div className={`z-10 overflow-hidden transition-[gap, opacity] duration-500 fade-in ml-[-143px] ${
                 isHovered 
-                    ? "w-[310px] opacity-100 ml-[-143px]" 
+                    ? "w-[310px] opacity-100 mr-[-180px]" 
                     : "w-0 opacity-0"
             }`}>
                 <div className="w-[310px] h-[120px] rounded-[100px] flex items-center justify-center overflow-hidden relative">
@@ -71,7 +71,7 @@ export function Panel({Categoria, destacados}) {
     :Categoria === "Juguetes" ? PanelJuguetes
     : null;
     return(
-        <div className={`w-[1924px] h-[817px] relative bg-cover ${Categoria === "Salud y Bienestar" ? "bg-[center_top_90%]" :  Categoria === "Mascotas" ? "bg-[center_right_20%]" : "bg-[center_top_44%]"}`} style={{backgroundImage: `url(${imagenPanel})`}}>
+        <div className={`w-full h-[817px] relative bg-cover ${Categoria === "Salud y Bienestar" ? "bg-[center_top_90%]" :  Categoria === "Mascotas" ? "bg-[center_right_20%]" : "bg-[center_top_44%]"}`} style={{backgroundImage: `url(${imagenPanel})`}}>
             {Categoria === "Tecnología" && (
                 <div className="w-[965px] h-[200px] flex absolute top-[50px] right-[25%] justify-center items-center">
                     <img src={apple} alt="imagen marca" className="w-[117px] h-[140px] object-contain mr-10 mb-6"/>
@@ -98,14 +98,16 @@ export function Panel({Categoria, destacados}) {
                     <img src={MarcasJuguetes} alt="imagen marca" className="w-[440px] h-[194px] object-contain mt-15"/>  
                 </div>
             )}
-            <section className="absolute bottom-[-15%] w-full h-[200px] bg-[#33333333] backdrop-blur-xl flex items-center gap-30">
+            <section className="absolute bottom-[-15%] w-full h-[200px] bg-[#33333333] backdrop-blur-xl flex items-center gap-3">
                 {destacados.map((item, index) => (
                     index === 0 ? (
-                        <div className="ml-60" key={index}>
+                        <div className="ml-70" key={index}>
                             <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria}/>
                         </div>
                     ) : (
-                         <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria}/>
+                        <div className="ml-[230px]">
+                            <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria}/>
+                        </div>
                     )
                 ))}
             </section>

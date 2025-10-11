@@ -34,7 +34,7 @@ const animations = `
   }
 `;
 
-export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClose }) {
+export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClose, onCloseAll }) {
   const [isVisible, setIsVisible] = useState(true);
   const navigate = useNavigate();
   const [theme, setTheme] = useState(() => {
@@ -88,7 +88,11 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
 
   const handleNavigateToAll = () => {
     navigate(`/catalogo/${categoriaRuta}`);
-    handleClose();
+    if (onCloseAll) {
+      onCloseAll();
+    } else {
+      handleClose();
+    }
   };
 
   const getThemeStyles = () => {

@@ -53,7 +53,7 @@ import ultimoImagen10 from "../../assets/imagenes/Home/ultimoImagen10.png"
 import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 
 
-import {WineBottleIcon, ArrowLeftGrayBlueIcon, ArrowLeftNormal, ArrowRightBlackIconwhitout, ArrowRightBrownIcon, ArrowRightGrayBlueIcon, ArrowRightIcon, ArrowRightIconBlack, ArrowRightNormal, ClockIcon, CursorIcon, FacebookIcon, FootIcon, HandBagIcon, HeartIconblack, InstagramIcon, ShoppingCartIcon, SofaIcon, StarIcon, TagIcon, TecnologyIcon, TruckIcon, TwitterIcon, YouTubeIcon } from "../../assets/iconos/iconoHome.jsx";
+import {WineBottleIcon, ArrowLeftGrayBlueIcon, ArrowLeftNormal, ArrowRightBlackIconwhitout, ArrowRightBrownIcon, ArrowRightGrayBlueIcon, ArrowRightIcon, ArrowRightIconBlack, ArrowRightNormal, ClockIcon, CursorIcon, FacebookIcon, FootIcon, HandBagIcon, HeartIconblack, InstagramIcon, ShoppingCartIcon, SofaIcon,SofaIconDarkMode, StarIcon, TagIcon, TecnologyIcon, TruckIcon, TwitterIcon, YouTubeIcon, TecnologyIconDarkMode, FootIconDarkMode, WineBottleIconDarkMode } from "../../assets/iconos/iconoHome.jsx";
 
 export default function Home() {
 
@@ -152,22 +152,22 @@ const prevSlideCategorias = () => {
     i > 0 ? i - 1 : i
   );
 };
-  const toggleLike = (id) => {
+const toggleLike = (id) => {
     setLiked((prev) => ({
       ...prev,
       [id]: !prev[id],
     }));
-  };
+};
 
-  const handleClick = (id) => {
+const handleClick = (id) => {
      setAddedItems((prev) => ({
          ...prev,
      [id]: !prev[id], // solo cambia el botón clickeado
      }));
-  };
+};
 
-  //CountdownTimer
-  const CountdownTimer = () => {
+//CountdownTimer
+const CountdownTimer = () => {
   // ⏱️ Definicion de duración inicial (5h 5m 10s)
   const initialDuration = (5 * 3600) + (5 * 60) + 10;
 
@@ -238,10 +238,10 @@ const prevSlideCategorias = () => {
       </div>
     </div>
   );
-  };
+};
 
-  // Slides
-  const slidesPresentacion = [
+// Slides
+const slidesPresentacion = [
     
     // --- Slide 1 ---
     
@@ -392,9 +392,9 @@ const prevSlideCategorias = () => {
         style={{ backgroundImage: `url(${audifonos})` }}
       ></div>
     </div>,
-  ];
+];
 
-  const slidesCategorias = [
+const slidesCategorias = [
       [
         {
           title: "Tecnología",
@@ -456,9 +456,9 @@ const prevSlideCategorias = () => {
           img: automotriz,
         },
       ],
-  ];
+];
 
-  return (
+return (
     <section className="Home" style={getBackgroundStyle()}>
       {/*Presentacion*/}
       <section className="Presentacion">
@@ -600,8 +600,8 @@ const prevSlideCategorias = () => {
             : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
           ...getSectionStyle(),
         }}>
-                <div className=" mr-5 ">
-                    <TecnologyIcon />
+                <div className=" mr-5 my-1">
+                    {isLight ? <TecnologyIcon /> : <TecnologyIconDarkMode />}
                 </div>
                 <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Tecnología</h1>
                 <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
@@ -734,8 +734,8 @@ const prevSlideCategorias = () => {
               : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
               ...getSectionStyle(),
               }}>
-                <div className=" mr-5 ">
-                    <SofaIcon />
+                <div className=" mr-5 my-1">
+                    {isLight ? <SofaIcon /> : <SofaIconDarkMode />}
                 </div>
                 <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Muebles</h1>
                 <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
@@ -964,8 +964,8 @@ const prevSlideCategorias = () => {
                 : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
               ...getSectionStyle(),
             }}>
-            <div className=" mr-5 ">
-              <FootIcon />
+            <div className=" mr-5  my-1">
+              {isLight ? <FootIcon /> : <FootIconDarkMode />}
             </div>
             <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Calzado</h1>
             <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
@@ -1160,7 +1160,7 @@ const prevSlideCategorias = () => {
                 ...getSectionStyle(),
               }}>
                 <div className=" mr-5 ">
-                    <WineBottleIcon />
+                    {isLight ? <WineBottleIcon /> : < WineBottleIconDarkMode />}
                 </div>
                 <h1 className='text-4xl p-0.5 font-popins  text-[#434651]'style={getTextStyle()}>Supermercado</h1>
                 <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
@@ -1657,5 +1657,5 @@ const prevSlideCategorias = () => {
       </section>
 
     </section>
-  );
+);
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { PaginacionBar } from "./PaginacionBar";
-export function Products({ products , categoria}) {
+export function Products({ products , categoria, isLight}) {
     const [page, setPage] = useState(1);
     const productsPerPage = 20;
     const totalPages = Math.ceil(products.length / productsPerPage);
@@ -9,21 +9,23 @@ export function Products({ products , categoria}) {
     const end = start + productsPerPage;
     const productsToShow = products.slice(start, end);
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-full pr-7">
             <PaginacionBar
                 page={page}
                 setPage={setPage}
                 totalPages={totalPages}
+                isLight={isLight}
             />
             <div className="grid grid-cols-4 gap-3 w-[1295px] max-h-[3525px] mt-6 mb-6">
                 {productsToShow.map(product => (
-                    <ProductCard key={product.id} {...product} categoria={categoria}/>
+                    <ProductCard key={product.id} {...product} categoria={categoria} isLight={isLight} />
                 ))}
             </div>
             <PaginacionBar
                 page={page}
                 setPage={setPage}
                 totalPages={totalPages}
+                isLight={isLight}
             />
         </div>
         
