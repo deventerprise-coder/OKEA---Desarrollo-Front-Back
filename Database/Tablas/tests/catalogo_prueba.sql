@@ -25,7 +25,16 @@ INSERT INTO productos (nombre, slug, descripcion, precio, stock, id_categoria, i
 ('Air Jordan 1', 'air-jordan-1', 'Zapatillas icónicas de basketball Jordan Brand con diseño clásico y tecnología Nike Air para máximo confort.', 170.00, 100, 4, 3, 'url3', '["url3.1", "url3.2"]'),
 ('Camiseta Deportiva Adidas', 'camiseta-deportiva-adidas', 'Camiseta técnica para entrenamientos con tecnología Climacool que mantiene la piel seca y fresca durante el ejercicio.', 45.00, 200, 4, 4, 'url4', '["url4.1", "url4.2"]');
 
-
+-- ofertas de ejemplo
+INSERT INTO ofertas (id_producto, precio_original, precio_oferta, fecha_inicio, fecha_fin, activo) VALUES
+(5, 1199.99, 999.99, '2025-10-01 00:00:00', '2025-10-31 23:59:59', TRUE),
+(6, 1299.99, 1099.99, '2025-10-05 00:00:00', '2025-10-25 23:59:59', TRUE),
+(7, 170.00, 135.99, '2025-10-01 00:00:00', '2025-10-15 23:59:59', TRUE),
+(8, 45.00, 35.99, '2025-10-08 00:00:00', '2025-10-22 23:59:59', TRUE),
+(9, 299.99, 249.99, '2025-10-01 00:00:00', '2025-11-30 23:59:59', TRUE),
+(5, 1199.99, 899.99, '2025-11-01 00:00:00', '2025-11-30 23:59:59', FALSE),
+(10, 199.99, 149.99, '2025-10-10 00:00:00', '2025-10-20 23:59:59', TRUE),
+(6, 1299.99, 999.99, '2025-11-15 00:00:00', '2025-12-15 23:59:59', FALSE);
 
 -- tablas
 select * from categorias;
@@ -68,10 +77,19 @@ INSERT INTO marcas (nombre_marca, descripcion) VALUES ('Marca Ñoña & Española
 INSERT INTO productos (nombre, descripcion, precio, stock, id_categoria, id_marca) VALUES ('Teléfono Móvil Último Modelo', 'Descripción del teléfono', 299.99, 20, 1, 1);
 -- verificar que el trigger no sobrescribe slug manual
 INSERT INTO productos (nombre, slug, descripcion, precio, stock, id_categoria, id_marca) VALUES ('Producto con Slug Manual', 'mi-slug-personalizado', 'Descripción', 199.99, 15, 1, 1);
+-- se insertara una oferta sin porcentaje_descuento, el trigger debe calcularlo automáticamente
+INSERT INTO ofertas (id_producto, precio_original, precio_oferta, porcentaje_descuento, fecha_inicio, fecha_fin, activo) 
+VALUES (7, 170.00, 127.50, 25.00, '2025-10-12 00:00:00', '2025-11-12 23:59:59', TRUE);
+-- actualizar producto para que el trigger detecte stock 0 y desactive el producto
+SELECT id_producto, nombre, stock, activo FROM productos WHERE id_producto = 9;
+UPDATE productos SET stock = 0 WHERE id_producto = 9;
+SELECT id_producto, nombre, stock, activo FROM productos WHERE id_producto = 9;
 
 
 
--- probar stored procedures
+
+
+-- Ejemplo para probar los stored procedures creados
 SHOW PROCEDURE STATUS WHERE db = 'okea'; -- listar procedimientos
 -- obtener productos por categoría
 CALL sp_obtener_productos_por_categoria(1, TRUE, 10, 0);
@@ -86,6 +104,61 @@ CALL sp_buscar_productos(NULL, 1, NULL, NULL, NULL, 10, 0);
 CALL sp_buscar_productos(NULL, NULL, NULL, 100.00, 1000.00, 10, 0);
 -- Búsqueda combinada con múltiples filtros
 CALL sp_buscar_productos('Teléfono', 1, 2, 100.00, 1500.00, 5, 0);
+--
+CALL sp_crear_producto(
+    'MacBook Pro 16"',
+    'macbook-pro-16',
+    'Laptop profesional Apple con chip M3 Max, pantalla Liquid Retina XDR y hasta 22 horas de batería',
+    2499.99,
+    25,
+    1,
+    2,
+    'url_macbook',
+    '["url_mac1.jpg", "url_mac2.jpg", "url_mac3.jpg"]',
+    @nuevo_id
+);
+SELECT @nuevo_id AS id_producto_creado;
+--
+CALL sp_actualizar_producto(
+    5,
+    'iPhone 15 Pro Max',
+    'iphone-15-pro-max',
+    'El último smartphone de Apple con chip A17 Pro, cámara avanzada con zoom óptico de 5x y grabación de video en 4K ProRes con titanio',
+    1299.99,
+    55,
+    1,
+    2,
+    'url_iphone_updated',
+    '["url1.1", "url1.2", "url1.3", "url1.4"]',
+    TRUE
+);
+SELECT * FROM productos WHERE id_producto = 5;
+--
+CALL sp_eliminar_producto(10);
+SELECT id_producto, nombre, activo FROM productos WHERE id_producto = 10;
+--
+CALL sp_crear_oferta_segura(
+    7,
+    119.99,
+    '2025-10-15 00:00:00',
+    '2025-10-30 23:59:59',
+    @id_oferta_creada,
+    @mensaje_resultado
+);
+SELECT @id_oferta_creada AS id_oferta, @mensaje_resultado AS mensaje;
+SELECT * FROM ofertas WHERE id_oferta = @id_oferta_creada;
+--
+CALL sp_crear_oferta_segura(
+    7,
+    180.00,
+    '2025-10-15 00:00:00',
+    '2025-10-30 23:59:59',
+    @id_oferta_error,
+    @mensaje_error
+);
+SELECT @id_oferta_error AS id_oferta, @mensaje_error AS mensaje;
+
+
 
 
 
@@ -106,6 +179,9 @@ FROM vw_catalogo_publico
 GROUP BY nombre_categoria;
 -- productos más caros usando vistas
 SELECT * FROM vw_catalogo_publico ORDER BY precio DESC LIMIT 5;
+select * from vw_ofertas_vigentes;
+
+
 
 
 

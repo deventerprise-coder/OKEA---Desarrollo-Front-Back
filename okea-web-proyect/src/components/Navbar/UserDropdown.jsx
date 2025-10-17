@@ -8,6 +8,9 @@ import {
   FlechaDerecha,
 } from '../../assets/iconos/Icons';
 
+// =======================
+// 1. ANIMACIONES CSS PARA APARICIÓN/DESAPARICIÓN
+// =======================
 const animations = `
   @keyframes userFadeIn {
     from {
@@ -40,14 +43,22 @@ const animations = `
   }
 `;
 
+// =======================
+// 2. COMPONENTE PRINCIPAL UserDropdown
+// =======================
 export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
+  // Estado para el tema actual (claro/oscuro)
   const [theme, setTheme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
   });
 
+  // =======================
+  // 3. EFECTO: OBSERVAR CAMBIO DE TEMA
+  // =======================
   useEffect(() => {
     setTheme(document.documentElement.getAttribute('data-theme') || 'light');
 
+    // Observa cambios en el atributo data-theme del documento
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
@@ -61,9 +72,13 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
       attributeFilter: ['data-theme'],
     });
 
+    // Limpia el observer al desmontar
     return () => observer.disconnect();
   }, []);
 
+  // =======================
+  // 4. ESTILOS SEGÚN TEMA
+  // =======================
   const getThemeStyles = () => {
     return {
       backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : 'rgba(44, 80, 158, 0.5)',
@@ -76,6 +91,9 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
     };
   };
 
+  // =======================
+  // 5. DATOS DE BOTONES
+  // =======================
   const buttons = [
     { label: 'Mi cuenta', key: 'cuenta' },
     { label: 'Mis Compras', key: 'compras' },
@@ -85,6 +103,9 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
 
   const icons = [MiCuentaIcon, MisComprasIcon, PromocionesIcon, FavoritosIcon];
 
+  // =======================
+  // 6. RENDER
+  // =======================
   return (
     <div
       className={`shadow-lg border flex flex-col backdrop-blur-xl ${
@@ -101,7 +122,10 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
         ...style,
       }}
     >
+      {/* Animaciones CSS */}
       <style>{animations}</style>
+
+      {/* Botones de opciones de usuario */}
       <div className="flex flex-col gap-2 flex-1">
         {buttons.map((btn, idx) => {
           const Icon = icons[idx] || null;
@@ -127,6 +151,7 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
               }}
               onClick={() => onSelect && onSelect(btn.key)}
             >
+              {/* Icono y texto de la opción */}
               <div className="flex items-center gap-3">
                 {Icon && (
                   <span className="flex items-center justify-center w-5 h-5">
@@ -145,6 +170,7 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
         })}
       </div>
 
+      {/* Botón de cerrar sesión */}
       <button
         className="text-white hover:bg-[#16336e] transition flex items-center justify-center gap-3 rounded-full"
         style={{

@@ -12,6 +12,7 @@ import Home from './pages/Home/Home';
 import CarritoPage from './pages/CarritoPage';
 import ScrollToTop from './components/ScrollToTop';
 import Categoria from './pages/Catalogo/Catergoria';
+import DetalleProducto from './components/ecomerce/DetalleProducto';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
                   <MarcasDestacadas />
                   <PreguntasFrecuentes />
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -152,8 +154,16 @@ function App() {
                 </>
               }
             />
+            <Route 
+              path="/producto/detalle/:modelo" 
+              element={
+                <>
+                  <DetalleProducto />
+                </>
+              }
+            />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     </ThemeProvider>

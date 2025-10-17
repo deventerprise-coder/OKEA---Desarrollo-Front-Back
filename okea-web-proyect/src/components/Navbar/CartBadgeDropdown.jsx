@@ -74,7 +74,7 @@ const animations = `
 
 export default function CartBadgeDropdown({ products = exampleProducts, subtotal = 240, isVisible }) {
   const [cartItems, setCartItems] = useState(products);
-  const [theme, setTheme] = useState(() => {
+  const [theme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
   });
   const dropdownRef = useRef(null);
@@ -112,15 +112,15 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
         ...getThemeStyles(),
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        width: '352px',
-        height: '558px',
+        width: '352px', // Ancho fijo para cálculos precisos
+        height: 'auto',
+        maxHeight: '80vh',
         borderRadius: '32px',
         border: '1.5px solid rgba(255,255,255,0.15)',
         padding: '16px',
         gap: '20px',
-        top: '17px',
-        right: '0px',
         overflowY: 'auto',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
       }}
     >
       <style>{animations}</style>
@@ -144,9 +144,9 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
           </span>
         </div>
         <button
-          className="ml-2 px-6 py-2 rounded-full font-poppins text-[15px] font-medium transition"
+          className="ml-2 px-4 sm:px-6 py-2 rounded-full font-poppins text-[14px] sm:text-[15px] font-medium transition hover:brightness-95"
           style={{ 
-            minWidth: 120,
+            minWidth: 100,
             backgroundColor: theme === 'dark' ? 'rgba(245, 246, 146, 1)' : '#DFE162',
             color: theme === 'dark' ? 'rgba(50, 50, 0, 1)' : '#484900'
           }}
@@ -157,11 +157,11 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
       </div>
 
       {/* Informacion de cada producto */}
-      <div className="flex flex-col gap-3 overflow-y-auto" style={{ maxHeight: 420 }}>
+      <div className="flex flex-col gap-3 overflow-y-auto flex-1" style={{ maxHeight: 420 }}>
         {cartItems.map((item) => (
           <div
             key={item.id}
-            className="flex flex-row items-center justify-between rounded-2xl px-4 py-3 backdrop-blur-md"
+            className="flex flex-row items-center justify-between rounded-2xl px-3 sm:px-4 py-3 backdrop-blur-md"
             style={{
               ...getContainerStyles(),
               backdropFilter: 'blur(12px)',
@@ -171,38 +171,36 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
             }}
           >
             {/* Info izquierda */}
-            <div className="flex flex-col flex-1 min-w-0" style={{ maxWidth: 160 }}>
-              <span className="text-white font-poppins text-[15px] font-light truncate" title={item.name}>{item.name}</span>
-              <span className="text-[#FFFFFF] font-poppins text-[17px] font-light leading-6">s/ {(item.price * item.quantity).toFixed(2)}</span>
+            <div className="flex flex-col flex-1 min-w-0 pr-2" style={{ maxWidth: 160 }}>
+              <span className="text-white font-poppins text-[14px] sm:text-[15px] font-light truncate" title={item.name}>{item.name}</span>
+              <span className="text-[#FFFFFF] font-poppins text-[16px] sm:text-[17px] font-light leading-6">s/ {(item.price * item.quantity).toFixed(2)}</span>
               <div className="flex items-center gap-1 mt-1">
                 <StarIcon />
-                <span className="text-[#FFFFFF] text-[14px] font-light ml-1">{item.rating}</span>
+                <span className="text-[#FFFFFF] text-[13px] sm:text-[14px] font-light ml-1">{item.rating}</span>
               </div>
-              <div className="flex items-center gap-2 mt-2">
+              <div className="flex items-center gap-1.5 sm:gap-2 mt-2">
                 <button
-                  className="w-7 h-7 flex items-center justify-center rounded-full text-white text-lg font-light hover:bg-[#1C4390] outline-none border border-white bg-transparent"
+                  className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full text-white text-sm sm:text-lg font-light hover:bg-[#1C4390] outline-none border border-white bg-transparent transition-colors"
                   style={{
                     backgroundColor: 'transparent',
                     backdropFilter: 'blur(6px)',
-                    fontSize: 18,
                   }}
                   onClick={() => handleQuantityChange(item.id, -1)}
                 >
                   –
                 </button>
                 <input
-                type="text"
-                value={item.quantity}
-                readOnly
-                className="w-8 h-7 text-center rounded text-[#FFFFFF] font-light font-poppins text-[15px] mx-1 outline-none border border-white bg-transparent"
-                style={{ minWidth: 32 }}
+                  type="text"
+                  value={item.quantity}
+                  readOnly
+                  className="w-7 h-6 sm:w-8 sm:h-7 text-center rounded text-[#FFFFFF] font-light font-poppins text-[14px] sm:text-[15px] mx-1 outline-none border border-white bg-transparent"
+                  style={{ minWidth: 28 }}
                 />
                 <button
-                  className="w-7 h-7 flex items-center justify-center rounded-full text-white text-lg font-light hover:bg-[#1C4390] outline-none border border-white bg-transparent"
+                  className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full text-white text-sm sm:text-lg font-light hover:bg-[#1C4390] outline-none border border-white bg-transparent transition-colors"
                   style={{
                     backgroundColor: 'transparent',
                     backdropFilter: 'blur(6px)',
-                    fontSize: 18,
                   }}
                   onClick={() => handleQuantityChange(item.id, 1)}
                 >
@@ -212,12 +210,12 @@ export default function CartBadgeDropdown({ products = exampleProducts, subtotal
             </div>
 
             {/* Info derecha (imagen)*/}
-            <div className="flex-shrink-0 flex items-center justify-center ml-4" style={{ height: 90, width: 90, background: '#fff', borderRadius: 16 }}>
+            <div className="flex-shrink-0 flex items-center justify-center ml-2 sm:ml-4" style={{ height: 80, width: 80, background: '#fff', borderRadius: 16 }}>
               <img
                 src={item.image}
                 alt={item.name}
                 className="object-contain"
-                style={{ maxHeight: 80, maxWidth: 80, borderRadius: 12 }}
+                style={{ maxHeight: 70, maxWidth: 70, borderRadius: 12 }}
               />
             </div>
           </div>
