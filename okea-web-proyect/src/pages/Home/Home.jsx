@@ -8,17 +8,17 @@ import audifonos from "../../assets/imagenes/Home/presentacionAudifonos.png";
 import imagenrelok from "../../assets/imagenes/Home/presentacionImagenreloj.png";
 import imagentelefono from "../../assets/imagenes/Home/presentacionImagentelefono.png";
 import ProductCard from "../../components/ProductCard.jsx";
-import tecnologia from "../../assets/imagenes/Home/tecnologia.jpg";
-import muebles from "../../assets/imagenes/Home/muebles.jpg";
-import dormitorio from "../../assets/imagenes/Home/dormitorio.jpg";
-import calzado from "../../assets/imagenes/Home/calzado.jpg";
-import accesorios from "../../assets/imagenes/Home/accesoriomoda.jpg";
-import salud from "../../assets/imagenes/Home/salud.jpg";
-import juguetes from "../../assets/imagenes/Home/juguetes.jpg";
-import decoracion from "../../assets/imagenes/Home/decoracion.jpg";
-import mascotas from "../../assets/imagenes/Home/mascotas.jpeg";
-import supermercado from "../../assets/imagenes/Home/supermercado.jpg";
-import automotriz from "../../assets/imagenes/Home/auto.jpg";
+import tecnologia from "../../assets/imagenes/Home/categoriaTecnologia.jpg";
+import muebles from "../../assets/imagenes/Home/categoriaMuebles.jpg";
+import dormitorio from "../../assets/imagenes/Home/categoriaDormitorio.jpg";
+import calzado from "../../assets/imagenes/Home/categoriaCalzado.jpg";
+import accesorios from "../../assets/imagenes/Home/categoriaAccesorio.jpg";
+import salud from "../../assets/imagenes/Home/categoriaSalud.jpg";
+import juguetes from "../../assets/imagenes/Home/categoriaJuguetes.jpg";
+import decoracion from "../../assets/imagenes/Home/categoriaDecoracion.jpg";
+import mascotas from "../../assets/imagenes/Home/categoriaMascotas.jpeg";
+import supermercado from "../../assets/imagenes/Home/categoriaSupermercado.jpg";
+import automotriz from "../../assets/imagenes/Home/categoriaAutomotriz.jpg";
 import tecnologiaImagen1 from "../../assets/imagenes/Home/tecnologiaImagen1.png"
 import tecnologiaImagen2 from "../../assets/imagenes/Home/tecnologiaImagen2.png"
 import tecnologiaImagen3 from "../../assets/imagenes/Home/tecnologiaImagen3.png"
@@ -26,9 +26,10 @@ import tecnologiaImagen4 from "../../assets/imagenes/Home/tecnologiaImagen4.png"
 import tecnologiaImagen5 from "../../assets/imagenes/Home/tecnologiaImagen5.png"
 import tecnologiaImagen6 from "../../assets/imagenes/Home/tecnologiaImagen6.png"
 import mueblesFondo from "../../assets/imagenes/Home/mueblesFondo.png"
-import cuadroMueble1 from "../../assets/imagenes/Home/cuadroMueble1.png"
-import cuadroMueble2 from "../../assets/imagenes/Home/cuadroMueble2.png"
-import silla from "../../assets/imagenes/Home/silla.jpg"
+import cuadroMueble1 from "../../assets/imagenes/Home/muebleCuadroMueble1.png"
+import cuadroMueble2 from "../../assets/imagenes/Home/muebleCuadroMueble2.png"
+import silla from "../../assets/imagenes/Home/muebleSilla.jpg"
+import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 import calzadoimagen2 from "../../assets/imagenes/Home/calzadoimagen2.jpg"
 import calzadoimagen from "../../assets/imagenes/Home/calzadoimagen.png"
 import supermercadoImagen1 from "../../assets/imagenes/Home/supermercadoImagen1.png"
@@ -50,7 +51,6 @@ import ultimoImagen7 from "../../assets/imagenes/Home/ultimoImagen7.png"
 import ultimoImagen8 from "../../assets/imagenes/Home/ultimoImagen8.png"
 import ultimoImagen9 from "../../assets/imagenes/Home/ultimoImagen9.png"
 import ultimoImagen10 from "../../assets/imagenes/Home/ultimoImagen10.png"
-import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 
 
 import {WineBottleIcon, ArrowLeftGrayBlueIcon, ArrowLeftNormal, ArrowRightBlackIconwhitout, ArrowRightBrownIcon, ArrowRightGrayBlueIcon, ArrowRightIcon, ArrowRightIconBlack, ArrowRightNormal, ClockIcon, CursorIcon, FacebookIcon, FootIcon, HandBagIcon, HeartIconblack, InstagramIcon, ShoppingCartIcon, SofaIcon,SofaIconDarkMode, StarIcon, TagIcon, TecnologyIcon, TruckIcon, TwitterIcon, YouTubeIcon, TecnologyIconDarkMode, FootIconDarkMode, WineBottleIconDarkMode } from "../../assets/iconos/iconoHome.jsx";
@@ -1640,7 +1640,7 @@ return (
                 <div className="absolute z-1 transform scale-x-[-1] -mt-88.5 ml-280 bg-cover bg-no-repeat w-180 h-100" style={{ backgroundImage: `url(${ultimoImagen3})` }}></div>
             </div>
             {/*Fila 2*/}
-            <div className="  w-400">
+            <div className=" w-400">
                 <div className="flex w-400 h-100 bg-cover  rounded-4xl justify-between overflow-hidden mt-4" style={{ backgroundImage: `url(${ultimoImagen5})` }}>
         
                 </div>
