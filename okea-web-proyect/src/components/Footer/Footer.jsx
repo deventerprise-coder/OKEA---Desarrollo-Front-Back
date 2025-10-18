@@ -27,13 +27,14 @@ export default function Footer() {
   const getFooterStyles = () => {
     return {
       backgroundColor: theme === 'dark' ? '#120F31' : 'transparent',
-      transition: 'background-color 0.3s ease'
+      transition: 'background-color 0.3s ease',
     };
   };
 
   return (
-    <footer 
-      className="w-full flex flex-col items-center mt-0 overflow-visible"
+    // Agregamos un padding horizontal general (px-4) para evitar que el contenido toque los bordes en móvil
+    <footer
+      className="w-full flex flex-col items-center mt-0 overflow-visible px-4"
       style={getFooterStyles()}
     >
       <div className="w-full flex flex-col items-center">

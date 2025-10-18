@@ -245,71 +245,71 @@ const slidesPresentacion = [
     
     // --- Slide 1 ---
     
-    <div className="flex relative justify-center scale-130 bg-gradient-to-tr from-[#707DCB] to-[#8B96E8] w-auto h-203 overflow-hidden">
-      <div className="pl-101 pr-30 mt-40">
-        <h1 className="text-7xl md:text-9xl text-center leading-28 font-popins font-extrabold text-white pt-14">
-          Tech
-        </h1>
-        <h1 className=" text-5xl md:text-[90px] text-center leading-20 font-popins font-extrabold text-white pb-9">
-          Frenzy
-        </h1>
-        <div className="text-center pl-2">
-          <p className="border-b-1 border-t-1 border-white py-3 w-[319px] text-justify font-popins text-white">
-            The tech fever is here. Amazing discounts on cutting edge gadgets.{" "}
-            <span className="font-bold">Act fast before they're gone!</span>
-          </p>
+      <div className="flex relative justify-center scale-130 bg-gradient-to-tr from-[#707DCB] to-[#8B96E8] w-auto h-203 overflow-hidden">
+        <div className="pl-101 pr-30 mt-40">
+          <h1 className="text-7xl md:text-9xl text-center leading-28 font-popins font-extrabold text-white pt-14">
+            Tech
+          </h1>
+          <h1 className=" text-5xl md:text-[90px] text-center leading-20 font-popins font-extrabold text-white pb-9">
+            Frenzy
+          </h1>
+          <div className="text-center pl-2">
+            <p className="border-b-1 border-t-1 border-white py-3 w-[319px] text-justify font-popins text-white">
+              The tech fever is here. Amazing discounts on cutting edge gadgets.{" "}
+              <span className="font-bold">Act fast before they're gone!</span>
+            </p>
+          </div>
+          <button className="mt-14 py-1 px-15 border-1 border-white text-white rounded-full hover:cursor-pointer">
+            Buy now
+          </button>
         </div>
-        <button className="mt-14 py-1 px-15 border-1 border-white text-white rounded-full hover:cursor-pointer">
-          Buy now
-        </button>
-      </div>
-      {/* columna2 */}
-      <div className="relative scale-100 pt-40 mr-100">
-          <div
-          className={`absolute right-5 top-45 size-20 -z-50 rounded-full 
-          bg-gradient-to-b from-[#6625e8] via-[#e592ff] to-[#eddbff] 
-          transition-transform duration-1000 ease-in
-          ${circleGrow ? "scale-40" : "scale-130"}`}
-        />
+        {/* columna2 */}
+        <div className="relative scale-100 pt-40 mr-100">
+            <div
+            className={`absolute right-5 top-45 size-20 -z-50 rounded-full 
+            bg-gradient-to-b from-[#6625e8] via-[#e592ff] to-[#eddbff] 
+            transition-transform duration-1000 ease-in
+            ${circleGrow ? "scale-40" : "scale-130"}`}
+          />
 
-        <div className="relative size-96 backdrop-blur-md z-30 bg-white/30 rounded-4xl mt-20 -ml-10">
-          <div
-            className="absolute -left-18 -top-18 bg-cover size-34 -rotate-15"
-            style={{ backgroundImage: `url(${promocion})` }}
-          >
-            <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
-              30% off
+          <div className="relative size-96 backdrop-blur-md z-30 bg-white/30 rounded-4xl mt-20 -ml-10">
+            <div
+              className="absolute -left-18 -top-18 bg-cover size-34 -rotate-15"
+              style={{ backgroundImage: `url(${promocion})` }}
+            >
+              <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
+                30% off
+              </div>
             </div>
-          </div>
-          <div
-            className="absolute -right-10 bottom-15 bg-cover size-34 rotate-15"
-            style={{ backgroundImage: `url(${promocion})` }}
-          >
-            <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
-              50% off
+            <div
+              className="absolute -right-10 bottom-15 bg-cover size-34 rotate-15"
+              style={{ backgroundImage: `url(${promocion})` }}
+            >
+              <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
+                50% off
+              </div>
             </div>
-          </div>
-          <div
-            className="absolute -left-50 -bottom-14 bg-cover size-34 rotate-13"
-            style={{ backgroundImage: `url(${promocion})` }}
-          >
-            <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
-              40% off
+            <div
+              className="absolute -left-50 -bottom-14 bg-cover size-34 rotate-13"
+              style={{ backgroundImage: `url(${promocion})` }}
+            >
+              <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
+                40% off
+              </div>
             </div>
+            <div
+              className="absolute -left-20 -top-30 w-120 scale-70 h-150 hover:scale-90 hover:z-30"
+              style={{ backgroundImage: `url(${imagentelefono})` }}
+            ></div>
+            <div
+              className="absolute z-10 -right-5 -top-10 w-60 h-80  scale-70 hover:scale-90 hover:z-40 hover:-top-5 hover:-right-10"
+              style={{ backgroundImage: `url(${imagenrelok})` }}
+            ></div>
           </div>
-          <div
-            className="absolute -left-20 -top-30 w-120 scale-70 h-150 hover:scale-90 hover:z-30"
-            style={{ backgroundImage: `url(${imagentelefono})` }}
-          ></div>
-          <div
-            className="absolute z-10 -right-5 -top-10 w-60 h-80  scale-70 hover:scale-90 hover:z-40 hover:-top-5 hover:-right-10"
-            style={{ backgroundImage: `url(${imagenrelok})` }}
-          ></div>
+          <div className={`absolute -left-32 -bottom-3 rotate-45 size-40 z-10 bg-gradient-to-b rounded-full from-[#6625e8] via-[#e592ff] to-[#eddbff] transition-transform duration-1500 ease-out
+            ${circleGrow ? "scale-100" : "scale-180"}`} />
         </div>
-        <div className={`absolute -left-32 -bottom-3 rotate-45 size-40 z-10 bg-gradient-to-b rounded-full from-[#6625e8] via-[#e592ff] to-[#eddbff] transition-transform duration-1500 ease-out
-          ${circleGrow ? "scale-100" : "scale-180"}`} />
-      </div>
-    </div>,
+      </div>,
 
     // --- Slide 2 ---
     <div className="pb-5 bg-gradient-to-b from-[#C4D1ED] scale-140 to-[#8B72E5]/80 w-auto h-203 overflow-hidden">
