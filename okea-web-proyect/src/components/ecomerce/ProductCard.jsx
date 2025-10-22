@@ -16,13 +16,11 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
     : "#EB5A45";
   const navigate = useNavigate();
   return (
-    <div className={`shadow-sm overflow-hidden flex flex-col items-center relative hover:border-[#E4E666] transition-colors duration-300 ease-out ${isLight ? "bg-white border border-gray-200" : "bg-[#292272]"} transition-colors duration-500 ease-out transition-border duration-500 ease-out`}
+    <div className={`shadow-sm overflow-hidden flex flex-col items-center relative transition-colors duration-300 ease-out ${isLight ? "bg-white border border-gray-200 hover:drop-shadow-[0_0px_3px_rgba(223,225,98,1)]" : "bg-[#292272] hover:drop-shadow-[0_0px_10.7px_rgba(223,225,98,1)]"} transition-colors duration-500 ease-out transition-border duration-500 ease-out w-full max-w-[305px] min-w-[180px] h-[580px] md:h-[580px] lg:h-[630px]`}
      style={{
-      width: 305,
-      height: 685,
       borderRadius: 10,
     }}
-     onClick={()=>{navigate(`/producto/detalle/${modelo.replace(/\s+/g, '-').toLowerCase()}`)}}>
+     /* onClick={()=>{navigate(`/producto/detalle/${modelo.replace(/\s+/g, '-').toLowerCase()}`)}} */>
       <div className="absolute top-3 left-3 text-white font-semibold px-2 py-1 rounded-full" style={{
         fontFamily: 'Inter, sans-serif',
         backgroundColor: etiquetaBg,
@@ -40,9 +38,9 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
       >
         {liked ? <FavoritoCardIcon color="#EB5A45"/> : <FavoritoCardIcon color="#C4C6D3"/>}
       </button>
-      
-      <div className="w-full flex justify-center items-center h-[400px] bg-white" >
-        <img className={`w-full h-full ${categoria === "Calzado" || categoria === "Juguetes" || categoria === "Supermercado" ? "object-contain" : "object-cover"}`}        
+
+      <div className="w-full flex justify-center items-center h-[300px] lg:h-[350px] bg-white">
+        <img className={`w-full h-full ${categoria === "Calzado" || categoria === "Juguetes" || categoria === "Supermercado" ? "object-contain" : "object-cover"}`}
         src={imagen}
         alt="iPhone"
       />
@@ -95,31 +93,28 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
         </div>
 
       <button
-        className={`absolute bottom-3 flex items-center justify-center gap-2 py-2 px-7 rounded-4xl cursor-pointer ${added ? 'bg-[#EB5A45] text-white' : isLight ?'bg-[#E4E666] text-[#484900]': 'bg-[#F5F692] text-[#251F67]'} hover:bg-[#EB5A45] hover:text-white transition-colors duration-500 ease-out`}
+        className={`absolute bottom-3 flex items-center text-[11px] justify-center py-2 px-7 rounded-4xl cursor-pointer ${added ? 'bg-[#EB5A45] text-white' : isLight ?'bg-[#E4E666] text-[#484900]': 'bg-[#F5F692] text-[#251F67]'} hover:bg-[#EB5A45] hover:text-white transition-colors duration-500 ease-out sm:text-[14px]`}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={() => setAdded(!added)}
         style={{
           fontFamily: 'Inter, sans-serif',
-          fontSize: 14,
           fontWeight: 500,
           fontStyle: 'normal',
-          width: 270,
+          width: 'calc(100% - 20px)',
+          maxWidth: 270,
           height: 42,
           marginBottom: 10,
           overflow: 'hidden',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 8,
         }}
       >
-        <span
+        <span className={`${added ? "sm:translate-x-[520%] translate-x-[420%]" : ""} transition-transform duration-300 ease-out`}
           style={{
             display: 'flex',
-            alignItems: 'center',
-            transition: 'transform 300ms ease',
-            transform: added ? 'translateX(130px)' : 'translateX(0)',
+            alignItems: 'center'
           }}
         >
           <ShoppingCartIcon color={iconColor} />
@@ -129,7 +124,7 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
             transition: 'color 300ms',
             whiteSpace: 'nowrap',
             pointerEvents: 'none',
-            marginLeft: added ? '-40px' : '0',
+            marginLeft: added ? '-40px' : '8px',
           }}
         >
           {added ? 'Producto agregado' : 'Agregar al carrito'}

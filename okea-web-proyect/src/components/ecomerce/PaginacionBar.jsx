@@ -1,20 +1,13 @@
 import { useState } from "react";
-import { FlechaDPaginacion, FlechaIPaginacion, FlechaFiltro} from "../../assets/iconos/Icons";
+import { FlechaDPaginacion, FlechaIPaginacion, FlechaFiltro, OrdenarIcon} from "../../assets/iconos/Icons";
+import { useSort } from "./useSort";
 
 export default function CustomSelect({isFocused, isLight}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("Precio más bajo");
   const [hover, setHover] = useState(false);
+  const { selected, setSelected, sortOptions } = useSort();
 
   const iconColor = isLight ? isFocused || hover ? "#2C509ECC" : "#333333CC" : isFocused || hover ? "#2C509ECC":"#FFFFFFCC";
-
-  const options = [
-    "Precio más bajo",
-    "Precio más alto",
-    "Lo más vendido",
-    "Lo más nuevo",
-    "Mejor descuento",
-  ];
 
   return (
     <div className="relative w-[200px] font-medium text-[14px]">
@@ -37,7 +30,7 @@ export default function CustomSelect({isFocused, isLight}) {
           className="absolute z-10 mt-1 w-[230px] h-[161px] bg-[#FFFFFFCC] border border-gray-300 rounded-lg shadow-lg 
                      max-h-60 overflow-auto left-1/2 -translate-x-1/2 backdrop-blur-[30px] py-2"
         >
-          {options.map((option) => (
+          {sortOptions.map((option) => (
             <li
               key={option}
               className={`px-5 py-[3px] cursor-pointer text-[#1F3A58] hover:font-semibold text-[14px] font-regular`}
@@ -56,6 +49,23 @@ export default function CustomSelect({isFocused, isLight}) {
   );
 }
 
+function CustomOptionMobile({title, onClick}) {
+
+  return (
+    <div
+      className={`relative flex flex-col items-stretch w-[70%] h-[40.85px] border border-[#C6C6CDCC] mb-2 rounded-[10px] justify-center transition-colors duration-700`}
+    >
+      <button className="flex w-full h-full bg-auto  px-1 py-0.5 text-sm rounded-md cursor-pointer justify-center items-center px-10" onClick={onClick}>
+        <div className="flex justify-center w-full items-center">
+          <span className={`flex items-center text-center font-['Inter',sans-serif] font-normal text-white justify-center`} >
+            {title}
+          </span>
+        </div>
+      </button>
+    </div>
+  );
+}
+
 export function PaginacionBar({ page, setPage, totalPages, isLight }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -68,9 +78,9 @@ export function PaginacionBar({ page, setPage, totalPages, isLight }) {
   };
 
   return (
-    <div className={`w-full h-[80px] flex items-center justify-between border rounded-[10px] px-10 shadow-sm ${isLight ? "border-[#1F3A581A]" : "border-[#FFFFFF33]"} transition-all duration-500`}>
+    <div className={`w-full h-[80px] flex items-center justify-center lg:justify-between lg:border rounded-[10px] px-10 lg:shadow-sm ${isLight ? "lg:border-[#1F3A581A]" : "lg:border-[#FFFFFF33]"} lg:transition-colors lg:duration-500`}>
 
-        <div className="flex flex-col gap-2 text-gray-600 group cursor-pointer group">
+        <div className="hidden lg:flex flex-col gap-2 text-gray-600 group cursor-pointer group">
             <div onClick={() => setIsFocused(!isFocused)} className="order-2">
                 <CustomSelect isFocused={isFocused} isLight={isLight}/>
             </div>
@@ -111,6 +121,47 @@ export function PaginacionBar({ page, setPage, totalPages, isLight }) {
         >
             <FlechaDPaginacion color={isLight ? "#333333CC" : "#FFFFFFCC"}/>
         </button>
+      </div>
+    </div>
+  );
+}
+
+export function MobileOrdenModal({ isOpen, onClose, isLight}) {
+  const { _, setSelected, sortOptions } = useSort();
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="lg:hidden fixed inset-0 z-30 flex items-end">
+      <div 
+        className="absolute inset-0"
+        onClick={onClose}
+      />
+      <div className={`relative w-full h-[80vh] overflow-y-auto rounded-t-2xl p-6 ${
+        isLight ? "bg-[#385BAA99] backdrop-blur-[80px]" : "bg-[#385BAA99] backdrop-blur-[80px]"
+      } transform transition-transform duration-300`}>
+      
+        <div className="flex flex-col items-center justify-center mb-4 gap-8">
+          <hr className="w-[95px] border border-[2px] border-[#D9D9D9]"/>
+          <div className="text-[16px] text-white font-medium font-['Poppins', sans-serif] flex items-center gap-5">
+            ORDENAR POR <OrdenarIcon color="#FFFFFF"/>
+          </div>
+          <hr className="w-full border border-[1px] border-[#FFFFFF]"/>
+        </div>
+
+        <div className="space-y-4 flex flex-col items-center justify-center mb-4 gap-3">
+          {sortOptions.map((option) => (
+              <CustomOptionMobile
+                key={option}
+                title={option}
+                onClick={() => {
+                  setSelected(option);
+                  onClose();
+                }}
+              >
+              </CustomOptionMobile>
+            ))}
+        </div>
       </div>
     </div>
   );
