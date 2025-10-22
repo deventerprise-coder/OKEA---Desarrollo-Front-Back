@@ -398,3 +398,8 @@ CREATE TABLE IF NOT EXISTS inventario (
 
     CONSTRAINT chk_stock_no_negativo CHECK (stock_actual >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+INSERT INTO logs (id_usuario, accion, descripcion)
+VALUES (p_usuario, 'EXEC SP', CONCAT('Se ejecutó ', 'sp_registrar_pago'));

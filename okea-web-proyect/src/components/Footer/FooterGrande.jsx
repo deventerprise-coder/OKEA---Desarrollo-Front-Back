@@ -35,16 +35,10 @@ export default function FooterGrande() {
 
   const getContainerStyles = () => {
     return {
-      width: 1600,
-      height: 500,
+      // Figma: height: 500 (lo manejamos con padding y contenido flexible)
       borderRadius: 32,
-      paddingTop: 100,
-      paddingLeft: 64,
-      paddingRight: 64,
-      paddingBottom: 64,
-      opacity: 1,
       backgroundColor: theme === 'dark' ? '#1F1A57' : '#1C4390',
-      transition: 'background-color 0.3s ease'
+      transition: 'background-color 0.3s ease',
     };
   };
 
@@ -61,7 +55,7 @@ export default function FooterGrande() {
       backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.15)' : '#FFFFFF',
       borderRadius: 9999,
       width: 'fit-content',
-      transition: 'background-color 0.3s ease'
+      transition: 'background-color 0.3s ease',
     };
   };
 
@@ -89,16 +83,20 @@ export default function FooterGrande() {
   ];
 
   return (
+    // w-full para responsive. max-w-[1600px] para respetar el ancho de Figma.
+    // p-8 por defecto (móvil). lg:px-16 (64px) y lg:pt-[100px] para respetar Figma en desktop.
     <div
-      className="flex flex-col relative z-0"
+      // Nota: `pt-[100px]` usa el soporte de clases arbitrarias de Tailwind para aplicar un valor exacto.
+      className="flex flex-col relative z-0 w-full max-w-[1600px] mx-auto p-8 lg:px-16 lg:pt-[100px] lg:pb-16"
       style={getContainerStyles()}
     >
       <div
-        className="flex flex-col md:flex-row justify-between items-start w-full gap-10 md:gap-20"
-        style={{ marginTop: 48 }}
+        // flex-col por defecto (móvil), lg:flex-row (desktop)
+        // gap-y-10 (espacio vertical en móvil), lg:gap-x-20 (espacio horizontal en desktop - 20 * 4 = 80px)
+        className="flex flex-col lg:flex-row justify-between items-start w-full gap-y-10 lg:gap-x-20"
       >
         {/* Enlaces útiles */}
-        <div className="flex flex-col min-w-[180px]" style={{ gap: 21 }}>
+        <div className="flex flex-col min-w-full lg:min-w-[180px]" style={{ gap: 21 }}>
           <span
             className="mb-2"
             style={{
@@ -107,7 +105,7 @@ export default function FooterGrande() {
               fontSize: 22,
               lineHeight: '28px',
               color: getTitleColor(),
-              transition: 'color 0.3s ease'
+              transition: 'color 0.3s ease',
             }}
           >
             Enlaces útiles
@@ -124,7 +122,7 @@ export default function FooterGrande() {
                 lineHeight: '20px',
                 letterSpacing: '0.1px',
                 color: getTextColor(),
-                transition: 'color 0.3s ease'
+                transition: 'color 0.3s ease',
               }}
             >
               {text}
@@ -136,7 +134,7 @@ export default function FooterGrande() {
         </div>
 
         {/* Información Corporativa */}
-        <div className="flex flex-col min-w-[220px]" style={{ gap: 21 }}>
+        <div className="flex flex-col min-w-full lg:min-w-[220px]" style={{ gap: 21 }}>
           <span
             className="mb-2"
             style={{
@@ -145,7 +143,7 @@ export default function FooterGrande() {
               fontSize: 22,
               lineHeight: '28px',
               color: getTitleColor(),
-              transition: 'color 0.3s ease'
+              transition: 'color 0.3s ease',
             }}
           >
             Información Corporativa
@@ -160,7 +158,7 @@ export default function FooterGrande() {
                 lineHeight: '20px',
                 letterSpacing: '0.1px',
                 color: getTextColor(),
-                transition: 'color 0.3s ease'
+                transition: 'color 0.3s ease',
               }}
             >
               {text}
@@ -174,13 +172,13 @@ export default function FooterGrande() {
               fontSize: 22,
               lineHeight: '28px',
               color: getTitleColor(),
-              transition: 'color 0.3s ease'
+              transition: 'color 0.3s ease',
             }}
           >
             Medios de pago
           </span>
           <div
-            className="flex items-center justify-center gap-4 px-6 py-2"
+            className="flex flex-wrap items-center gap-4 px-6 py-2" // flex-wrap para responsive
             style={getPaymentContainerStyles()}
           >
             <img src={VISAIcon} alt="Visa" className="h-7" />
@@ -192,7 +190,7 @@ export default function FooterGrande() {
         </div>
 
         {/* Contáctanos */}
-        <div className="flex flex-col min-w-[220px]" style={{ gap: 21 }}>
+        <div className="flex flex-col min-w-full lg:min-w-[220px]" style={{ gap: 21 }}>
           <span
             className="mb-2"
             style={{
@@ -201,7 +199,7 @@ export default function FooterGrande() {
               fontSize: 22,
               lineHeight: '28px',
               color: getTitleColor(),
-              transition: 'color 0.3s ease'
+              transition: 'color 0.3s ease',
             }}
           >
             Contáctanos
@@ -216,7 +214,7 @@ export default function FooterGrande() {
                 lineHeight: '20px',
                 letterSpacing: '0.1px',
                 color: getTextColor(),
-                transition: 'color 0.3s ease'
+                transition: 'color 0.3s ease',
               }}
             >
               {text}
@@ -230,7 +228,7 @@ export default function FooterGrande() {
               fontSize: 22,
               lineHeight: '28px',
               color: getTitleColor(),
-              transition: 'color 0.3s ease'
+              transition: 'color 0.3s ease',
             }}
           >
             Conéctate con OKEA
@@ -247,13 +245,12 @@ export default function FooterGrande() {
 
       {/* Copyright */}
       <div
-        className="w-full text-center font-poppins text-sm py-2 mt-auto"
+        className="w-full text-center font-poppins text-sm py-4 mt-8"
         style={{
           background: 'transparent',
-          marginTop: 20,
           color: getTextColor(),
           borderTop: `1px solid ${getBorderColor()}`,
-          transition: 'color 0.3s ease, border-color 0.3s ease'
+          transition: 'color 0.3s ease, border-color 0.3s ease',
         }}
       >
         Copyright © 2025 – OKEA – Todos los derechos reservados.

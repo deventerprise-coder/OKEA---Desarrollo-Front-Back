@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "../../components/ThemeContext";
+import promocion from "../../assets/imagenes/Home/presentacionPromocion.png";
+import apple from "../../assets/imagenes/Home/presentacionApple.png";
+import iphone from "../../assets/imagenes/Home/presentacionIphone.png";
+import sofa from "../../assets/imagenes/Home/presentacionSofa.png";
+import audifonos from "../../assets/imagenes/Home/presentacionAudifonos.png";
+import imagenrelok from "../../assets/imagenes/Home/presentacionImagenreloj.png";
+import imagentelefono from "../../assets/imagenes/Home/presentacionImagentelefono.png";
 import ProductCard from "../../components/ProductCard.jsx";
-import promocion from "../../assets/imagenes/Home/promocion.png";
-import apple from "../../assets/imagenes/Home/apple.png";
-import iphone from "../../assets/imagenes/Home/iphone.png";
-import sofa from "../../assets/imagenes/Home/sofa.png";
-import audifonos from "../../assets/imagenes/Home/audifonos.png";
-import imagenrelok from "../../assets/imagenes/Home/imagenrelok.png";
-import imagentelefono from "../../assets/imagenes/Home/imagentelefono.png";
-import tecnologia from "../../assets/imagenes/Home/tecnologia.jpg";
-import muebles from "../../assets/imagenes/Home/muebles.jpg";
-import dormitorio from "../../assets/imagenes/Home/dormitorio.jpg";
-import calzado from "../../assets/imagenes/Home/calzado.jpg";
-import accesorios from "../../assets/imagenes/Home/accesoriomoda.jpg";
-import salud from "../../assets/imagenes/Home/salud.jpg";
-import juguetes from "../../assets/imagenes/Home/juguetes.jpg";
-import decoracion from "../../assets/imagenes/Home/decoracion.jpg";
-import mascotas from "../../assets/imagenes/Home/mascotas.jpeg";
-import supermercado from "../../assets/imagenes/Home/supermercado.jpg";
-import automotriz from "../../assets/imagenes/Home/auto.jpg";
+import tecnologia from "../../assets/imagenes/Home/categoriaTecnologia.jpg";
+import muebles from "../../assets/imagenes/Home/categoriaMuebles.jpg";
+import dormitorio from "../../assets/imagenes/Home/categoriaDormitorio.jpg";
+import calzado from "../../assets/imagenes/Home/categoriaCalzado.jpg";
+import accesorios from "../../assets/imagenes/Home/categoriaAccesorio.jpg";
+import salud from "../../assets/imagenes/Home/categoriaSalud.jpg";
+import juguetes from "../../assets/imagenes/Home/categoriaJuguetes.jpg";
+import decoracion from "../../assets/imagenes/Home/categoriaDecoracion.jpg";
+import mascotas from "../../assets/imagenes/Home/categoriaMascotas.jpeg";
+import supermercado from "../../assets/imagenes/Home/categoriaSupermercado.jpg";
+import automotriz from "../../assets/imagenes/Home/categoriaAutomotriz.jpg";
 import tecnologiaImagen1 from "../../assets/imagenes/Home/tecnologiaImagen1.png"
 import tecnologiaImagen2 from "../../assets/imagenes/Home/tecnologiaImagen2.png"
 import tecnologiaImagen3 from "../../assets/imagenes/Home/tecnologiaImagen3.png"
@@ -26,9 +26,10 @@ import tecnologiaImagen4 from "../../assets/imagenes/Home/tecnologiaImagen4.png"
 import tecnologiaImagen5 from "../../assets/imagenes/Home/tecnologiaImagen5.png"
 import tecnologiaImagen6 from "../../assets/imagenes/Home/tecnologiaImagen6.png"
 import mueblesFondo from "../../assets/imagenes/Home/mueblesFondo.png"
-import cuadroMueble1 from "../../assets/imagenes/Home/cuadroMueble1.png"
-import cuadroMueble2 from "../../assets/imagenes/Home/cuadroMueble2.png"
-import silla from "../../assets/imagenes/Home/silla.jpg"
+import cuadroMueble1 from "../../assets/imagenes/Home/muebleCuadroMueble1.png"
+import cuadroMueble2 from "../../assets/imagenes/Home/muebleCuadroMueble2.png"
+import silla from "../../assets/imagenes/Home/muebleSilla.jpg"
+import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 import calzadoimagen2 from "../../assets/imagenes/Home/calzadoimagen2.jpg"
 import calzadoimagen from "../../assets/imagenes/Home/calzadoimagen.png"
 import supermercadoImagen1 from "../../assets/imagenes/Home/supermercadoImagen1.png"
@@ -50,7 +51,6 @@ import ultimoImagen7 from "../../assets/imagenes/Home/ultimoImagen7.png"
 import ultimoImagen8 from "../../assets/imagenes/Home/ultimoImagen8.png"
 import ultimoImagen9 from "../../assets/imagenes/Home/ultimoImagen9.png"
 import ultimoImagen10 from "../../assets/imagenes/Home/ultimoImagen10.png"
-import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 
 
 import {WineBottleIcon, ArrowLeftGrayBlueIcon, ArrowLeftNormal, ArrowRightBlackIconwhitout, ArrowRightBrownIcon, ArrowRightGrayBlueIcon, ArrowRightIcon, ArrowRightIconBlack, ArrowRightNormal, ClockIcon, CursorIcon, FacebookIcon, FootIcon, HandBagIcon, HeartIconblack, InstagramIcon, ShoppingCartIcon, SofaIcon,SofaIconDarkMode, StarIcon, TagIcon, TecnologyIcon, TruckIcon, TwitterIcon, YouTubeIcon, TecnologyIconDarkMode, FootIconDarkMode, WineBottleIconDarkMode } from "../../assets/iconos/iconoHome.jsx";
@@ -245,71 +245,71 @@ const slidesPresentacion = [
     
     // --- Slide 1 ---
     
-    <div className="flex relative justify-center scale-130 bg-gradient-to-tr from-[#707DCB] to-[#8B96E8] w-auto h-203 overflow-hidden">
-      <div className="pl-101 pr-30 mt-40">
-        <h1 className="text-7xl md:text-9xl text-center leading-28 font-popins font-extrabold text-white pt-14">
-          Tech
-        </h1>
-        <h1 className=" text-5xl md:text-[90px] text-center leading-20 font-popins font-extrabold text-white pb-9">
-          Frenzy
-        </h1>
-        <div className="text-center pl-2">
-          <p className="border-b-1 border-t-1 border-white py-3 w-[319px] text-justify font-popins text-white">
-            The tech fever is here. Amazing discounts on cutting edge gadgets.{" "}
-            <span className="font-bold">Act fast before they're gone!</span>
-          </p>
+      <div className="flex relative justify-center scale-130 bg-gradient-to-tr from-[#707DCB] to-[#8B96E8] w-auto h-203 overflow-hidden">
+        <div className="pl-101 pr-30 mt-40">
+          <h1 className="text-7xl md:text-9xl text-center leading-28 font-popins font-extrabold text-white pt-14">
+            Tech
+          </h1>
+          <h1 className=" text-5xl md:text-[90px] text-center leading-20 font-popins font-extrabold text-white pb-9">
+            Frenzy
+          </h1>
+          <div className="text-center pl-2">
+            <p className="border-b-1 border-t-1 border-white py-3 w-[319px] text-justify font-popins text-white">
+              The tech fever is here. Amazing discounts on cutting edge gadgets.{" "}
+              <span className="font-bold">Act fast before they're gone!</span>
+            </p>
+          </div>
+          <button className="mt-14 py-1 px-15 border-1 border-white text-white rounded-full hover:cursor-pointer">
+            Buy now
+          </button>
         </div>
-        <button className="mt-14 py-1 px-15 border-1 border-white text-white rounded-full hover:cursor-pointer">
-          Buy now
-        </button>
-      </div>
-      {/* columna2 */}
-      <div className="relative scale-100 pt-40 mr-100">
-          <div
-          className={`absolute right-5 top-45 size-20 -z-50 rounded-full 
-          bg-gradient-to-b from-[#6625e8] via-[#e592ff] to-[#eddbff] 
-          transition-transform duration-1000 ease-in
-          ${circleGrow ? "scale-40" : "scale-130"}`}
-        />
+        {/* columna2 */}
+        <div className="relative scale-100 pt-40 mr-100">
+            <div
+            className={`absolute right-5 top-45 size-20 -z-50 rounded-full 
+            bg-gradient-to-b from-[#6625e8] via-[#e592ff] to-[#eddbff] 
+            transition-transform duration-1000 ease-in
+            ${circleGrow ? "scale-40" : "scale-130"}`}
+          />
 
-        <div className="relative size-96 backdrop-blur-md z-30 bg-white/30 rounded-4xl mt-20 -ml-10">
-          <div
-            className="absolute -left-18 -top-18 bg-cover size-34 -rotate-15"
-            style={{ backgroundImage: `url(${promocion})` }}
-          >
-            <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
-              30% off
+          <div className="relative size-96 backdrop-blur-md z-30 bg-white/30 rounded-4xl mt-20 -ml-10">
+            <div
+              className="absolute -left-18 -top-18 bg-cover size-34 -rotate-15"
+              style={{ backgroundImage: `url(${promocion})` }}
+            >
+              <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
+                30% off
+              </div>
             </div>
-          </div>
-          <div
-            className="absolute -right-10 bottom-15 bg-cover size-34 rotate-15"
-            style={{ backgroundImage: `url(${promocion})` }}
-          >
-            <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
-              50% off
+            <div
+              className="absolute -right-10 bottom-15 bg-cover size-34 rotate-15"
+              style={{ backgroundImage: `url(${promocion})` }}
+            >
+              <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
+                50% off
+              </div>
             </div>
-          </div>
-          <div
-            className="absolute -left-50 -bottom-14 bg-cover size-34 rotate-13"
-            style={{ backgroundImage: `url(${promocion})` }}
-          >
-            <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
-              40% off
+            <div
+              className="absolute -left-50 -bottom-14 bg-cover size-34 rotate-13"
+              style={{ backgroundImage: `url(${promocion})` }}
+            >
+              <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
+                40% off
+              </div>
             </div>
+            <div
+              className="absolute -left-20 -top-30 w-120 scale-70 h-150 hover:scale-90 hover:z-30"
+              style={{ backgroundImage: `url(${imagentelefono})` }}
+            ></div>
+            <div
+              className="absolute z-10 -right-5 -top-10 w-60 h-80  scale-70 hover:scale-90 hover:z-40 hover:-top-5 hover:-right-10"
+              style={{ backgroundImage: `url(${imagenrelok})` }}
+            ></div>
           </div>
-          <div
-            className="absolute -left-20 -top-30 w-120 scale-70 h-150 hover:scale-90 hover:z-30"
-            style={{ backgroundImage: `url(${imagentelefono})` }}
-          ></div>
-          <div
-            className="absolute z-10 -right-5 -top-10 w-60 h-80  scale-70 hover:scale-90 hover:z-40 hover:-top-5 hover:-right-10"
-            style={{ backgroundImage: `url(${imagenrelok})` }}
-          ></div>
+          <div className={`absolute -left-32 -bottom-3 rotate-45 size-40 z-10 bg-gradient-to-b rounded-full from-[#6625e8] via-[#e592ff] to-[#eddbff] transition-transform duration-1500 ease-out
+            ${circleGrow ? "scale-100" : "scale-180"}`} />
         </div>
-        <div className={`absolute -left-32 -bottom-3 rotate-45 size-40 z-10 bg-gradient-to-b rounded-full from-[#6625e8] via-[#e592ff] to-[#eddbff] transition-transform duration-1500 ease-out
-          ${circleGrow ? "scale-100" : "scale-180"}`} />
-      </div>
-    </div>,
+      </div>,
 
     // --- Slide 2 ---
     <div className="pb-5 bg-gradient-to-b from-[#C4D1ED] scale-140 to-[#8B72E5]/80 w-auto h-203 overflow-hidden">
@@ -494,21 +494,21 @@ return (
       </section>
       
       {/*Categorias*/}
-      <section className="Categorias">
+      <section className="Categorias px-40 align-center">
         {/* Titulo */}
-        <div className="text-4xl  w-400 mx-40 font-popins text-[#434651] text-center pt-20 pb-8" style={getTextStyle()}>
+        <div className="text-4xl  w-full  font-popins text-[#434651] text-center pt-20 pb-8" style={getTextStyle()}>
           Revisa todas nuestras categorías
         </div>
 
         {/* Carrusel de Categorías */}
-        <div className="w-400 h-116 flex flex-col align-center mx-40">
-          <div className="h-100 w-400">
-            <div className="relative flex flex-col items-center align-center ">
+        <div className="w-full h-116 flex flex-col align-center items-center">
+            
+            <div className="h-100 w-full relative flex flex-col items-center align-center ">
               {/* Slides */}
               {slidesCategorias.map((grupo, i) => (
-                <div key={i} className={`absolute flex gap-4 items-center justify-center transition-opacity duration-700 ${ i === currentCat ? "opacity-100" : "opacity-0 pointer-events-none" }`}>
+                <div key={i} className={` absolute h-full w-full flex gap-4 items-center justify-center transition-opacity duration-700 ${ i === currentCat ? "opacity-100" : "opacity-0 pointer-events-none" }`}>
                   {grupo.map((item, j) => (
-                    <div key={j} className="relative h-100 w-97 rounded-4xl  overflow-hidden group">
+                    <div key={j} className="relative h-full w-97 rounded-4xl overflow-hidden group pb-7">
                       <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-125"style={{ backgroundImage: `url(${item.img})` }}></div>
                       <div className="absolute inset-0">
                         <div className="absolute inset-0 backdrop-blur-lg mask-b-from-100% mask-t-to-80% "></div>
@@ -531,69 +531,73 @@ return (
                 </div>
               ))}
             </div>
-          </div>
+          
           {/* Controles e Indicadores */}
-          <div className="flex items-center justify-between w-400 py-3.5 mt-8 ">
-            {/* Flecha Izquierda */}
-            <button onClick={prevSlideCategorias} disabled={currentCat === 0} className="">
-              <ArrowLeftGrayBlueIcon current={currentCat} />
-            </button>
+          <div className="flex items-center px-2 py-3.5 mt-8 h-8 w-400  ">
+              <div className="flex items-center justify-between w-full ">
+              {/* Flecha Izquierda */}
+              <button onClick={prevSlideCategorias} disabled={currentCat === 0} className="">
+                <ArrowLeftGrayBlueIcon current={currentCat} />
+              </button>
 
-            {/* Indicadores */}
-            <div className="flex justify-center space-x-2">
-              {slidesCategorias.map((_, index) => (
-                <div key={index}
-                  className={`w-6 h-1 rounded-full transition-all ${ index === currentCat ? "bg-[#385BAA]" : "bg-gray-300" }`} />
-              ))}
+              {/* Indicadores */}
+              <div className="flex justify-center space-x-2">
+                {slidesCategorias.map((_, index) => (
+                  <div key={index}
+                    className={`w-6 h-1 rounded-full transition-all ${ index === currentCat ? "bg-[#385BAA]" : "bg-gray-300" }`} />
+                ))}
+              </div>
+
+              {/* Flecha Derecha */}
+              <button onClick={nextSlideCategorias} disabled={currentCat === slidesCategorias.length - 1} className="">
+                <ArrowRightGrayBlueIcon current={currentCat} slidesCategorias={slidesCategorias} />
+              </button>
             </div>
-
-            {/* Flecha Derecha */}
-            <button onClick={nextSlideCategorias} disabled={currentCat === slidesCategorias.length - 1} className="">
-              <ArrowRightGrayBlueIcon current={currentCat} slidesCategorias={slidesCategorias} />
-            </button>
           </div>
         </div>
       </section>
 
       {/*Ofertas*/}
-      <section className="Ofertas">
-        <div className="text-center">
-          <h1 className='text-[57px] tracking-tight  w-400 mx-40  text-[#434651] mb-4' style={getTextStyle()}>Ofertas del día</h1>
-          <div className="w-400 mx-40  rounded-4xl  bg-[#EB5A45] py-4 px-31 h-52 flex items-center">
-              <div className="size-29 mr-2">
-                 <TagIcon /> 
-              </div>            
-              <h2 className='text-white font-popins font-bold text-4xl mr-5.5 w-48.5'>¡QUEDAN POCAS HORAS!</h2>
-              {/*cuadro de texto*/}
-              <div className="grid grid-cols-2 gap-2 w-53 mr-13">
-                  <h2 className='text-[#DFE162] ml-2  font-popins-light col-span-2 text-left'>HASTA </h2>
-                  <div className="flex">
-                      <h2 className='text-white -mt-5 text-8xl font-extrabold font-popins col-span-1'>50</h2>
-                      <div className="columns-1 -mt-5">
-                          <h2 className='text-white   text-7xl font-extrabold font-popins col-span-1'>%</h2>
-                          <h2 className='text-white  font-popins font-light col-span-1'>DCTO.</h2>
-                      </div>
-                  </div>
-                  <h2 className='text-[#DFE162] text-center -ml-2 tracking-tight font-popins col-span-2 h-12 w-53'>En diferentes productos y marcas</h2>
-              </div>
-              {/* Aquí se llama al componente CountdownTimer */}
-              <CountdownTimer />
-              <div className="flex mx-13">
-                  <h2 className='text-white font-popins  mr-4 font-semibold text-[45px] text-center'>COMPRA YA</h2>
-                  {/* Flecha derecha */}
-                  <button className=" font-bold h-12 w-12 rounded-full mt-1.5 bg-white">
-                  <div className="p-2"><ArrowRightBlackIconwhitout/></div>
-                  </button>
-              </div>
+      <section className="Ofertas px-40 items-center">
+        <div className="text-center mt-20">
+          <h1 className='text-[57px] tracking-tight  w-full  text-[#434651] mb-4' style={getTextStyle()}>Ofertas del día</h1>
+          <div className="w-full items-center flex justify-center">
+            <div className="w-400  rounded-4xl  bg-[#EB5A45] py-4 px-31 h-52 flex items-center">
+                <div className="size-29 mr-2">
+                   <TagIcon /> 
+                </div>            
+                <h2 className='text-white font-popins font-bold text-4xl mr-5.5 w-48.5'>¡QUEDAN POCAS HORAS!</h2>
+                {/*cuadro de texto*/}
+                <div className="grid grid-cols-2 gap-2 w-53 mr-13">
+                    <h2 className='text-[#DFE162] ml-2  font-popins-light col-span-2 text-left'>HASTA </h2>
+                    <div className="flex">
+                        <h2 className='text-white -mt-5 text-8xl font-extrabold font-popins col-span-1'>50</h2>
+                        <div className="columns-1 -mt-5">
+                            <h2 className='text-white   text-7xl font-extrabold font-popins col-span-1'>%</h2>
+                            <h2 className='text-white  font-popins font-light col-span-1'>DCTO.</h2>
+                        </div>
+                    </div>
+                    <h2 className='text-[#DFE162] text-center -ml-2 tracking-tight font-popins col-span-2 h-12 w-53'>En diferentes productos y marcas</h2>
+                </div>
+                {/* Aquí se llama al componente CountdownTimer */}
+                <CountdownTimer />
+                <div className="flex mx-13">
+                    <h2 className='text-white font-popins  mr-4 font-semibold text-[45px] text-center'>COMPRA YA</h2>
+                    {/* Flecha derecha */}
+                    <button className=" font-bold h-12 w-12 rounded-full mt-1.5 bg-white">
+                    <div className="p-2"><ArrowRightBlackIconwhitout/></div>
+                    </button>
+                </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/*Tecnologia*/}
-      <section className="Tecnologia">
-        <div className="mt-16">
+      <section className="Tecnologia px-40">
+        <div className="mt-16 items-center flex flex-col justify-center">
             {/*Titulo*/}
-            <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"         
+            <div className="flex justify-center w-400 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"         
             style={{
           background: isLight
             ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -644,7 +648,7 @@ return (
             <div className="" style={{ backgroundImage: `url(${tecnologiaImagen6})` }}></div>
                             
             {/*Contenido fila 2*/}
-           <div className=" mt-4 flex overflow-hidden mx-40 w-400 rounded-3xl h-80 bg-slate-300" > 
+           <div className=" mt-4 flex overflow-hidden w-400 rounded-3xl h-80 bg-slate-300" > 
                 {/*contenido papa*/}
                 <div className=" max-w-4xl w-90 h-80 p-10 rounded-r-[60px] bg-gradient-to-b from-[#023770] to-[#1768be]">
                     <div className="flex justify-center">
@@ -724,10 +728,10 @@ return (
       </section>
 
       {/*Muebles*/}
-      <section className="Muebles">
-        <div className="mt-16">
+      <section className="Muebles px-40">
+        <div className=" mt-16 items-center flex flex-col justify-center">
             {/*Titulo*/}
-            <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+            <div className="flex justify-center w-400 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
              style={{
             background: isLight
               ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -955,9 +959,9 @@ return (
      
       {/*Calzado*/}
       <section className="Calzado">
-        <div className='mt-16'>
+        <div className='mt-16 items-center flex flex-col justify-center'>
           {/* Titulo */}
-          <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+          <div className="flex justify-center w-400  py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
           style={{
               background: isLight
                 ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -978,7 +982,7 @@ return (
             </button>
           </div>
           {/* Cuadro Imagen1 */}
-          <div className=" px-10 mx-40 py-10 mt-4 mb-4 h-150 rounded-3xl bg-gray-200 w-400" >
+          <div className=" px-10 py-10 mt-4 mb-4 h-150 rounded-3xl bg-gray-200 w-400" >
             {/* fila */}
             <div className="flex justify-between font-bold">
               <div className="flex gap-1">
@@ -1018,7 +1022,7 @@ return (
             </div>
           </div>
           {/* Cuadro Imagen2 y Imagen3 */}
-          <div className="grid grid-cols-6 gap-4 h-196 w-400 mx-40">
+          <div className="grid grid-cols-6 gap-4 h-196 w-400">
             {/*Cuadro Imagen2*/} 
             <div className="col-start-1 col-end-5 overflow-hidden  h-196  rounded-4xl  flex justify-end relative bgcover from-top" style={{ backgroundImage: `url(${calzadoimagen2})`, backgroundSize: "cover", backgroundPosition: "center" }}>
               {/* Capa de blur lateral */}
@@ -1134,7 +1138,7 @@ return (
             </div>     
           </div>
           {/* Cuadro Imagen4 */}
-          <div className="flex mx-40 w-400 h-50 mt-4 bg-[#2C509ED1] rounded-4xl justify-around">
+          <div className="flex  w-400 h-50 mt-4 bg-[#2C509ED1] rounded-4xl justify-around">
             <h1 className=' ml-17 font-popins-light tracking-tighter font-bold text-white/70 text-[120px]'>SNEAKERS</h1>
             <div className="h-80 w-80 bg-cover -mt-20" style={{ backgroundImage: `url(${calzadoimagen})` }}></div>
             <div className="mr-16">
@@ -1150,9 +1154,9 @@ return (
      
       {/*Supermercado*/}
       <section className="Supermercado">
-        <div className="mt-16">
+        <div className="mt-16 items-center flex flex-col justify-center">
             {/*Título*/}
-            <div className="flex justify-center w-400 mx-40 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+            <div className="flex justify-center w-400 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
             style={{
                 background: isLight
                   ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -1173,7 +1177,7 @@ return (
                 </button>
             </div>
             {/*Fila*/}
-            <div className="grid grid-cols-4 mx-40 w-400 mt-4 gap-4">
+            <div className="grid grid-cols-4 w-400 mt-4 gap-4">
                 <div className=" col-start-1 col-end-2 h-100  rounded-4xl w-100  bg-gradient-to-br from-[#EB5A45] via-[#EB5A45] to-[#DFE162]">
                     <div className="  mt-10 justify-center scale-140 ">
                         <h2 className='text-white leading-11 font-extralight ml-23 font-popins col-span-2 text-left'>HASTA </h2>
@@ -1196,7 +1200,7 @@ return (
             {/*Fila2*/}
             <div className="fila2">
                 <div className="cuadroImagen3 mt-3">
-                    <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"            
+                    <div className="flex px-4 w-400 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"            
                      style={{
                        background: isLight
                          ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -1313,7 +1317,7 @@ return (
                     </div>
                 </div> 
             </div>
-            <div className="flex mx-40 w-400 h-100 bg-cover  rounded-4xl justify-between overflow-hidden mt-4" style={{ backgroundImage: `url(${supermercadoImagen3})` }}>
+            <div className="flex w-400 h-100 bg-cover  rounded-4xl justify-between overflow-hidden mt-4" style={{ backgroundImage: `url(${supermercadoImagen3})` }}>
                 <div className="w-75 h-80 bg-no-repeat bg-cover bg-center rounded-4xl ml-17.5 my-9.5" style={{ backgroundImage: `url(${supermercadoImagen4})` }}></div>
                 <div className="pt-25 pr-20">
                     <div className="flex  -ml-10 font-popins text-[#004143] text-7xl font-extrabold">
@@ -1329,7 +1333,7 @@ return (
                     <h2 className='font-popins text-2xl mt-12 text-white py-4 px-12 rounded-4xl  bg-[#004143]'>Café de Especialidad</h2>
                 </div>
             </div>
-            <div className="grid grid-cols-4 gap-4 mx-40 w-400 h-100 bg-cover  rounded-4xl overflow-hidden mt-4">
+            <div className="grid grid-cols-4 gap-4  w-400 h-100 bg-cover  rounded-4xl overflow-hidden mt-4">
                 <div className="col-span-1 bg-cover" style={{ backgroundImage: `url(${supermercadoImagen5})` }}></div>       
                 <div className="col-span-1 bg-cover" style={{ backgroundImage: `url(${supermercadoImagen6})` }}></div>
                 <div className="col-span-1 bg-cover" style={{ backgroundImage: `url(${supermercadoImagen7})` }}></div>
@@ -1340,14 +1344,14 @@ return (
      
       {/*Recomendados*/}
       <section className="Recomendados">
-        <div className="mt-16">
+        <div className="mt-16 items-center flex flex-col justify-center">
             {/*titulo*/}
-            <div className="text-5xl font-popins w-400 mx-40 text-[#434651] text-center" style={getTextStyle()}>
+            <div className="text-5xl font-popins w-400  text-[#434651] text-center" style={getTextStyle()}>
                 Recomendados para ti
             </div>
             {/*fila*/}
             <div className="cuadroImagen3 mt-4">
-                <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+                <div className="flex px-4 w-400  py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
                 style={{
           background: isLight
             ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -1472,14 +1476,14 @@ return (
      
       {/*Vendidos*/}
       <section className="Vendidos">
-        <div className='mt-16'>
+        <div className='mt-16 items-center flex flex-col justify-center'>
         {/*titulo*/}
-        <div className="text-5xl font-popins w-400 mx-40 text-[#434651] text-center" style={getTextStyle()}>
+        <div className="text-5xl font-popins w-400 text-[#434651] text-center" style={getTextStyle()}>
             Los más vendidos
         </div>
         {/*fila 1*/}
    
-        <div className="mx-40 w-400 h-100  rounded-4xl mt-4 overflow-hidden flex">
+        <div className="w-400 h-100  rounded-4xl mt-4 overflow-hidden flex">
           {/* Imagen normal */}
           <div
             className="w-300 z-20 h-full bg-cover bg-center"
@@ -1494,7 +1498,7 @@ return (
         </div>
         {/*fila 2*/}
         <div className="cuadroImagen3 mt-4">
-            <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"             
+            <div className="flex px-4 w-400  py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"             
             style={{
           background: isLight
             ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -1618,13 +1622,13 @@ return (
     
       {/*Ultimo*/}
       <section className="Ultimmo">
-        <div className="mt-16">
+        <div className="mt-16 items-center flex flex-col justify-center">
             {/*titulo*/}
-            <div className="text-5xl font-popins  w-400 mx-40 text-[#434651] text-center" style={getTextStyle()}>
+            <div className="text-5xl font-popins  w-400  text-[#434651] text-center" style={getTextStyle()}>
                 Últimos lanzamientos
             </div>
             {/*Fila 1*/}
-            <div className="relative bg-[#FFDAD4] h-100 w-400 mx-40 no bg-no-repeat rounded-4xl overflow-hidden bg-center " style={{ backgroundImage: `url(${ultimoImagen1})` }}>
+            <div className="relative bg-[#FFDAD4] h-100 w-400 no bg-no-repeat rounded-4xl overflow-hidden bg-center " style={{ backgroundImage: `url(${ultimoImagen1})` }}>
                 <div className="absolute z-1 ml-190 bg-cover size-100"style={{ backgroundImage: `url(${ultimoImagen2})` }}></div>
                 <div className="absolute backdrop-blur-sm size-90 ml-154 "></div>
                 <div className="ml-30">
@@ -1636,13 +1640,13 @@ return (
                 <div className="absolute z-1 transform scale-x-[-1] -mt-88.5 ml-280 bg-cover bg-no-repeat w-180 h-100" style={{ backgroundImage: `url(${ultimoImagen3})` }}></div>
             </div>
             {/*Fila 2*/}
-            <div className=" mx-40 w-400">
+            <div className=" w-400">
                 <div className="flex w-400 h-100 bg-cover  rounded-4xl justify-between overflow-hidden mt-4" style={{ backgroundImage: `url(${ultimoImagen5})` }}>
         
                 </div>
             </div>
             {/*Fila 3*/}
-            <div className="grid grid-cols-4 gap-4 mx-40 w-400 h-100 bg-cover p-4 bg-[#303030] rounded-4xl overflow-hidden mt-4">
+            <div className="grid grid-cols-4 gap-4 w-400 h-100 bg-cover p-4 bg-[#303030] rounded-4xl overflow-hidden mt-4">
                 <div className="col-span-1 bg-cover rounded-4xl" style={{ backgroundImage: `url(${ultimoImagen6})` }}></div>       
                 <div className="col-span-1 bg-cover rounded-4xl" style={{ backgroundImage: `url(${ultimoImagen7})` }}></div>
                 <div className="col-span-1 bg-cover rounded-4xl" style={{ backgroundImage: `url(${ultimoImagen8})` }}></div>
@@ -1650,7 +1654,7 @@ return (
             </div>
             {/*Fila 4*/}
             <div 
-                className="mx-40  w-400 h-200 mt-4 rounded-4xl bg-[45%_50%]  overflow-hidden bg-no-repeat  bg-cover"
+                className=" w-400 h-200 mt-4 rounded-4xl bg-[45%_50%]  overflow-hidden bg-no-repeat  bg-cover"
                 style={{ backgroundImage: `url(${ultimoImagen10})` }}> 
             </div>
         </div>

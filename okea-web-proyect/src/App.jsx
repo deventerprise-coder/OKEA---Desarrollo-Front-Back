@@ -14,6 +14,16 @@ import CarritoPage from './pages/CarritoPage';
 import ScrollToTop from './components/ScrollToTop';
 import Categoria from './pages/Catalogo/Catergoria';
 import DetalleProducto from './components/ecomerce/DetalleProducto';
+import Presentacion from './pages/Home/Presentacion';
+import CategoriaHome from './pages/Home/CategoriaHome';
+import Ofertas from './pages/Home/Ofertas';
+import Tecnologia from './pages/Home/Tecnologia';
+import Muebles from './pages/Home/Muebles';
+import Calzado from './pages/Home/Calzado';
+import Supermercado from './pages/Home/Supermercado';
+import Recomendados from './pages/Home/Recomendados';
+import Vendidos from './pages/Home/Vendidos';
+import Ultimo from './pages/Home/Ultimo';
 
 function App() {
   return (
@@ -30,7 +40,16 @@ function App() {
               path="/"
               element={
                 <>
-                  <Home />
+                  <Presentacion />
+                  <CategoriaHome />
+                  <Ofertas />
+                  <Tecnologia />
+                  <Muebles />
+                  <Calzado />
+                  <Supermercado />
+                  <Recomendados />
+                  <Vendidos />
+                  <Ultimo />
                   <MarcasDestacadas />
                   <PreguntasFrecuentes />
                   <BloqueDeServicios />
