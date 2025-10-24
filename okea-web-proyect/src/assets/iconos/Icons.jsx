@@ -1201,14 +1201,14 @@ export const ModaIcon = ({color="white"}) => (
   </svg>
 )
 
-export const FlechaIPaginacion = ({color="#333333"}) => (
-  <svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const FlechaIPaginacion = ({color="#333333", width="13", height="20"}) => (
+  <svg width={width} height={height} viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M5.215 10.25L11.5833 16.6184C12.2733 17.3084 12.2733 18.4284 11.5833 19.1184C10.8933 19.8084 9.77333 19.8084 9.08333 19.1184L1.39333 11.4284C0.741663 10.7767 0.741663 9.7217 1.39333 9.0717L9.08333 1.3817C9.77333 0.6917 10.8933 0.6917 11.5833 1.3817C12.2733 2.0717 12.2733 3.1917 11.5833 3.8817L5.215 10.25Z" fill={color} fill-opacity="0.8" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
   </svg>
 )
 
-export const FlechaDPaginacion = ({color="#333333"}) => (
-  <svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const FlechaDPaginacion = ({color="#333333", width="13", height="20"}) => (
+  <svg width={width} height={height} viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M7.785 10.25L1.41667 3.88164C0.72667 3.19164 0.72667 2.07164 1.41667 1.38164C2.10667 0.691636 3.22667 0.691636 3.91667 1.38164L11.6067 9.07164C12.2583 9.7233 12.2583 10.7783 11.6067 11.4283L3.91667 19.1183C3.22667 19.8083 2.10667 19.8083 1.41667 19.1183C0.72667 18.4283 0.72667 17.3083 1.41667 16.6183L7.785 10.25Z" fill={color} fill-opacity="0.8" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
   </svg>
 )
@@ -1277,21 +1277,21 @@ export const EntregaDetalleIcon = () => (
 
 export const FiltroResponsiveIcon = ({color="#1F3A58"}) => (
   <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.9998 2H9.61523" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.38462 2H1" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.9999 7H7.46143" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.23077 7H1" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M15.0001 12H10.6924" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7.46154 12H1" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9.61523 1V3" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.23096 6V8" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.6924 11V13" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.9998 2H9.61523" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
+<path d="M6.38462 2H1" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
+<path d="M14.9999 7H7.46143" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
+<path d="M4.23077 7H1" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
+<path d="M15.0001 12H10.6924" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
+<path d="M7.46154 12H1" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
+<path d="M9.61523 1V3" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
+<path d="M4.23096 6V8" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
+<path d="M10.6924 11V13" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
 </svg>
 )
 
 export const OrdenarIcon = ({color = "#1F3A58"}) => (
   <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M17.3425 0.000185894C17.1729 0.00433966 17.0117 0.0779161 16.8942 0.20485L8.99861 8.3923L1.103 0.20485C1.04313 0.140918 0.971501 0.0900927 0.892349 0.0553845C0.813197 0.0206764 0.728133 0.00279111 0.642194 0.00278756C0.51437 0.00281989 0.389462 0.0423973 0.283451 0.116456C0.177439 0.190515 0.0951468 0.295688 0.0471018 0.418518C-0.000943305 0.541347 -0.0125559 0.676248 0.0137497 0.80596C0.0400553 0.935671 0.103083 1.0543 0.194768 1.14665L8.54449 9.805C8.66495 9.92986 8.82829 10 8.99861 10C9.16892 10 9.33227 9.92986 9.45272 9.805L17.8025 1.14665C17.8958 1.0537 17.96 0.93364 17.9864 0.802228C18.0129 0.670816 18.0004 0.534181 17.9507 0.410234C17.901 0.286288 17.8163 0.180815 17.7078 0.107643C17.5992 0.0344709 17.4719 -0.00298487 17.3425 0.000185894Z" fill={color}/>
+  <path d="M17.3425 0.000185894C17.1729 0.00433966 17.0117 0.0779161 16.8942 0.20485L8.99861 8.3923L1.103 0.20485C1.04313 0.140918 0.971501 0.0900927 0.892349 0.0553845C0.813197 0.0206764 0.728133 0.00279111 0.642194 0.00278756C0.51437 0.00281989 0.389462 0.0423973 0.283451 0.116456C0.177439 0.190515 0.0951468 0.295688 0.0471018 0.418518C-0.000943305 0.541347 -0.0125559 0.676248 0.0137497 0.80596C0.0400553 0.935671 0.103083 1.0543 0.194768 1.14665L8.54449 9.805C8.66495 9.92986 8.82829 10 8.99861 10C9.16892 10 9.33227 9.92986 9.45272 9.805L17.8025 1.14665C17.8958 1.0537 17.96 0.93364 17.9864 0.802228C18.0129 0.670816 18.0004 0.534181 17.9507 0.410234C17.901 0.286288 17.8163 0.180815 17.7078 0.107643C17.5992 0.0344709 17.4719 -0.00298487 17.3425 0.000185894Z" fill={color} style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
   </svg>
 )
 
@@ -1304,5 +1304,11 @@ export const FlechaDerechaProdRel = () => (
 export const FlechaIzquierdaProdRel = () => (
   <svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M10.4852 21.0178C10.2904 21.0121 10.1055 20.9308 9.96958 20.7912L0.219583 11.0412C0.0789832 10.9005 0 10.7098 0 10.5109C0 10.312 0.0789832 10.1213 0.219583 9.98065L9.96958 0.230646C10.0387 0.158669 10.1215 0.101202 10.2131 0.061615C10.3047 0.022028 10.4032 0.0011158 10.503 0.000101089C10.6028 -0.00091362 10.7018 0.017992 10.7942 0.0557079C10.8865 0.0934238 10.9705 0.149195 11.041 0.219753C11.1116 0.290312 11.1674 0.374239 11.2051 0.466621C11.2428 0.559004 11.2617 0.657982 11.2607 0.757761C11.2597 0.85754 11.2387 0.956114 11.1992 1.04771C11.1596 1.13931 11.1021 1.22208 11.0301 1.29119L1.8104 10.5109L11.0301 19.7306C11.1383 19.836 11.2122 19.9716 11.2421 20.1197C11.2719 20.2677 11.2564 20.4213 11.1975 20.5604C11.1386 20.6995 11.0391 20.8176 10.912 20.8992C10.7849 20.9808 10.6362 21.0221 10.4852 21.0178Z" fill="#385BAA"/>
+  </svg>
+)
+
+export const CarritoProductoIcon = ({color = "#616200"}) => (
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M1.4583 2.49994C1.37548 2.49877 1.29326 2.51407 1.2164 2.54495C1.13955 2.57584 1.0696 2.62169 1.01061 2.67984C0.951634 2.73799 0.904799 2.80729 0.872831 2.8837C0.840864 2.96011 0.824402 3.04211 0.824402 3.12494C0.824402 3.20777 0.840864 3.28977 0.872831 3.36618C0.904799 3.44259 0.951634 3.51189 1.01061 3.57004C1.0696 3.62819 1.13955 3.67404 1.2164 3.70493C1.29326 3.73581 1.37548 3.75111 1.4583 3.74994H2.6253C2.91101 3.74994 3.15558 3.94705 3.22181 4.25613L3.21937 4.23985L3.34307 4.90228L3.34388 4.90717V4.90798L4.67526 11.936C4.89238 13.2387 6.038 14.1666 7.33314 14.1666H15.1668C16.4619 14.1666 17.5556 13.2285 17.8198 11.9604C17.8206 11.9569 17.8215 11.9533 17.8222 11.9498L19.1561 4.90798C19.1732 4.81762 19.1701 4.7246 19.1472 4.63555C19.1242 4.54651 19.0819 4.46362 19.0232 4.39282C18.9645 4.32201 18.8909 4.26502 18.8077 4.22592C18.7244 4.18682 18.6336 4.16657 18.5416 4.16661H4.4767L4.4474 4.00954C4.44638 4.00438 4.44529 3.99922 4.44414 3.99408C4.26037 3.13649 3.50625 2.49994 2.6253 2.49994H1.4583ZM4.7127 5.41661H17.7872L16.5967 11.7057L16.5958 11.7065C16.443 12.4377 15.8713 12.9166 15.1668 12.9166H7.33314C6.62828 12.9166 6.02439 12.4282 5.90817 11.7309C5.90741 11.7263 5.9066 11.7217 5.90573 11.7171L4.7127 5.41661ZM8.3333 14.9999C8.00178 14.9999 7.68384 15.1316 7.44942 15.3661C7.215 15.6005 7.0833 15.9184 7.0833 16.2499C7.0833 16.5815 7.215 16.8994 7.44942 17.1338C7.68384 17.3682 8.00178 17.4999 8.3333 17.4999C8.66482 17.4999 8.98277 17.3682 9.21719 17.1338C9.45161 16.8994 9.5833 16.5815 9.5833 16.2499C9.5833 15.9184 9.45161 15.6005 9.21719 15.3661C8.98277 15.1316 8.66482 14.9999 8.3333 14.9999ZM14.1666 14.9999C13.8351 14.9999 13.5172 15.1316 13.2828 15.3661C13.0483 15.6005 12.9166 15.9184 12.9166 16.2499C12.9166 16.5815 13.0483 16.8994 13.2828 17.1338C13.5172 17.3682 13.8351 17.4999 14.1666 17.4999C14.4982 17.4999 14.8161 17.3682 15.0505 17.1338C15.2849 16.8994 15.4166 16.5815 15.4166 16.2499C15.4166 15.9184 15.2849 15.6005 15.0505 15.3661C14.8161 15.1316 14.4982 14.9999 14.1666 14.9999Z" fill={color} style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
   </svg>
 )

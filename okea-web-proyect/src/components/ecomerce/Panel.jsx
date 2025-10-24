@@ -15,7 +15,7 @@ import MarcasJuguetes from "../../assets/imagenes/categorias/panel/MarcasJuguete
 import apple from "../../assets/imagenes/categorias/panel/apple.png";
 import { useState, useRef, useEffect } from "react";
 
-function ModelosDestcados({nombre, imagen, categoria}) {
+function ModelosDestcados({nombre, imagen, categoria, isLight}) {
     const [isHovered, setIsHovered] = useState(false);
    return (
         <div
@@ -35,7 +35,7 @@ function ModelosDestcados({nombre, imagen, categoria}) {
                         className={`${categoria === "Tecnología" ? "w-[110px] h-[110px]" :  "w-[123px] h-[123px]"} object-contain`}
                     />
                 </button>
-                <span className={`lg:hidden mt-2 text-center text-[12px] font-bold text-[#333333]`} style={{fontFamily: 'Poppins, sans-serif'}}>
+                <span className={`lg:hidden mt-2 text-center text-[12px] font-bold ${isLight ? "text-[#333333]" : "text-white"}`} style={{fontFamily: 'Poppins, sans-serif'}}>
                     {nombre}
                 </span>
             </div>
@@ -61,7 +61,7 @@ function ModelosDestcados({nombre, imagen, categoria}) {
         </div>
     );
 }
-export function Panel({Categoria, destacados}) {
+export function Panel({Categoria, destacados, isLight}) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const scrollContainerRef = useRef(null);
     
@@ -96,16 +96,16 @@ export function Panel({Categoria, destacados}) {
         return () => clearInterval(interval);
     }, [destacados.length]);
     return(
-        <div className={`w-full md:h-[817px] h-[203px] sm:h-[300px] relative bg-cover bg-center ${Categoria === "Salud y Bienestar" ? "bg-[center_top_90%]" :  Categoria === "Mascotas" ? "bg-[center_right_20%]" : "bg-[center_top_44%]"}`} style={{backgroundImage: `url(${imagenPanel})`}}>
+        <div className={`w-full max-w-full  md:h-[817px] h-[203px] sm:h-[300px] relative bg-cover bg-center ${Categoria === "Salud y Bienestar" ? "bg-[center_top_90%]" :  Categoria === "Mascotas" ? "bg-[center_right_20%]" : "bg-[center_top_44%]"}`} style={{backgroundImage: `url(${imagenPanel})`}}>
             {Categoria === "Tecnología" && (
-                <div className="w-[965px] h-[200px] flex absolute top-[10%] md:top-[27%] xl:top-[20%] lg:top-[24%] 2xl:top-[12%] left-1/2 transform -translate-x-1/2 md:-translate-y-[30%] xl:-translate-y-[20%] -translate-y-[40%] justify-center items-center">
-                    <img src={apple} alt="imagen marca" className="2xl:w-[117px] 2xl:h-[140px] xl:w-[100px] xl:h-[120px] lg:w-[80px] lg:h-[100px] md:w-[60px] md:h-[80px] sm:w-[35px] sm:h-[40px] w-[22px] h-[26px] object-contain mr-[30px] mb-[9px] 2xl:mb-6"/>
+                <div className="max-w-[965px] w-full h-[200px] flex absolute top-[10%] md:top-[27%] xl:top-[20%] lg:top-[24%] 2xl:top-[12%] left-1/2 transform -translate-x-1/2 md:-translate-y-[30%] xl:-translate-y-[20%] -translate-y-[40%] justify-center items-center px-4">
+                    <img src={apple} alt="imagen marca" className="2xl:w-[117px] 2xl:h-[140px] xl:w-[100px] xl:h-[120px] lg:w-[80px] lg:h-[100px] md:w-[60px] md:h-[80px] sm:w-[35px] sm:h-[40px] w-[22px] h-[26px] object-contain mr-[30px] mb-[9px] 2xl:mb-6 flex-shrink-0"/>
                     <span className="text-white 2xl:text-[160px] xl:text-[120px] lg:text-[100px] md:text-[80px] text-[35px] font-bold" style={{fontFamily: 'Inter'}}>iPhone 16</span>
                 </div>
             )}
             {Categoria === "Dormitorio y Baños" && (
-                <div>
-                    <div className="w-[453px] h-[301px] flex absolute top-[105px] left-[8%] justify-center items-center bg-[#D9D9D966] backdrop-blur-[40px] rotate-[-18deg] relative">
+                <div className="w-full max-w-full px-4">
+                    <div className="max-w-[453px] w-full h-[301px] flex absolute top-[105px] left-[8%] justify-center items-center bg-[#D9D9D966] backdrop-blur-[40px] rotate-[-18deg] relative">
                         <span className="text-white text-[60px] font-['Poppins',sans-serif] font-medium text-center" style={{WebkitTextStroke: '1px #1F3A5880'}}>Vivir como soñamos</span>
                         <div className="absolute w-[73px] h-[29px] bg-[#D9D9D999] backdrop-blur-[50px] top-0 left-[-20px] rotate-[-40deg]"></div>
                         <div className="absolute w-[73px] h-[29px] bg-[#D9D9D999] backdrop-blur-[50px] top-0 right-[-20px] rotate-[40deg]"></div>
@@ -118,21 +118,21 @@ export function Panel({Categoria, destacados}) {
                 </div>
             )}
             {Categoria === "Juguetes" && (
-                <div className="flex flex-col absolute top-[40%] right-[3%] justify-center items-center">
+                <div className="flex flex-col absolute top-[40%] right-[3%] justify-center items-center max-w-[440px]">
                     <span className="text-white text-[25px] font-[Poppins, sans-serif] font-light">En estas Marcas:</span>
-                    <img src={MarcasJuguetes} alt="imagen marca" className="w-[440px] h-[194px] object-contain mt-15"/>  
+                    <img src={MarcasJuguetes} alt="imagen marca" className="w-full max-w-[440px] h-[194px] object-contain mt-15"/>  
                 </div>
             )}
-            <section className="absolute bottom-[-65%] sm:bottom-[-44%] md:bottom-[-15%] w-full h-[160px] sm:h-[200px] bg-gradient-to-b from-[#385BAA] to-[#FFFFFF] lg:bg-none lg:bg-[#33333333] backdrop-blur-[60px] flex items-center gap-3 md:justify-center lg:justify-start overflow-hidden">
+            <section className={`absolute ${isLight ? "bottom-[-65%] md:bottom-[-15%]" : "bottom-[-66%] md:bottom-[-17%]"} sm:bottom-[-44%] w-full h-[160px] sm:h-[200px] bg-gradient-to-b ${isLight ? "from-[#385BAA] to-[#FFFFFF]": "from-[#120F31] to-[#292272]"} lg:bg-none lg:bg-[#33333333] lg:backdrop-blur-[60px] md:backdrop-blur-[40px] flex items-center gap-3 md:justify-center lg:justify-start overflow-hidden`}>
                 <div className="hidden md:flex items-center gap-3 w-full md:justify-center lg:justify-start">
                     {destacados.map((item, index) => (
                         index === 0 ? (
                             <div className="xl:ml-[15%] lg:ml-[10%] md:ml-0" key={index}>
-                                <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria}/>
+                                <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria} isLight={isLight}/>
                             </div>
                         ) : (
                             <div className="lg:ml-[12%]" key={index}>
-                                <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria}/>
+                                <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria} isLight={isLight}/>
                             </div>
                         )
                     ))}
@@ -148,7 +148,7 @@ export function Panel({Categoria, destacados}) {
                                 className="flex-shrink-0 ml-[4%] first:ml-[4%]" 
                                 key={index}
                             >
-                                <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria}/>
+                                <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria} isLight={isLight} />
                             </div>
                         ))}
                     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TechnologyIcon, FiltroIcon, FlechaFiltro, Pedido, AyudaIcon, SoporteIcon, CheckOptionIcon, CalificacionFiltroOptionIcon,
   ModaIcon, MuebleIcon, CalzadoFilterIcon, DormitorioIcon, AccesoriosIcon, JuguetesIcon, DecoracionFilterIcon, MascotasIcon, SupermercadoFilterIcon,
   ElectrohogarIcon, FiltroResponsiveIcon, OrdenarIcon
@@ -33,7 +33,7 @@ function FilterSection({ title, icon: IconComponent, children, isLight }) {
           </span>
         </div>
       </button>
-      {open && <div className={`absolute left-1/2 top-12 w-[330px] h-[180px] backdrop-blur-[8px] rounded-[5px] shadow-lg z-10 border border-[#1F3A5880] text-sm flex flex-col items-center transform -translate-x-1/2 justify-center ${isLight ? "bg-white/10" : "bg-[#292272B2]"}`}>{children}</div>}
+      {open && <div className={`absolute left-1/2 top-12 w-[330px] h-[180px] backdrop-blur-[15px] rounded-[5px] shadow-lg z-10 border border-[#1F3A5880] text-sm flex flex-col items-center transform -translate-x-1/2 justify-center ${isLight ? "bg-[#FFFFFF1A]" : "bg-[#292272B2]"}`}>{children}</div>}
     </div>
   );
 }
@@ -60,7 +60,7 @@ function FilterSectionMobile({ title, icon: IconComponent, children}) {
           </span>
         </div>
       </button>
-      {open && <div className={`absolute left-1/2 top-12 w-[100%] h-[180px] backdrop-blur-[8px] rounded-[5px] shadow-lg z-10 border border-[#1F3A5880] text-sm flex flex-col items-center transform -translate-x-1/2 justify-center bg-[#FFFFFF99] backdrop-blur-[30px]`}>{children}</div>}
+      {open && <div className={`absolute backdrop-blur-[30px] left-1/2 top-12 w-[100%] h-[180px] rounded-[5px] z-20 border border-[#1F3A5880] text-sm flex flex-col items-center transform -translate-x-1/2 justify-center bg-[#FFFFFF99]`}>{children}</div>}
     </div>
   );
 }
@@ -79,10 +79,10 @@ function OptionFilter({title, isLight}) {
   const [isSelected, setIsSelected] = useState(false);
   return (
     <div className="flex items-center gap-2">
-      <div className={`w-[23px] h-[23px] rounded-full border ${isLight ? "border-[#1F3A58CC]" : "border-white"} flex items-center justify-center ${isSelected ? "bg-[#1F3A58]" : "bg-transparent"}`} onClick={() => setIsSelected(!isSelected)}>
+      <div className={`w-[23px] h-[23px] rounded-full border ${isLight ? "border-[#1F3A58CC]" : "lg:border-white border-[#1F3A58CC]"} flex items-center justify-center ${isSelected ? "bg-[#1F3A58]" : "bg-transparent"}`} onClick={() => setIsSelected(!isSelected)}>
         {isSelected && <CheckOptionIcon />}
       </div>
-      <span className={`font-regular text-[12px] ${isLight ? "text-[#1F3A58]" : "text-white"}`} style={{fontFamily: 'Inter'}}>{title}</span>
+      <span className={`font-regular text-[12px] ${isLight ? "text-[#1F3A58]" : "lg:text-white text-[#1F3A58]"}`} style={{fontFamily: 'Inter'}}>{title}</span>
     </div>
   );
 }
@@ -126,33 +126,52 @@ function UserOptionsMobile({ title, icon: IconComponent}) {
   );
 }
 
-function MobileFilterButton({ onOpenFilter, onOpenSort }) {
+function MobileFilterButton({ onOpenFilter, onOpenSort, isLight }) {
   return (
-    <div className="flex justify-center lg:hidden gap-20 h-[60px] items-center border-y border-[#1F3A58]">
-      <button className="text-[14px] text-[#1F3A58] font-medium font-['Poppins', sans-serif] flex items-center gap-2" onClick={onOpenFilter}>
-        FILTROS <FiltroResponsiveIcon />
+    <div className={`flex justify-center lg:hidden gap-20 h-[60px] items-center ${isLight ? "border-y border-[#1F3A58] bg-white" : "bg-[#292272] backdrop-blur-[80px] transform -translate-y-1"}`}>
+      <button className={`text-[14px] font-medium font-['Poppins', sans-serif] flex items-center gap-2 ${isLight ? "text-[#1F3A58]" : "text-white"} cursor-pointer`} onClick={onOpenFilter}>
+        FILTROS <FiltroResponsiveIcon color={isLight ? "#1F3A58" : "#FFFFFF"} />
       </button>
-      <button className="text-[14px] text-[#1F3A58] font-medium font-['Poppins', sans-serif] flex items-center gap-2" onClick={onOpenSort}>
-        ORDENAR POR <OrdenarIcon />
+      <button className={`text-[14px] font-medium font-['Poppins', sans-serif] flex items-center gap-2 ${isLight ? "text-[#1F3A58]" : "text-white"} cursor-pointer`} onClick={onOpenSort}>
+        ORDENAR POR <OrdenarIcon color={isLight ? "#1F3A58" : "#FFFFFF"} />
       </button>
     </div>
   );
 }
 
 function MobileFilterModal({ isOpen, onClose, isLight, filtroActual }) {
+  const [isAnimating, setIsAnimating] = useState(false);
   const colorText = isLight ? "#1F3A58" : "#FFFFFF";
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (isOpen) {
+      setIsAnimating(true);
+    }
+  }, [isOpen]);
+
+  if (!isOpen && !isAnimating) return null;
+
+  const handleClose = () => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  };
 
   return (
     <div className="lg:hidden fixed inset-0 z-30 flex items-end">
       <div 
-        className="absolute inset-0"
-        onClick={onClose}
+        className={`absolute inset-0 transition-opacity duration-300 ease-out`}
+        onClick={handleClose}
       />
+  
       <div className={`relative w-full max-h-[80vh] overflow-y-auto rounded-t-2xl p-6 ${
-        isLight ? "bg-[#385BAA99] backdrop-blur-[80px]" : "bg-[#385BAA99] backdrop-blur-[80px]"
-      } transform transition-transform duration-300`}>
+        isLight ? "bg-[#385BAA99] backdrop-blur-[80px]" : "bg-[#07004766] backdrop-blur-[80px]"
+      } transform transition-all duration-500 ease-out ${
+        isAnimating 
+          ? 'translate-y-0' 
+          : 'translate-y-full'
+      }`}>
       
         <div className="flex flex-col items-center justify-center mb-4 gap-8">
           <hr className="w-[95px] border border-[2px] border-[#D9D9D9]"/>
@@ -183,15 +202,6 @@ function MobileFilterModal({ isOpen, onClose, isLight, filtroActual }) {
           <UserOptionsMobile title="Centro de ayuda" icon={AyudaIcon} />
           <UserOptionsMobile title="Soporte técnico" icon={SoporteIcon} />
         </div>
-
-        <button
-          onClick={onClose}
-          className={`w-full mt-6 py-3 rounded-lg font-medium ${
-            isLight ? "bg-[#385BAA] text-white" : "bg-[#292272] text-white"
-          } transition-colors duration-300`}
-        >
-          Aplicar Filtros
-        </button>
       </div>
     </div>
   );

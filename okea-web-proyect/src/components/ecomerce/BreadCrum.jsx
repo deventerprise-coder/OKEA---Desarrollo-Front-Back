@@ -109,7 +109,7 @@ export function BreadCrum({categoria, subcategoria, isLight}) {
                 <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
                 <a className={`text-[14px] font-regular ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{categoria}</a>
                 <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
-                <a className={`text-[14px] font-bold ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{subcategoria}</a>
+                <a className={`text-[14px] font-semibold md:font-bold ${isLight ? "text-[#333333]" : "text-[#E4E666]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{subcategoria}</a>
             </div>
             <DynamicComponent firstWord={firstWord} secondWord={secondWord} categoria={categoria} />
         </div>

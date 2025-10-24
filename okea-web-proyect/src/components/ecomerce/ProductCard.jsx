@@ -1,6 +1,5 @@
 import { useState } from "react";
-import {FavoritoCardIcon, EstrellaIcon} from "../../assets/iconos/Icons";
-import {ShoppingCartIcon} from "../../assets/iconos/iconoHome";
+import {FavoritoCardIcon, EstrellaIcon, CarritoProductoIcon} from "../../assets/iconos/Icons";
 import { useNavigate } from 'react-router-dom';
 
 export function ProductCard({imagen, marca, modelo, descripcion, precio, precioSinDescuento, etiqueta, calificacion, categoria, isLight}) {
@@ -8,7 +7,9 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
 
-  const iconColor = hover || added ? "#FFFFFF" : "#484900";
+  // Corregir la lógica del color del ícono
+  const iconColor = added ? "#FFFFFF" : (hover ? "#FFFFFF" : "#484900");
+  
   const etiquetaBg = etiqueta === "Standard"
   ? "#385BAA"
   : etiqueta === "New"
@@ -96,7 +97,14 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
         className={`absolute bottom-3 flex items-center text-[11px] justify-center py-2 px-7 rounded-4xl cursor-pointer ${added ? 'bg-[#EB5A45] text-white' : isLight ?'bg-[#E4E666] text-[#484900]': 'bg-[#F5F692] text-[#251F67]'} hover:bg-[#EB5A45] hover:text-white transition-colors duration-500 ease-out sm:text-[14px]`}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        onClick={() => setAdded(!added)}
+        onClick={() => {
+          setAdded(!added);
+          if (added) {
+            setTimeout(() => {
+              setHover(false);
+            }, 500);
+          }
+        }}
         style={{
           fontFamily: 'Inter, sans-serif',
           fontWeight: 500,
@@ -111,13 +119,13 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
           justifyContent: 'center',
         }}
       >
-        <span className={`${added ? "sm:translate-x-[520%] translate-x-[420%]" : ""} transition-transform duration-300 ease-out`}
+        <span className={`${added ? "sm:translate-x-[560%] translate-x-[420%]" : ""} transition-transform duration-300 ease-out`}
           style={{
             display: 'flex',
             alignItems: 'center'
           }}
         >
-          <ShoppingCartIcon color={iconColor} />
+          <CarritoProductoIcon color={iconColor} />
         </span>
         <span
           style={{
