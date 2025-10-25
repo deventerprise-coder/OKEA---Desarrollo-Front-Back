@@ -7,7 +7,6 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
 
-  // Corregir la lógica del color del ícono
   const iconColor = added ? "#FFFFFF" : (hover ? "#FFFFFF" : "#484900");
   
   const etiquetaBg = etiqueta === "Standard"
@@ -21,7 +20,7 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
      style={{
       borderRadius: 10,
     }}
-     /* onClick={()=>{navigate(`/producto/detalle/${modelo.replace(/\s+/g, '-').toLowerCase()}`)}} */>
+     onClick={()=>{navigate(`/producto/detalle/${modelo.replace(/\s+/g, '-').toLowerCase()}`)}}>
       <div className="absolute top-3 left-3 text-white font-semibold px-2 py-1 rounded-full" style={{
         fontFamily: 'Inter, sans-serif',
         backgroundColor: etiquetaBg,
