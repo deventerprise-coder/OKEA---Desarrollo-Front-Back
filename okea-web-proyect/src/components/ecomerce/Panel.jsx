@@ -13,9 +13,9 @@ import PanelSupermercado from "../../assets/imagenes/categorias/panel/PanelSuper
 import PanelJuguetes from "../../assets/imagenes/categorias/panel/PanelJuguetes.png";
 import MarcasJuguetes from "../../assets/imagenes/categorias/panel/MarcasJuguetes.png";
 import apple from "../../assets/imagenes/categorias/panel/apple.png";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-function ModelosDestcados({nombre, imagen, categoria}) {
+function ModelosDestcados({nombre, imagen, categoria, isLight}) {
     const [isHovered, setIsHovered] = useState(false);
    return (
         <div
@@ -23,24 +23,30 @@ function ModelosDestcados({nombre, imagen, categoria}) {
             onMouseLeave={() => setIsHovered(false)}
             onMouseEnter={() => setIsHovered(true)}
         >
-            <button
-            className={`z-20 flex-shrink-0 w-[123px] h-[123px] rounded-full bg-white text-[#1C4390] font-popins-bold text-[20px] border-[3px] border-transparent overflow-hidden items-center justify-center flex transform transition-translate duration-500 fade-in ${
-                isHovered ? "-translate-x-10" : ""
-            }`}
-            >
-            <img
-                src={imagen}
-                alt={nombre}
-                className={`${categoria === "Tecnología" ? "w-[110px] h-[110px]" :  "w-[123px] h-[123px]"} object-contain`}
-            />
-            </button>
-            
-            <div className={`z-10 overflow-hidden transition-[gap, opacity] duration-500 fade-in ml-[-143px] ${
-                isHovered 
-                    ? "w-[310px] opacity-100 mr-[-180px]" 
+            <div className="flex flex-col justify-center items-center lg:items-start">
+                 <button
+                    className={`z-20 flex-shrink-0 w-[80px] h-[80px] xl:w-[123px] xl:h-[123px] lg:w-[90px] lg:h-[90px] rounded-full bg-white text-[#1C4390] font-popins-bold text-[20px] border-[3px] border-transparent overflow-hidden items-center justify-center flex transform transition-translate duration-500 fade-in ${
+                        isHovered ? "lg:-translate-x-10" : ""
+                    }`}
+                    >
+                    <img
+                        src={imagen}
+                        alt={nombre}
+                        className={`${categoria === "Tecnología" ? "w-[110px] h-[110px]" :  "w-[123px] h-[123px]"} object-contain`}
+                    />
+                </button>
+                <span className={`lg:hidden mt-2 text-center text-[12px] font-bold ${isLight ? "text-[#333333]" : "text-white"}`} style={{fontFamily: 'Poppins, sans-serif'}}>
+                    {nombre}
+                </span>
+            </div>
+           
+
+            <div className={`z-10 overflow-hidden transition-[gap, opacity] duration-500 fade-in xl:ml-[-143px] lg:ml-[-130px] ${
+                isHovered
+                    ? "w-0 opacity-0 lg:w-[310px] lg:opacity-100 xl:mr-[-180px] lg:mr-[-180px]"
                     : "w-0 opacity-0"
             }`}>
-                <div className="w-[310px] h-[120px] rounded-[100px] flex items-center justify-center overflow-hidden relative">
+                <div className="xl:w-[310px] xl:h-[120px] lg:w-[250px] lg:h-[93px] rounded-[100px] flex items-center justify-center overflow-hidden relative">
                     <img
                     src={imagen}
                     alt={nombre}
@@ -55,7 +61,10 @@ function ModelosDestcados({nombre, imagen, categoria}) {
         </div>
     );
 }
-export function Panel({Categoria, destacados}) {
+export function Panel({Categoria, destacados, isLight}) {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const scrollContainerRef = useRef(null);
+    
     const imagenPanel= Categoria === "Tecnología" ? PanelTecnologia 
     : Categoria === "Muebles y Organización" ? PanelMuebles 
     : Categoria === "Calzado" ? PanelCalzado
@@ -70,17 +79,33 @@ export function Panel({Categoria, destacados}) {
     : Categoria === "Moda Mujer" ? PanelModaM
     :Categoria === "Juguetes" ? PanelJuguetes
     : null;
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex(prev => {
+                if (prev === 0) {
+                    const itemsVisible = window.innerWidth < 640 ? 3 : 4;
+                    const maxScroll = Math.max(0, destacados.length - itemsVisible);
+                    return maxScroll;
+                } else {
+                    return 0;
+                }
+            });
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [destacados.length]);
     return(
-        <div className={`w-full h-[817px] relative bg-cover ${Categoria === "Salud y Bienestar" ? "bg-[center_top_90%]" :  Categoria === "Mascotas" ? "bg-[center_right_20%]" : "bg-[center_top_44%]"}`} style={{backgroundImage: `url(${imagenPanel})`}}>
+        <div className={`w-full max-w-full  md:h-[817px] h-[203px] sm:h-[300px] relative bg-cover bg-center ${Categoria === "Salud y Bienestar" ? "bg-[center_top_90%]" :  Categoria === "Mascotas" ? "bg-[center_right_20%]" : "bg-[center_top_44%]"}`} style={{backgroundImage: `url(${imagenPanel})`}}>
             {Categoria === "Tecnología" && (
-                <div className="w-[965px] h-[200px] flex absolute top-[50px] right-[25%] justify-center items-center">
-                    <img src={apple} alt="imagen marca" className="w-[117px] h-[140px] object-contain mr-10 mb-6"/>
-                    <span className="text-white text-[160px] font-bold" style={{fontFamily: 'Inter'}}>iPhone 16</span>
+                <div className="max-w-[965px] w-full h-[200px] flex absolute top-[10%] md:top-[27%] xl:top-[20%] lg:top-[24%] 2xl:top-[12%] left-1/2 transform -translate-x-1/2 md:-translate-y-[30%] xl:-translate-y-[20%] -translate-y-[40%] justify-center items-center px-4">
+                    <img src={apple} alt="imagen marca" className="2xl:w-[117px] 2xl:h-[140px] xl:w-[100px] xl:h-[120px] lg:w-[80px] lg:h-[100px] md:w-[60px] md:h-[80px] sm:w-[35px] sm:h-[40px] w-[22px] h-[26px] object-contain mr-[30px] mb-[9px] 2xl:mb-6 flex-shrink-0"/>
+                    <span className="text-white 2xl:text-[160px] xl:text-[120px] lg:text-[100px] md:text-[80px] text-[35px] font-bold" style={{fontFamily: 'Inter'}}>iPhone 16</span>
                 </div>
             )}
             {Categoria === "Dormitorio y Baños" && (
-                <div>
-                    <div className="w-[453px] h-[301px] flex absolute top-[105px] left-[8%] justify-center items-center bg-[#D9D9D966] backdrop-blur-[40px] rotate-[-18deg] relative">
+                <div className="w-full max-w-full px-4">
+                    <div className="max-w-[453px] w-full h-[301px] flex absolute top-[105px] left-[8%] justify-center items-center bg-[#D9D9D966] backdrop-blur-[40px] rotate-[-18deg] relative">
                         <span className="text-white text-[60px] font-['Poppins',sans-serif] font-medium text-center" style={{WebkitTextStroke: '1px #1F3A5880'}}>Vivir como soñamos</span>
                         <div className="absolute w-[73px] h-[29px] bg-[#D9D9D999] backdrop-blur-[50px] top-0 left-[-20px] rotate-[-40deg]"></div>
                         <div className="absolute w-[73px] h-[29px] bg-[#D9D9D999] backdrop-blur-[50px] top-0 right-[-20px] rotate-[40deg]"></div>
@@ -93,23 +118,41 @@ export function Panel({Categoria, destacados}) {
                 </div>
             )}
             {Categoria === "Juguetes" && (
-                <div className="flex flex-col absolute top-[40%] right-[3%] justify-center items-center">
+                <div className="flex flex-col absolute top-[40%] right-[3%] justify-center items-center max-w-[440px]">
                     <span className="text-white text-[25px] font-[Poppins, sans-serif] font-light">En estas Marcas:</span>
-                    <img src={MarcasJuguetes} alt="imagen marca" className="w-[440px] h-[194px] object-contain mt-15"/>  
+                    <img src={MarcasJuguetes} alt="imagen marca" className="w-full max-w-[440px] h-[194px] object-contain mt-15"/>  
                 </div>
             )}
-            <section className="absolute bottom-[-15%] w-full h-[200px] bg-[#33333333] backdrop-blur-xl flex items-center gap-3">
-                {destacados.map((item, index) => (
-                    index === 0 ? (
-                        <div className="ml-70" key={index}>
-                            <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria}/>
-                        </div>
-                    ) : (
-                        <div className="ml-[230px]">
-                            <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria}/>
-                        </div>
-                    )
-                ))}
+            <section className={`absolute ${isLight ? "bottom-[-65%] md:bottom-[-15%]" : "bottom-[-66%] md:bottom-[-17%]"} sm:bottom-[-44%] w-full h-[160px] sm:h-[200px] bg-gradient-to-b ${isLight ? "from-[#385BAA] to-[#FFFFFF]": "from-[#120F31] to-[#292272]"} lg:bg-none lg:bg-[#33333333] lg:backdrop-blur-[60px] md:backdrop-blur-[40px] flex items-center gap-3 md:justify-center lg:justify-start overflow-hidden`}>
+                <div className="hidden md:flex items-center gap-3 w-full md:justify-center lg:justify-start">
+                    {destacados.map((item, index) => (
+                        index === 0 ? (
+                            <div className="xl:ml-[15%] lg:ml-[10%] md:ml-0" key={index}>
+                                <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria} isLight={isLight}/>
+                            </div>
+                        ) : (
+                            <div className="lg:ml-[12%]" key={index}>
+                                <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria} isLight={isLight}/>
+                            </div>
+                        )
+                    ))}
+                </div>
+                <div className="md:hidden w-full overflow-hidden">
+                    <div 
+                        className="flex items-center gap-3 transition-transform duration-1000 ease-in-out"
+                        ref={scrollContainerRef}
+                        style={{ transform: `translateX(-${currentIndex * 120}px)` }}
+                    >
+                        {destacados.map((item, index) => (
+                            <div 
+                                className="flex-shrink-0 ml-[4%] first:ml-[4%]" 
+                                key={index}
+                            >
+                                <ModelosDestcados nombre={item.nombre} imagen={item.imagen} categoria={Categoria} isLight={isLight} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </section>
         </div>
     )

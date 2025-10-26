@@ -163,16 +163,16 @@ export default function Categoria({categoria, subcategoria}) {
     : products.productsModaMujer;
 
   return (
-    <div className={isLight ? "bg-white text-black" : "bg-[#120F31] text-white"} style={{transition: 'background-color 0.5s, color 0.5s'}}>
+    <div className={`w-full overflow-x-hidden ${isLight ? "bg-white text-black" : "bg-[#120F31] text-white"}`} style={{transition: 'background-color 0.5s, color 0.5s'}}>
       <BreadCrum categoria={categoria} subcategoria={subcategoria} isLight={isLight}/>
-      <Panel Categoria={categoria} destacados={destacadoList}/>
-      <div className="flex mt-40 w-full">
+      <Panel Categoria={categoria} destacados={destacadoList} isLight={isLight}/>
+      <div className="lg:flex lg:mt-40 w-full mt-33 overflow-x-hidden">
         <SidebarMenu categoria={categoria} subcategoria={subcategoria} isLight={isLight}/>
-        <aside className="flex flex-col items-center w-full">
+        <aside className="flex flex-col items-center w-full lg:w-auto flex-1 overflow-x-hidden">
           <Products products={productosList} categoria={categoria} isLight={isLight}/>
         </aside>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center mt-20 mb-20 w-full overflow-x-hidden">
         <ProdRelacionados/>
       </div> 
     </div>

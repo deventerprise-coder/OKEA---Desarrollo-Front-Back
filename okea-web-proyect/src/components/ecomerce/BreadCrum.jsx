@@ -40,7 +40,7 @@ export default function DynamicComponent({ firstWord = "iPho", secondWord = "ne"
 
     return (
         <div 
-            className="relative flex items-center h-[85px] mr-16"
+            className="hidden relative md:flex items-center h-[85px] mr-16"
             style={{ width: `${totalWidth}px` }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -102,14 +102,14 @@ export function BreadCrum({categoria, subcategoria, isLight}) {
     
     return (
         <div className="w-full h-[115px] flex items-center justify-between mt-20" style={{fontFamily: 'Inter'}}>
-            <div className="flex items-center gap-5 ml-16"> 
+            <div className="flex items-center gap-5 sm:ml-16 ml-8"> 
                 <HomeBreadcrumIcon color={isLight ? "#333333" : "#FFFFFF"}/>
                 <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
                 <a className={`text-[14px] font-regular ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} style={{fontFamily: 'Inter'}} onClick={() => navigate(`/`)}>Inicio</a>
                 <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
                 <a className={`text-[14px] font-regular ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{categoria}</a>
                 <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
-                <a className={`text-[14px] font-bold ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{subcategoria}</a>
+                <a className={`text-[14px] font-semibold md:font-bold ${isLight ? "text-[#333333]" : "text-[#E4E666]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{subcategoria}</a>
             </div>
             <DynamicComponent firstWord={firstWord} secondWord={secondWord} categoria={categoria} />
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeContext';
+import { SortProvider } from './components/ecomerce/SortContext';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import SocialBar from './components/SocialBar';
@@ -28,7 +29,8 @@ import Ultimo from './pages/Home/Ultimo';
 function App() {
   return (
     <ThemeProvider>
-      <Router>
+      <SortProvider>
+        <Router>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Navbar />
@@ -53,7 +55,6 @@ function App() {
                   <MarcasDestacadas />
                   <PreguntasFrecuentes />
                   <BloqueDeServicios />
-                  <Footer />
                 </>
               }
             />
@@ -185,7 +186,8 @@ function App() {
             />
           </Routes>
         </div>
-      </Router>
+        </Router>
+      </SortProvider>
     </ThemeProvider>
   );
 }
