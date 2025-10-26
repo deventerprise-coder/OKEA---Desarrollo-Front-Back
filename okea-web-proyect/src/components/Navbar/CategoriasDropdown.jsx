@@ -95,13 +95,10 @@ export default function CategoriasDropdown({isVisible, onClose }) {
     };
   };
 
-  // Agregar esta nueva función para manejar el toggle
   const handleCategoriaClick = (categoria) => {
     if (categoriaActiva === categoria) {
-      // Si la categoría clickeada es la misma que está activa, la cerramos
       setCategoriaActiva(null);
     } else {
-      // Si es una categoría diferente, la activamos
       setCategoriaActiva(categoria);
     }
   };
@@ -240,7 +237,6 @@ export default function CategoriasDropdown({isVisible, onClose }) {
           })}
         </ul>
       </div>
-      {/* Dropdown de detalle de categoría */}
       {categoriaActiva && categoriasDetalle[categoriaActiva] && (
         <CategoriaDetalleDropdown
           data={categoriasDetalle[categoriaActiva]}

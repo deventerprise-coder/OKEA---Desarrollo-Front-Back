@@ -68,7 +68,7 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
 
   const handleClose = () => {
     setIsVisible(false);
-    setTimeout(onClose, 400); // Espera a que termine la animación
+    setTimeout(onClose, 400); 
   };
 
   const categoriaRuta = nombreCategoria === "Tecnología" ? "tecnologia"
@@ -104,7 +104,6 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
   return (
     <>
       <style>{animations}</style>
-      {/* Header verde separado */}
       <div
         className={isVisible ? 'detail-enter' : 'detail-exit'}
         style={{
@@ -142,7 +141,7 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
           letterSpacing: '0.25px',
         }}>{nombreCategoria || data.nombre || data.titulo || 'Categoría'}</span>
         <button
-          onClick={handleClose}  // Cambiado de onClose a handleClose
+          onClick={handleClose}  
           style={{
             marginLeft: 'auto',
             background: 'none',
@@ -174,7 +173,6 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
         </span>
       </div>
 
-      {/* Contenido separado */}
       <div
         className={isVisible ? 'detail-enter' : 'detail-exit'}
         style={{
@@ -200,7 +198,6 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
         }}
         onClick={e => e.stopPropagation()}
       >
-        {/* Grid de 2 filas x 3 columnas */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(2, 1fr)', gap: 32, height: '100%' }}>
           {data.columnas.map((col, idx) => (
             <div key={idx} style={{ minWidth: 140, flex: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>

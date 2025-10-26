@@ -24,7 +24,6 @@ export default function SocialBar() {
       paddingRight: 4,
       paddingBottom: 16,
       paddingLeft: 4,
-      display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
@@ -38,7 +37,7 @@ export default function SocialBar() {
 
   return (
     <div
-      className="flex flex-col items-center justify-center shadow-lg"
+      className="hidden md:flex flex-col items-center justify-center shadow-lg"
       style={getSocialBarStyle()}
     >
       <a href="#" aria-label="Facebook" style={{ marginBottom: 20 }}>

@@ -4,6 +4,7 @@ import { ThemeProvider } from './components/ThemeContext';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import SocialBar from './components/SocialBar';
+import BottomBar from './components/BottomBar'; 
 import FloatingActionButton from './components/FloatingActionButton';
 import PreguntasFrecuentes from './components/PreguntasFrecuentes';
 import BloqueDeServicios from './components/BloqueDeServicios';
@@ -32,6 +33,7 @@ function App() {
         <div className="min-h-screen flex flex-col">
           <Navbar />
           <SocialBar />
+          <BottomBar />
           <FloatingActionButton />
           <Routes>
             <Route
@@ -182,7 +184,6 @@ function App() {
               }
             />
           </Routes>
-          {/* <Footer /> */}
         </div>
       </Router>
     </ThemeProvider>

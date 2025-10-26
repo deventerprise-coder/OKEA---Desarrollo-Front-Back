@@ -14,7 +14,6 @@ export default function LocationButton({ onClick }) {
   // =======================
 
   useEffect(() => {
-    // Observa cambios en el atributo data-theme del documento
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
@@ -64,12 +63,12 @@ export default function LocationButton({ onClick }) {
         text-xs sm:text-sm md:text-base
       "
     >
-      {/* Icono de ubicación */}
+
       <LocationIcon 
         color={theme === 'dark' ? '#C6C4E3' : '#1C4390'} 
         className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0"
       />
-      {/* Texto completo para pantallas medianas/grandes */}
+
       <span className="
         font-poppins font-medium 
         text-[11px] sm:text-[12px] md:text-[14px] 
@@ -81,7 +80,7 @@ export default function LocationButton({ onClick }) {
       ">
         Ubicación
       </span>
-      {/* Texto corto para pantallas muy pequeñas */}
+
       <span className="
         font-poppins font-medium 
         text-[10px] 

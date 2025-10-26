@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useTheme } from "../../components/ThemeContext";
 import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 import calzadoimagen2 from "../../assets/imagenes/Home/calzadoimagen2.jpg"
