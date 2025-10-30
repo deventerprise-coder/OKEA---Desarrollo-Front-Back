@@ -56,16 +56,16 @@ export default function Presentacion() {
     };
     
     // --- Autoplay para presentación ---
-    useEffect(() => {
-      const interval = setInterval(() => {
-        nextSlidePresentacion();
-      }, 10000);
-      return () => clearInterval(interval);
-    },);
+    //useEffect(() => {
+    //  const interval = setInterval(() => {
+    //    nextSlidePresentacion();
+    //  }, 10000);
+    //  return () => clearInterval(interval);
+    //},);
 
     // --- Animación círculo (solo afecta presentación) ---
     useEffect(() => {
-      setCircleGrow(true);
+     setCircleGrow(true);
       const timeout = setTimeout(() => setCircleGrow(false), 500);
       return () => clearTimeout(timeout);
     }, [currentPres]);
@@ -88,36 +88,36 @@ export default function Presentacion() {
         
         // --- Slide 1 ---
         
-        <div className="flex relative justify-center scale-130 bg-gradient-to-tr from-[#707DCB] to-[#8B96E8] w-auto h-203 overflow-hidden">
-          <div className="pl-101 pr-30 mt-40">
-            <h1 className="text-7xl md:text-9xl text-center leading-28 font-popins font-extrabold text-white pt-14">
+        <div className="flex relative justify-center scale-130 bg-gradient-to-tr from-[#707DCB] to-[#8B96E8] w-auto h-80 md:h-203 overflow-hidden">
+          <div className="pl-10 md:pl-101 md:pr-30 -mt-8 -mr-30 md:mr-0 md:mt-40 scale-45 md:scale-100">
+            <h1 className="text-8xl md:text-9xl text-center leading-28 font-popins font-extrabold text-white pt-20 md:pt-14">
               Tech
             </h1>
-            <h1 className=" text-5xl md:text-[90px] text-center leading-20 font-popins font-extrabold text-white pb-9">
+            <h1 className=" text-[80px] md:text-[90px] text-center leading-10 md:leading-20 font-popins font-extrabold text-white pb-9">
               Frenzy
             </h1>
             <div className="text-center pl-2">
-              <p className="border-b-1 border-t-1 border-white py-3 w-[319px] text-justify font-popins text-white">
+              <p className="text-sm md:text-base font-extralight md:font-normal border-b-1 border-t-1 border-white py-3 w-[319px] text-justify font-popins text-white">
                 The tech fever is here. Amazing discounts on cutting edge gadgets.{" "}
-                <span className="font-bold">Act fast before they're gone!</span>
+                <span className="font-medium md:font-bold text-sm md:text-base">Act fast before they're gone!</span>
               </p>
             </div>
-            <button className="mt-14 py-1 px-15 border-1 border-white text-white rounded-full hover:cursor-pointer">
+            <button className="text-2xl md:text-base mt-5 md:mt-14 py-3 md:py-1 px-8 md:px-15 border-1 border-white text-white rounded-full hover:cursor-pointer">
               Buy now
             </button>
           </div>
           {/* columna2 */}
-          <div className="relative scale-100 pt-40 mr-100">
+          <div className="relative scale-33 md:scale-100 -mt-8 md:pt-40 -ml-17 md:-ml-0 md:mr-100">
               <div
-              className={`absolute right-5 top-45 size-20 -z-50 rounded-full 
+              className={`absolute right-5 top-5 md:top-45 size-20 -z-50 rounded-full 
               bg-gradient-to-b from-[#6625e8] via-[#e592ff] to-[#eddbff] 
               transition-transform duration-1000 ease-in
               ${circleGrow ? "scale-40" : "scale-130"}`}
             />
     
-            <div className="relative size-96 backdrop-blur-md z-30 bg-white/30 rounded-4xl mt-20 -ml-10">
+            <div className="relative size-98 md:size-96 backdrop-blur-md z-30 bg-white/30 rounded-4xl mt-20 -ml-10">
               <div
-                className="absolute -left-18 -top-18 bg-cover size-34 -rotate-15"
+                className="absolute -left-18 -top-18 bg-cover size-34 -rotate-15 scale-75 md:scale-100"
                 style={{ backgroundImage: `url(${promocion})` }}
               >
                 <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
@@ -125,7 +125,7 @@ export default function Presentacion() {
                 </div>
               </div>
               <div
-                className="absolute -right-10 bottom-15 bg-cover size-34 rotate-15"
+                className="absolute -right-10 bottom-15 bg-cover size-34 rotate-15 scale-75 md:scale-100"
                 style={{ backgroundImage: `url(${promocion})` }}
               >
                 <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
@@ -133,7 +133,7 @@ export default function Presentacion() {
                 </div>
               </div>
               <div
-                className="absolute -left-50 -bottom-14 bg-cover size-34 rotate-13"
+                className="absolute -left-50 -bottom-22 md:-bottom-14 bg-cover size-34 rotate-13 scale-90 md:scale-100"
                 style={{ backgroundImage: `url(${promocion})` }}
               >
                 <div className="text-5xl font-popins text-white font-extrabold text-center pt-6">
@@ -149,20 +149,20 @@ export default function Presentacion() {
                 style={{ backgroundImage: `url(${imagenrelok})` }}
               ></div>
             </div>
-            <div className={`absolute -left-32 -bottom-3 rotate-45 size-40 z-10 bg-gradient-to-b rounded-full from-[#6625e8] via-[#e592ff] to-[#eddbff] transition-transform duration-1500 ease-out
-              ${circleGrow ? "scale-100" : "scale-180"}`} />
+            <div className={`absolute -left-20 md:-left-32 md:-bottom-3 rotate-45 size-40 z-10 bg-gradient-to-b rounded-full from-[#6625e8] via-[#e592ff] to-[#eddbff] transition-transform duration-1500 ease-out
+              ${circleGrow ? "scale-80 md:scale-100" : "scale-150 md:scale-180"}`} />
           </div>
         </div>,
     
         // --- Slide 2 ---
-        <div className="pb-5 bg-gradient-to-b from-[#C4D1ED] scale-140 to-[#8B72E5]/80 w-auto h-203 overflow-hidden">
-          <div className="flex justify-center mt-50">
+        <div className="pb-5 bg-gradient-to-b from-[#C4D1ED] scale-140 to-[#8B72E5]/80 w-auto h-80 md:h-203 overflow-hidden">
+          <div className="flex justify-center scale-30 md:scale-100 mt-10 md:mt-50">
             <div
               className="size-42 scale-40 -ml-14"
               style={{ backgroundImage: `url(${apple})` }}
             ></div>
             <h1 className="text-6xl md:text-7xl -ml-12 text-center font-popins text-black pt-14">
-              iPhone16{" "}
+              iPhone16 {" "}
               <span
                 className="text-transparent bg-clip-text -ml-5"
                 style={{
@@ -175,25 +175,26 @@ export default function Presentacion() {
             </h1>
           </div>
           <p
-            className="text-3xl -mt-10 text-center font-popins text-transparent bg-clip-text"
+            className=" md:text-3xl -mt-18 md:-mt-10 scale-80 md:scale-100 text-center font-popins text-transparent bg-clip-text"
             style={{
               backgroundImage:
-                "linear-gradient(to right,#00ccff,#00ccff,#00ccff, #9a4efe,#ff66ff, #f80000, #f86700,#f86700)",
+                "linear-gradient(to right,#00ccff,#00ccff,#00ccff, #00ccff,#9a4efe,#ff66ff, #f80000, #f86700,#f86700)",
             }}
           >
             Diseñado para Apple Intelligence
           </p>
-          <div className="flex justify-center -mt-10">
+          <div className="md:flex justify-center -ml-75 md:ml-10 -mt-36 md:mt-25 scale-49 md:scale-100">
             <div
-              className="w-350 h-100 scale-70"
+              className=" w-350 h-100 -mt-30 scale-40 md:scale-70 bg-cover"
               style={{ backgroundImage: `url(${iphone})` }}
             ></div>
           </div>
         </div>,
+        
     
         // --- Slide 3 ---
-        <div className="pt-20 flex justify-center bg-gradient-to-br h-203 from-[#E6E879] to-[#C5DFA1]">
-          <div className="columna1 w-110 mr-100 mt-30 scale-130">
+        <div className="pt-20 flex justify-center bg-gradient-to-br h-80 md:h-203 from-[#E6E879] to-[#C5DFA1]">
+          <div className="columna1 w-110 -ml-30 md:-ml-20  md:mr-100 -mt-25 md:mt-30 scale-40 md:scale-130">
             <h1 className="font-popins text-5xl text-left text-[#d16518]">
               MODERN
             </h1>
@@ -207,9 +208,9 @@ export default function Presentacion() {
               ORDER NOW
             </button>
           </div>
-          <div className="relative">
+          <div className="relative scale-30 md:scale-100">
             <div
-              className="w-150 h-120 -ml-100 mt-20"
+              className="w-150 h-120  -ml-130 md:-ml-100 -mt-20 md:mt-20"
               style={{ backgroundImage: `url(${sofa})` }}
             ></div>
             <div className="absolute bottom-30 -right-45 size-60 bg-[#d16518]/60 backdrop-blur-md align-center rounded-full text-center">
@@ -221,9 +222,9 @@ export default function Presentacion() {
         </div>,
     
         // --- Slide 4 ---
-        <div className="flex justify-center h-203 gap-32 bg-[#CBBCFF] pt-20 scale-150">
+        <div className="flex justify-center  h-80 md:h-203 gap-32 bg-[#CBBCFF] pt-23 md:pt-20 scale-150">
           <h1
-            className="font-popins mr-10 mt-50 text-6xl text-transparent bg-clip-text text-center text-balance w-90 font-extrabold"
+            className="font-popins mr-10 -mt-10 md:mt-50 text-6xl text-transparent bg-clip-text text-center scale-45 md:scale-100 text-balance w-90 font-extrabold"
             style={{
               backgroundImage: "linear-gradient(to bottom ,#0099ff, #9a4efe, #ad05d3)",
             }}
@@ -231,7 +232,7 @@ export default function Presentacion() {
             THINGS TO KNOW BEFORE YOU BUY
           </h1>
           <div
-            className="w-90 h-90 scale-110 -ml-48 mt-30"
+            className="w-90 h-90 scale-40 md:scale-110 -ml-90 md:-ml-48 -mt-23 md:mt-30"
             style={{ backgroundImage: `url(${audifonos})` }}
           ></div>
         </div>,
@@ -241,7 +242,7 @@ export default function Presentacion() {
 
       <section className="Presentacion ">
       {/* Carrusel de Presentación */}
-        <div className="relative w-full h-203 overflow-hidden">
+        <div className="relative w-full h-80 md:h-203 overflow-hidden">
           {/* Slides con fade */}
           {slidesPresentacion.map((slide, index) => (
             <div key={index} className={`absolute w-full h-full transition-opacity duration-1000 ${ index === currentPres ? "opacity-100 z-20" : "opacity-0 z-10"}`}>
@@ -250,21 +251,21 @@ export default function Presentacion() {
           ))}
 
           {/* Controles */}
-          <div className="absolute bottom-2 w-full flex items-center justify-evenly px-10 z-50">
+          <div className=" absolute bottom-2 w-full flex items-center justify-evenly px-10 z-50">
             {/* Flecha izquierda */}
-            <button onClick={prevSlidePresentacion} className="text-4xl text-white font-bold rounded-full pb-[3.5px] hover:bg-white/30 transition px-2">
+            <button onClick={prevSlidePresentacion} className="absolute left-1 bottom-30 md:relative md:left-0 md:bottom-0   text-4xl text-white font-bold rounded-full pb-[3.5px] hover:bg-white/30 transition px-2">
               {"<"}
             </button>
 
             {/* Indicadores */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-3 mt-1">
+            <div className="absolute left-1/2 scale-50 md:scale-100 -mt-3  md:mt-1 transform -translate-x-1/2 flex gap-3 ">
               {slidesPresentacion.map((_, index) => (
                 <div key={index} onClick={() => { setPrevPres(currentPres); setCurrentPres(index); }} className={`w-4 h-4 rounded-full cursor-pointer transition-transform ${ currentPres === index ? "bg-gray-400/50 scale-150" : "bg-gray-400/50" }`}></div>
               ))}
             </div>
 
             {/* Flecha derecha */}
-            <button onClick={nextSlidePresentacion} className="text-4xl text-white font-bold rounded-full pb-[3.5px] hover:bg-white/30 transition px-2">
+            <button onClick={nextSlidePresentacion} className="absolute right-1 bottom-30 md:relative md:left-0 md:bottom-0  text-4xl text-white font-bold rounded-full pb-[3.5px] hover:bg-white/30 transition px-2">
               {">"}
             </button>
           </div>
