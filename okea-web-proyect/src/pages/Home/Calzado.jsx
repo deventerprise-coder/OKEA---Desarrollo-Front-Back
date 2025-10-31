@@ -254,12 +254,12 @@ export default function Calzado() {
           </div>
           {/* Cuadro Imagen4 */}
           <div className="hidden lg:flex w-full h-50 mt-4 bg-[#2C509ED1] rounded-4xl justify-around">
-            <h1 className=' ml-16.5 font-sans -tracking-widest font-bold text-white/70 text-[120px]'>SNEAKERS</h1>
-            <div className="h-41 w-80 bg-cover bg-center " style={{ backgroundImage: `url(${calzadoimagen})` }}></div>
+            <h1 className='ml-10 xl:ml-16.5 font-sans -tracking-widest font-bold text-white/70 lg:text-7xl xl:text-[120px]'>SNEAKERS</h1>
+            <div className="h-41 w-4/12 bg-cover bg-center " style={{ backgroundImage: `url(${calzadoimagen})` }}></div>
             <div className="mr-16">
-              <h2 className='font-popins tracking-tighter font-bold mt-7 text-white text-6xl'>ENCUENTRA TU ESTILO</h2>
+              <h2 className='font-popins tracking-tighter font-bold mt-7 text-white  lg:text-4xl xl:text-6xl'>ENCUENTRA TU ESTILO</h2>
               <div className="flex gap-4">
-                <h2 className='text-[#1C4390] p-2.5 font-popins tracking-tighter font-bold text-4xl w-auto h-auto rounded-4xl bg-[#DFE162]'>Compra Ahora</h2>
+                <h2 className='text-[#1C4390] p-2.5 font-popins tracking-tighter font-bold text-4xl w-2/12 lg:w-auto h-auto rounded-4xl bg-[#DFE162]'>Compra Ahora</h2>
                 <h2 className='font-popins tracking-tighter mt-3 font-bold text-white text-4xl'>50% DESCUENTO</h2>
               </div>
             </div>
