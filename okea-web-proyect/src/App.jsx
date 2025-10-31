@@ -42,9 +42,19 @@ function App() {
               path="/"
               element={
                 <>
-                 
+                  <Presentacion />
+                  <CategoriaHome />
+                  <Ofertas />
+                  <Tecnologia />
+                  <Muebles />
                   <Calzado />
-                 
+                  <Supermercado />
+                  <Recomendados />
+                  <Vendidos />
+                  <Ultimo />
+                  <MarcasDestacadas />
+                  <PreguntasFrecuentes />
+                  <BloqueDeServicios />
                 </>
               }
             />
