@@ -16,7 +16,6 @@ export default function Tecnologia() {
     return {
       backgroundColor: isLight ? '#ffffff' : '#120F31',
       color: isLight ? '#000000' : '#ffffff',
-      minHeight: '100vh',
       transition: 'background-color 0.3s ease, color 0.3s ease'
     };
     };
@@ -53,10 +52,10 @@ export default function Tecnologia() {
     return (
     <section className="Home" style={getBackgroundStyle()}>
       {/*Tecnologia*/}
-      <section className="Tecnologia px-40">
-        <div className="mt-16 items-center flex flex-col justify-center">
+      <section className=" Tecnologia">
+        <div className="mt-4 md:mt-16 items-center flex flex-col justify-center px-4 sm:px-6/12 md:3/12 lg:px-40">
             {/*Titulo*/}
-            <div className="flex justify-center w-400 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"         
+            <div className="hidden md:flex justify-center w-full py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"         
             style={{
           background: isLight
             ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -76,23 +75,33 @@ export default function Tecnologia() {
                     </div>
                 </button>
             </div>
+             {/*Título*/}
+            <div className=" md:hidden flex w-full text-left gap-5">
+                <div className=" scale-70 mt-1.5">
+                    {isLight ? <TecnologyIcon /> : < TecnologyIconDarkMode />}
+                </div>
+                <h1 className='text-3xl md:text-4xl pt-1.5 font-popins  text-[#434651]'style={getTextStyle()}>Tecnología</h1>
+            </div>
+            
+          {/*Contenido fila 2 responsive*/}
+           <div className=" mt-4 md:hidden flex overflow-hidden bg-cover w-full rounded-2xl h-24 md:h-80" style={{ backgroundImage: `url(${tecnologiaImagen6})` }} ></div>
             {/*Contenido fila 1*/}
-            <div className="mx-40 w-400 h-100 mt-4">
-                <div className=" h-100 grid grid-cols-2 gap-4 "> 
-                    <div className="relative overflow-hidden pt-10 px-7 bg-[#B1C5FF] h-100 rounded-4xl">
-                        <div className="flex justify-center">
-                            <h1 className='font-popins text-[55px] text-white'>Llévate <span className='font-popins font-extralight text-[55px] text-[#DAE2FF]'>un </span><span className='font-popins text-[64px] text-[#1D1B20]'>iPhone 16 Pro</span></h1>
+            <div className="mx-40  w-full h-98 md:h-100 mt-4">
+                <div className=" h-98 md:h-100 md:grid md:grid-cols-2 gap-4 "> 
+                    <div className="relative overflow-hidden pt-10 px-7 bg-[#B1C5FF] h-48 md:h-100 rounded-2xl md:rounded-4xl">
+                        <div className="flex justify-center -mt-4 md:-mt-0">
+                            <h1 className='font-popins text-2xl md:text-[55px] text-white'>Llévate <span className='font-popins font-extralight text-2xl md:text-[55px] text-[#DAE2FF]'>un </span><span className='font-popins text-2xl md:text-[64px] text-[#1D1B20]'>iPhone 16 Pro</span></h1>
                         </div>
-                        <div className="w-52 ml-20 text-center mt-12 ">
-                            <h2 className='font-popins-light mx-4 font-bold text-[55px] leading-12 text-white '>OFERTA</h2>
-                            <h2 className='font-popins-light font-bold text-[55px] leading-12 text-white '>ESPECIAL</h2>
-                            <h2 className='w-65 font-popins font-extralight text-4xl text-[#DAE2FF]'>por lanzamiento exclusivo</h2>
+                        <div className="w-52 -ml-10 md:ml-20 text-center mt-2 md:mt-12 ">
+                            <h2 className='font-popins-light mx-4 font-bold text-2xl md:text-[55px] leading-normal md:leading-12 text-white '>OFERTA</h2>
+                            <h2 className='font-popins-light font-bold text-2xl md:text-[55px] leading-3 md:leading-12 text-white '>ESPECIAL</h2>
+                            <h2 className='w-40 md:w-75 ml-6 md:-ml- font-popins font-extralight text-md md:text-4xl text-[#DAE2FF]'>por lanzamiento exclusivo</h2>
                         </div>
                         {/*imagen*/}
-                        <div className="absolute bg-cover -bottom-30 -right-54 w-200 h-124 scale-50 " style={{ backgroundImage: `url(${tecnologiaImagen1})` }}></div>
+                        <div className="absolute bg-cover -bottom-48.5 md:-bottom-30 -right-75 md:-right-54 w-200 h-124 scale-22 md:scale-50 " style={{ backgroundImage: `url(${tecnologiaImagen1})` }}></div>
                     </div>
                     {/*cuadro derecho*/}
-                    <div className="relative py-8 px-10 h-100  bg-contain   bg-no-repeat rounded-4xl bg-[#e35944]" style={{ backgroundImage: `url(${tecnologiaImagen5})` }}>
+                    <div className="relative py-8 px-10 h-48 md:h-100 mt-4 md:mt-0  bg-contain bg-no-repeat rounded-2xl md:rounded-4xl bg-[#e35944] " style={{ backgroundImage: `url(${tecnologiaImagen5})` }}>
                       {/*Por si se tiene que hacer cada elemento*/}
                       {/*<div className="absolute bottom-15 right-20 scale-140 text-center w-68 ">
                       <h2 className='font-popins leading-3 font-extralight text-2xl text-white'>SAVE UP TO</h2>
@@ -107,7 +116,7 @@ export default function Tecnologia() {
             <div className="" style={{ backgroundImage: `url(${tecnologiaImagen6})` }}></div>
                             
             {/*Contenido fila 2*/}
-           <div className=" mt-4 flex overflow-hidden w-400 rounded-3xl h-80 bg-slate-300" > 
+           <div className=" mt-6 md:mt-4 hidden md:flex overflow-hidden w-full rounded-3xl h-80 bg-slate-300" > 
                 {/*contenido papa*/}
                 <div className=" max-w-4xl w-90 h-80 p-10 rounded-r-[60px] bg-gradient-to-b from-[#023770] to-[#1768be]">
                     <div className="flex justify-center">

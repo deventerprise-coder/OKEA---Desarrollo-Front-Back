@@ -42,7 +42,6 @@ const CustomerReview = ({
     transition: 'color 0.3s ease'
   });
 
-  // Datos por defecto si no se proporcionan
   const defaultReview = {
     reviewText: "Exelente, el producto llego en buen estado, y buena calidad.",
     rating: 5,
@@ -78,7 +77,6 @@ const CustomerReview = ({
 
   return (
     <div className="w-full max-w-md mx-auto" style={getCardStyle()}>
-      {/* Texto de la reseña y estrellas en la misma línea */}
       <div className="flex items-start justify-between mb-4 gap-4">
         <p className="text-base leading-relaxed flex-1" style={getTextStyle()}>
           {review.reviewText}
@@ -88,7 +86,6 @@ const CustomerReview = ({
         </div>
       </div>
 
-      {/* Imágenes de la reseña */}
       <div className="flex gap-2 mb-4 overflow-x-auto">
         {review.images.map((image, index) => (
           <div
@@ -104,7 +101,6 @@ const CustomerReview = ({
         ))}
       </div>
 
-      {/* Información del cliente */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200">

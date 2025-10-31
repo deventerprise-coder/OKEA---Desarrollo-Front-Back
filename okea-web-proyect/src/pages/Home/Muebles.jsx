@@ -66,14 +66,26 @@ export default function Muebles() {
      }));
   };  
 
+      // lista de productos
+      const productos = Array.from({ length: 6 }, (_, i) => ({
+        id: `producto${i + 1}Calzado`,
+        image: muebleMesitaNoche,
+        discount: "-50%",
+        label: "Label",
+        title: "Wooden Sofa Chair",
+        price: "$80.00",
+        oldPrice: "s/ 160.00",
+        rating: "4.9",
+      }));
+  
 
     return (
       <section className="Home" style={getBackgroundStyle()}>
       {/*Muebles*/}
-      <section className="Muebles px-40">
-        <div className=" mt-16 items-center flex flex-col justify-center">
+      <section className="Muebles px-4 sm:px-6/12 md:3/12 lg:px-40">
+        <div className=" mt-4 md:mt-16 items-center flex flex-col justify-center">
             {/*Titulo*/}
-            <div className="flex justify-center w-400 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+            <div className="hidden md:flex justify-center w-full py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
              style={{
             background: isLight
               ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -93,27 +105,34 @@ export default function Muebles() {
                     </div>
                 </button>
             </div>
+             {/*Título*/}
+            <div className=" md:hidden flex  w-full text-left gap-5">
+                <div className=" scale-70 mt-1.5">
+                    {isLight ? <SofaIcon color="#434651" /> : < SofaIconDarkMode />}
+                </div>
+                <h1 className='text-3xl md:text-4xl pt-1.5 font-popins  text-[#434651]'style={getTextStyle()}>Muebles</h1>
+            </div>
             {/*Contenido Fila 1*/}
-            <div className="grid grid-cols-5 gap-4 mt-4 mx-40 w-400">
+            <div className="grid md:grid-cols-5 gap-4 mt-4 mx-40 w-full">
                 {/*Cuadro 1*/}
-                <div className="col-start-1 col-end-5  bg-cover bg-right overflow-hidden h-200 rounded-4xl  bg-no-repeat" style={{ backgroundImage: `url(${mueblesFondo})` }}>
+                <div className="col-start-1 col-end-5 bg-cover w-full bg-right overflow-hidden h-65.5 md:h-200 rounded-2xl  md:rounded-4xl  bg-no-repeat" style={{ backgroundImage: `url(${mueblesFondo})` }}>
                     <div className="flex justify-between">
                         {/*Promocion*/}
-                        <div className="bg-[#EB5A45] h-97 w-100 flex justify-center py-11 rounded-br-4xl">    
+                        <div className="bg-[#EB5A45] h-97 w-100 -mt-31.5 -ml-31.5 md:-mt-0 md:-ml-0 scale-35 md:scale-100 flex justify-center py-11 rounded-br-4xl">    
                             <div className=" scale-110 gap-2 my-11  h-54 w-96">
-                                <h2 className='text-white ml-2 pl-16 font-popins-light text-left'>HASTA </h2>
+                                <h2 className='text-white ml-2 pl-16 mb-1 text-2xl font-popins-light text-left'>HASTA </h2>
                                 <div className="flex justify-center">
                                     <h2 className='text-white  -mt-5 text-9xl font-extrabold font-popins col-span-1'>50</h2>
                                     <div className="columns-1 text-center -mt-5 col-end-1">
                                         <h2 className='text-white  text-8xl font-extrabold font-popins col-span-1'>%</h2>
-                                        <h2 className='text-white  font-popins font-light '>DCTO.</h2>
+                                        <h2 className='text-white text-2xl -mt-2 font-popins font-light '>DCTO.</h2>
                                     </div>
                                 </div>
-                                <h2 className='text-[#DFE162] text-center mt-5 text-3xl tracking-tight font-popins h-12 w-96'>En todo los <span className='font-bold text-white text-4xl'>sofás</span></h2>
+                                <h2 className='text-[#DFE162] text-center mt-10 text-4xl tracking-tight font-popins h-12 w-96'>En todo los <span className='font-bold text-white text-4xl'>sofás</span></h2>
                             </div>
                         </div>    
                         {/*Cuadro Mueble*/}
-                        <div className="flex bg-white/20 rounded-3xl mt-7.5 mr-8.5 py-18 backdrop-blur-2xl">
+                        <div className="flex bg-white/20 scale-32 md:scale-100 rounded-3xl -mt-30 md:mt-7.5 -ml-59.5 md:mr-8.5 py-18 backdrop-blur-2xl">
                             <div className="bg-white w-57 h-50 rounded-2xl ml-8 mr-5">
                                 <div className="h-86 w-150 bg-no-repeat bg-cover scale-35 -ml-47 -my-19" style={{ backgroundImage: `url(${cuadroMueble1})` }}></div>
                             </div>
@@ -134,8 +153,8 @@ export default function Muebles() {
                     </div>
                     {/*Cuadro Mueble*/}
                     <div className="flex justify-end">
-                        <div className="flex bg-white/20 rounded-3xl mb-7.5 mt-7 mr-8.5 py-18 backdrop-blur-2xl">
-                            <div className="text-right w-46 mr-15">
+                        <div className="flex bg-white/20 scale-32 md:scale-100 rounded-3xl -mt-60.5 md:mb-7.5 md:mt-7 -mr-41 md:mr-8.5 py-18 backdrop-blur-2xl">
+                            <div className="text-right w-46 mr-5 mx-9.5 ">
                                     <h2 className='text-white text-2xl leading-4 font-popins-light font-extralight'>Sofá minimalista de lino natural</h2>
                                     <h2 className='text-white text-2xl my-1 font-popins font-bold'>s/ <span className='text-5xl'>1,400</span></h2>
                                     <h2 className='text-white -ml-1 text-xs font-popins-light font-extralight'>precio normal <span className='line-through text-[#C4C6D3]'>s/<span className=' text-xl'>2,800</span></span> </h2>
@@ -155,7 +174,7 @@ export default function Muebles() {
                     </div>
                 </div>
                 {/*Cuadro 2*/}
-                <div className=' relative  h-200 rounded-4xl overflow-hidden'>
+                <div className='hidden md:block relative  h-200 rounded-4xl overflow-hidden'>
                     <div className=" h-200  bg-cover bg-left-bottom -ml-26" style={{ backgroundImage: `url(${silla})` }}></div>
                     <div className=" absolute bottom-10 left-13   text-center text-white">
                         <div className="bg-gradient-to-t from-[#E4E666] to-[#E4E666]/0 h-76.5 w-97 -ml-25 -mb-20 ">
@@ -175,9 +194,9 @@ export default function Muebles() {
                 </div>
             </div>
             {/*Fila 2*/}
-            <div className="mt-3">
+            <div className=" w-full">
                 {/*Cuadro 3*/}
-                <div className="flex px-4 w-400 mx-40 py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"             style={{
+                <div className="hidden md:flex px-4 w-full overflow-hidden py-4 mt-4 h-100 rounded-4xl  bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"             style={{
                  background: isLight
                    ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
                    : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
@@ -186,115 +205,45 @@ export default function Muebles() {
                     <button className="text-4xl mr-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                         <h1 className=''><ArrowLeftNormal/></h1>
                     </button>
-                    <div className="carrusel flex gap-4">
-                      {/*Producto1*/}
+                    <div className="carrusel w-100% md:flex gap-4">
+                      {productos.map((p) => (
                         <ProductCard
-                          id="producto1Muebles"
-                          image={muebleMesitaNoche}
-                          discount="-50%"
-                          label="Label"
-                          title="Wooden Sofa Chair"
-                          price="$80.00"
-                          oldPrice="s/ 160.00"
-                          rating="4.9"
-                          liked={liked["producto1Muebles"]}
-                          added={addedItems[1]}
+                          key={p.id}
+                          id={p.id}
+                          {...p}
+                          liked={liked[p.id]}
+                          added={addedItems[p.id]}
                           onLike={toggleLike}
                           onAdd={handleClick}
                           getCardStyle={getCardStyle}
                           getTextStyle={getTextStyle}
                         />
-
-                        {/*Producto2*/}
-                        <ProductCard
-                          id="producto2Muebles"
-                          image={muebleMesitaNoche}
-                          discount="-50%"
-                          label="Label"
-                          title="Wooden Sofa Chair"
-                          price="$80.00"
-                          oldPrice="s/ 160.00"
-                          rating="4.9"
-                          liked={liked["producto2Muebles"]}
-                          added={addedItems[1]}
-                          onLike={toggleLike}
-                          onAdd={handleClick}
-                          getCardStyle={getCardStyle}
-                          getTextStyle={getTextStyle}
-                        />
-                        {/*Producto3*/}
-                        <ProductCard
-                          id="producto3Muebles"
-                          image={muebleMesitaNoche}
-                          discount="-50%"
-                          label="Label"
-                          title="Wooden Sofa Chair"
-                          price="$80.00"
-                          oldPrice="s/ 160.00"
-                          rating="4.9"
-                          liked={liked["producto3Muebles"]}
-                          added={addedItems[1]}
-                          onLike={toggleLike}
-                          onAdd={handleClick}
-                          getCardStyle={getCardStyle}
-                          getTextStyle={getTextStyle}
-                        />
-                        {/*Producto4*/}
-                        <ProductCard
-                          id="producto4Muebles"
-                          image={muebleMesitaNoche}
-                          discount="-50%"
-                          label="Label"
-                          title="Wooden Sofa Chair"
-                          price="$80.00"
-                          oldPrice="s/ 160.00"
-                          rating="4.9"
-                          liked={liked["producto4Muebles"]}
-                          added={addedItems[1]}
-                          onLike={toggleLike}
-                          onAdd={handleClick}
-                          getCardStyle={getCardStyle}
-                          getTextStyle={getTextStyle}
-                        />
-                        {/*Producto5*/}
-                        <ProductCard
-                          id="producto5Muebles"
-                          image={muebleMesitaNoche}
-                          discount="-50%"
-                          label="Label"
-                          title="Wooden Sofa Chair"
-                          price="$80.00"
-                          oldPrice="s/ 160.00"
-                          rating="4.9"
-                          liked={liked["producto5Muebles"]}
-                          added={addedItems[1]}
-                          onLike={toggleLike}
-                          onAdd={handleClick}
-                          getCardStyle={getCardStyle}
-                          getTextStyle={getTextStyle}
-                        />
-                        {/*Producto6*/}
-                        <ProductCard
-                          id="producto6Muebles"
-                          image={muebleMesitaNoche}
-                          discount="-50%"
-                          label="Label"
-                          title="Wooden Sofa Chair"
-                          price="$80.00"
-                          oldPrice="s/ 160.00"
-                          rating="4.9"
-                          liked={liked["producto6Muebles"]}
-                          added={addedItems[1]}
-                          onLike={toggleLike}
-                          onAdd={handleClick}
-                          getCardStyle={getCardStyle}
-                          getTextStyle={getTextStyle}
-                        />
+                      ))}
                     </div>
                 <button className="text-4xl mx-4 text-gray-400 font-bold rounded-full h-10 mt-44 hover:bg-white/30 transition px-2">
                     <h1 className=''><ArrowRightNormal/></h1>
                 </button> 
                 </div>
+           {/* 📱 Versión móvil (carrusel deslizable) */}
+          <div
+            className="md:hidden flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full mt-4 py-4 px-2 rounded-4xl group"
+          >
+            {productos.map((p) => (
+              <div key={p.id}>
+                  <ProductCard
+                  key={p.id}
+                  id={p.id}
+                  {...p}
+                  liked={liked[p.id]}
+                  added={addedItems[p.id]}
+                  onLike={toggleLike}
+                  onAdd={handleClick}
+                  getCardStyle={getCardStyle}
+                  getTextStyle={getTextStyle}
+                />
+              </div>
+            ))}
+          </div>
             </div>    
         </div>
       </section>
