@@ -971,6 +971,40 @@ export const Location1 = ({ stroke = '#DFE162', ...props }) => (
   </svg>
 );
 
+export const ShareIcon = ({ size = 24, colorborder = '#002B5B', color, strokeWidth = 2.5, circleRadius = 3, ...props }) => (
+  <svg 
+    width={size} 
+    height={size}
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    {...props}
+  >
+    <line
+      x1="5"  
+      y1="10"
+      x2="15"
+      y2="4"
+      stroke={colorborder}
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+    />
+    <line
+      x1="5"  
+      y1="10"
+      x2="15"
+      y2="16"
+      stroke={colorborder}
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+    />
+    <circle cx="5" cy="10" r={circleRadius} fill={color} stroke={colorborder} strokeWidth={strokeWidth} />
+    <circle cx="15" cy="4" r={circleRadius} fill={color} stroke={colorborder} strokeWidth={strokeWidth} />
+    <circle cx="15" cy="16" r={circleRadius} fill={color} stroke={colorborder} strokeWidth={strokeWidth} />
+  </svg>
+);
+
 export const FiltroIcon = ({color = "#1F3A58", width = 30, height = 31}) => (
   <svg width={width} height={height} viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M26.25 5.85089H17.5" stroke={color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ transition: 'stroke 500ms ease' }}/>
@@ -1219,18 +1253,18 @@ export const OpinioneDetalleIcon = () => (
   </svg>
 )
 
-export const RemoveProductIcon = () => (
-  <svg width="16" height="3" viewBox="0 0 16 3" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M1 1.5H15" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+export const RemoveProductIcon = ({ color = '#001947', ...props }) => (
+  <svg width="16" height="3" viewBox="0 0 16 3" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M1 1.5H15" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
-)
+);
 
-export const AddProductIcon = () => (
-  <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M1 8.5H15" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M8 1.5V15.5" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+export const AddProductIcon = ({ color = '#001947', ...props }) => (
+  <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M1 8.5H15" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M8 1.5V15.5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
-)
+);
 
 export const AddProductToCarIcon = () => (
   <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1238,42 +1272,41 @@ export const AddProductToCarIcon = () => (
 </svg>
 )
 
-export const EnvioEstadarIcon = () => (
-  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14 18.5V6.5C14 5.96957 13.7893 5.46086 13.4142 5.08579C13.0391 4.71071 12.5304 4.5 12 4.5H4C3.46957 4.5 2.96086 4.71071 2.58579 5.08579C2.21071 5.46086 2 5.96957 2 6.5V17.5C2 17.7652 2.10536 18.0196 2.29289 18.2071C2.48043 18.3946 2.73478 18.5 3 18.5H5" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M15 18.5H9" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19 18.5H21C21.2652 18.5 21.5196 18.3946 21.7071 18.2071C21.8946 18.0196 22 17.7652 22 17.5V13.85C21.9996 13.6231 21.922 13.403 21.78 13.226L18.3 8.876C18.2065 8.75888 18.0878 8.66428 17.9528 8.5992C17.8178 8.53412 17.6699 8.50021 17.52 8.5H14" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17 20.5C18.1046 20.5 19 19.6046 19 18.5C19 17.3954 18.1046 16.5 17 16.5C15.8954 16.5 15 17.3954 15 18.5C15 19.6046 15.8954 20.5 17 20.5Z" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7 20.5C8.10457 20.5 9 19.6046 9 18.5C9 17.3954 8.10457 16.5 7 16.5C5.89543 16.5 5 17.3954 5 18.5C5 19.6046 5.89543 20.5 7 20.5Z" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-)
-
-export const EnvioExpressoIcon = () => (
-    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M16 16.5L18 18.5L22 14.5" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M21 10.5V8.50002C20.9996 8.1493 20.9071 7.80483 20.7315 7.50119C20.556 7.19754 20.3037 6.94539 20 6.77002L13 2.77002C12.696 2.59449 12.3511 2.50208 12 2.50208C11.6489 2.50208 11.304 2.59449 11 2.77002L4 6.77002C3.69626 6.94539 3.44398 7.19754 3.26846 7.50119C3.09294 7.80483 3.00036 8.1493 3 8.50002V16.5C3.00036 16.8508 3.09294 17.1952 3.26846 17.4989C3.44398 17.8025 3.69626 18.0547 4 18.23L11 22.23C11.304 22.4056 11.6489 22.498 12 22.498C12.3511 22.498 12.696 22.4056 13 22.23L15 21.09" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M7.5 4.77002L16.5 9.92002" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M3.28906 7.5L11.9991 12.5L20.7091 7.5" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M12 22.5V12.5" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+export const EnvioEstadarIcon = ({ color = '#001947', ...props }) => (
+  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M14 18.5V6.5C14 5.96957 13.7893 5.46086 13.4142 5.08579C13.0391 4.71071 12.5304 4.5 12 4.5H4C3.46957 4.5 2.96086 4.71071 2.58579 5.08579C2.21071 5.46086 2 5.96957 2 6.5V17.5C2 17.7652 2.10536 18.0196 2.29289 18.2071C2.48043 18.3946 2.73478 18.5 3 18.5H5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M15 18.5H9" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M19 18.5H21C21.2652 18.5 21.5196 18.3946 21.7071 18.2071C21.8946 18.0196 22 17.7652 22 17.5V13.85C21.9996 13.6231 21.922 13.403 21.78 13.226L18.3 8.876C18.2065 8.75888 18.0878 8.66428 17.9528 8.5992C17.8178 8.53412 17.6699 8.50021 17.52 8.5H14" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M17 20.5C18.1046 20.5 19 19.6046 19 18.5C19 17.3954 18.1046 16.5 17 16.5C15.8954 16.5 15 17.3954 15 18.5C15 19.6046 15.8954 20.5 17 20.5Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M7 20.5C8.10457 20.5 9 19.6046 9 18.5C9 17.3954 8.10457 16.5 7 16.5C5.89543 16.5 5 17.3954 5 18.5C5 19.6046 5.89543 20.5 7 20.5Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
-)
+);
 
-export const DevolucionesDetalleIcon = () => (
-  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M21 10.5V8.50002C20.9996 8.1493 20.9071 7.80483 20.7315 7.50119C20.556 7.19754 20.3037 6.94539 20 6.77002L13 2.77002C12.696 2.59449 12.3511 2.50208 12 2.50208C11.6489 2.50208 11.304 2.59449 11 2.77002L4 6.77002C3.69626 6.94539 3.44398 7.19754 3.26846 7.50119C3.09294 7.80483 3.00036 8.1493 3 8.50002V16.5C3.00036 16.8508 3.09294 17.1952 3.26846 17.4989C3.44398 17.8025 3.69626 18.0547 4 18.23L11 22.23C11.304 22.4056 11.6489 22.498 12 22.498C12.3511 22.498 12.696 22.4056 13 22.23L15 21.09" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7.5 4.77002L16.5 9.92002" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.28906 7.5L11.9991 12.5L20.7091 7.5" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 22.5V12.5" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17 13.5L22 18.5M17 18.5L22 13.5" stroke="#001947" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-)
+export const EnvioExpressoIcon = ({ color = '#001947', ...props }) => (
+  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M16 16.5L18 18.5L22 14.5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M21 10.5V8.50002C20.9996 8.1493 20.9071 7.80483 20.7315 7.50119C20.556 7.19754 20.3037 6.94539 20 6.77002L13 2.77002C12.696 2.59449 12.3511 2.50208 12 2.50208C11.6489 2.50208 11.304 2.59449 11 2.77002L4 6.77002C3.69626 6.94539 3.44398 7.19754 3.26846 7.50119C3.09294 7.80483 3.00036 8.1493 3 8.50002V16.5C3.00036 16.8508 3.09294 17.1952 3.26846 17.4989C3.44398 17.8025 3.69626 18.0547 4 18.23L11 22.23C11.304 22.4056 11.6489 22.498 12 22.498C12.3511 22.498 12.696 22.4056 13 22.23L15 21.09" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M7.5 4.77002L16.5 9.92002" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3.28906 7.5L11.9991 12.5L20.7091 7.5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M12 22.5V12.5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
-export const EntregaDetalleIcon = () => (
-  <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M11 0.5C13.6522 0.5 16.1959 1.55335 18.0713 3.42871C19.9467 5.30407 21 7.84784 21 10.5C21 13.1522 19.9467 15.6959 18.0713 17.5713C16.1959 19.4467 13.6522 20.5 11 20.5C8.34784 20.5 5.80407 19.4467 3.92871 17.5713C2.05335 15.6959 1 13.1522 1 10.5C1 7.84784 2.05335 5.30407 3.92871 3.42871C5.80407 1.55335 8.34784 0.5 11 0.5ZM11 1C9.75244 1 8.51685 1.24524 7.36426 1.72266C6.21168 2.20008 5.16437 2.90008 4.28223 3.78223C3.40008 4.66437 2.70008 5.71168 2.22266 6.86426C1.74524 8.01685 1.5 9.25244 1.5 10.5C1.5 13.0196 2.50063 15.4362 4.28223 17.2178C6.06382 18.9994 8.48044 20 11 20C13.5196 20 15.9362 18.9994 17.7178 17.2178C19.4994 15.4362 20.5 13.0196 20.5 10.5C20.5 9.25244 20.2538 8.01685 19.7764 6.86426C19.299 5.71182 18.5998 4.66428 17.7178 3.78223C16.8356 2.90008 15.7883 2.20008 14.6357 1.72266C13.6271 1.30487 12.5549 1.06525 11.4668 1.01172L11 1ZM10.25 5C10.3163 5 10.3799 5.02636 10.4268 5.07324C10.4736 5.12013 10.5 5.1837 10.5 5.25V11H14.75C14.8163 11 14.8799 11.0264 14.9268 11.0732C14.9736 11.1201 15 11.1837 15 11.25C15 11.3163 14.9736 11.3799 14.9268 11.4268C14.8799 11.4736 14.8163 11.5 14.75 11.5H10.25C10.1837 11.5 10.1201 11.4736 10.0732 11.4268C10.0264 11.3799 10 11.3163 10 11.25V5.25C10 5.1837 10.0264 5.12013 10.0732 5.07324C10.1201 5.02636 10.1837 5 10.25 5Z" fill="black" stroke="#001947"/>
-</svg>
-)
+export const DevolucionesDetalleIcon = ({ color = '#001947', ...props }) => (
+  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M21 10.5V8.50002C20.9996 8.1493 20.9071 7.80483 20.7315 7.50119C20.556 7.19754 20.3037 6.94539 20 6.77002L13 2.77002C12.696 2.59449 12.3511 2.50208 12 2.50208C11.6489 2.50208 11.304 2.59449 11 2.77002L4 6.77002C3.69626 6.94539 3.44398 7.19754 3.26846 7.50119C3.09294 7.80483 3.00036 8.1493 3 8.50002V16.5C3.00036 16.8508 3.09294 17.1952 3.26846 17.4989C3.44398 17.8025 3.69626 18.0547 4 18.23L11 22.23C11.304 22.4056 11.6489 22.498 12 22.498C12.3511 22.498 12.696 22.4056 13 22.23L15 21.09" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M7.5 4.77002L16.5 9.92002" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3.28906 7.5L11.9991 12.5L20.7091 7.5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M12 22.5V12.5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M17 13.5L22 18.5M17 18.5L22 13.5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+export const EntregaDetalleIcon = ({ color = '#001947', fillColor = 'black', ...props }) => (
+  <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M11 0.5C13.6522 0.5 16.1959 1.55335 18.0713 3.42871C19.9467 5.30407 21 7.84784 21 10.5C21 13.1522 19.9467 15.6959 18.0713 17.5713C16.1959 19.4467 13.6522 20.5 11 20.5C8.34784 20.5 5.80407 19.4467 3.92871 17.5713C2.05335 15.6959 1 13.1522 1 10.5C1 7.84784 2.05335 5.30407 3.92871 3.42871C5.80407 1.55335 8.34784 0.5 11 0.5ZM11 1C9.75244 1 8.51685 1.24524 7.36426 1.72266C6.21168 2.20008 5.16437 2.90008 4.28223 3.78223C3.40008 4.66437 2.70008 5.71168 2.22266 6.86426C1.74524 8.01685 1.5 9.25244 1.5 10.5C1.5 13.0196 2.50063 15.4362 4.28223 17.2178C6.06382 18.9994 8.48044 20 11 20C13.5196 20 15.9362 18.9994 17.7178 17.2178C19.4994 15.4362 20.5 13.0196 20.5 10.5C20.5 9.25244 20.2538 8.01685 19.7764 6.86426C19.299 5.71182 18.5998 4.66428 17.7178 3.78223C16.8356 2.90008 15.7883 2.20008 14.6357 1.72266C13.6271 1.30487 12.5549 1.06525 11.4668 1.01172L11 1ZM10.25 5C10.3163 5 10.3799 5.02636 10.4268 5.07324C10.4736 5.12013 10.5 5.1837 10.5 5.25V11H14.75C14.8163 11 14.8799 11.0264 14.9268 11.0732C14.9736 11.1201 15 11.1837 15 11.25C15 11.3163 14.9736 11.3799 14.9268 11.4268C14.8799 11.4736 14.8163 11.5 14.75 11.5H10.25C10.1837 11.5 10.1201 11.4736 10.0732 11.4268C10.0264 11.3799 10 11.3163 10 11.25V5.25C10 5.1837 10.0264 5.12013 10.0732 5.07324C10.1201 5.02636 10.1837 5 10.25 5Z" fill={fillColor} stroke={color}/>
+  </svg>
+);
 
 export const FiltroResponsiveIcon = ({color="#1F3A58"}) => (
   <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">

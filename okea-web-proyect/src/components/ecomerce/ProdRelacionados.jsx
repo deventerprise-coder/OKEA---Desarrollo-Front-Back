@@ -1,6 +1,12 @@
 import { CardProductosRel } from "./CardProductosRel";
 import { FlechaDerechaProdRel, FlechaIzquierdaProdRel } from "../../assets/iconos/Icons.jsx";
-import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png";
+//import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png";
+import ProdRelacionado1 from "../../assets/imagenes/Home/prodrelacionado1.png";
+import ProdRelacionado2 from "../../assets/imagenes/Home/prodrelacionado2.png";
+import ProdRelacionado3 from "../../assets/imagenes/Home/prodrelacionado3.png";
+import ProdRelacionado4 from "../../assets/imagenes/Home/prodrelacionado4.png";
+import ProdRelacionado5 from "../../assets/imagenes/Home/prodrelacionado5.png";
+import ProdRelacionado6 from "../../assets/imagenes/Home/prodrelacionado6.png";
 import ProductCard from "../../components/ProductCard.jsx";
 import { useState, useRef } from "react";
 import { useTheme } from "../../components/ThemeContext";
@@ -39,12 +45,12 @@ export function ProdRelacionados() {
   };
 
     const productos = [
-        { id: "producto1Muebles", index: 1 },
-        { id: "producto2Muebles", index: 2 },
-        { id: "producto3Muebles", index: 3 },
-        { id: "producto4Muebles", index: 4 },
-        { id: "producto5Muebles", index: 5 },
-        { id: "producto6Muebles", index: 6 },
+        { id: "producto1Muebles", index: 1 , image: ProdRelacionado1, title: "Wooden Sofa Chair"},
+        { id: "producto2Muebles", index: 2 , image: ProdRelacionado2, title: "Wooden Sofa Chair"},
+        { id: "producto3Muebles", index: 3 , image: ProdRelacionado3, title: "Wooden Sofa Chair"},
+        { id: "producto4Muebles", index: 4 , image: ProdRelacionado4, title: "Wooden Sofa Chair"},
+        { id: "producto5Muebles", index: 5 , image: ProdRelacionado5, title: "Wooden Sofa Chair"},
+        { id: "producto6Muebles", index: 6 , image: ProdRelacionado6, title: "Wooden Sofa Chair"},
     ];
 
     const scrollLeft = () => {
@@ -89,10 +95,10 @@ export function ProdRelacionados() {
                                 <div key={producto.id} className="flex-shrink-0">
                                     <ProductCard
                                         id={producto.id}
-                                        image={muebleMesitaNoche}
+                                        image={producto.image}
                                         discount="-50%"
                                         label="Label"
-                                        title="Wooden Sofa Chair"
+                                        title={producto.title}
                                         price="$80.00"
                                         oldPrice="s/ 160.00"
                                         rating="4.9"
@@ -127,10 +133,10 @@ export function ProdRelacionados() {
                             <div key={producto.id} className="flex-shrink-0 w-[280px]">
                                 <ProductCard
                                     id={producto.id}
-                                    image={muebleMesitaNoche}
+                                    image={producto.image}
                                     discount="-50%"
                                     label="Label"
-                                    title="Wooden Sofa Chair"
+                                    title={producto.title}
                                     price="$80.00"
                                     oldPrice="s/ 160.00"
                                     rating="4.9"

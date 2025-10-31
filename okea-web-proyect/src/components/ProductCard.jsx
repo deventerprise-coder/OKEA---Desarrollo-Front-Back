@@ -75,7 +75,7 @@ const ProductCard = ({
       <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
         <div className="w-57 rounded-2xl ml-8 mr-5">
           <div
-            className="absolute -bottom-60 h-160 w-150 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"
+            className="absolute -bottom-60 h-160 w-150 bg-no-repeat bg-cover scale-25 -ml-56 mb-6 group-hover:scale-35 transition"
             style={{ backgroundImage: `url(${image})` }}
           />
         </div>
