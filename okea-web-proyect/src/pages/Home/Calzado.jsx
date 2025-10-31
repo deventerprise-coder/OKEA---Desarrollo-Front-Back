@@ -253,7 +253,7 @@ export default function Calzado() {
             ))}
           </div>
           {/* Cuadro Imagen4 */}
-          <div className="hidden md:flex w-full h-50 mt-4 bg-[#2C509ED1] rounded-4xl justify-around">
+          <div className="hidden lg:flex w-full h-50 mt-4 bg-[#2C509ED1] rounded-4xl justify-around">
             <h1 className=' ml-16.5 font-sans -tracking-widest font-bold text-white/70 text-[120px]'>SNEAKERS</h1>
             <div className="h-41 w-80 bg-cover bg-center " style={{ backgroundImage: `url(${calzadoimagen})` }}></div>
             <div className="mr-16">
