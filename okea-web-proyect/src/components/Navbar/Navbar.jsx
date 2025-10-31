@@ -49,7 +49,12 @@ const NAVBAR_CONFIG = {
 	},
 	layout: {
 		NavbarHeight: { mobile: 64, standard: 64, large: 64, xLarge: 64 },
-		HeaderPadding: { mobile: [0, 10, 0, 10], standard: [0, 10, 0, 10] },
+		HeaderPadding: { 
+			mobile: [0, 10, 0, 10], 
+			standard: [0, 10, 0, 10],
+			large: [0, 10, 0, 10],
+			xLarge: [0, 160, 0, 160] 
+		},
 		GapX: { mobile: 0, standard: 0, large: 0, xLarge: 0 },
 		LogoGroupPosition: { mobile: 0, standard: 0, large: 0, xLarge: 0 },
 		SearchBarMaxWidth: { mobile: 300, standard: 450, large: 600, xLarge: 700 },
@@ -57,7 +62,7 @@ const NAVBAR_CONFIG = {
 	components: {
 		Logo: {
 			marginRight: { mobile: 0, standard: 0, large: 0, xLarge: 0 },
-			marginLeft: { mobile: 0, standard: 0, large: 0, xLarge: 156 },
+			marginLeft: { mobile: 0, standard: 0, large: 0, xLarge: 0 },
 		},
 		LocationButton: {
 			marginRight: { mobile: 0, standard: 0, large: 0, xLarge: 0 },
@@ -76,7 +81,7 @@ const NAVBAR_CONFIG = {
 			marginLeft: { mobile: 0, standard: 0, large: 0, xLarge: 0 },
 		},
 		CartBadge: {
-			marginRight: { mobile: 0, standard: 0, large: 0, xLarge: 160 },
+			marginRight: { mobile: 0, standard: 0, large: 0, xLarge: 0},
 			marginLeft: { mobile: 0, standard: 0, large: 0, xLarge: 0 },
 		},
 		MenuButton: {
@@ -557,7 +562,14 @@ export default function Navbar() {
 						}}
 					>
 						<SearchBar
-							onToggleCategorias={() => handleToggleDropdown("categorias")}
+							onToggleCategorias={() => {
+								if (currentBreakpoint === "large") {
+									closeDynamicDropdowns();
+									setIsMenuOpen(true);
+								} else {
+									handleToggleDropdown("categorias");
+								}
+							}}
 						/>
 					</div>
 
@@ -645,11 +657,14 @@ export default function Navbar() {
 				</div>
 			</header>
 
-			{isMenuOpen && isMobileBreakpoint && (
+			{isMenuOpen && (isMobileBreakpoint || currentBreakpoint === "large") && (
 				<MenuDropdownMobile
 					isOpen={isMenuOpen}
 					onClose={() => setIsMenuOpen(false)}
-					navbarHeight={NAVBAR_CONFIG.layout.NavbarHeight.mobile}
+					navbarHeight={
+						NAVBAR_CONFIG.layout.NavbarHeight[currentBreakpoint] ??
+						NAVBAR_CONFIG.layout.NavbarHeight.mobile
+					}
 				/>
 			)}
 
