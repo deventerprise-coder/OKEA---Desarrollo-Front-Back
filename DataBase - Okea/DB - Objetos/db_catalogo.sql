@@ -707,8 +707,7 @@ SELECT
     c.slug AS categoria_slug,
     m.id_marca,
     m.nombre_marca,
-    m.slug AS marca_slug,
-    m.logo_url AS marca_logo
+    m.slug AS marca_slug
 FROM productos p
 INNER JOIN categorias c ON p.id_categoria = c.id_categoria
 INNER JOIN marcas m ON p.id_marca = m.id_marca;
@@ -734,8 +733,7 @@ SELECT
     c.nombre_categoria,
     c.slug AS categoria_slug,
     m.nombre_marca,
-    m.slug AS marca_slug,
-    m.logo_url AS marca_logo
+    m.slug AS marca_slug
 FROM productos p
 INNER JOIN categorias c ON p.id_categoria = c.id_categoria
 INNER JOIN marcas m ON p.id_marca = m.id_marca
