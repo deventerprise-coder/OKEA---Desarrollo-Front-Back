@@ -173,20 +173,6 @@ CREATE TABLE IF NOT EXISTS carrito (
     CONSTRAINT fk_carrito_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-
--- Tabla Pedidos
-CREATE TABLE IF NOT EXISTS pedidos (
-    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT NOT NULL,
-    fecha_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    estado ENUM('pendiente','pagado','enviado','entregado','cancelado') DEFAULT 'pendiente',
-    total DECIMAL(10,2) NOT NULL CHECK (total >= 0),
-    id_direccion INT,
-    CONSTRAINT fk_pedidos_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
-    CONSTRAINT fk_pedidos_direccion FOREIGN KEY (id_direccion) REFERENCES direcciones(id_direccion)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-
 -- Tabla Direcciones
 CREATE TABLE IF NOT EXISTS direcciones (
   id_direccion INT AUTO_INCREMENT PRIMARY KEY,
@@ -204,6 +190,17 @@ CREATE TABLE IF NOT EXISTS direcciones (
   INDEX idx_dir_tipo (tipo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Tabla Pedidos
+CREATE TABLE IF NOT EXISTS pedidos (
+    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    fecha_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    estado ENUM('pendiente','pagado','enviado','entregado','cancelado') DEFAULT 'pendiente',
+    total DECIMAL(10,2) NOT NULL CHECK (total >= 0),
+    id_direccion INT,
+    CONSTRAINT fk_pedidos_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+    CONSTRAINT fk_pedidos_direccion FOREIGN KEY (id_direccion) REFERENCES direcciones(id_direccion)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tabla Detalle_pedido
 CREATE TABLE IF NOT EXISTS detalle_pedido (
@@ -232,8 +229,7 @@ CREATE TABLE IF NOT EXISTS favoritos (
     
     KEY idx_usuario (id_usuario),
     KEY idx_producto (id_producto),
-    KEY idx_fecha (creado_el),
-    KEY idx_email (email_usuario)
+    KEY idx_fecha (creado_el)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -396,10 +392,5 @@ CREATE TABLE IF NOT EXISTS inventario (
     INDEX idx_inventario_fecha (fecha_movimiento),
     INDEX idx_inventario_tipo (tipo_movimiento),
 
-    CONSTRAINT chk_stock_no_negativo CHECK (stock_actual >= 0)
+    CONSTRAINT chk_stock_inventario_no_negativo CHECK (stock_actual >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-
-
-INSERT INTO logs (id_usuario, accion, descripcion)
-VALUES (p_usuario, 'EXEC SP', CONCAT('Se ejecutó ', 'sp_registrar_pago'));
