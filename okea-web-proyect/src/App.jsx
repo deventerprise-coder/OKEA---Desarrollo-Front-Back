@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeContext';
 import { SortProvider } from './components/ecomerce/SortContext';
 import Navbar from './components/Navbar/Navbar';
@@ -15,6 +15,7 @@ import CarritoPage from './pages/CarritoPage';
 import ScrollToTop from './components/ScrollToTop';
 import Categoria from './pages/Catalogo/Catergoria';
 import DetalleProducto from './components/ecomerce/DetalleProducto';
+import ProductoDetalle from './pages/Dashboard/Productos/ProductoDetalle';
 import Presentacion from './pages/Home/Presentacion';
 import CategoriaHome from './pages/Home/CategoriaHome';
 import Ofertas from './pages/Home/Ofertas';
@@ -178,11 +179,7 @@ function App() {
             />
             <Route 
               path="/producto/detalle/:modelo" 
-              element={
-                <>
-                  <DetalleProducto />
-                </>
-              }
+              element={<ProductoDetalle CategoriaProducto={"Tecnología"} SubCategoriaProducto={"Celulares"}/>}
             />
           </Routes>
         </div>

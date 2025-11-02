@@ -5,55 +5,39 @@ import { OpinioneDetalleIcon, RemoveProductIcon, AddProductIcon, AddProductToCar
 import {ShoppingCartIcon} from "../../assets/iconos/iconoHome";
 import {EnvioEstadarIcon, EnvioExpressoIcon, DevolucionesDetalleIcon, EntregaDetalleIcon} from "../../assets/iconos/Icons";
 import { useTheme } from "../ThemeContext";
-import { BreadCrum } from "./BreadCrum";
 import TechnicalSpecifications from "../TechnicalSpecifications";
-import CustomerReview from "../CustomerReview";
-import {ProdRelacionados} from "./ProdRelacionados";
-import PreguntasFrecuentes from "../PreguntasFrecuentes";
-import Iphone12 from "../../assets/imagenes/ProductCards/Iphone12.png"
 
-export default function DetalleProducto() {
+export default function DetalleProducto({
+    NombreProducto,
+    Marca,
+    PrecioActual,
+    PrecioOriginal,
+    DescripcionCorta, 
+    DescripcionProducto, 
+    Especificaciones, 
+    Imagen, 
+    Colores,
+    Tamaños,
+    Puntuacion, 
+    Reseñas,
+}) {
     const { isLight } = useTheme();
     const [liked, setLiked] = useState(false);
     const [added, setAdded] = useState(false);
     const [quantity, setQuantity] = useState(0);
     const [selectedSize, setSelectedSize] = useState(null);
     const iconColor =added ? "#FFFFFF" : "#484900";
-    const colorOptions = ['#053559', '#16141F', '#BFB6EB', '#DDF4D8', '#F9F6F1'];
-    const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
-    const productImages = [Iphone12,Iphone12,Iphone12,Iphone12, Iphone12];
+    const [selectedColor, setSelectedColor] = useState(Colores ? Colores[0] : '#053559');
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+    const productImages = Imagen || [];
     const thumbnailContainerRef = useRef(null);
     const thumbnailRefs = useRef([]);
-    const relatedSections = [
-        "Productos similares:",
-        "Más opciones:"
-    ];
-    const productSpecifications = [
-        { label: 'Condición del producto', value: 'Nuevo' },
-        { label: 'Marca', value: 'Apple' },
-        { label: 'Modelo', value: 'iPhone 12' },
-        { label: 'Color', value: 'Negro'},
-        { label: 'Pantalla', value: '6.1" Super Retina XDR' },
-        { label: 'Procesador', value: 'A14 Bionic' },
-        { label: 'Almacenamiento', value: '64/128/256 GB' },
-        { label: 'Cámara', value: 'Doble 12 MP (Gran angular/Ultra gran angular)' },
-        { label: 'Batería', value: 'Carga rápida y MagSafe' },
-        { label: 'Conectividad', value: '5G, Wi‑Fi 6, Bluetooth 5.0' },
-        { label: 'Resistencia', value: 'IP68' },
-        { label: 'Sistema', value: 'iOS' },
-        { label: 'País de origen', value: 'EEUU'}
-    ];
+    const productSpecifications = Especificaciones;
     const [activeInfoTab, setActiveInfoTab] = useState('descripcion');
     const handleAccordionClick = (tabName) => {
         setActiveInfoTab(prevTab => prevTab === tabName ? null : tabName);
     };
-    const productDescription = [
-        'iPhone 12 ofrece un diseño delgado y resistente con pantalla Super Retina XDR de 6.1 pulgadas y Ceramic Shield.',
-        'Con el chip A14 Bionic, brinda rendimiento ágil y eficiente para apps y juegos exigentes.',
-        'Sistema de doble cámara de 12 MP con Modo Noche, 5G para descargas rápidas y compatibilidad con accesorios MagSafe.',
-    ];
-    const customerReviews = Array.from({ length: 6 }, (_, i) => ({ id: i }));
+    const productDescription = DescripcionProducto;
     const splitSpecsEqual = (arr) => {
         const half = Math.ceil(arr.length / 2);
         return [arr.slice(0, half), arr.slice(half)];
@@ -74,16 +58,7 @@ export default function DetalleProducto() {
         }
     }, [selectedImageIndex]);
     return (
-        <div className={`${isLight ? 'bg-white text-[#001947]' : 'bg-[#0B0F38] text-white'} motion-safe:transition-colors motion-safe:duration-300 motion-safe:ease-in-out`}
-             data-theme={isLight ? undefined : 'dark'}
-        >
-        <div className="hidden lg:block [&_div[class*='md:flex']]:hidden p-3 mt-4 pl-[8%] [&>div]:!mt-10 sm:[&>div]:!mt-16 md:[&>div]:!mt-20 [&>div]:!h-auto [&>div]:!pb-4 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
-                <BreadCrum 
-                    categoria="Tecnología" 
-                    subcategoria="iPhone 12" 
-                    isLight={isLight} 
-                />
-        </div>
+        <>
         <div className={`flex flex-col lg:flex-row lg:pt-0 justify-center items-start gap-6 lg:gap-8 xl:px-8 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>
             <div className={`w-full mt-2 pb-20 pl-[10%] lg:w-[60%] flex lg:flex-col xl:flex-row gap-4 rounded-tl-[32px] rounded-tr-[32px] lg:rounded-t-none lg:mt-0 ${isLight ? 'bg-white lg:bg-transparent' : 'bg-[#9E9CAF] lg:bg-transparent'} motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>
 
@@ -168,7 +143,7 @@ export default function DetalleProducto() {
                     />
                     <div className="absolute top-[20%] md:top-[25%] right-[15%] lg:hidden motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                         <div className="flex flex-col gap-3">
-                            {colorOptions.map((c) => (
+                            {Colores.map((c) => (
                                 <button
                                     key={c}
                                     type="button"
@@ -202,7 +177,7 @@ export default function DetalleProducto() {
             </div>
             <aside className={`flex flex-col w-full lg:w-[35%] gap-6 lg:mr-38 mb-6 lg:my-12 ${isLight ? 'bg-white border-gray-200' : 'bg-[#0B0F38] border-white/20' } -mt-20 pt-6 rounded-tl-[32px] rounded-tr-[32px] border-t lg:rounded-t-none lg:border-t-0 px-4 md:px-16 lg:mt-0 lg:pt-0 lg:px-0 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>
                 <div className="flex justify-between items-start order-2 lg:order-none">
-                    <h2 className={`text-[24px] sm:text-[28px] md:text-[36px] lg:text-[45px] font-semibold font-[Poppins, sans-serif] ${isLight ? 'text-[#001947]' : 'text-white'} motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>iPhone 12</h2>
+                    <h2 className={`text-[24px] sm:text-[28px] md:text-[36px] lg:text-[45px] font-semibold font-[Poppins, sans-serif] ${isLight ? 'text-[#001947]' : 'text-white'} motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>{NombreProducto}</h2>
                     <div className="hidden lg:flex flex lg:flex-col items-center gap-x-5 lg:gap-x-0 gap-y-5 sm:gap-y-8 md:gap-y-10 mr-2 sm:mr-4 pt-2 sm:pt-6 -mb-10 sm:-mb-20">
                         <button className="cursor-pointer" onClick={() => setLiked(!liked)}>
                             <FavoritoCardIcon color={liked ? "#EB5A45" : "#C4C6D3"} size="28"/>
@@ -214,14 +189,14 @@ export default function DetalleProducto() {
                         </button>
                     </div>
                     <div className="flex gap-4 items-center lg:hidden">
-                        <span className="text-[24px] sm:text-[30px] md:text-[36px] font-bold font-[Poppins, sans-serif] text-[#F4604B]">S/200</span>
-                        <span className="text-[18px] sm:text-[20px] md:text-[24px] font-[Poppins, sans-serif] font-regular line-through text-[#D8D8D8]">S/200</span>
+                        <span className="text-[24px] sm:text-[30px] md:text-[36px] font-bold font-[Poppins, sans-serif] text-[#F4604B]">S/{PrecioActual}</span>
+                        <span className="text-[18px] sm:text-[20px] md:text-[24px] font-[Poppins, sans-serif] font-regular line-through text-[#D8D8D8]">S/{PrecioOriginal}</span>
                     </div>
                 </div>
-                <p className={`hidden lg:block ${isLight ? 'text-[#001947]' : 'text-[#E7EAFF]'} font-[Poppins, sans-serif] font-medium text-[12px] underline`}>By Apple</p>
+                <p className={`hidden lg:block ${isLight ? 'text-[#001947]' : 'text-[#E7EAFF]'} font-[Poppins, sans-serif] font-medium text-[12px] underline`}>By {Marca}</p>
                 <div className="flex lg:hidden justify-between items-center order-1 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                     <p className={`${isLight ? 'text-[#001947]' : 'text-[#E7EAFF]'} font-[Poppins, sans-serif] font-medium text-[12px] underline pt-2`}>
-                        By Apple
+                        By {Marca}
                     </p>
                     <div className="flex items-center gap-x-5 mr-2 sm:mr-4">
                         <button className="cursor-pointer" onClick={() => setLiked(!liked)}>
@@ -234,14 +209,13 @@ export default function DetalleProducto() {
                 </div>
                 <div className="lg:hidden order-4 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                     <p className={`text-[15px] ${isLight ? 'text-[#3A3D46]' : 'text-[#E6E9FF]'}`}>
-                        Un polo es una prenda de vestir tipo camiseta, 
-                        generalmente de punto, con cuello y tapeta con botones.
+                        {DescripcionCorta}
                     </p>
                     <hr className={`my-6 ${isLight ? 'border-gray-200' : 'border-gray-700'}`} />
                 </div>
                 <div className="flex gap-5 order-3 lg:order-none motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                     <span className={`${isLight ? 'text-[#001947]' : 'text-white'} font-[Poppins, sans-serif] font-medium text-[14px] sm:text-[16px] flex items-center gap-2`}>
-                        5.0 
+                        {Puntuacion} 
                         <span className="lg:hidden">
                             <CalificacionOptions calificacion={1} width={20} height={19.07} />
                         </span>
@@ -250,13 +224,13 @@ export default function DetalleProducto() {
                         </span>
                     </span>
                     <span className={`${isLight ? 'text-[#919094]' : 'text-[#B8BEE0]'} font-[Poppins, sans-serif] font-medium text-[12px] flex items-center gap-1`}>
-                        <span className="hidden lg:flex lg:gap-2 lg:items-center"><OpinioneDetalleIcon /> 110 opiniones</span>
-                        <span className="lg:hidden">(110 opiniones)</span>
+                        <span className="hidden lg:flex lg:gap-2 lg:items-center"><OpinioneDetalleIcon /> {Reseñas} opiniones</span>
+                        <span className="lg:hidden">({Reseñas} opiniones)</span>
                     </span>
                 </div>
                 <div className="hidden flex gap-4 items-center lg:flex">
-                    <span className="text-[24px] sm:text-[30px] md:text-[36px] font-bold font-[Poppins, sans-serif] text-[#F4604B]">S/200</span>
-                    <span className="text-[18px] sm:text-[20px] md:text-[24px] font-[Poppins, sans-serif] font-regular line-through text-[#D8D8D8]">S/200</span>
+                    <span className="text-[24px] sm:text-[30px] md:text-[36px] font-bold font-[Poppins, sans-serif] text-[#F4604B]">S/{PrecioActual}</span>
+                    <span className="text-[18px] sm:text-[20px] md:text-[24px] font-[Poppins, sans-serif] font-regular line-through text-[#D8D8D8]">S/{PrecioOriginal}</span>
                 </div>
                 <div className="hidden flex items-center gap-4 lg:flex motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                     <p className={`${isLight ? 'text-[#001947]' : 'text-[#E7EAFF]'} font-[Poppins, sans-serif] font-medium text-[12px] underline`}>Cuotas sin intereses</p>
@@ -265,7 +239,7 @@ export default function DetalleProducto() {
                 <div className="hidden flex flex-col gap-2 lg:flex motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                     <p className={`${isLight ? 'text-[#2B2B2B]' : 'text-[#C9CDE1]'} font-[Poppins, sans-serif] font-medium text-[12px]`}>Color:</p>
                     <div className="flex gap-2 items-center motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
-                        {colorOptions.map((c, idx) => (
+                        {Colores.map((c, idx) => (
                             <button
                                 key={c}
                                 type="button"
@@ -286,48 +260,23 @@ export default function DetalleProducto() {
                 <div className="flex flex-col gap-2 mt-4 order-7 lg:order-none motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                     <p className={`${isLight ? 'text-[#2B2B2B]' : 'text-[#C9CDE1]'} font-[Poppins, sans-serif] font-medium text-[12px]`}>Tamaño:</p>
                     <div className="flex gap-3 lg:ml-2">
-                        <div
-                            onClick={() => setSelectedSize('64 GB')}
-                            className={`lg:w-[84px] w-[100px] h-[48px] rounded-[20px] text-[16px] font-[Poppins, sans-serif] font-medium flex items-center justify-center cursor-pointer border-[1.5px] motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out ${
-                                selectedSize === '64 GB'
-                                    ? (isLight
-                                        ? 'bg-[#C8C854] text-[#001947] border-[#AAABB4] hover:border-[#001947]'
-                                        : 'bg-[#C8C854] text-black border-[#A6A2C7]')
-                                    : (isLight
-                                        ? 'bg-[#E4E2E6] text-[#001947] border-[#AAABB4] hover:border-[#001947]'
-                                        : 'bg-[#2B2A57] text-[#E7EAFF] border-[#A6A2C7] hover:bg-[#2D257D]')
-                            }`}
-                        >
-                            64 GB
-                        </div>
-                        <div
-                            onClick={() => setSelectedSize('128 GB')}
-                            className={`lg:w-[84px] w-[100px] h-[48px] rounded-[20px] text-[16px] font-[Poppins, sans-serif] font-medium flex items-center justify-center cursor-pointer border-[1.5px] motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out ${
-                                selectedSize === '128 GB'
-                                    ? (isLight
-                                        ? 'bg-[#C8C854] text-[#001947] border-[#AAABB4] hover:border-[#001947]'
-                                        : 'bg-[#C8C854] text-black border-[#A6A2C7]')
-                                    : (isLight
-                                        ? 'bg-[#E4E2E6] text-[#001947] border-[#AAABB4] hover:border-[#001947]'
-                                        : 'bg-[#2B2A57] text-[#E7EAFF] border-[#A6A2C7] hover:bg-[#2D257D]')
-                            }`}
-                        >
-                            128 GB
-                        </div>
-                        <div
-                            onClick={() => setSelectedSize('256 GB')}
-                            className={`lg:w-[84px] w-[100px] h-[48px] rounded-[20px] text-[16px] font-[Poppins, sans-serif] font-medium flex items-center justify-center cursor-pointer border-[1.5px] motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out ${
-                                selectedSize === '256 GB'
-                                    ? (isLight
-                                        ? 'bg-[#C8C854] text-[#001947] border-[#AAABB4] hover:border-[#001947]'
-                                        : 'bg-[#C8C854] text-black border-[#A6A2C7]')
-                                    : (isLight
-                                        ? 'bg-[#E4E2E6] text-[#001947] border-[#AAABB4] hover:border-[#001947]'
-                                        : 'bg-[#2B2A57] text-[#E7EAFF] border-[#A6A2C7] hover:bg-[#2D257D]')
-                            }`}
-                        >
-                            256 GB
-                        </div>
+                        {Tamaños && Tamaños.map((size, index) => (
+                            <div
+                                key={index}
+                                onClick={() => setSelectedSize(size)}
+                                className={`lg:w-[84px] w-[100px] h-[48px] rounded-[20px] text-[16px] font-[Poppins, sans-serif] font-medium flex items-center justify-center cursor-pointer border-[1.5px] motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out ${
+                                    selectedSize === size
+                                        ? (isLight
+                                            ? 'bg-[#C8C854] text-[#001947] border-[#AAABB4] hover:border-[#001947]'
+                                            : 'bg-[#C8C854] text-black border-[#A6A2C7]')
+                                        : (isLight
+                                            ? 'bg-[#E4E2E6] text-[#001947] border-[#AAABB4] hover:border-[#001947]'
+                                            : 'bg-[#2B2A57] text-[#E7EAFF] border-[#A6A2C7] hover:bg-[#2D257D]')
+                                }`}
+                            >
+                                {size}
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className="flex flex-col gap-2 mt-2 order-8 lg:order-none motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
@@ -436,7 +385,7 @@ export default function DetalleProducto() {
                 </div>
             </aside>
         </div>
-        <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-full px-4 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
+    <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-full px-4 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
             <div className={`mx-auto w-full max-w-[480px] flex items-center justify-between gap-3 rounded-[32px] ${isLight ? 'bg-[#2643A4]' : 'bg-[#403F57]'} p-6 shadow-xl motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>
                 <button
                     className={`flex-1 h-12 flex items-center justify-center gap-2 rounded-full ${added ? 'bg-[#EB5A45] text-white' : 'bg-[#DFE162] text-[#484900]'} transition-colors duration-500 ease-out font-[Poppins, sans-serif] font-medium text-[14px]`}
@@ -454,7 +403,7 @@ export default function DetalleProducto() {
                 </button>
             </div>
         </div>
-        <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-12 mt-12 md:mt-16 mb-16 gap-3 md:gap-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
+    <div className="w-full flex flex-col items-center px-4 sm:px-8 md:px-12 mt-12 md:mt-16 mb-16 gap-3 md:gap-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
             
             <h2 className={`hidden lg:block w-full max-w-[1568px] mx-auto text-left ${isLight ? 'text-[#0B1B59]' : 'text-white'} text-[28px] sm:text-[36px] leading-[1.1] font-[Poppins,sans-serif] font-semibold motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>
                 Información de producto:
@@ -593,73 +542,6 @@ export default function DetalleProducto() {
                 })()
             )}
         </div>
-        <div className="hidden lg:flex w-full flex flex-col items-center px-6 sm:px-12 mt-2 mb-16 gap-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
-            <h2 className={`w-full max-w-[1568px] mx-auto text-left ${isLight ? 'text-[#0B1B59]' : 'text-white'} text-[32px] sm:text-[36px] leading-[1.1] font-[Poppins,sans-serif] font-semibold`}>
-                Opiniones de clientes:
-            </h2>
-            <div className="w-full max-w-[1568px] mx-auto flex flex-wrap items-center gap-4">
-                <button
-                    type="button"
-                    className={`inline-flex items-center gap-3 px-5 py-3 rounded-2xl text-base font-medium transition focus:outline-none ${
-                        isLight
-                            ? 'bg-[#EEF1FF] text-[#0B1B59] shadow-[0_6px_18px_rgba(223,227,255,0.8)] hover:shadow-[0_8px_22px_rgba(223,227,255,0.95)] focus:ring-2 focus:ring-[#C9D1FF]'
-                            : 'bg-[#3A31A9] text-white shadow-[0_6px_18px_rgba(50,45,140,0.45)] hover:bg-[#2D257D] focus:ring-2 focus:ring-[#5B57C9]'
-                    }`}
-                >
-                    Filtro: Todas las opiniones
-                    <ChevronDownIcon width={18} height={18} />
-                </button>
-                <button
-                    type="button"
-                    className={`inline-flex items-center gap-3 px-5 py-3 rounded-2xl text-base font-medium transition focus:outline-none ${
-                        isLight
-                            ? 'bg-[#EEF1FF] text-[#0B1B59] shadow-[0_6px_18px_rgba(223,227,255,0.8)] hover:shadow-[0_8px_22px_rgba(223,227,255,0.95)] focus:ring-2 focus:ring-[#C9D1FF]'
-                            : 'bg-[#3A31A9] text-white shadow-[0_6px_18px_rgba(50,45,140,0.45)] hover:bg-[#2D257D] focus:ring-2 focus:ring-[#5B57C9]'
-                    }`}
-                >
-                    Con foto/video
-                </button>
-            </div>
-            <div className="w-full max-w-[1568px] mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {customerReviews.map((r) => (
-                    <div key={r.id} className="[&>div]:!max-w-none [&>div]:w-full">
-                        <CustomerReview />
-                    </div>
-                ))}
-            </div>
-        </div>
-        <div className="w-full flex flex-col items-center px-6 sm:px-12 mt-16 mb-16 gap-16 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
-            {relatedSections.map((title) => (
-                <div
-                    key={title}
-                    className="w-full flex flex-col items-center gap-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out"
-                >
-                    <h2 className={`w-full max-w-[1568px] mx-auto text-left ${isLight ? 'text-[#0B1B59]' : 'text-white'} text-[32px] sm:text-[45px] leading-[1.1] font-[Poppins,sans-serif] font-semibold`}>
-                        {title}
-                    </h2>
-                    <div
-                        className="w-full [&>div]:!w-full [&>div]:!max-w-[1568px] [&>div]:!px-0 [&>div]:!mx-auto [&>div>h1]:!hidden"
-                    >
-                        <ProdRelacionados />
-                    </div>
-                </div>
-            ))}
-        </div>
-
-        <div className="w-full flex flex-col items-center px-6 sm:px-12 mt-16 mb-20 gap-10 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
-            <h2 className={`w-full max-w-[1568px] mx-auto text-left ${isLight ? 'text-[#0B1B59]' : 'text-white'} text-[32px] sm:text-[45px] leading-[1.1] font-[Poppins,sans-serif] font-semibold`}>
-                Preguntas frecuentes:
-            </h2>
-            <div
-                className={`w-full [&>section]:!w-full [&>section]:!max-w-[1568px] [&>section]:!mx-auto [&>section]:!bg-transparent [&>section]:!p-0 [&>section]:!py-0 [&>section]:!px-0 [&>section>h2]:!hidden [&>section>div]:!w-full [&>section>div]:!max-w-[1568px] [&>section>div]:!mx-0 [&>section>div]:!gap-6 ${
-                    isLight
-                        ? '[&>section>div>div>div:first-child]:!bg-[#F7F7FD] [&>section>div>div>div:first-child]:!shadow-none [&>section>div>div>div:first-child]:!border-0'
-                        : ''
-                } motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}
-            >
-                <PreguntasFrecuentes />
-            </div>
-        </div>
-        </div>
+        </>
     )
 }
