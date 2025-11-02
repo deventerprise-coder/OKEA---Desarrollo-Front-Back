@@ -245,7 +245,7 @@ function CarruselAuto({ children }) {
             </div>
           
           {/* Controles e Indicadores */}
-          <div className="flex items-center px-2 py-3.5 mt-8 h-8 w-400  ">
+          <div className="flex items-center px-2 py-3.5 mt-8 h-8 w-full  ">
               <div className="flex items-center justify-between w-full ">
               {/* Flecha Izquierda */}
               <button onClick={prevSlideCategorias} disabled={currentCat === 0} className="">
