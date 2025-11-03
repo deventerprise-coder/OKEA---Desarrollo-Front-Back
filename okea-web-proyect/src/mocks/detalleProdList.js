@@ -129,7 +129,7 @@ export const productoElectroHogar = [
   },
   {
     id: 2,
-    NombreProducto: "Smart2",
+    NombreProducto: "InverterV",
     Marca: "LG",
     PrecioActual: 1499,
     PrecioOriginal: 1599,
