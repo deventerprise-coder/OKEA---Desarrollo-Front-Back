@@ -5,30 +5,103 @@ import DetalleProducto from "../../../components/ecomerce/DetalleProducto";
 import CustomerReview from "../../../components/CustomerReview";
 import { ProdRelacionados } from "../../../components/ecomerce/ProdRelacionados";
 import PreguntasFrecuentes from "../../../components/PreguntasFrecuentes";
+import Footer from "../../../components/Footer/Footer";
 import { ChevronDownIcon } from "../../../assets/iconos/Icons";
 import { useTheme } from "../../../components/ThemeContext";
+import { slugify } from "../../../utils/slugify";
 const relatedSections = [
     "Productos similares:",
     "Más opciones:"
 ];
 const customerReviews = Array.from({ length: 6 }, (_, i) => ({ id: i }));
-export default function ProductoDetalle({CategoriaProducto, SubCategoriaProducto}) {
+
+const catalogMap = {
+    "Tecnología": productos.productoTecnologia,
+    "Muebles y Organización": productos.productoMuebles,
+    "Calzado": productos.productoCalzado,
+    "Dormitorio y Baños": productos.productoDormitorio,
+    "Accesorios de Moda": productos.productoAccesorios,
+    "Salud y Bienestar": productos.productoSalud,
+    "Juguetes": productos.productoJuguetes,
+    "Decoración": productos.productoDecoracion,
+    "Mascotas": productos.productoMascotas,
+    "Supermercado": productos.productoSupermercado,
+    "Electrohogar": productos.productoElectroHogar,
+    "Moda Hombre": productos.productoModaH,
+    "Moda Mujer": productos.productoModaM,
+    "Automotriz": productos.productoAutomotriz,
+};
+
+const buildProductFromState = (productoState, categoria) => {
+    if (!productoState) {
+        return null;
+    }
+    const nombre = productoState.modelo || productoState.NombreProducto || "Producto";
+    const precioActual = productoState.precio ? Number(productoState.precio) : productoState.PrecioActual || 0;
+    const precioOriginal = productoState.precioSinDescuento ? Number(productoState.precioSinDescuento) : (productoState.PrecioOriginal || precioActual);
+
+    return {
+        NombreProducto: nombre,
+        Marca: productoState.marca || productoState.Marca || "",
+        PrecioActual: precioActual,
+        PrecioOriginal: precioOriginal,
+        DescripcionCorta: productoState.descripcion || productoState.DescripcionCorta || "",
+        DescripcionProducto: productoState.DescripcionProducto || (productoState.descripcion ? [productoState.descripcion] : []),
+        Especificaciones: productoState.Especificaciones || [],
+        Imagen: productoState.Imagen || (productoState.imagen ? [productoState.imagen] : []),
+        Colores: productoState.Colores || [],
+        Tamaños: productoState.Tamaños || [],
+        Puntuacion: productoState.calificacion ? Number(productoState.calificacion) : (productoState.Puntuacion || 0),
+        Reseñas: productoState.Reseñas || 0,
+        CategoriaProducto: categoria,
+    };
+};
+
+export default function ProductoDetalle({CategoriaProducto, productoSlug, productoState}) {
     const { isLight } = useTheme();
-    const productosList = CategoriaProducto === "Tecnología" ? productos.productoTecnologia
-    : CategoriaProducto === "Muebles y Organización" ? productos.productoMuebles
-    : CategoriaProducto === "Calzado" ? productos.productoCalzado
-    : CategoriaProducto === "Dormitorio y Baños" ? productos.productoDormitorio
-    : CategoriaProducto === "Accesorios de Moda" ? productos.productoAccesorios
-    : CategoriaProducto === "Salud y Bienestar" ? productos.productoSalud
-    : CategoriaProducto === "Juguetes" ? productos.productoJuguetes
-    : CategoriaProducto === "Decoración" ? productos.productoDecoracion
-    : CategoriaProducto === "Mascotas" ? productos.productoMascotas
-    : CategoriaProducto === "Supermercado" ? productos.productoSupermercado
-    : CategoriaProducto === "Electrohogar" ? productos.productoElectroHogar
-    : CategoriaProducto === "Moda Hombre" ? productos.productoModaH
-    : CategoriaProducto === "Automotriz" ? productos.productoAutomotriz
-    : productos.productoModaM;
-    const productoData = productosList[0];
+    const productosList = catalogMap[CategoriaProducto] || productos.productoTecnologia;
+    //Compara el id del producto que esta en detalleProdList.js con el id de ProductoSlug que esta en ProductCard.jsx
+    //Por mientras se dejara en comparacion de nombres ya que no se tienen id reales.
+    let productoData = productosList.find((item) => slugify(item.NombreProducto || "") === productoSlug);
+
+    const productoFromState = buildProductFromState(productoState, CategoriaProducto);
+
+    if (!productoData && productoFromState) {
+        productoData = productoFromState;
+    }
+
+    if (!productoData && productosList.length > 0) {
+        productoData = productosList[0];
+    } else if (productoData && productoFromState) {
+        productoData = {
+            ...productoData,
+            PrecioActual: productoFromState.PrecioActual || productoData.PrecioActual,
+            PrecioOriginal: productoFromState.PrecioOriginal || productoData.PrecioOriginal,
+            Imagen: productoData.Imagen?.length ? productoData.Imagen : productoFromState.Imagen,
+        };
+    }
+
+    if (!productoData) {
+        productoData = {
+            NombreProducto: "Producto",
+            Marca: "",
+            PrecioActual: 0,
+            PrecioOriginal: 0,
+            DescripcionCorta: "",
+            DescripcionProducto: [],
+            Especificaciones: [],
+            Imagen: [],
+            Colores: [],
+            Tamaños: [],
+            Puntuacion: 0,
+            Reseñas: 0,
+        };
+    }
+
+    const breadcrumbSubcategoria = productoData?.NombreProducto
+        || productoState?.modelo
+        || (productoSlug ? productoSlug.replace(/-/g, " ") : "");
+
     return (
         <div className={`${isLight ? 'bg-white text-[#001947]' : 'bg-[#0B0F38] text-white'} motion-safe:transition-colors motion-safe:duration-300 motion-safe:ease-in-out`}
              data-theme={isLight ? undefined : 'dark'}
@@ -36,7 +109,7 @@ export default function ProductoDetalle({CategoriaProducto, SubCategoriaProducto
             <div className="hidden lg:block [&_div[class*='md:flex']]:hidden p-3 mt-4 pl-[8%] [&>div]:!mt-10 sm:[&>div]:!mt-16 md:[&>div]:!mt-20 [&>div]:!h-auto [&>div]:!pb-4 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                 <BreadCrum
                     categoria={CategoriaProducto}
-                    subcategoria={SubCategoriaProducto}
+                    subcategoria={breadcrumbSubcategoria}
                     isLight={isLight}
                 />
             </div>
@@ -124,6 +197,7 @@ export default function ProductoDetalle({CategoriaProducto, SubCategoriaProducto
                     <PreguntasFrecuentes />
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }

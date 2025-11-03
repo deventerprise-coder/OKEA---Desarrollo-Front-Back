@@ -1,8 +1,9 @@
 import { useState } from "react";
 import {FavoritoCardIcon, EstrellaIcon, CarritoProductoIcon} from "../../assets/iconos/Icons";
 import { useNavigate } from 'react-router-dom';
+import { slugify } from "../../utils/slugify";
 
-export function ProductCard({imagen, marca, modelo, descripcion, precio, precioSinDescuento, etiqueta, calificacion, categoria, isLight}) {
+export function ProductCard({id,imagen, marca, modelo, descripcion, precio, precioSinDescuento, etiqueta, calificacion, categoria, isLight}) {
   const [liked, setLiked] = useState(false);
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
@@ -15,12 +16,33 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
     ? "#FBC101"
     : "#EB5A45";
   const navigate = useNavigate();
+  const handleNavigate = () => {
+    const categoriaSlug = slugify(categoria || "");
+    const productSlug = slugify(/*id || */modelo || marca || descripcion || "producto");
+    navigate(`/producto/detalle/${categoriaSlug}/${productSlug}`, {
+      state: {
+        categoria,
+        producto: {
+          id,
+          imagen,
+          marca,
+          modelo,
+          descripcion,
+          precio,
+          precioSinDescuento,
+          etiqueta,
+          calificacion,
+        },
+      },
+    });
+  };
+
   return (
     <div className={`shadow-sm overflow-hidden flex flex-col items-center relative transition-colors duration-300 ease-out ${isLight ? "bg-white border border-gray-200 hover:drop-shadow-[0_0px_3px_rgba(223,225,98,1)]" : "bg-[#292272] hover:drop-shadow-[0_0px_10.7px_rgba(223,225,98,1)]"} transition-colors duration-500 ease-out transition-border duration-500 ease-out w-full max-w-[305px] min-w-[180px] h-[580px] md:h-[580px] lg:h-[630px]`}
      style={{
       borderRadius: 10,
     }}
-     onClick={()=>{navigate(`/producto/detalle/${modelo.replace(/\s+/g, '-').toLowerCase()}`)}}>
+     onClick={handleNavigate}>
       <div className="absolute top-3 left-3 text-white font-semibold px-2 py-1 rounded-full" style={{
         fontFamily: 'Inter, sans-serif',
         backgroundColor: etiquetaBg,
@@ -33,7 +55,10 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
       </div>
 
       <button
-        onClick={() => setLiked(!liked)}
+        onClick={(event) => {
+          event.stopPropagation();
+          setLiked(!liked);
+        }}
         className="absolute top-3 right-3 cursor-pointer"
       >
         {liked ? <FavoritoCardIcon color="#EB5A45"/> : <FavoritoCardIcon color="#C4C6D3"/>}
@@ -96,7 +121,8 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
         className={`absolute bottom-3 flex items-center text-[11px] justify-center py-2 px-7 rounded-4xl cursor-pointer ${added ? 'bg-[#EB5A45] text-white' : isLight ?'bg-[#E4E666] text-[#484900]': 'bg-[#F5F692] text-[#251F67]'} hover:bg-[#EB5A45] hover:text-white transition-colors duration-500 ease-out sm:text-[14px]`}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        onClick={() => {
+        onClick={(event) => {
+          event.stopPropagation();
           setAdded(!added);
           if (added) {
             setTimeout(() => {
@@ -123,7 +149,7 @@ export function ProductCard({imagen, marca, modelo, descripcion, precio, precioS
             display: 'flex',
             alignItems: 'center'
           }}
-        >
+  >
           <CarritoProductoIcon color={iconColor} />
         </span>
         <span

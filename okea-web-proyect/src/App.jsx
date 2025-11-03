@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeContext';
 import { SortProvider } from './components/ecomerce/SortContext';
 import Navbar from './components/Navbar/Navbar';
@@ -14,7 +14,6 @@ import Home from './pages/Home/Home';
 import CarritoPage from './pages/CarritoPage';
 import ScrollToTop from './components/ScrollToTop';
 import Categoria from './pages/Catalogo/Catergoria';
-import DetalleProducto from './components/ecomerce/DetalleProducto';
 import ProductoDetalle from './pages/Dashboard/Productos/ProductoDetalle';
 import Presentacion from './pages/Home/Presentacion';
 import CategoriaHome from './pages/Home/CategoriaHome';
@@ -26,6 +25,39 @@ import Supermercado from './pages/Home/Supermercado';
 import Recomendados from './pages/Home/Recomendados';
 import Vendidos from './pages/Home/Vendidos';
 import Ultimo from './pages/Home/Ultimo';
+
+const categoriaSlugMap = {
+  'tecnologia': 'Tecnología',
+  'muebles-y-organizacion': 'Muebles y Organización',
+  'calzado': 'Calzado',
+  'dormitorio-y-banos': 'Dormitorio y Baños',
+  'accesorios-de-moda': 'Accesorios de Moda',
+  'salud-y-bienestar': 'Salud y Bienestar',
+  'juguetes': 'Juguetes',
+  'decoracion': 'Decoración',
+  'mascotas': 'Mascotas',
+  'supermercado': 'Supermercado',
+  'electrohogar': 'Electrohogar',
+  'moda-hombre': 'Moda Hombre',
+  'moda-mujer': 'Moda Mujer',
+  'automotriz': 'Automotriz',
+};
+
+const ProductoDetalleRoute = () => {
+  const { categoria, producto } = useParams();
+  const location = useLocation();
+  const CategoriaProducto = categoriaSlugMap[categoria] || (categoria ? categoria.replace(/-/g, ' ') : '');
+  const productoSlug = producto || '';
+  const productoState = location.state?.producto;
+
+  return (
+    <ProductoDetalle
+      CategoriaProducto={CategoriaProducto}
+      productoSlug={productoSlug}
+      productoState={productoState}
+    />
+  );
+};
 
 function App() {
   return (
@@ -178,8 +210,8 @@ function App() {
               }
             />
             <Route 
-              path="/producto/detalle/:modelo" 
-              element={<ProductoDetalle CategoriaProducto={"Tecnología"} SubCategoriaProducto={"Celulares"}/>}
+              path="/producto/detalle/:categoria/:producto" 
+              element={<ProductoDetalleRoute />}
             />
           </Routes>
         </div>
