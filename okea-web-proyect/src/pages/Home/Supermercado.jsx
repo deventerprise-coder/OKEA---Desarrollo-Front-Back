@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useTheme } from "../../components/ThemeContext";
 import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 import supermercadoImagen1 from "../../assets/imagenes/Home/supermercadoImagen1.png"
@@ -10,6 +10,7 @@ import supermercadoImagen6 from "../../assets/imagenes/Home/supermercadoImagen6.
 import supermercadoImagen7 from "../../assets/imagenes/Home/supermercadoImagen7.png"
 import supermercadoImagen8 from "../../assets/imagenes/Home/supermercadoImagen8.jpg"
 import ProductCard from "../../components/ProductCard";
+import ProductCardV2 from "../../components/ProductCardV2";
 import { ArrowLeftNormal, ArrowRightIconBlack, ArrowRightNormal, WineBottleIcon, WineBottleIconDarkMode } from "../../assets/iconos/iconoHome";
 
 
@@ -154,7 +155,7 @@ export default function Supermercado() {
 
             <div className=" carrusel w-100% flex gap-4">
               {productos.map((p) => (
-                <ProductCard
+                <ProductCardV2
                   key={p.id}
                   id={p.id}
                   {...p}
@@ -179,7 +180,7 @@ export default function Supermercado() {
           >
             {productos.map((p) => (
               <div key={p.id}>
-                  <ProductCard
+                  <ProductCardV2
                   key={p.id}
                   id={p.id}
                   {...p}

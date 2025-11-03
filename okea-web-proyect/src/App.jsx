@@ -11,7 +11,6 @@ import PreguntasFrecuentes from './components/PreguntasFrecuentes';
 import BloqueDeServicios from './components/BloqueDeServicios';
 import MarcasDestacadas from './components/MarcasDestacadas';
 import Home from './pages/Home/Home';
-import CarritoPage from './pages/CarritoPage';
 import ScrollToTop from './components/ScrollToTop';
 import Categoria from './pages/Catalogo/Catergoria';
 import ProductoDetalle from './pages/Dashboard/Productos/ProductoDetalle';
@@ -91,7 +90,6 @@ function App() {
                 </>
               }
             />
-            <Route path="/carrito" element={<CarritoPage />} />
             <Route 
               path="/catalogo/tecnologia" 
               element={

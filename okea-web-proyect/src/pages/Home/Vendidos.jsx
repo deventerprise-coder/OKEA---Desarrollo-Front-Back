@@ -4,6 +4,7 @@ import vendidosImagen1 from "../../assets/imagenes/Home/vendidosImagen1.png"
 
 import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 import ProductCard from "../../components/ProductCard.jsx";
+import ProductCardV2 from "../../components/ProductCardV2.jsx";
 import { ArrowLeftNormal, ArrowRightNormal } from "../../assets/iconos/iconoHome.jsx";
 
 
@@ -115,7 +116,7 @@ export default function Vendidos() {
 
             <div className=" carrusel w-100% flex gap-4">
               {productos.map((p) => (
-                <ProductCard
+                <ProductCardV2
                   key={p.id}
                   id={p.id}
                   {...p}
@@ -140,7 +141,7 @@ export default function Vendidos() {
           >
             {productos.map((p) => (
               <div key={p.id}>
-                  <ProductCard
+                  <ProductCardV2
                   key={p.id}
                   id={p.id}
                   {...p}
