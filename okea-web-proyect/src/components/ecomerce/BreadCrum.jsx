@@ -1,14 +1,16 @@
 import { HomeBreadcrumIcon, ArrowBreadcrumIcon, DynamicCelularesIcon } from "../../assets/iconos/Icons"
 import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {ModaIcon, MueblesIcon, CalzadoFilterIcon, DormitorioIcon, AccesoriosIcon, JuguetesIcon, DecoracionFilterIcon, MascotasIcon, SupermercadoFilterIcon,
   ElectrohogarIcon, SoporteIcon} from "../../assets/iconos/Icons";
 export default function DynamicComponent({ firstWord = "iPho", secondWord = "ne", categoria }) {
     const [isHovered, setIsHovered] = useState(false);
     const [firstWordWidth, setFirstWordWidth] = useState(0);
     const [totalWidth, setTotalWidth] = useState(238);
+    const [isCalculating, setIsCalculating] = useState(true);
     const firstWordRef = useRef(null);
     const secondWordRef = useRef(null);
+    const containerRef = useRef(null);
     let IconComponent = DynamicCelularesIcon;
         if (categoria === "Electrohogar") IconComponent = ElectrohogarIcon;
         else if (categoria === "Muebles y Organización") IconComponent = MueblesIcon;
@@ -23,25 +25,97 @@ export default function DynamicComponent({ firstWord = "iPho", secondWord = "ne"
         else if (categoria === "Mascotas") IconComponent = MascotasIcon;
         else if (categoria === "Supermercado") IconComponent = SupermercadoFilterIcon;
 
-    useEffect(() => {
+    const calculateDimensions = () => {
         if (firstWordRef.current && secondWordRef.current) {
             const firstWidth = firstWordRef.current.offsetWidth;
             const secondWidth = secondWordRef.current.offsetWidth;
-            setFirstWordWidth(firstWidth);
             
-            const calculatedWidth = firstWidth + secondWidth + 50;
-            if (calculatedWidth > 238) {
-                setTotalWidth(calculatedWidth);
+            if (firstWidth > 0 && secondWidth > 0) {
+                setFirstWordWidth(firstWidth);
+                
+                const calculatedWidth = firstWidth + secondWidth + 50;
+                if (calculatedWidth > 238) {
+                    setTotalWidth(calculatedWidth);
+                } else {
+                    setTotalWidth(238);
+                }
+                setIsCalculating(false);
             }
         }
-    }, [firstWord, secondWord]);
+    };
+
+    useEffect(() => {
+        setIsCalculating(true);
+        calculateDimensions();
+        const timer1 = setTimeout(() => {
+            calculateDimensions();
+        }, 50);
+        
+        const timer2 = setTimeout(() => {
+            calculateDimensions();
+        }, 200);
+        
+        const resizeObserver = new ResizeObserver(() => {
+            calculateDimensions();
+        });
+        
+        if (firstWordRef.current) {
+            resizeObserver.observe(firstWordRef.current);
+        }
+        if (secondWordRef.current) {
+            resizeObserver.observe(secondWordRef.current);
+        }
+        
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            resizeObserver.disconnect();
+        };
+    }, [firstWord, secondWord, categoria]);
+
+    useEffect(() => {
+        const handleLoad = () => {
+            setTimeout(calculateDimensions, 100);
+        };
+        
+        if (document.readyState === 'complete') {
+            handleLoad();
+        } else {
+            window.addEventListener('load', handleLoad);
+            return () => window.removeEventListener('load', handleLoad);
+        }
+    }, []);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(calculateDimensions, 50);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     const halfWidth = (totalWidth / 2);
 
     return (
         <div 
+            ref={containerRef}
             className="hidden relative md:flex items-center h-[85px] mr-16"
-            style={{ width: `${totalWidth}px` }}
+            style={{ 
+                width: `${totalWidth}px`,
+                opacity: isCalculating ? 0.8 : 1,
+                transition: 'opacity 0.3s ease, width 0.3s ease'
+            }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -60,7 +134,8 @@ export default function DynamicComponent({ firstWord = "iPho", secondWord = "ne"
                     style={{
                         fontFamily: 'Inter',
                         transform: `translateX(-${firstWordWidth}px)`,
-                        whiteSpace: 'nowrap'
+                        whiteSpace: 'nowrap',
+                        visibility: isCalculating ? 'hidden' : 'visible'
                     }}
                 >
                     {firstWord}
@@ -70,7 +145,8 @@ export default function DynamicComponent({ firstWord = "iPho", secondWord = "ne"
                     className={`flex absolute z-10 text-[30px] font-medium items-center ${isHovered ? 'text-[#FFFFFF]' : 'text-[#385BAA]'} transition-colors duration-500 gap-1`} 
                     style={{
                         fontFamily: 'Inter',
-                        whiteSpace: 'nowrap'
+                        whiteSpace: 'nowrap',
+                        visibility: isCalculating ? 'hidden' : 'visible'
                     }}
                 >
                     {secondWord} <IconComponent color={isHovered ? "#FFFFFF" : "#385BAA"} size={30}/>
@@ -81,6 +157,7 @@ export default function DynamicComponent({ firstWord = "iPho", secondWord = "ne"
 };
 export function BreadCrum({categoria, subcategoria, isLight}) {
     const navigate = useNavigate();
+    const location = useLocation();
     
     const splitDynamicText = (categoria) => {
         if (categoria === "Tecnología") return { firstWord: "iPho", secondWord: "ne" };
@@ -111,7 +188,12 @@ export function BreadCrum({categoria, subcategoria, isLight}) {
                 <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
                 <a className={`text-[14px] font-semibold md:font-bold ${isLight ? "text-[#333333]" : "text-[#E4E666]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{subcategoria}</a>
             </div>
-            <DynamicComponent firstWord={firstWord} secondWord={secondWord} categoria={categoria} />
+            <DynamicComponent 
+                key={`${location.pathname}-${categoria}-${firstWord}-${secondWord}`}
+                firstWord={firstWord} 
+                secondWord={secondWord} 
+                categoria={categoria} 
+            />
         </div>
     )
 }

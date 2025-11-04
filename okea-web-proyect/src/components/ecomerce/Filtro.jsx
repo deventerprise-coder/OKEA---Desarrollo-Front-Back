@@ -43,7 +43,7 @@ function FilterSectionMobile({ title, icon: IconComponent, children}) {
 
   return (
     <div
-      className={`relative flex flex-col items-stretch w-[90%] h-[40.85px] border mb-2 rounded-[10px] justify-center px-10 transition-colors duration-700 border-[#C6C6CDCC] group ${open ? "bg-[#385BAA]" : ""}`}
+      className="relative flex flex-col items-stretch w-[90%] h-[40.85px] border mb-2 rounded-[10px] justify-center px-10 transition-colors duration-700 border-[#C6C6CDCC] group box-border"
     >
       <button className="flex w-full h-[24.51px] bg-auto border-none px-1 py-0.5 text-sm rounded-md cursor-pointer justify-center items-center" onClick={() => setOpen(!open)}>
         <div className="flex justify-between w-full items-center">
@@ -60,7 +60,7 @@ function FilterSectionMobile({ title, icon: IconComponent, children}) {
           </span>
         </div>
       </button>
-      {open && <div className={`absolute backdrop-blur-[30px] left-1/2 top-12 w-[100%] h-[180px] rounded-[5px] z-20 border border-[#1F3A5880] text-sm flex flex-col items-center transform -translate-x-1/2 justify-center bg-[#FFFFFF99]`}>{children}</div>}
+      {open && <div className={`absolute left-1/2 top-12 w-full h-[180px] rounded-[5px] z-20 border border-[#1F3A5880] text-sm flex flex-col items-center transform -translate-x-1/2 justify-center rounded-[5px]`} style={{background: 'rgba(255, 255, 255, 0.60)', backdropFilter: 'blur(60px)'}}>{children}</div>}
     </div>
   );
 }
@@ -166,8 +166,8 @@ function MobileFilterModal({ isOpen, onClose, isLight, filtroActual }) {
       />
   
       <div className={`relative w-full max-h-[80vh] overflow-y-auto rounded-t-2xl p-6 ${
-        isLight ? "bg-[#385BAA99] backdrop-blur-[80px]" : "bg-[#07004766] backdrop-blur-[80px]"
-      } transform transition-all duration-500 ease-out ${
+        isLight ? "bg-[#385BAAA9]" : "bg-[#07004766]"
+      } transform transition-all duration-500 ease-out backdrop-blur-[80px] ${
         isAnimating 
           ? 'translate-y-0' 
           : 'translate-y-full'
@@ -184,12 +184,14 @@ function MobileFilterModal({ isOpen, onClose, isLight, filtroActual }) {
         <div className="space-y-4 flex flex-col items-center justify-center mb-4 gap-3">
           {Object.entries(filtroActual).map(([key, filtro]) => (
             <FilterSectionMobile key={key} title={filtro.nombre} icon={filtro.icon}>
-              <div className={`flex flex-col ${key === 'calificacion' ? '' : 'gap-2'}`}>
-                {filtro.opciones.map((op) => (
+              <div className={`flex flex-col ${key === 'calificacion' ? '' : 'gap-2'} bg-[#FFFFFF66] w-full h-full rounded-[5px] justify-center items-center`}>
+                <div>
+                  {filtro.opciones.map((op) => (
                   <label key={op.etiqueta} className="flex items-center font-['Inter',sans-serif] font-normal text-[15px] cursor-pointer mb-2" style={{ color: colorText, transition: 'color 0.5s' }}>
                     <OptionFilter title={op.etiqueta} isLight={isLight} />
                   </label>
                 ))}
+                </div>
               </div>
             </FilterSectionMobile>
           ))}

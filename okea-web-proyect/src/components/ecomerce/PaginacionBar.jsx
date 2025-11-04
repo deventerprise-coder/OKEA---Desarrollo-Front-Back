@@ -169,8 +169,8 @@ export function MobileOrdenModal({ isOpen, onClose, isLight}) {
       />
       
       <div className={`relative w-full h-[80vh] overflow-y-auto rounded-t-2xl p-6 ${
-        isLight ? "bg-[#385BAA99] backdrop-blur-[80px]" : "bg-[#385BAA99] backdrop-blur-[80px]"
-      } transform transition-all duration-500 ease-out ${
+        isLight ? "bg-[#385BAA99]" : "bg-[#07004766]"
+      } transform transition-all duration-500 ease-out backdrop-blur-[80px] ${
         isAnimating 
           ? 'translate-y-0' 
           : 'translate-y-full'
