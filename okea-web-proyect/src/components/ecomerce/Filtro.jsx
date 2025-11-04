@@ -60,7 +60,17 @@ function FilterSectionMobile({ title, icon: IconComponent, children}) {
           </span>
         </div>
       </button>
-      {open && <div className={`absolute left-1/2 top-12 w-full h-[180px] rounded-[5px] z-20 border border-[#1F3A5880] text-sm flex flex-col items-center transform -translate-x-1/2 justify-center rounded-[5px]`} style={{background: 'rgba(255, 255, 255, 0.60)', backdropFilter: 'blur(60px)'}}>{children}</div>}
+      {open && (
+        <div 
+          className="absolute left-1/2 top-12 w-full h-[180px] rounded-[5px] z-20 border text-sm flex flex-col items-center transform -translate-x-1/2 justify-center transition-colors duration-300 shadow-lg backdrop-blur-[30px]"
+          style={{
+            backgroundColor: "#ffffff99",
+            borderColor: "#C6C6CD",
+          }}
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 }
@@ -75,11 +85,19 @@ export function CalificacionOptions({calificacion,cantidad, width = 20, height =
   );
 }
 
-function OptionFilter({title, isLight}) {
+function OptionFilter({title, isLight, onSelect}) {
   const [isSelected, setIsSelected] = useState(false);
+  
+  const handleClick = () => {
+    setIsSelected(!isSelected);
+    if (onSelect) {
+      onSelect();
+    }
+  };
+  
   return (
     <div className="flex items-center gap-2">
-      <div className={`w-[23px] h-[23px] rounded-full border ${isLight ? "border-[#1F3A58CC]" : "lg:border-white border-[#1F3A58CC]"} flex items-center justify-center ${isSelected ? "bg-[#1F3A58]" : "bg-transparent"}`} onClick={() => setIsSelected(!isSelected)}>
+      <div className={`w-[23px] h-[23px] rounded-full border ${isLight ? "border-[#1F3A58CC]" : "lg:border-white border-[#1F3A58CC]"} flex items-center justify-center ${isSelected ? "bg-[#1F3A58]" : "bg-transparent"}`} onClick={handleClick}>
         {isSelected && <CheckOptionIcon />}
       </div>
       <span className={`font-regular text-[12px] ${isLight ? "text-[#1F3A58]" : "lg:text-white text-[#1F3A58]"}`} style={{fontFamily: 'Inter'}}>{title}</span>
@@ -159,9 +177,9 @@ function MobileFilterModal({ isOpen, onClose, isLight, filtroActual }) {
   };
 
   return (
-    <div className="lg:hidden fixed inset-0 z-30 flex items-end">
+    <div className="lg:hidden fixed inset-0 z-90 flex items-end">
       <div 
-        className={`absolute inset-0 transition-opacity duration-300 ease-out`}
+        className={`absolute inset-0 transition-opacity duration-300 ease-out bg-none`}
         onClick={handleClose}
       />
   
@@ -172,8 +190,8 @@ function MobileFilterModal({ isOpen, onClose, isLight, filtroActual }) {
           ? 'translate-y-0' 
           : 'translate-y-full'
       }`}>
-      
-        <div className="flex flex-col items-center justify-center mb-4 gap-8">
+        <div>
+<div className="flex flex-col items-center justify-center mb-4 gap-8">
           <hr className="w-[95px] border border-[2px] border-[#D9D9D9]"/>
           <div className="text-[16px] text-white font-medium font-['Poppins', sans-serif] flex items-center gap-5">
             FILTROS <FiltroResponsiveIcon color="#FFFFFF"/>
@@ -183,12 +201,12 @@ function MobileFilterModal({ isOpen, onClose, isLight, filtroActual }) {
 
         <div className="space-y-4 flex flex-col items-center justify-center mb-4 gap-3">
           {Object.entries(filtroActual).map(([key, filtro]) => (
-            <FilterSectionMobile key={key} title={filtro.nombre} icon={filtro.icon}>
-              <div className={`flex flex-col ${key === 'calificacion' ? '' : 'gap-2'} bg-[#FFFFFF66] w-full h-full rounded-[5px] justify-center items-center`}>
+            <FilterSectionMobile key={key} title={filtro.nombre} icon={filtro.icon} isLight={isLight} onClose={handleClose}>
+              <div className={`flex flex-col ${key === 'calificacion' ? '' : 'gap-2'} w-full h-full rounded-[5px] justify-center items-center backdrop-blur-[30px]`}>
                 <div>
                   {filtro.opciones.map((op) => (
                   <label key={op.etiqueta} className="flex items-center font-['Inter',sans-serif] font-normal text-[15px] cursor-pointer mb-2" style={{ color: colorText, transition: 'color 0.5s' }}>
-                    <OptionFilter title={op.etiqueta} isLight={isLight} />
+                    <OptionFilter title={op.etiqueta} isLight={isLight} onSelect={handleClose} />
                   </label>
                 ))}
                 </div>
@@ -205,6 +223,9 @@ function MobileFilterModal({ isOpen, onClose, isLight, filtroActual }) {
           <UserOptionsMobile title="Soporte técnico" icon={SoporteIcon} />
         </div>
       </div>
+        </div>
+      
+        
     </div>
   );
 }
