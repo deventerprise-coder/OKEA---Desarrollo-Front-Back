@@ -1,17 +1,18 @@
-// Ejemplo de estructura de datos para los dropdowns de categorías
-import { TechnologyIcon, LavadoIcon, MuebleIcon, ToallaIcon, HombreIcon, MujerIcon, CalzadoIcon, AnilloIcon, SaludIcon, JugueteIcon, DecoracionIcon, MascotaIcon, SupermercadoIcon, LlantaIcon } from '../../assets/iconos/Icons';
+
+import { TechnologyIcon, LavadoIcon, MuebleIcon, ToallaIcon, HombreIcon, MujerIcon, CalzadoIcon, AnilloIcon, SaludIcon, JugueteIcon, DecoracionIcon, MascotaIcon, SupermercadoIcon, LlantaIcon, CategoriaPhone, CategoriaTV, CategoriaLaptop, CategoriaImpresora, CategoriaAudifonos, CategoriaCamara } from '../../assets/iconos/Icons';
 
 export const categoriasDetalle = {
   "Tecnología": {
     icon: TechnologyIcon,
     color: '#D6D6A7',
     columnas: [
-      { titulo: 'Celulares', items: ['iPhone 15', 'iPhone 15 Plus', 'iPhone 15 Pro', 'iPhone 15 Pro Max', 'iPhone 14', 'iPhone 14 Plus', 'iPhone 14 Pro'] },
-      { titulo: 'Tv', items: ['Samsung QLED 4K', 'LG OLED evo', 'Sony Bravia XR', 'TCL QLED 4K', 'Hisense ULED 4K', 'Panasonic OLED', 'Sharp Aquos', 'Vizio Quantum'] },
-      { titulo: 'Laptops', items: ['MacBook Air M2', 'MacBook Pro 14"', 'MacBook Pro 16"', 'Dell XPS 13', 'HP Spectre x360', 'Lenovo ThinkPad X1 Carbon'] },
-      { titulo: 'Impresoras', items: ['HP LaserJet Pro M404dn', 'Canon PIXMA TS6420', 'Epson EcoTank ET-2850', 'Brother HL-L2350DW', 'Samsung Xpress M2020W'] },
-      { titulo: 'Audífonos', items: ['Sony WH-1000XM5', 'Bose QuietComfort 45', 'Apple AirPods Pro', 'Samsung Galaxy Buds2 Pro', 'Sennheiser Momentum 4', 'JBL Live Pro 2'] },
-      { titulo: 'Cámaras', items: ['Canon EOS R5', 'Canon EOS R50', 'Nikon Z6 II', 'Nikon D850', 'Sony Alpha 7 IV', 'Sony ZV-E10', 'Fujifilm X-T5', 'Panasonic Lumix GH6', 'Olympus OM-D E-M10 Mark IV'] }
+      // Para colocar los iconos de las demas categorias, solo copiar la logia de esta categoria, e importar los iconos desde icons.jsx
+      { titulo: 'Celulares', items: ['iPhone 15', 'iPhone 15 Plus', 'iPhone 15 Pro', 'iPhone 15 Pro Max', 'iPhone 14', 'iPhone 14 Plus', 'iPhone 14 Pro'], iconRight: CategoriaPhone},
+      { titulo: 'Tv', items: ['Samsung QLED 4K', 'LG OLED evo', 'Sony Bravia XR', 'TCL QLED 4K', 'Hisense ULED 4K', 'Panasonic OLED', 'Sharp Aquos', 'Vizio Quantum'], iconRight: CategoriaTV },
+      { titulo: 'Laptops', items: ['MacBook Air M2', 'MacBook Pro 14"', 'MacBook Pro 16"', 'Dell XPS 13', 'HP Spectre x360', 'Lenovo ThinkPad X1 Carbon'], iconRight: CategoriaLaptop },
+      { titulo: 'Impresoras', items: ['HP LaserJet Pro M404dn', 'Canon PIXMA TS6420', 'Epson EcoTank ET-2850', 'Brother HL-L2350DW', 'Samsung Xpress M2020W'], iconRight: CategoriaImpresora },
+      { titulo: 'Audífonos', items: ['Sony WH-1000XM5', 'Bose QuietComfort 45', 'Apple AirPods Pro', 'Samsung Galaxy Buds2 Pro', 'Sennheiser Momentum 4', 'JBL Live Pro 2'], iconRight: CategoriaAudifonos },
+      { titulo: 'Cámaras', items: ['Canon EOS R5', 'Canon EOS R50', 'Nikon Z6 II', 'Nikon D850', 'Sony Alpha 7 IV', 'Sony ZV-E10', 'Fujifilm X-T5', 'Panasonic Lumix GH6', 'Olympus OM-D E-M10 Mark IV'], iconRight: CategoriaCamara }
     ]
   },
   "Electrohogar": {

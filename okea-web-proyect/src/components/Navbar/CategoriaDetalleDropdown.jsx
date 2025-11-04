@@ -209,9 +209,20 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
                 marginBottom: 8,
                 display: 'flex',
                 alignItems: 'center',
-                gap: 8,
+                gap: 20, // <- espacio fijo entre título y icono derecho
               }}>
-                {col.icon && <col.icon width={18} height={18} />} {col.titulo}
+                {/* Icono izquierdo (si existe) + título */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}>
+                  {col.icon && <col.icon width={18} height={18} />} 
+                  <span>{col.titulo}</span>
+                </div>
+
+                {/* Icono opcional al lado derecho del título (se mantiene a ~20px del título) */}
+                {col.iconRight && (
+                  <span style={{ display: 'flex', alignItems: 'center' }}>
+                    <col.iconRight width={18} height={18} />
+                  </span>
+                )}
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 <li style={{ color: '#B8C4E6', fontSize: 14, marginBottom: 6, cursor: 'pointer' }} onClick={handleNavigateToAll}>Ver todo</li>
