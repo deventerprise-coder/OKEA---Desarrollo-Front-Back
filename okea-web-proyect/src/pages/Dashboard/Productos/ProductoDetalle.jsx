@@ -190,14 +190,13 @@ export default function ProductoDetalle({CategoriaProducto, productoSlug, produc
                 <div
                     className={`w-full [&>section]:!w-full [&>section]:!max-w-[1568px] [&>section]:!mx-auto [&>section]:!bg-transparent [&>section]:!p-0 [&>section]:!py-0 [&>section]:!px-0 [&>section>h2]:!hidden [&>section>div]:!w-full [&>section>div]:!max-w-[1568px] [&>section>div]:!mx-0 [&>section>div]:!gap-6 ${
                         isLight
-                            ? '[&>section>div>div>div:first-child]:!bg-[#F7F7FD] [&>section>div>div>div:first-child]:!shadow-none [&>section>div>div>div:first-child]:!border-0'
+                            ? '[&>section>div>div>div:first-child]:!shadow-none [&>section>div>div>div:first-child]:!border-0'
                             : ''
                     } motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}
                 >
                     <PreguntasFrecuentes />
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }
