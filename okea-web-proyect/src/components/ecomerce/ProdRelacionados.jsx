@@ -78,9 +78,9 @@ export function ProdRelacionados() {
                 <div className="hidden md:flex w-full">
                         <button
                             onClick={scrollLeft}
-                            className="mr-4"
+                            className="mr-4 cursor-pointer"
                         >
-                            <FlechaIzquierdaProdRel />
+                            <FlechaIzquierdaProdRel color={isLight ? '#385BAA' : '#E5E2E1'} />
                         </button>
                         <div 
                             ref={desktopScrollRef}
@@ -114,9 +114,9 @@ export function ProdRelacionados() {
                         </div>
                         <button
                             onClick={scrollRight}
-                            className="ml-4"                    
+                            className="ml-4 cursor-pointer"
                         >
-                            <FlechaDerechaProdRel />
+                            <FlechaDerechaProdRel color={isLight ? '#385BAA' : '#E5E2E1'} />
                         </button>
                 </div>
 
