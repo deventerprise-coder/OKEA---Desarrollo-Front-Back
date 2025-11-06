@@ -145,7 +145,7 @@ function ServicioCard(props) {
 	const { Icon, titulo, descripcion, theme, columns, isMobile2Col } = props;
 	const [hovered, setHovered] = useState(false);
 	
-	const shouldHover = !isMobile2Col && hovered;
+	const shouldHover = hovered;
 
 
 	const getCardWidth = () => {
@@ -193,7 +193,7 @@ function ServicioCard(props) {
 				justifyContent: "flex-start",
 
 				transition: "all 0.3s ease",
-				cursor: isMobile2Col ? "default" : "pointer",
+				cursor: "pointer",
 
 				opacity: 1, 
 			},
@@ -223,8 +223,17 @@ function ServicioCard(props) {
 		};
 
 		if (theme === "dark") {
-			const titleColor = isMobile2Col ? "#E5E2E1" : (shouldHover ? "#C3C7CB" : "#E5E2E1");
-			const descriptionColor = isMobile2Col ? "#C3C7CB" : (shouldHover ? "#C3C7CB" : "#E5E2E1");
+			const titleColor = isMobile2Col 
+				? (shouldHover ? "#FFFFFF" : "#E5E2E1")
+				: (shouldHover ? "#C3C7CB" : "#E5E2E1");
+
+			const descriptionColor = isMobile2Col 
+				? (shouldHover ? "#FFFFFF" : "#C3C7CB")
+				: (shouldHover ? "#C3C7CB" : "#E5E2E1");
+			
+			const iconColor = isMobile2Col 
+				? (shouldHover ? "#FFFFFF" : "#C6C4E3")
+				: "#C6C4E3";
 
 			return {
 				...baseStyles,
@@ -232,24 +241,23 @@ function ServicioCard(props) {
 					...baseStyles.container,
 					boxShadow: isMobile2Col ? "none" : (shouldHover ? "0 4px 8px 0 rgba(0,0,0,0.4)" : "0 1px 4px 0 rgba(0,0,0,0.3)"),
 				},
-				icon: { ...baseStyles.icon, color: "#C6C4E3" },
+				icon: { ...baseStyles.icon, color: iconColor },
 				title: { ...baseStyles.title, color: titleColor },
 				description: { ...baseStyles.description, color: descriptionColor },
 			};
 		} else {
-			const lightIconColor = isMobile2Col ? "#747782" : (shouldHover ? "#DAE2FF" : "#2C509E");
-			const lightTitleColor = isMobile2Col ? "#747782" : (shouldHover ? "#DAE2FF" : "#434651");
-			const lightDescriptionColor = isMobile2Col ? "#C4C6D3" : (shouldHover ? "#DAE2FF" : "#5A5D6A");
-			
-			if (isMobile2Col && baseStyles.background === "#fff") {
-				return {
-					...baseStyles,
-					icon: { ...baseStyles.icon, color: "#2C509E" },
-					title: { ...baseStyles.title, color: "#434651" },
-					description: { ...baseStyles.description, color: "#5A5D6A" },
-				};
-			}
-
+			const lightIconColor = isMobile2Col 
+				? (shouldHover ? "#2C509E" : "#747782") 
+				: (shouldHover ? "#DAE2FF" : "#2C509E");
+				
+			const lightTitleColor = isMobile2Col 
+				? (shouldHover ? "#2C509E" : "#747782")
+				: (shouldHover ? "#DAE2FF" : "#434651");
+				
+			const lightDescriptionColor = isMobile2Col 
+				? (shouldHover ? "#2C509E" : "#C4C6D3")
+				: (shouldHover ? "#DAE2FF" : "#5A5D6A");
+				
 			return {
 				...baseStyles,
 				icon: { ...baseStyles.icon, color: lightIconColor },

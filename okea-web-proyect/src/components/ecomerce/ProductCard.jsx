@@ -38,7 +38,7 @@ export function ProductCard({id,imagen, marca, modelo, descripcion, precio, prec
   };
 
   return (
-    <div className={`shadow-sm overflow-hidden flex flex-col items-center relative transition-colors duration-300 ease-out ${isLight ? "bg-white border border-gray-200 hover:drop-shadow-[0_0px_3px_rgba(223,225,98,1)]" : "bg-[#292272] hover:drop-shadow-[0_0px_10.7px_rgba(223,225,98,1)]"} transition-colors duration-500 ease-out transition-border duration-500 ease-out w-full max-w-[305px] min-w-[180px] h-[580px] md:h-[580px] lg:h-[630px]`}
+    <div className={`shadow-sm overflow-hidden flex flex-col items-center relative transition-colors duration-300 ease-out ${isLight ? "bg-white border border-gray-200 hover:drop-shadow-[0_0px_3px_rgba(223,225,98,1)] hover:border-none" : "bg-[#292272] hover:drop-shadow-[0_0px_10.7px_rgba(223,225,98,1)]"} transition-colors duration-500 ease-out transition-border duration-500 ease-out w-full max-w-[305px] min-w-[180px] h-[580px] md:h-[580px] lg:h-[630px]`}
      style={{
       borderRadius: 10,
     }}

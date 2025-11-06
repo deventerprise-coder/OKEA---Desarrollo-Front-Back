@@ -180,11 +180,33 @@ export function BreadCrum({categoria, subcategoria, isLight}) {
     return (
         <div className="w-full h-[115px] flex items-center justify-between mt-20" style={{fontFamily: 'Inter'}}>
             <div className="flex items-center gap-5 sm:ml-16 ml-8"> 
-                <HomeBreadcrumIcon color={isLight ? "#333333" : "#FFFFFF"}/>
+                <a className="cursor-pointer" onClick={() => navigate(`/`)}> <HomeBreadcrumIcon color={isLight ? "#333333" : "#FFFFFF"}/> </a>
                 <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
                 <a className={`text-[14px] font-regular ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} style={{fontFamily: 'Inter'}} onClick={() => navigate(`/`)}>Inicio</a>
                 <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
-                <a className={`text-[14px] font-regular ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{categoria}</a>
+                <a 
+                    className={`text-[14px] font-regular ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} 
+                    style={{fontFamily: 'Inter'}}
+                    onClick={() => {
+                        const categoriaSlug = categoria === "Tecnología" ? "tecnologia"
+                            : categoria === "Electrohogar" ? "electrohogar"
+                            : categoria === "Muebles y Organización" ? "muebles-y-organizacion"
+                            : categoria === "Dormitorio y Baños" ? "dormitorio-y-banos"
+                            : categoria === "Moda Hombre" ? "moda-hombre"
+                            : categoria === "Moda Mujer" ? "moda-mujer"
+                            : categoria === "Mascotas" ? "mascotas"
+                            : categoria === "Supermercado" ? "supermercado"
+                            : categoria === "Calzado" ? "calzado"
+                            : categoria === "Salud y Bienestar" ? "salud-y-bienestar"
+                            : categoria === "Juguetes" ? "juguetes"
+                            : categoria === "Accesorios de Moda" ? "accesorios-de-moda"
+                            : categoria === "Decoración" ? "decoracion-e-iluminacion"
+                            : "";
+                        if (categoriaSlug) navigate(`/catalogo/${categoriaSlug}`);
+                    }}
+                >
+                    {categoria}
+                </a>
                 <ArrowBreadcrumIcon color={isLight ? "#1D2C4E" : "#FFFFFF"}/>
                 <a className={`text-[14px] font-semibold md:font-bold ${isLight ? "text-[#333333]" : "text-[#E4E666]"} cursor-pointer`} style={{fontFamily: 'Inter'}}>{subcategoria}</a>
             </div>
