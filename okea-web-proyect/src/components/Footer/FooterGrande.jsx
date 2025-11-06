@@ -87,7 +87,7 @@ export default function FooterGrande() {
     // p-8 por defecto (móvil). lg:px-16 (64px) y lg:pt-[100px] para respetar Figma en desktop.
     <div
       // Nota: `pt-[100px]` usa el soporte de clases arbitrarias de Tailwind para aplicar un valor exacto.
-      className="flex flex-col relative z-0 w-full max-w-[1600px] mx-auto p-8 lg:px-16 lg:pt-[100px] lg:pb-16"
+      className="flex flex-col relative z-0 w-full max-w-[1600px] mx-auto p-8 sm:p-10 md:px-16 lg:px-20 lg:pt-[100px] lg:pb-16"
       style={getContainerStyles()}
     >
       <div

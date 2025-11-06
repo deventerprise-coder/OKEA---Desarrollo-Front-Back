@@ -34,7 +34,7 @@ export default function Footer() {
   return (
     // Agregamos un padding horizontal general (px-4) para evitar que el contenido toque los bordes en móvil
     <footer
-      className="w-full flex flex-col items-center mt-0 overflow-visible px-4"
+      className="w-full flex flex-col items-center mt-0 overflow-visible px-4  sm:px-6 md:px-8 lg:px-10 "
       style={getFooterStyles()}
     >
       <div className="w-full flex flex-col items-center">
