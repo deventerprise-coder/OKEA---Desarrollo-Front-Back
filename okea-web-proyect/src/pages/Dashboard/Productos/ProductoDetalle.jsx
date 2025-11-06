@@ -197,6 +197,7 @@ export default function ProductoDetalle({CategoriaProducto, productoSlug, produc
                     <PreguntasFrecuentes />
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
