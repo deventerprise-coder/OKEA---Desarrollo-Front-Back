@@ -226,7 +226,6 @@ function App() {
               element={<ProductoDetalleRoute />}
             />
           </Routes>
-          <Footer />
         </div>
         </Router>
       </SortProvider>
