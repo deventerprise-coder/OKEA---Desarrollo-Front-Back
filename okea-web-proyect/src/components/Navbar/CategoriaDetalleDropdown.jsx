@@ -64,7 +64,6 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
   const Icon = data.icon;
 
   const left = 340;
-  const width = 900;
 
   const handleClose = () => {
     setIsVisible(false);
@@ -105,12 +104,12 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
     <>
       <style>{animations}</style>
       <div
-        className={isVisible ? 'detail-enter' : 'detail-exit'}
+        className={`${isVisible ? 'detail-enter' : 'detail-exit'} max-w-[900px]`}
         style={{
           position: 'fixed',
           top: 0,
           left,
-          width,
+          width: `calc(100vw - ${left}px)`,
           height: 100,
           background: '#E4E66666',
           borderRadius: 32,
@@ -174,13 +173,13 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
       </div>
 
       <div
-        className={isVisible ? 'detail-enter' : 'detail-exit'}
+        className={`${isVisible ? 'detail-enter' : 'detail-exit'} max-w-[900px]`}
         style={{
           ...getThemeStyles(),
           position: 'fixed',
           top: 116,
-          left,
-          width,
+          left: left,
+          width: `calc(100vw - ${left}px)`,
           height: 908,
           borderRadius: 32,
           borderWidth: 1,
@@ -198,9 +197,19 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
         }}
         onClick={e => e.stopPropagation()}
       >
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(2, 1fr)', gap: 32, height: '100%' }}>
-          {data.columnas.map((col, idx) => (
-            <div key={idx} style={{ minWidth: 140, flex: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <div className="sm:overflow-x-auto sm:overflow-y-hidden xl:overflow-hidden" style={{ 
+          height: '100%',
+          paddingBottom: 8,
+          width: '100%'
+        }}>
+          <div className="grid sm:grid-cols-[repeat(3,_180px)] sm:gap-x-[100px] sm:gap-y-[32px] md:grid-cols-[repeat(3,_210px)] md:gap-[32px] lg:grid-cols-[repeat(3,1fr)]" style={{
+            gridTemplateRows: 'repeat(2, 1fr)',
+            height: '100%',
+            width: 'max-content',
+/*             minWidth: '100%' */
+          }}>
+            {data.columnas.map((col, idx) => (
+            <div key={idx} className="lg:min-w-[280px]" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               <div style={{
                 fontFamily: 'Poppins, sans-serif',
                 fontWeight: 300,
@@ -232,6 +241,7 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
               </ul>
             </div>
           ))}
+          </div>
         </div>
       </div>
     </>
