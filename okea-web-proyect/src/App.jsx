@@ -87,6 +87,7 @@ function App() {
                   <MarcasDestacadas />
                   <PreguntasFrecuentes />
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -96,6 +97,7 @@ function App() {
                 <>
                   <Categoria categoria={"Tecnología"} subcategoria={"Celulares"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -105,6 +107,7 @@ function App() {
                 <>
                   <Categoria categoria={"Muebles y Organización"} subcategoria={"Sofás"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -114,6 +117,7 @@ function App() {
                 <>
                   <Categoria categoria={"Calzado"} subcategoria={"Zapatillas"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -123,6 +127,7 @@ function App() {
                 <>
                   <Categoria categoria={"Dormitorio y Baños"} subcategoria={"Camas"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -132,6 +137,7 @@ function App() {
                 <>
                   <Categoria categoria={"Accesorios de Moda"} subcategoria={"Carteras"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -141,6 +147,7 @@ function App() {
                 <>
                   <Categoria categoria={"Salud y Bienestar"} subcategoria={"Cremas"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -150,6 +157,7 @@ function App() {
                 <>
                   <Categoria categoria={"Juguetes"} subcategoria={"Carros de Juguete"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -159,6 +167,7 @@ function App() {
                 <>
                   <Categoria categoria={"Decoración"} subcategoria={"Cuadros"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -168,6 +177,7 @@ function App() {
                 <>
                   <Categoria categoria={"Mascotas"} subcategoria={"Comida para Perro"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -177,6 +187,7 @@ function App() {
                 <>
                   <Categoria categoria={"Supermercado"} subcategoria={"Cereales"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -186,6 +197,7 @@ function App() {
                 <>
                   <Categoria categoria={"Electrohogar"} subcategoria={"Lavadoras"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -195,6 +207,7 @@ function App() {
                 <>
                   <Categoria categoria={"Moda Hombre"} subcategoria={"Polos"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -204,6 +217,7 @@ function App() {
                 <>
                   <Categoria categoria={"Moda Mujer"} subcategoria={"Polos"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />

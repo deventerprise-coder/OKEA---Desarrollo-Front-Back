@@ -563,7 +563,7 @@ export default function Navbar() {
 					>
 						<SearchBar
 							onToggleCategorias={() => {
-								if (currentBreakpoint === "large") {
+								if (currentBreakpoint === "standard" || currentBreakpoint === "large") {
 									closeDynamicDropdowns();
 									setIsMenuOpen(true);
 								} else {
@@ -657,7 +657,7 @@ export default function Navbar() {
 				</div>
 			</header>
 
-			{isMenuOpen && (isMobileBreakpoint || currentBreakpoint === "large") && (
+			{isMenuOpen && (isMobileBreakpoint || currentBreakpoint === "standard" || currentBreakpoint === "large") && (
 				<MenuDropdownMobile
 					isOpen={isMenuOpen}
 					onClose={() => setIsMenuOpen(false)}

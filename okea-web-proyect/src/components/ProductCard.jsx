@@ -134,7 +134,7 @@ const ProductCard = ({
 
         <button
           onClick={() => onAdd(id)}
-          className="flex py-3 w-full px-3 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600 hover:opacity-90 whitespace-nowrap"
+          className="flex py-3 w-full px-3 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600 hover:opacity-90 whitespace-nowrap cursor-pointer"
           style={getButtonStyle()}
         >
           <div

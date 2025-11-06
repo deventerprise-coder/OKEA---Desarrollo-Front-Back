@@ -53,7 +53,7 @@ export default function FooterGrande() {
 		return {
 			backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.15)' : '#FFFFFF',
 			borderRadius: 9999,
-			width: 'fit-content',
+			width: 'fit-content', 
 			transition: 'background-color 0.3s ease',
 		};
 	};
@@ -175,7 +175,8 @@ export default function FooterGrande() {
 						Medios de pago
 					</span>
 					<div
-						className="flex flex-wrap items-center gap-4 px-6 py-2" 
+						// MODIFICACIÓN: Cambiado 'flex-wrap' por 'flex-nowrap'
+						className="flex flex-nowrap items-center justify-center gap-4 px-6 py-2" 
 						style={getPaymentContainerStyles()}
 					>
 						<img src={VISAIcon} alt="Visa" className="h-7" />
@@ -239,6 +240,7 @@ export default function FooterGrande() {
 				</div>
 			</div>
 
+			{/* --- VISTA MÓVIL --- */}
 			<div
 				className="flex flex-col items-center justify-center w-full lg:hidden mt-30"
 			>
@@ -257,7 +259,8 @@ export default function FooterGrande() {
 				</span>
 
 				<div
-					className="flex flex-wrap items-center justify-center gap-4 px-6 py-2 mb-10"
+					// MODIFICACIÓN: Cambiado 'flex-wrap' por 'flex-nowrap'
+					className="flex flex-nowrap items-center justify-center gap-4 px-6 py-2 mb-10"
 					style={getPaymentContainerStyles()}
 				>
 					<img src={VISAIcon} alt="Visa" className="h-7" />
@@ -337,6 +340,8 @@ export default function FooterGrande() {
 					</div>
 				</div>
 			</div>
+			{/* --- FIN VISTA MÓVIL --- */}
+
 			<div
 				className="w-full text-center font-poppins text-sm py-4 lg:mt-8"
 				style={{
