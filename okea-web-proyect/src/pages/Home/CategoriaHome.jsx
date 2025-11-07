@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../../components/ThemeContext";
 import tecnologia from "../../assets/imagenes/Home/categoriaTecnologia.jpg";
 import muebles from "../../assets/imagenes/Home/categoriaMuebles.jpg";
@@ -11,12 +11,16 @@ import decoracion from "../../assets/imagenes/Home/categoriaDecoracion.jpg";
 import mascotas from "../../assets/imagenes/Home/categoriaMascotas.jpeg";
 import supermercado from "../../assets/imagenes/Home/categoriaSupermercado.jpg";
 import automotriz from "../../assets/imagenes/Home/categoriaAutomotriz.jpg";
-import { ArrowLeftGrayBlueIcon, ArrowRightGrayBlueIcon, ArrowRightIcon } from "../../assets/iconos/iconoHome";
+import { ArrowLeftGrayBlueIcon, ArrowRightGrayBlueIcon, ArrowRightIcon, SofaIcon, TecnologyIcon, TecnologyIconDarkMode, TecnologyResponsive, Banio, FootIcon, AccesorioIcon, SaludIcon, VehiculoIcon, DecoracionIcon, MascotasIcon, WineBottleIcon,WineBottleIconDarkMode, AutomotrizIcon, SofaIconDarkMode, FootIconDarkMode } from "../../assets/iconos/iconoHome";
 
 
 export default function CategoriaHome() {
     // --- Estados categorías ---
     const [currentCat, setCurrentCat] = useState(0);
+    const [hovered, setHovered] = useState(false);
+    const scrollRef = useRef(null);
+
+
 
     // --- Tema ---
     const { isLight } = useTheme();
@@ -45,19 +49,82 @@ export default function CategoriaHome() {
     };
     };
 
-    const getTextStyle = () => {
-    return {
-      color: isLight ? '#434651' : '#FFFFFF',
-      transition: 'color 0.3s ease'
-    };
-    };
+const getTextStyle = (hovered) => ({
+  color: isLight
+    ? hovered
+      ? "#FFFFFF"  // texto blanco cuando hover (modo claro)
+      : "#1C4390"  // azul oscuro cuando no hover (modo claro)
+    : hovered
+      ? "#392F9D"  // azul oscuro cuando hover (modo oscuro)
+      : "#E3E1F1", // gris claro cuando no hover (modo oscuro)
+  transition: "all 0.3s ease"
+});
 
-    const getCardStyle = () => {
-    return {
-      backgroundColor: isLight ? '#FFFFFF' : '#292272',
-      transition: 'all 0.3s ease'
-    };
-    };
+const getCardStyle = (hovered) => ({
+  backgroundColor: isLight
+    ? hovered
+      ? "#1C4390"
+      : "#B3C7FF"
+    : hovered
+      ? "#E3E1F1"
+      : "#392F9D",
+  transition: "all 0.3s ease"
+});
+
+
+
+  function CardCategoria({ iconLight, iconDark, label, isLight }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+<div
+  className="card-1 h-8 px-3 py-1 mr-1 rounded-xl flex group transition-colors duration-200"
+  style={getCardStyle(hovered)}
+  onMouseEnter={() => setHovered(true)}
+  onMouseLeave={() => setHovered(false)}
+>
+      <div className="scale-70 -mt-1.5">
+        {isLight ? iconLight(hovered ? "#E3E1F1" : "#1C4390 ") : iconDark(hovered ? "#392F9D" : "#ffffff ")}
+      </div>
+      <div className="items-center w-max text-[#392F9D] group-hover:text-[#ffffff]" style={getTextStyle(hovered)}>
+        
+        {label}
+      </div>
+    </div>
+  );
+}
+
+
+function CarruselAuto({ children }) {
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let direction = 1;
+    const step = 1;
+    const interval = setInterval(() => {
+      el.scrollLeft += step * direction;
+
+      // Cambia de dirección al llegar al final/inicio
+      if (el.scrollLeft + el.clientWidth >= el.scrollWidth) direction = -1;
+      if (el.scrollLeft <= 0) direction = 1;
+    }, 20); // velocidad
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div
+      ref={scrollRef}
+      className="overflow-x-auto scroll-smooth whitespace-nowrap"
+      style={{ scrollbarWidth: "none" }}
+    >
+      {children}
+    </div>
+  );
+}
 
     //Slides
     const nextSlideCategorias = () => {
@@ -139,14 +206,14 @@ export default function CategoriaHome() {
     return (
     <section className="Home" style={getBackgroundStyle()}>
       {/*Categorias*/}
-      <section className="Categorias px-40 align-center">
+      <section className="Categorias px-4 sm:px-6/12 md:3/12 lg:px-40 align-center">
         {/* Titulo */}
-        <div className="text-4xl  w-full  font-popins text-[#434651] text-center pt-20 pb-8" style={getTextStyle()}>
+        <div className="text-lg md:text-4xl  w-full  font-popins text-[#434651] text-center pt-8 md:pt-20 pb-4 md:pb-8" style={getTextStyle()}>
           Revisa todas nuestras categorías
         </div>
 
         {/* Carrusel de Categorías */}
-        <div className="w-full h-116 flex flex-col align-center items-center">
+        <div className="hidden md:flex w-full h-116 flex-col align-center items-center">
             
             <div className="h-100 w-full relative flex flex-col items-center align-center ">
               {/* Slides */}
@@ -178,7 +245,7 @@ export default function CategoriaHome() {
             </div>
           
           {/* Controles e Indicadores */}
-          <div className="flex items-center px-2 py-3.5 mt-8 h-8 w-400  ">
+          <div className="flex items-center px-2 py-3.5 mt-8 h-8 w-full  ">
               <div className="flex items-center justify-between w-full ">
               {/* Flecha Izquierda */}
               <button onClick={prevSlideCategorias} disabled={currentCat === 0} className="">
@@ -200,6 +267,107 @@ export default function CategoriaHome() {
             </div>
           </div>
         </div>
+
+        {/* Carrusel de Categorías celular*/}
+        <div className="flex md:hidden carrusel responsive overflow-hidden relative">
+          <div className="absolute z-10 right-0 w-1/12 h-18 "
+          style={{
+              background: isLight
+                ? "linear-gradient(to left, #ffffff, transparent 100% )"
+                : "linear-gradient(to left, #120F31, transparent 100% )"}}>
+          </div>
+          <div className="absolute z-10 left-0 w-1/12 h-18"             
+          style={{
+              background: isLight
+                ? "linear-gradient(to right, #ffffff, transparent 100% )"
+                : "linear-gradient(to right, #120F31, transparent 100% )"}}>
+          </div>
+          
+           <CarruselAuto>
+          <div className="fila-1  mb-2 flex">
+            <CardCategoria
+              iconLight={(color) => <TecnologyResponsive color={color} />}
+              iconDark={() => <TecnologyIconDarkMode />}
+              label="Tecnología"
+              isLight={isLight}
+            />
+              <CardCategoria
+              iconLight={(color) => <SofaIcon color={color} />}
+              iconDark={(color) => <SofaIcon color={color} />}
+              label="Muebles y Organización"
+              isLight={isLight}
+            />
+            <CardCategoria
+              iconLight={(color) => <Banio color={color} />}
+              iconDark={(color) => <Banio color={color} />}
+              label="Dormitorio y Baños"
+              isLight={isLight}
+            />
+            <CardCategoria
+              iconLight={(color) => <FootIcon color={color} />}
+              iconDark={(color) => <FootIcon color={color}/>}
+              label="Calzado"
+              isLight={isLight}
+            />
+            <CardCategoria
+              iconLight={(color) => <AccesorioIcon color={color} />}
+              iconDark={(color) => <AccesorioIcon color={color} />}
+              label="Accesorios de moda"
+              isLight={isLight}
+            />
+            <CardCategoria
+              iconLight={(color) => <SaludIcon color={color} />}
+              iconDark={(color) => <SaludIcon color={color} />}
+              label="Salud y Bienestar"
+              isLight={isLight}
+            />
+          </div>
+          <div className="fila-2   mb-2 flex">
+            <CardCategoria
+              iconLight={(color) => <VehiculoIcon color={color} />}
+              iconDark={(color) => <VehiculoIcon color={color} />}
+              label="Juguetes, Autos y Vehículos"
+              isLight={isLight}
+            />
+            <CardCategoria
+              iconLight={(color) => <SaludIcon color={color} />}
+              iconDark={(color) => <SaludIcon color={color} />}
+              label="Salud y Bienestar"
+              isLight={isLight}
+            />
+
+            <CardCategoria
+              iconLight={(color) => <DecoracionIcon color={color} />}
+              iconDark={(color) => <DecoracionIcon color={color} />}
+              label="Decoración e Iluminación"
+              isLight={isLight}
+            />
+
+            <CardCategoria
+              iconLight={(color) => <MascotasIcon color={color} />}
+              iconDark={(color) => <MascotasIcon color={color} />}
+              label="Mascotas"
+              isLight={isLight}
+            />
+
+            <CardCategoria
+              iconLight={(color) => <WineBottleIcon color={color} />}
+              iconDark={(color) => <WineBottleIcon color={color} />}
+              label="Supermercado"
+              isLight={isLight}
+            />
+            <CardCategoria
+              iconLight={(color) => <AutomotrizIcon color={color} />}
+              iconDark={(color) => <AutomotrizIcon color={color} />}
+              label="Automotriz"
+              isLight={getCardStyle}
+            />
+
+          </div>
+          </CarruselAuto>
+
+        </div>
+
       </section>
     </section>
 

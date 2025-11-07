@@ -15,6 +15,7 @@ import {
   MascotaIcon,
   SupermercadoIcon,
   LlantaIcon,
+  CloseIcon,
   SalirIcon,
 } from '../../assets/iconos/Icons';
 import { categoriasDetalle } from './categoriasDetalle';
@@ -95,13 +96,10 @@ export default function CategoriasDropdown({isVisible, onClose }) {
     };
   };
 
-  // Agregar esta nueva función para manejar el toggle
   const handleCategoriaClick = (categoria) => {
     if (categoriaActiva === categoria) {
-      // Si la categoría clickeada es la misma que está activa, la cerramos
       setCategoriaActiva(null);
     } else {
-      // Si es una categoría diferente, la activamos
       setCategoriaActiva(categoria);
     }
   };
@@ -144,6 +142,28 @@ export default function CategoriasDropdown({isVisible, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <style>{animations}</style>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose && onClose();
+          }}
+          aria-label="Cerrar categorías"
+          className="p-1 rounded-full text-white/80 hover:bg-white/10 transition-colors"
+          style={{
+            position: 'absolute',
+            top: 8,
+            right: 8,
+            zIndex: 1200,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 36,
+            height: 36,
+          }}
+        >
+          <CloseIcon />
+        </button>
 
         <img
           src={okeaLogoCategorias}
@@ -240,7 +260,6 @@ export default function CategoriasDropdown({isVisible, onClose }) {
           })}
         </ul>
       </div>
-      {/* Dropdown de detalle de categoría */}
       {categoriaActiva && categoriasDetalle[categoriaActiva] && (
         <CategoriaDetalleDropdown
           data={categoriasDetalle[categoriaActiva]}

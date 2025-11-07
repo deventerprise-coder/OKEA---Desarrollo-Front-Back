@@ -1,18 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeContext';
+import { SortProvider } from './components/ecomerce/SortContext';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import SocialBar from './components/SocialBar';
+import BottomBar from './components/BottomBar'; 
 import FloatingActionButton from './components/FloatingActionButton';
 import PreguntasFrecuentes from './components/PreguntasFrecuentes';
 import BloqueDeServicios from './components/BloqueDeServicios';
 import MarcasDestacadas from './components/MarcasDestacadas';
 import Home from './pages/Home/Home';
-import CarritoPage from './pages/CarritoPage';
 import ScrollToTop from './components/ScrollToTop';
 import Categoria from './pages/Catalogo/Catergoria';
-import DetalleProducto from './components/ecomerce/DetalleProducto';
+import ProductoDetalle from './pages/Dashboard/Productos/ProductoDetalle';
 import Presentacion from './pages/Home/Presentacion';
 import CategoriaHome from './pages/Home/CategoriaHome';
 import Ofertas from './pages/Home/Ofertas';
@@ -27,15 +28,49 @@ import Ultimo from './pages/Home/Ultimo';
 // Importamos el TestRouter que maneja la ruta de Oferta1
 import TestRouter from './pages/Ofertanueva/TestRouter'; 
 
+const categoriaSlugMap = {
+  'tecnologia': 'Tecnología',
+  'muebles-y-organizacion': 'Muebles y Organización',
+  'calzado': 'Calzado',
+  'dormitorio-y-banos': 'Dormitorio y Baños',
+  'accesorios-de-moda': 'Accesorios de Moda',
+  'salud-y-bienestar': 'Salud y Bienestar',
+  'juguetes': 'Juguetes',
+  'decoracion': 'Decoración',
+  'mascotas': 'Mascotas',
+  'supermercado': 'Supermercado',
+  'electrohogar': 'Electrohogar',
+  'moda-hombre': 'Moda Hombre',
+  'moda-mujer': 'Moda Mujer',
+  'automotriz': 'Automotriz',
+};
+
+const ProductoDetalleRoute = () => {
+  const { categoria, producto } = useParams();
+  const location = useLocation();
+  const CategoriaProducto = categoriaSlugMap[categoria] || (categoria ? categoria.replace(/-/g, ' ') : '');
+  const productoSlug = producto || '';
+  const productoState = location.state?.producto;
+
+  return (
+    <ProductoDetalle
+      CategoriaProducto={CategoriaProducto}
+      productoSlug={productoSlug}
+      productoState={productoState}
+    />
+  );
+};
 
 function App() {
   return (
     <ThemeProvider>
-      <Router>
+      <SortProvider>
+        <Router>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Navbar />
           <SocialBar />
+          <BottomBar />
           <FloatingActionButton />
           <Routes>
             <Route
@@ -59,13 +94,13 @@ function App() {
                 </>
               }
             />
-            <Route path="/carrito" element={<CarritoPage />} />
             <Route 
               path="/catalogo/tecnologia" 
               element={
                 <>
                   <Categoria categoria={"Tecnología"} subcategoria={"Celulares"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -75,6 +110,7 @@ function App() {
                 <>
                   <Categoria categoria={"Muebles y Organización"} subcategoria={"Sofás"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -84,6 +120,7 @@ function App() {
                 <>
                   <Categoria categoria={"Calzado"} subcategoria={"Zapatillas"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -93,6 +130,7 @@ function App() {
                 <>
                   <Categoria categoria={"Dormitorio y Baños"} subcategoria={"Camas"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -102,6 +140,7 @@ function App() {
                 <>
                   <Categoria categoria={"Accesorios de Moda"} subcategoria={"Carteras"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -111,6 +150,7 @@ function App() {
                 <>
                   <Categoria categoria={"Salud y Bienestar"} subcategoria={"Cremas"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -120,6 +160,7 @@ function App() {
                 <>
                   <Categoria categoria={"Juguetes"} subcategoria={"Carros de Juguete"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -129,6 +170,7 @@ function App() {
                 <>
                   <Categoria categoria={"Decoración"} subcategoria={"Cuadros"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -138,6 +180,7 @@ function App() {
                 <>
                   <Categoria categoria={"Mascotas"} subcategoria={"Comida para Perro"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -147,6 +190,7 @@ function App() {
                 <>
                   <Categoria categoria={"Supermercado"} subcategoria={"Cereales"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -156,6 +200,7 @@ function App() {
                 <>
                   <Categoria categoria={"Electrohogar"} subcategoria={"Lavadoras"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -165,6 +210,7 @@ function App() {
                 <>
                   <Categoria categoria={"Moda Hombre"} subcategoria={"Polos"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
@@ -174,16 +220,13 @@ function App() {
                 <>
                   <Categoria categoria={"Moda Mujer"} subcategoria={"Polos"}/>
                   <BloqueDeServicios />
+                  <Footer />
                 </>
               }
             />
             <Route 
-              path="/producto/detalle/:modelo" 
-              element={
-                <>
-                  <DetalleProducto />
-                </>
-              }
+              path="/producto/detalle/:categoria/:producto" 
+              element={<ProductoDetalleRoute />}
             />
           
            {/* ... otras rutas ... */}
@@ -201,7 +244,8 @@ function App() {
 
       {/* <Footer /> */}
         </div>
-      </Router>
+        </Router>
+      </SortProvider>
     </ThemeProvider>
   );
 }

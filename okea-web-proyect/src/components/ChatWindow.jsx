@@ -61,7 +61,6 @@ export default function ChatWindow({ onClose }) {
         background: themeStyles.background
       }}
     >
-      {/* Header */}
       <div
         style={{
           padding: '16px 20px',
@@ -105,7 +104,6 @@ export default function ChatWindow({ onClose }) {
         </button>
       </div>
 
-      {/* Divider line */}
       <div style={{ padding: '0 20px' }}>
         <div 
           style={{ 
@@ -116,9 +114,7 @@ export default function ChatWindow({ onClose }) {
         />
       </div>
 
-      {/* Chat content */}
       <div style={{ flex: 1, padding: '16px 20px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-        {/* Bot message */}
         <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'auto' }}>
           <div 
             style={{ 
@@ -151,7 +147,6 @@ export default function ChatWindow({ onClose }) {
           </div>
         </div>
 
-        {/* Suggested questions */}
         <div style={{ marginTop: 'auto', paddingTop: 20, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
           {suggestedQuestions.map((question, index) => (
             <button
@@ -186,7 +181,6 @@ export default function ChatWindow({ onClose }) {
         </div>
       </div>
 
-      {/* Input area */}
       <div style={{ padding: '16px 20px' }}>
         <div style={{ position: 'relative' }}>
           <input

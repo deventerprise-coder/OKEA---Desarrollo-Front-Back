@@ -40,10 +40,7 @@ const animations = `
 // 2. COMPONENTE PRINCIPAL
 // =======================
 export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, isVisible }) {
-  // Referencia al dropdown para posibles cálculos de posición
   const dropdownRef = useRef(null);
-
-  // Estado para el tema actual (claro/oscuro)
   const [theme, setTheme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
   });
@@ -54,7 +51,6 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
   useEffect(() => {
     setTheme(document.documentElement.getAttribute('data-theme') || 'light');
 
-    // Observa cambios en el atributo data-theme del documento
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
@@ -68,7 +64,6 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
       attributeFilter: ['data-theme'],
     });
 
-    // Limpia el observer al desmontar
     return () => observer.disconnect();
   }, []);
 
@@ -100,7 +95,6 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
   // =======================
   // 6. MANEJADOR DE BOTÓN DE FLECHA
   // =======================
-  // Llama a la función recibida con el índice y la posición del botón
   const handleToggle = (index, event) => {
     const rect = event.currentTarget.getBoundingClientRect();
     onOpenDropdown(index, rect);
@@ -124,10 +118,8 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
         gap: '20px',
       }}
     >
-      {/* Animaciones CSS */}
       <style>{animations}</style>
 
-      {/* Título e icono de ubicación */}
       <div style={{ marginTop: '12px' }}>
         <div className="flex items-center gap-2" style={{ marginLeft: '14px' }}>
           <Location1 color={theme === 'dark' ? '#ffffff' : '#ffffff'} />
@@ -146,12 +138,10 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
         </div>
       </div>
 
-      {/* Inputs para Departamento, Provincia y Distrito */}
       <div className="flex flex-col" style={{ gap: '10px' }}>
         {labels.map((label, index) => (
           <div key={index} className="relative">
             <div className="flex">
-              {/* Input de búsqueda */}
               <div
                 className="flex items-center px-5 transition-colors duration-200 location-input-container"
                 style={{
@@ -177,8 +167,6 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
                   }}
                 />
               </div>
-
-              {/* Botón de flecha para abrir opciones */}
               <button
                 onClick={(e) => handleToggle(index, e)}
                 className="ml-0.5 flex items-center justify-center transition-colors duration-200 focus:outline-none pt-[15px] pr-[17px] pb-[15px] pl-[13px] location-arrow-btn"
@@ -198,7 +186,6 @@ export default function LocationDropdown({ onOpenDropdown, activeDropdownIndex, 
           </div>
         ))}
       </div>
-      {/* Estilos extra para hover y placeholder */}
       <style>{`
         .location-input-container:hover {
           background-color: ${theme === 'dark' ? '#070047' : '#5a6ca3'} !important;

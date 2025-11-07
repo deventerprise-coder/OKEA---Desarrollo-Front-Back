@@ -64,11 +64,10 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
   const Icon = data.icon;
 
   const left = 340;
-  const width = 900;
 
   const handleClose = () => {
     setIsVisible(false);
-    setTimeout(onClose, 400); // Espera a que termine la animación
+    setTimeout(onClose, 400); 
   };
 
   const categoriaRuta = nombreCategoria === "Tecnología" ? "tecnologia"
@@ -104,14 +103,13 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
   return (
     <>
       <style>{animations}</style>
-      {/* Header verde separado */}
       <div
-        className={isVisible ? 'detail-enter' : 'detail-exit'}
+        className={`${isVisible ? 'detail-enter' : 'detail-exit'} max-w-[900px]`}
         style={{
           position: 'fixed',
           top: 0,
           left,
-          width,
+          width: `calc(100vw - ${left}px)`,
           height: 100,
           background: '#E4E66666',
           borderRadius: 32,
@@ -142,7 +140,7 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
           letterSpacing: '0.25px',
         }}>{nombreCategoria || data.nombre || data.titulo || 'Categoría'}</span>
         <button
-          onClick={handleClose}  // Cambiado de onClose a handleClose
+          onClick={handleClose}  
           style={{
             marginLeft: 'auto',
             background: 'none',
@@ -174,15 +172,14 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
         </span>
       </div>
 
-      {/* Contenido separado */}
       <div
-        className={isVisible ? 'detail-enter' : 'detail-exit'}
+        className={`${isVisible ? 'detail-enter' : 'detail-exit'} max-w-[900px]`}
         style={{
           ...getThemeStyles(),
           position: 'fixed',
           top: 116,
-          left,
-          width,
+          left: left,
+          width: `calc(100vw - ${left}px)`,
           height: 908,
           borderRadius: 32,
           borderWidth: 1,
@@ -200,10 +197,19 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
         }}
         onClick={e => e.stopPropagation()}
       >
-        {/* Grid de 2 filas x 3 columnas */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(2, 1fr)', gap: 32, height: '100%' }}>
-          {data.columnas.map((col, idx) => (
-            <div key={idx} style={{ minWidth: 140, flex: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <div className="sm:overflow-x-auto sm:overflow-y-hidden xl:overflow-hidden" style={{ 
+          height: '100%',
+          paddingBottom: 8,
+          width: '100%'
+        }}>
+          <div className="grid sm:grid-cols-[repeat(3,_180px)] sm:gap-x-[100px] sm:gap-y-[32px] md:grid-cols-[repeat(3,_210px)] md:gap-[32px] lg:grid-cols-[repeat(3,1fr)]" style={{
+            gridTemplateRows: 'repeat(2, 1fr)',
+            height: '100%',
+            width: 'max-content',
+/*             minWidth: '100%' */
+          }}>
+            {data.columnas.map((col, idx) => (
+            <div key={idx} className="lg:min-w-[280px]" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               <div style={{
                 fontFamily: 'Poppins, sans-serif',
                 fontWeight: 300,
@@ -212,9 +218,20 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
                 marginBottom: 8,
                 display: 'flex',
                 alignItems: 'center',
-                gap: 8,
+                gap: 20, // <- espacio fijo entre título y icono derecho
               }}>
-                {col.icon && <col.icon width={18} height={18} />} {col.titulo}
+                {/* Icono izquierdo (si existe) + título */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}>
+                  {col.icon && <col.icon width={18} height={18} />} 
+                  <span>{col.titulo}</span>
+                </div>
+
+                {/* Icono opcional al lado derecho del título (se mantiene a ~20px del título) */}
+                {col.iconRight && (
+                  <span style={{ display: 'flex', alignItems: 'center' }}>
+                    <col.iconRight width={18} height={18} />
+                  </span>
+                )}
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 <li style={{ color: '#B8C4E6', fontSize: 14, marginBottom: 6, cursor: 'pointer' }} onClick={handleNavigateToAll}>Ver todo</li>
@@ -224,6 +241,7 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
               </ul>
             </div>
           ))}
+          </div>
         </div>
       </div>
     </>

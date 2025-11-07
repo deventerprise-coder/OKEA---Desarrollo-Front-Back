@@ -47,7 +47,6 @@ const animations = `
 // 2. COMPONENTE PRINCIPAL UserDropdown
 // =======================
 export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
-  // Estado para el tema actual (claro/oscuro)
   const [theme, setTheme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
   });
@@ -58,7 +57,6 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
   useEffect(() => {
     setTheme(document.documentElement.getAttribute('data-theme') || 'light');
 
-    // Observa cambios en el atributo data-theme del documento
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
@@ -72,7 +70,6 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
       attributeFilter: ['data-theme'],
     });
 
-    // Limpia el observer al desmontar
     return () => observer.disconnect();
   }, []);
 
@@ -122,10 +119,8 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
         ...style,
       }}
     >
-      {/* Animaciones CSS */}
       <style>{animations}</style>
 
-      {/* Botones de opciones de usuario */}
       <div className="flex flex-col gap-2 flex-1">
         {buttons.map((btn, idx) => {
           const Icon = icons[idx] || null;
@@ -151,7 +146,6 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
               }}
               onClick={() => onSelect && onSelect(btn.key)}
             >
-              {/* Icono y texto de la opción */}
               <div className="flex items-center gap-3">
                 {Icon && (
                   <span className="flex items-center justify-center w-5 h-5">
@@ -161,7 +155,6 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
                 <span className="flex items-center">{btn.label}</span>
               </div>
 
-              {/* Flecha derecha visible solo en hover */}
               <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                 <FlechaDerecha stroke="#FFFFFF" size={25} strokeWidth={0.2} />
               </div>
@@ -170,7 +163,6 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
         })}
       </div>
 
-      {/* Botón de cerrar sesión */}
       <button
         className="text-white hover:bg-[#16336e] transition flex items-center justify-center gap-3 rounded-full"
         style={{

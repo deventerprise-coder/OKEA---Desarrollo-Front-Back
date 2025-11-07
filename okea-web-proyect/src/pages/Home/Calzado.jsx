@@ -3,6 +3,7 @@ import { useTheme } from "../../components/ThemeContext";
 import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 import calzadoimagen2 from "../../assets/imagenes/Home/calzadoimagen2.jpg"
 import calzadoimagen from "../../assets/imagenes/Home/calzadoimagen.png"
+import calzadoFondo from "../../assets/imagenes/Home/calzadoFondo.png"
 import { ArrowRightBlackIconwhitout, ArrowRightBrownIcon, ArrowRightIconBlack, FacebookIcon, FootIcon, FootIconDarkMode, HandBagIcon, InstagramIcon, TwitterIcon, YouTubeIcon } from "../../assets/iconos/iconoHome";
 import ProductCard from "../../components/ProductCard";
 
@@ -48,6 +49,19 @@ export default function Calzado() {
     };
     };
 
+    // lista de productos
+    const productos = Array.from({ length: 6 }, (_, i) => ({
+      id: `producto${i + 1}Calzado`,
+      image: muebleMesitaNoche,
+      discount: "-50%",
+      label: "Label",
+      title: "Wooden Sofa Chair",
+      price: "$80.00",
+      oldPrice: "s/ 160.00",
+      rating: "4.9",
+    }));
+
+
     //estado para productos
     const [liked, setLiked] = useState(false);
     const [addedItems, setAddedItems] = useState({});
@@ -69,9 +83,9 @@ export default function Calzado() {
     <section className="Home" style={getBackgroundStyle()}>
       {/*Calzado*/}
       <section className="Calzado">
-        <div className='mt-16 items-center flex flex-col justify-center'>
+        <div className='mt-8 md:mt-16 items-center flex flex-col justify-center px-4 sm:px-6/12 md:3/12 lg:px-40'>
           {/* Titulo */}
-          <div className="flex justify-center w-400  py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+          <div className="hidden md:flex justify-center w-full  py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
           style={{
               background: isLight
                 ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -79,7 +93,7 @@ export default function Calzado() {
               ...getSectionStyle(),
             }}>
             <div className=" mr-5  my-1">
-              {isLight ? <FootIcon /> : <FootIconDarkMode />}
+              {isLight ? <FootIcon color="#3F3F3F" /> : <FootIconDarkMode />}
             </div>
             <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Calzado</h1>
             <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
@@ -91,71 +105,42 @@ export default function Calzado() {
               </div>
             </button>
           </div>
+            {/*Título*/}
+            <div className=" md:hidden flex  w-full text-left gap-5">
+                <div className=" scale-70 mt-1 ">
+                    {isLight ? <FootIcon color="#3F3F3F" /> : < FootIconDarkMode />}
+                </div>
+                <h1 className='text-3xl md:text-4xl pt-1.5 font-popins  text-[#434651]'style={getTextStyle()}>Calzado</h1>
+            </div>
           {/* Cuadro Imagen1 */}
-          <div className=" px-10 py-10 mt-4 mb-4 h-150 rounded-3xl bg-gray-200 w-400" >
-            {/* fila */}
-            <div className="flex justify-between font-bold">
-              <div className="flex gap-1">
-                <div className="logo py-0.5"> <HandBagIcon /> </div>
-                <div className="font-popins leading-4 text-[#704d00]">
-                  <h1>LOGO</h1>
-                  <h1>HERE</h1>
-                </div>
-              </div>
-              <div className="derecha">
-                <div className=" text-[#704d00] font-popins -mt-2">
-                  <h1>FOLLOW US NOW</h1>
-                  {/*Fila*/}
-                  <div className="flex justify-around">
-                    <div className="size-6 bg-[#704d00] rounded-full p-1"><FacebookIcon /></div>
-                    <div className="size-6 bg-[#704d00] rounded-full p-1"><TwitterIcon /></div>
-                    <div className="size-6 bg-[#704d00] rounded-full p-1"><YouTubeIcon /></div>
-                    <div className="size-6 bg-[#704d00] rounded-full p-1"><InstagramIcon /></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className=" py-20 rounded-3xl font-popins-light text-center w-140 ml-20">
-              <h1 className="text-4xl tracking-widest  text-transparent bg-clip-text bg-radial from-[#b17a04] via-[#704d00] to-[#704d00]">LIMITED OFFER</h1>
-              <h1 className="text-9xl -mt-4 -mb-4 font-popins font-extrabold text-transparent bg-clip-text bg-radial from-[#b17a04] via-[#704d00] to-[#704d00]">BLACK</h1>
-              <h1 className="text-6xl tracking-[1rem] text-transparent bg-clip-text bg-radial from-[#b17a04] via-[#704d00] to-[#704d00]">FRIDAY</h1>
-              <div className='flex justify-center mt-5'>    
-                <button className='flex gap-2 bg-[#704d00]  text-white py-2  px-2 -mx-5 mt-2 h-8.5 rounded-4xl'>
-                  <div className='size-6 p-1  font-bold rounded-full bg-white -mt-1 '>
-                    <ArrowRightBrownIcon />
-                  </div>
-                  <h1 className='font-popins font-bold tracking-wider text-xs -py-1 mt-0.5'>ORDER NOW</h1>
-                </button>
-              </div>
-              <h1 className='text-[#704d00] font-popins font-bold text-2xl mt-3'>609-791-3583</h1>
-              <h1 className='font-popins font-bold text-[#704d00] text-xs'>WWW.YOURWEBSITE.COM</h1>
-            </div>
+          <div className=" px-10 py-10 mt-4 mb-4 h-36 md:h-150 bg-no-repeat bg-cover bg-center rounded-3xl bg-gray-200 w-full" style={{ backgroundImage: `url(${calzadoFondo})` }} >
+          
           </div>
           {/* Cuadro Imagen2 y Imagen3 */}
-          <div className="grid grid-cols-6 gap-4 h-196 w-400">
+          <div className="grid grid-cols-6 gap-4 h-70 md:h-196 w-full">
             {/*Cuadro Imagen2*/} 
-            <div className="col-start-1 col-end-5 overflow-hidden  h-196  rounded-4xl  flex justify-end relative bgcover from-top" style={{ backgroundImage: `url(${calzadoimagen2})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+            <div className="col-start-1 md:col-end-5 col-end-7 overflow-hidden  h-70 md:h-196  rounded-4xl  flex justify-end relative bgcover from-top" style={{ backgroundImage: `url(${calzadoimagen2})`, backgroundSize: "cover", backgroundPosition: "center" }}>
               {/* Capa de blur lateral */}
               <div className="absolute inset-0 backdrop-blur-2xl [mask-image:linear-gradient(to_left,white,transparent)] [mask-repeat:no-repeat] [mask-size:100%]"></div>
     
               {/* Contenido */}
-              <div className="relative font-popins text-center w-120 bg-gradient-to-l from-[#EB5A45] via-[#2C509E91]/80 to-[#2C509E91]/0 py-24 rounded-4xl">
-                <h2 className="text-7xl font-semibold text-[#DFE162]">OFERTA</h2>
-                <h2 className="text-7xl  font-semibold text-[#DFE162]">ÚNICA</h2>
+              <div className="relative font-popins text-center w-6/12 bg-gradient-to-l from-[#EB5A45]/100 via-[#2C509E91]/90 to-[#2C509E91]/0 py-24 rounded-4xl">
+                <h2 className=" absolute right-10.5 top-20 md:relative -mt-13 ml-30 text-4xl md:text-8xl font-semibold text-[#DFE162]">OFERTA</h2>
+                <h2 className=" absolute right-12.5 top-16 md:relative  md:pb-10 ml-30 text-4xl md:text-8xl  font-semibold text-[#DFE162]">ÚNICA</h2>
                 {/*Promocion*/}
-                <div className="px-20 w-90 pt-16  rounded-br-3xl scale-120">
-                  <h2 className='text-white font-extralight ml-5 font-popins text-2xl text-left'>HASTA </h2>
+                <div className=" md:px-30 md:w-90  -mt-10  md:pt-16  rounded-br-3xl scale-40 md:scale-120">
+                  <h2 className='text-white font-extralight ml-5 font-popins text-3xl text-left'>HASTA </h2>
                   <div className="flex  -mb-5">
                     <h2 className='text-white -mt-4 text-9xl mb-6 ml-2 font-extrabold font-popins col-span-1'>50</h2>
                     <div className="columna2">                                
-                      <h2 className='text-white  mt-2 text-7xl font-extrabold font-popins col-span-1'>%</h2>
-                      <h2 className='text-white  font-popins  font-light col-span-1'>DCTO.</h2>
+                      <h2 className='text-white -mt-5 text-8xl font-extrabold font-popins col-span-1'>%</h2>
+                      <h2 className='text-white  font-popins -mt-1 font-light col-span-1'>DCTO.</h2>
                     </div>
                   </div>
                   <h2 className='text-white text-center text-2xl pr-12 font-popins w-90'>EN ZAPATOS ESCOLARES PARA NIÑOS</h2>
                 </div>
-                <div className="flex justify-center mt-11 ">
-                  <button className='rounded-4xl bg-white  flex mt-9 py-1 px-3 '>
+                <div className="flex md:pl-13 justify-center md:mt-11 ">
+                  <button className='rounded-4xl bg-white scale-50 md:scale-100 flex mb-20 -mt-15 md:mt-9 md:mb-0 ml-7 md:ml-0 md:py-1 px-3 '>
                     <h2 className='font-popins-light text-sm py-2'>VER PRODUCTO</h2>
                     <div className='  scale-50'>
                         <ArrowRightBlackIconwhitout />
@@ -164,7 +149,7 @@ export default function Calzado() {
                 </div>
               </div>
             </div>
-            <div className="col-start-5 col-end-7 h-196 p-4 rounded-4xl overflow-hidden bg-gradient-to-l from-[#DFE162]  via-[#DFE162]/50  to-[#B1C5FF]"            
+            <div className="hidden md:flex flex-col col-start-5 col-end-7 h-196 p-4 rounded-4xl overflow-hidden bg-gradient-to-l from-[#DFE162]  via-[#DFE162]/50  to-[#B1C5FF]"            
             style={{
                background: isLight
                  ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -245,16 +230,36 @@ export default function Calzado() {
                     getTextStyle={getTextStyle}
                   /> 
               </div>
-            </div>     
+            </div>                 
+          </div>
+           {/* 📱 Versión móvil (carrusel deslizable) */}
+          <div
+            className="md:hidden flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full mt-4 py-4 px-2 rounded-4xl group"
+          >
+            {productos.map((p) => (
+              <div key={p.id}>
+                  <ProductCard
+                  key={p.id}
+                  id={p.id}
+                  {...p}
+                  liked={liked[p.id]}
+                  added={addedItems[p.id]}
+                  onLike={toggleLike}
+                  onAdd={handleClick}
+                  getCardStyle={getCardStyle}
+                  getTextStyle={getTextStyle}
+                />
+              </div>
+            ))}
           </div>
           {/* Cuadro Imagen4 */}
-          <div className="flex  w-400 h-50 mt-4 bg-[#2C509ED1] rounded-4xl justify-around">
-            <h1 className=' ml-17 font-popins-light tracking-tighter font-bold text-white/70 text-[120px]'>SNEAKERS</h1>
-            <div className="h-80 w-80 bg-cover -mt-20" style={{ backgroundImage: `url(${calzadoimagen})` }}></div>
+          <div className="hidden lg:flex w-full h-50 mt-4 bg-[#2C509ED1] rounded-4xl justify-around">
+            <h1 className='ml-10 xl:ml-16.5 font-sans -tracking-widest font-bold text-white/70 lg:text-7xl xl:text-[120px]'>SNEAKERS</h1>
+            <div className="h-41 w-4/12 bg-cover bg-center " style={{ backgroundImage: `url(${calzadoimagen})` }}></div>
             <div className="mr-16">
-              <h2 className='font-popins-light tracking-tighter font-bold mt-7 text-white text-[55px]'>ENCUENTRA TU ESTILO</h2>
+              <h2 className='font-popins tracking-tighter font-bold mt-7 text-white  lg:text-4xl xl:text-6xl'>ENCUENTRA TU ESTILO</h2>
               <div className="flex gap-4">
-                <h2 className='text-[#1C4390] p-2.5 font-popins tracking-tighter font-bold text-4xl w-auto h-auto rounded-4xl bg-[#DFE162]'>Compra Ahora</h2>
+                <h2 className='text-[#1C4390] p-2.5 font-popins tracking-tighter font-bold text-4xl w-2/12 lg:w-auto h-auto rounded-4xl bg-[#DFE162]'>Compra Ahora</h2>
                 <h2 className='font-popins tracking-tighter mt-3 font-bold text-white text-4xl'>50% DESCUENTO</h2>
               </div>
             </div>

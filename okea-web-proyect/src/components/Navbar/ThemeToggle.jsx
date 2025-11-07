@@ -5,7 +5,6 @@ import { useTheme } from "../ThemeContext";
 // 1. COMPONENTE PRINCIPAL ThemeToggle
 // =======================
 export default function ThemeToggle() {
-  // Obtiene el estado del tema y la función para cambiarlo desde el contexto
   const { isLight, toggleTheme } = useTheme();
 
   // =======================
@@ -22,19 +21,16 @@ export default function ThemeToggle() {
   // =======================
   return (
     <div className="flex items-center">
-      {/* Botón para alternar el tema */}
       <button
         onClick={toggleTheme}
         style={getThemeStyles()}
-        className="relative w-[85px] h-[40px] rounded-full transition-colors duration-300 cursor-pointer"
+        className="relative w-[80px] h-[40px] rounded-full transition-colors duration-300 cursor-pointer"
       >
-        {/* Indicador visual del tema actual */}
         <div
           className={`absolute top-1/2 transform -translate-y-1/2 w-[36px] h-[36px] rounded-full flex items-center justify-center transition-all duration-300 ${
-            isLight ? "left-[45px] bg-white" : "left-[4px] bg-[#251F67]"
+            isLight ? "left-[40px] bg-white" : "left-[4px] bg-[#251F67]"
           }`}
         >
-          {/* Icono de sol para tema claro, luna para tema oscuro */}
           {isLight ? (
             <SunIcon color="#1C4390" className="w-[24px] h-[24px]" />
           ) : (

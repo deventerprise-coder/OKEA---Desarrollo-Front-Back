@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 // 1. COMPONENTE PRINCIPAL
 // =======================
 export default function LocationOptionsDropdown({ options, position, onClose }) {
-  // Estado para el tema actual (claro/oscuro)
   const [theme, setTheme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
   });
@@ -15,8 +14,6 @@ export default function LocationOptionsDropdown({ options, position, onClose }) 
   // =======================
   useEffect(() => {
     setTheme(document.documentElement.getAttribute('data-theme') || 'light');
-
-    // Observa cambios en el atributo data-theme del documento
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
@@ -29,8 +26,6 @@ export default function LocationOptionsDropdown({ options, position, onClose }) 
       attributes: true,
       attributeFilter: ['data-theme'],
     });
-
-    // Limpia el observer al desmontar
     return () => observer.disconnect();
   }, []);
 
@@ -60,19 +55,16 @@ export default function LocationOptionsDropdown({ options, position, onClose }) 
         padding: '20px 8px',
         scrollbarWidth: 'none',
         msOverflowStyle: 'none',
-        // Agregar una pequeña sombra para que se vea encima
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
       }}
       onClick={(e) => e.stopPropagation()}
     >
-      {/* Oculta el scrollbar nativo en navegadores Webkit */}
       <style jsx>{`
         div::-webkit-scrollbar {
           display: none;
         }
       `}</style>
 
-      {/* Lista de opciones */}
       <div className="flex flex-col gap-y-2.5">
         {options.map((item, i) => (
           <div
@@ -80,13 +72,11 @@ export default function LocationOptionsDropdown({ options, position, onClose }) 
             className="group flex items-center justify-between gap-2 px-4 py-2 hover:bg-[#E4E66644] cursor-pointer text-white rounded-full transition-all duration-150"
             onClick={onClose}
           >
-            {/* Opción con icono de ubicación y nombre */}
             <div className="flex items-center gap-2">
               <Location1 stroke="#FFFFFF" />
               <span className="text-sm font-poppins">{item}</span>
             </div>
 
-            {/* Ícono de flecha derecha, visible solo en hover */}
             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150">
               <FlechaDerecha size={25} stroke="#FFFFFF" strokeWidth={0.2}/>
             </div>

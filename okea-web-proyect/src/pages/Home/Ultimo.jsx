@@ -1,89 +1,62 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTheme } from "../../components/ThemeContext";
-import ultimoImagen1 from "../../assets/imagenes/Home/ultimoImagen1.png"
-import ultimoImagen4 from "../../assets/imagenes/Home/ultimoImagen4.png"
-import ultimoImagen2 from "../../assets/imagenes/Home/ultimoImagen2.png"
-import ultimoImagen3 from "../../assets/imagenes/Home/ultimoImagen3.png"
-import ultimoImagen5 from "../../assets/imagenes/Home/ultimoImagen5.png"
-import ultimoImagen6 from "../../assets/imagenes/Home/ultimoImagen6.png"
-import ultimoImagen7 from "../../assets/imagenes/Home/ultimoImagen7.png"
-import ultimoImagen8 from "../../assets/imagenes/Home/ultimoImagen8.png"
-import ultimoImagen9 from "../../assets/imagenes/Home/ultimoImagen9.png"
-import ultimoImagen10 from "../../assets/imagenes/Home/ultimoImagen10.png"
-import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
-import ProductCard from "../../components/ProductCard.jsx";
-import { ArrowLeftNormal, ArrowRightNormal } from "../../assets/iconos/iconoHome.jsx";
-
+import ultimoImagen1 from "../../assets/imagenes/Home/ultimoImagen1.png";
+import ultimoImagen4 from "../../assets/imagenes/Home/ultimoImagen4.png";
+import ultimoImagen2 from "../../assets/imagenes/Home/ultimoImagen2.png";
+import ultimoImagen3 from "../../assets/imagenes/Home/ultimoImagen3.png";
+import ultimoImagen5 from "../../assets/imagenes/Home/ultimoImagen5.png";
+import ultimoImagen6 from "../../assets/imagenes/Home/ultimoImagen6.png";
+import ultimoImagen7 from "../../assets/imagenes/Home/ultimoImagen7.png";
+import ultimoImagen8 from "../../assets/imagenes/Home/ultimoImagen8.png";
+import ultimoImagen9 from "../../assets/imagenes/Home/ultimoImagen9.png";
+import ultimoImagen10 from "../../assets/imagenes/Home/ultimoImagen10.png";
 
 export default function Ultimo() {
-    // --- Tema ---
-    const { isLight } = useTheme();
+  const { isLight } = useTheme();
 
-    const getBackgroundStyle = () => {
-    return {
-      backgroundColor: isLight ? '#ffffff' : '#120F31',
-      color: isLight ? '#000000' : '#ffffff',
-      transition: 'background-color 0.3s ease, color 0.3s ease'
-    };
-    };
+  const getBackgroundStyle = () => ({
+    backgroundColor: isLight ? "#ffffff" : "#120F31",
+    color: isLight ? "#000000" : "#ffffff",
+    transition: "background-color 0.3s ease, color 0.3s ease",
+  });
 
-    const getSectionStyle = (customBg = null) => {
-    if (customBg) {
-      return {
-        backgroundColor: isLight ? customBg : 'rgba(16, 16, 30, 0.9)',
-        color: isLight ? '#000000' : '#ffffff',
-        transition: 'all 0.3s ease'
-      };
-    }
-    return {
-      backgroundColor: isLight ? '#ffffff' : 'rgba(16, 16, 30, 0.8)',
-      color: isLight ? '#000000' : '#ffffff',
-      transition: 'all 0.3s ease'
-    };
-    };
+  const getTextStyle = () => ({
+    color: isLight ? "#434651" : "#FFFFFF",
+    transition: "color 0.3s ease",
+  });
 
-    const getTextStyle = () => {
-    return {
-      color: isLight ? '#434651' : '#FFFFFF',
-      transition: 'color 0.3s ease'
-    };
-    };
+  const imagenes = [ultimoImagen6, ultimoImagen7, ultimoImagen8, ultimoImagen9];
+  const [current, setCurrent] = useState(0);
 
-    const getCardStyle = () => {
-    return {
-      backgroundColor: isLight ? '#FFFFFF' : '#292272',
-      transition: 'all 0.3s ease'
-    };
-    };
-    //estado para productos
-    const [liked, setLiked] = useState(false);
-    const [addedItems, setAddedItems] = useState({});
+  const nextSlide = () => setCurrent((prev) => (prev === imagenes.length - 1 ? 0 : prev + 1));
+  const prevSlide = () => setCurrent((prev) => (prev === 0 ? imagenes.length - 1 : prev - 1));
 
-    const toggleLike = (id) => {
-    setLiked((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-    };
-    const handleClick = (id) => { 
-     setAddedItems((prev) => ({
-         ...prev,
-     [id]: !prev[id], // solo cambia el botón clickeado
-     }));
-  };  
+  // para soporte táctil
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
+  const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
+  const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) nextSlide();
+    if (touchStart - touchEnd < -75) prevSlide();
+  };
 
-    return (
-      <section className="Home" style={getBackgroundStyle()}>
-      {/*Ultimo*/}
-      <section className="Ultimmo">
-        <div className="mt-16 items-center flex flex-col justify-center">
-            {/*titulo*/}
-            <div className="text-5xl font-popins  w-400  text-[#434651] text-center" style={getTextStyle()}>
-                Últimos lanzamientos
-            </div>
-            {/*Fila 1*/}
-            <div className="relative bg-[#FFDAD4] h-100 w-400 no bg-no-repeat rounded-4xl overflow-hidden bg-center " style={{ backgroundImage: `url(${ultimoImagen1})` }}>
+  return (
+    <section className=" Home items-center justify-center" style={getBackgroundStyle()}>
+      <section className="Ultimmo px-4 sm:px-6/12 md:3/12 lg:px-40">
+        <div className="mt-8 lg:mt-16 items-center flex flex-col justify-center">
+          {/* Título */}
+          <div
+            className="text-3xl md:text-5xl font-popins w-full text-[#434651] text-center"
+            style={getTextStyle()}
+          >
+            Últimos lanzamientos
+          </div>
+
+          {/* Fila 1 */}
+            <div className="hidden xl:block relative bg-[#FFDAD4] h-100 w-full bg-no-repeat rounded-4xl overflow-hidden bg-center bg-auto" >
+                <div className="absolute z-0 ml-150 bg-cover size-100"style={{ backgroundImage: `url(${ultimoImagen1})` }}></div>
                 <div className="absolute z-1 ml-190 bg-cover size-100"style={{ backgroundImage: `url(${ultimoImagen2})` }}></div>
                 <div className="absolute backdrop-blur-sm size-90 ml-154 "></div>
                 <div className="ml-30">
@@ -94,30 +67,46 @@ export default function Ultimo() {
                 <h2 className='ml-30 w-110 font-popins -pb-2 mb-2 leading-9 text-3xl text-[#2F3036]'>AUDIFONOS ON EAR BLUETOOTH</h2>
                 <div className="absolute z-1 transform scale-x-[-1] -mt-88.5 ml-280 bg-cover bg-no-repeat w-180 h-100" style={{ backgroundImage: `url(${ultimoImagen3})` }}></div>
             </div>
-            {/*Fila 2*/}
-            <div className=" w-400">
-                <div className="flex w-400 h-100 bg-cover  rounded-4xl justify-between overflow-hidden mt-4" style={{ backgroundImage: `url(${ultimoImagen5})` }}>
-        
-                </div>
+
+          {/* Fila 2 */}
+          <div className="w-full">
+            <div
+              className="flex w-full h-19.5 flex-shrink-0 lg:h-100 bg-cover rounded-3xl lg:rounded-4xl justify-between overflow-hidden mt-4 bg-center lg:bg-left"
+              style={{ backgroundImage: `url(${ultimoImagen5})` }}
+            ></div>
+          </div>
+
+          {/* Fila 3 — Carrusel responsive tipo Nike */}
+          <div className="w-full mt-4">
+            {/* Vista Desktop (4 columnas fijas) */}
+            <div className="hidden md:grid md:grid-cols-4 gap-4 bg-[#303030] rounded-4xl p-4">
+              {imagenes.map((img, i) => (
+                <div
+                  key={i}
+                  className="bg-cover bg-center rounded-3xl w-full h-100"
+                  style={{ backgroundImage: `url(${img})` }}
+                ></div>
+              ))}
             </div>
-            {/*Fila 3*/}
-            <div className="grid grid-cols-4 gap-4 w-400 h-100 bg-cover p-4 bg-[#303030] rounded-4xl overflow-hidden mt-4">
-                <div className="col-span-1 bg-cover rounded-4xl" style={{ backgroundImage: `url(${ultimoImagen6})` }}></div>       
-                <div className="col-span-1 bg-cover rounded-4xl" style={{ backgroundImage: `url(${ultimoImagen7})` }}></div>
-                <div className="col-span-1 bg-cover rounded-4xl" style={{ backgroundImage: `url(${ultimoImagen8})` }}></div>
-                <div className="col-span-1 bg-cover rounded-4xl" style={{ backgroundImage: `url(${ultimoImagen9})` }}></div>
+            
+            {/* Vista Móvil (Carrusel deslizable) */}
+            <div className="flex md:hidden gap-4 overflow-x-auto scroll-smooth no-scrollbar p-4 bg-[#303030] rounded-4xl">
+              {imagenes.map((img, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 w-50 h-51 bg-cover bg-center rounded-3xl"
+                  style={{ backgroundImage: `url(${img})` }}
+                ></div>
+              ))}
             </div>
-            {/*Fila 4*/}
-            <div 
-                className=" w-400 h-200 mt-4 rounded-4xl bg-[45%_50%]  overflow-hidden bg-no-repeat  bg-cover"
-                style={{ backgroundImage: `url(${ultimoImagen10})` }}> 
-            </div>
+          </div>
+          {/* Fila 4 */}
+          <div
+            className="hidden xl:block w-full h-200 mt-4 rounded-4xl bg-[45%_50%] overflow-hidden bg-no-repeat bg-cover"
+            style={{ backgroundImage: `url(${ultimoImagen10})` }}
+          ></div>
         </div>
       </section>
-
-    
-     
-
-      </section>
-    )
+    </section>
+  );
 }
