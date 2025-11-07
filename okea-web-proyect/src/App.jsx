@@ -25,6 +25,9 @@ import Recomendados from './pages/Home/Recomendados';
 import Vendidos from './pages/Home/Vendidos';
 import Ultimo from './pages/Home/Ultimo';
 
+// Importamos el TestRouter que maneja la ruta de Oferta1
+import TestRouter from './pages/Ofertanueva/TestRouter'; 
+
 const categoriaSlugMap = {
   'tecnologia': 'Tecnología',
   'muebles-y-organizacion': 'Muebles y Organización',
@@ -225,7 +228,21 @@ function App() {
               path="/producto/detalle/:categoria/:producto" 
               element={<ProductoDetalleRoute />}
             />
+          
+           {/* ... otras rutas ... */}
+
+            {/* Ruta para la página independiente Oferta1 */}
+            <Route path="/ofertanueva/*" element={<TestRouter />} />
+
+
+
+            {/* Otras rutas... */}
+            <Route path="/carrito" 
+            element={<CarritoPage />} />
+            
           </Routes>
+
+      {/* <Footer /> */}
         </div>
         </Router>
       </SortProvider>

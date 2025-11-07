@@ -81,6 +81,56 @@ export default function FooterGrande() {
 		'Horario: Lunes a Viernes de 9:00 a.m. a 6:00 p.m.',
 	];
 
+  return (
+    // w-full para responsive. max-w-[1600px] para respetar el ancho de Figma.
+    // p-8 por defecto (móvil). lg:px-16 (64px) y lg:pt-[100px] para respetar Figma en desktop.
+    <div
+      // Nota: `pt-[100px]` usa el soporte de clases arbitrarias de Tailwind para aplicar un valor exacto.
+      className="flex flex-col relative z-0 w-full max-w-[1600px] mx-auto p-8 sm:p-10 md:px-16 lg:px-20 lg:pt-[100px] lg:pb-16"
+      style={getContainerStyles()}
+    >
+      <div
+        // flex-col por defecto (móvil), lg:flex-row (desktop)
+        // gap-y-10 (espacio vertical en móvil), lg:gap-x-20 (espacio horizontal en desktop - 20 * 4 = 80px)
+        className="flex flex-col lg:flex-row justify-between items-start w-full gap-y-10 lg:gap-x-20"
+      >
+        {/* Enlaces útiles */}
+        <div className="flex flex-col min-w-full lg:min-w-[180px]" style={{ gap: 21 }}>
+          <span
+            className="mb-2"
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              fontWeight: 400,
+              fontSize: 22,
+              lineHeight: '28px',
+              color: getTitleColor(),
+              transition: 'color 0.3s ease',
+            }}
+          >
+            Enlaces útiles
+          </span>
+          {enlacesUtiles.map((text, i) => (
+            <a
+              key={i}
+              href="#"
+              className="hover:underline"
+              style={{
+                fontFamily: 'Poppins, sans-serif',
+                fontWeight: 500,
+                fontSize: 14,
+                lineHeight: '20px',
+                letterSpacing: '0.1px',
+                color: getTextColor(),
+                transition: 'color 0.3s ease',
+              }}
+            >
+              {text}
+            </a>
+          ))}
+          <a href="#" className="mt-3">
+            <img src={LibroReclamaciones} alt="Libro de Reclamaciones" className="h-8" />
+          </a>
+        </div>
 	const enlacesLegalesMobile = [
 		{ text: 'POLÍTICA DE PRIVACIDAD', href: '#' },
 		{ text: 'TÉRMINOS Y CONDICIONES', href: '#' },

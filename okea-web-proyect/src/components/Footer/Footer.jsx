@@ -33,7 +33,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="w-full flex flex-col items-center mt-0 overflow-visible px-4"
+      className="w-full flex flex-col items-center mt-0 overflow-visible px-4  sm:px-6 md:px-8 lg:px-10 "
       style={getFooterStyles()}
     >
       <div className="w-full flex flex-col items-center">
