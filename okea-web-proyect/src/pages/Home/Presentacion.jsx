@@ -88,8 +88,8 @@ export default function Presentacion() {
         
         // --- Slide 1 ---
         
-        <div className="flex relative justify-center scale-130 bg-gradient-to-tr from-[#707DCB] to-[#8B96E8] w-auto h-80 md:h-203 overflow-hidden">
-          <div className="pl-10 md:pl-101 md:pr-30 -mt-8 -mr-30 md:mr-0 md:mt-40 scale-45 md:scale-100">
+        <div className="flex relative justify-center scale-130 bg-gradient-to-tr from-[#707DCB] to-[#8B96E8] w-auto h-80 md:h-120 2xl:h-203 overflow-hidden">
+          <div className="pl-10 md:pl-100 2xl:pl-101 md:pr-2 2xl:pr-30 -mt-8 -mr-30 md:mr-0 2xl:mr-0 md:mt-3 2xl:mt-40 scale-45 md:scale-65 2xl:scale-100">
             <h1 className="text-8xl md:text-9xl text-center leading-28 font-popins font-extrabold text-white pt-20 md:pt-14">
               Tech
             </h1>
@@ -107,7 +107,7 @@ export default function Presentacion() {
             </button>
           </div>
           {/* columna2 */}
-          <div className="relative scale-33 md:scale-100 -mt-8 md:pt-40 -ml-17 md:-ml-0 md:mr-100">
+          <div className="relative scale-33 md:scale-58 2xl:scale-100 -mt-8 md:pt-18 2xl:pt-40 -ml-17 md:-ml-25 2xl:-ml-0 md:mr-80 2xl:mr-100">
               <div
               className={`absolute right-5 top-5 md:top-45 size-20 -z-50 rounded-full 
               bg-gradient-to-b from-[#6625e8] via-[#e592ff] to-[#eddbff] 
@@ -155,8 +155,8 @@ export default function Presentacion() {
         </div>,
     
         // --- Slide 2 ---
-        <div className="pb-5 bg-gradient-to-b from-[#C4D1ED] scale-140 to-[#8B72E5]/80 w-auto h-80 md:h-203 overflow-hidden">
-          <div className="flex justify-center scale-30 md:scale-100 mt-10 md:mt-50">
+        <div className="pb-5 bg-gradient-to-b from-[#C4D1ED] scale-140 to-[#8B72E5]/80 w-auto h-80 md:h-120 2xl:h-203 overflow-hidden">
+          <div className="flex justify-center scale-30 md:scale-60 2xl:scale-100 mt-10 md:mt-25 2xl:mt-50">
             <div
               className="size-42 scale-40 -ml-14"
               style={{ backgroundImage: `url(${apple})` }}
@@ -175,7 +175,7 @@ export default function Presentacion() {
             </h1>
           </div>
           <p
-            className=" md:text-3xl -mt-18 md:-mt-10 scale-80 md:scale-100 text-center font-popins text-transparent bg-clip-text"
+            className=" md:text-3xl -mt-18 md:-mt-13 2xl:-mt-10 scale-80 md:scale-90 2xl:scale-100 text-center font-popins text-transparent bg-clip-text"
             style={{
               backgroundImage:
                 "linear-gradient(to right,#00ccff,#00ccff,#00ccff, #00ccff,#9a4efe,#ff66ff, #f80000, #f86700,#f86700)",
@@ -183,9 +183,9 @@ export default function Presentacion() {
           >
             Diseñado para Apple Intelligence
           </p>
-          <div className="md:flex justify-center -ml-75 md:ml-10 -mt-36 md:mt-25 scale-49 md:scale-100">
+          <div className="w-auto md:flex justify-center mr-0 md:-mr-120 2xl:mr-0 -ml-75 md:-ml-125 2xl:ml-10 -mt-36 md:-mt-10 2xl:mt-25 scale-45 md:scale-60 2xl:scale-100">
             <div
-              className=" w-350 h-100 -mt-30 scale-40 md:scale-70 bg-cover"
+              className=" w-350 h-100 -mt-30 scale-40 md:scale-45  2xl:scale-70 bg-cover"
               style={{ backgroundImage: `url(${iphone})` }}
             ></div>
           </div>
@@ -193,8 +193,8 @@ export default function Presentacion() {
         
     
         // --- Slide 3 ---
-        <div className="pt-20 flex justify-center bg-gradient-to-br h-80 md:h-203 from-[#E6E879] to-[#C5DFA1]">
-          <div className="columna1 w-110 -ml-30 md:-ml-20  md:mr-100 -mt-25 md:mt-30 scale-40 md:scale-130">
+        <div className="pt-20 flex justify-center bg-gradient-to-br h-80 md:h-120 2xl:h-203 from-[#E6E879] to-[#C5DFA1]">
+          <div className="columna1 w-110 -ml-35 md:-ml-28 2xl:-ml-20  md:mr-50 2xl:mr-100 -mt-25 md:-mt-8 2xl:mt-30 scale-40 md:scale-80 2xl:scale-130">
             <h1 className="font-popins text-5xl text-left text-[#d16518]">
               MODERN
             </h1>
@@ -208,23 +208,25 @@ export default function Presentacion() {
               ORDER NOW
             </button>
           </div>
-          <div className="relative scale-30 md:scale-100">
+          <div className="scale-25 md:scale-55 2xl:scale-100">
             <div
-              className="w-150 h-120  -ml-130 md:-ml-100 -mt-20 md:mt-20"
+              className=" relative w-150 h-120  -ml-150 md:-ml-129 2xl:-ml-100 -mt-30 md:-mt-10 2xl:mt-20"
               style={{ backgroundImage: `url(${sofa})` }}
-            ></div>
-            <div className="absolute bottom-30 -right-45 size-60 bg-[#d16518]/60 backdrop-blur-md align-center rounded-full text-center">
+            >
+              <div className="absolute -bottom-20 -right-45 size-60 bg-[#d16518]/60 backdrop-blur-md align-center rounded-full text-center">
               <h1 className="text-white text-7xl pt-10 font-popins font-extrabold">
                 30% OFF
               </h1>
             </div>
+            </div>
+
           </div>
         </div>,
     
         // --- Slide 4 ---
-        <div className="flex justify-center  h-80 md:h-203 gap-32 bg-[#CBBCFF] pt-23 md:pt-20 scale-150">
+        <div className="flex justify-center  h-80 md:h-120 2xl:h-203 gap-32 bg-[#CBBCFF] pt-23 md:pt-20 scale-150">
           <h1
-            className="font-popins mr-10 -mt-10 md:mt-50 text-6xl text-transparent bg-clip-text text-center scale-45 md:scale-100 text-balance w-90 font-extrabold"
+            className="font-popins mr-6 md:mr-8  -mt-10 md:mt-7 2xl:mt-50 text-6xl text-transparent bg-clip-text text-center scale-35 md:scale-65 2xl:scale-100 text-balance w-90 font-extrabold"
             style={{
               backgroundImage: "linear-gradient(to bottom ,#0099ff, #9a4efe, #ad05d3)",
             }}
@@ -232,7 +234,7 @@ export default function Presentacion() {
             THINGS TO KNOW BEFORE YOU BUY
           </h1>
           <div
-            className="w-90 h-90 scale-40 md:scale-110 -ml-90 md:-ml-48 -mt-23 md:mt-30"
+            className="w-90 h-90 scale-35 md:scale-70 2xl:scale-110 -ml-92 md:-ml-75 2xl:-ml-48 -mt-23 md:mt-2 2xl:mt-30"
             style={{ backgroundImage: `url(${audifonos})` }}
           ></div>
         </div>,
@@ -242,7 +244,7 @@ export default function Presentacion() {
 
       <section className="Presentacion ">
       {/* Carrusel de Presentación */}
-        <div className="relative w-full h-80 md:h-203 overflow-hidden">
+        <div className="relative w-full h-80 md:h-120 2xl:h-203 overflow-hidden">
           {/* Slides con fade */}
           {slidesPresentacion.map((slide, index) => (
             <div key={index} className={`absolute w-full h-full transition-opacity duration-1000 ${ index === currentPres ? "opacity-100 z-20" : "opacity-0 z-10"}`}>
