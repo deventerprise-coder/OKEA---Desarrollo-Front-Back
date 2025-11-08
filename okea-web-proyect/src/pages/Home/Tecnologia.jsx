@@ -86,7 +86,7 @@ export default function Tecnologia() {
           {/*Contenido fila 2 responsive*/}
            <div className=" mt-4 md:hidden flex overflow-hidden bg-cover w-full rounded-2xl h-24 md:h-80 ml:h-80" style={{ backgroundImage: `url(${tecnologiaImagen6})` }} ></div>
             {/*Contenido fila 1*/}
-            <div className="mx-40 mt-4 w-full h-98 lg:h-60 xl:h-70 2xl:h-100 mt-4">
+            <div className="mx-40 w-full h-98 lg:h-60 xl:h-70 2xl:h-100 mt-4">
                 <div className=" h-98  xl:h-100 md:grid md:grid-cols-2 gap-4 "> 
                     <div className="relative overflow-hidden pt-10 px-2 xl:px-7 bg-[#B1C5FF] h-48 lg:h-60 xl:h-70 2xl:h-100 rounded-2xl md:rounded-4xl">
                         <div className="flex justify-center -mt-4 md:-mt-0  lg:scale-90 xl:scale-100">

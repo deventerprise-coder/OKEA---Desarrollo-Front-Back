@@ -914,7 +914,9 @@ return (
                           getCardStyle={getCardStyle}
                           getTextStyle={getTextStyle}
                         />
+                        
                         {/*Producto5*/}
+                        
                         <ProductCard
                           id="producto5Muebles"
                           image={muebleMesitaNoche}
@@ -1346,8 +1348,9 @@ return (
       <section className="Recomendados">
         <div className="mt-16 items-center flex flex-col justify-center">
             {/*titulo*/}
+            
             <div className="text-5xl font-popins w-400  text-[#434651] text-center" style={getTextStyle()}>
-                Recomendados para ti
+                Recomendados para ti 
             </div>
             {/*fila*/}
             <div className="cuadroImagen3 mt-4">
