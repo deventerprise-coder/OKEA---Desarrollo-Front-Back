@@ -28,4 +28,23 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* Ocultar scroll pero mantenerlo funcional */
+.ocultar-scroll {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer y Edge */
+}
+
+.ocultar-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+}
+
+/* Oculta solo el scroll horizontal */
+.ocultar-scroll-horizontal {
+  overflow-x: hidden; /* oculta scroll lateral */
+}
+
+.ocultar-scroll-horizontal::-webkit-scrollbar:horizontal {
+  display: none; /* Chrome, Safari y Opera */
+}
+
 

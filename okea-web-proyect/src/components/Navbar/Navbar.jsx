@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
+import { useCart } from "../CartContext";
+
 import Logo from "./Logo";
 import LocationButton from "./LocationButton";
 import LocationDropdown from "./LocationDropdown";
@@ -16,9 +18,12 @@ import MenuButton from "./MenuButton";
 import SearchBarMobile from "./SearchBarMobile";
 import MenuDropdownMobile from "./MenuDropdownMobile";
 
+
+
 // ====================================================================
 // PANEL DE CONTROL DE NAVBAR
 // ====================================================================
+
 const NAVBAR_CONFIG = {
 	visibility: {
 		Logo: { mobile: false, standard: true, large: true, xLarge: true },
@@ -200,6 +205,8 @@ export default function Navbar() {
 	const userButtonRef = useRef(null);
 	const locationButtonref = useRef(null);
 	const location = useLocation();
+	const { totalItems } = useCart(); 
+
 	const previousLocationRef = useRef(location.pathname);
 	const labels = ["Departamento", "Provincia", "Distrito"];
 	const options = {
@@ -623,24 +630,24 @@ export default function Navbar() {
 						</div>
 
 						<div
-							ref={cartBadgeRef}
-							className={`
-								${getMobileHiddenStyles("CartBadge").className} 
-								${getDebugStyles("element")}
-								${isMobileBreakpoint ? "order-2" : ""} 
-							`}
-							style={{
-								...getComponentStyles("CartBadge"),
-							}}
-						>
-							<CartBadge
-								count={3}
-								onClick={(e) => {
-									e.stopPropagation();
-									handleToggleDropdown("cart");
-								}}
-							/>
-						</div>
+  ref={cartBadgeRef}
+  className={`
+    ${getMobileHiddenStyles("CartBadge").className} 
+    ${getDebugStyles("element")}
+    ${isMobileBreakpoint ? "order-2" : ""} 
+  `}
+  style={{
+    ...getComponentStyles("CartBadge"),
+  }}
+>
+  <CartBadge
+    count={totalItems} // ✅ contador real del carrito
+    onClick={(e) => {
+      e.stopPropagation();
+      handleToggleDropdown("cart");
+    }}
+  />
+</div>
 
 						<div
 							className={`${getVisibilityClass("MenuButton")} ${getDebugStyles(
