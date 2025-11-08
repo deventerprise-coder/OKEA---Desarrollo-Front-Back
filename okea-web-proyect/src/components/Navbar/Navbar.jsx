@@ -103,7 +103,7 @@ const NAVBAR_CONFIG = {
 	},
 	breakpoints: {
 		standard: 640,
-		large: 1124,
+		large: 1024,
 		xLarge: 1480,
 	},
 };
@@ -563,7 +563,7 @@ export default function Navbar() {
 					>
 						<SearchBar
 							onToggleCategorias={() => {
-								if (currentBreakpoint === "standard" || currentBreakpoint === "large") {
+								if (currentBreakpoint === "standard") {
 									closeDynamicDropdowns();
 									setIsMenuOpen(true);
 								} else {
