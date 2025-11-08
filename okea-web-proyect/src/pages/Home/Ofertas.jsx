@@ -126,10 +126,10 @@ export default function Ofertas() {
                 <h1 className=' text-4xl md:text-[57px] tracking-tight  w-full  text-[#434651] mb-8 md:mb-4' style={getTextStyle()}>Ofertas del día</h1>
                 <div className="w-full items-center flex justify-center">
                   <div className="overflow-hidden w-full h-64 md:h-52 rounded-4xl  bg-[#EB5A45] py-4 px-2 md:px-31 md:flex items-center">
-                      <div className=" md:scale-70 lg:scale-100 hidden md:block size-29 mr-2 md:-ml-30 lg:-ml-20 2xl:ml-0">
+                      <div className=" md:scale-60 xl:scale-100 hidden md:block size-29 mr-2 md:-ml-30 lg:-ml-20 2xl:ml-0">
                          <TagIcon /> 
                       </div>   
-                      <div className="flex md:scale-80 lg:scale-100 w-full md:w-125" >         
+                      <div className="flex md:scale-80 xl:scale-100 w-full md:w-125 ml-0 lg:-ml-15 xl:ml-0" >         
                         <h2 className='text-[#DFE162] md:text-white font-popins md:font-bold  md:-ml-15 lg:ml-0 text-2xl md:text-4xl mt-0 md:mt-3  w-36/12 md:mr-2  md:w-48.5'>¡QUEDAN POCAS HORAS!</h2>
                         {/*cuadro de texto*/}
                         <div className="grid grid-cols-2 gap-2 -mt-7 md:mt-0 scale-70 md:scale-100 w-55 -ml-4 md:-ml-2 md:w-53 mr-34  md:-mr-7 lg:mr-5 2xl:mr-13">
@@ -146,8 +146,8 @@ export default function Ofertas() {
                           </div>
                         </div>
                       {/* Aquí se llama al componente CountdownTimer */}
-                      <div className="lg:flex md:mt-8 lg:mt-0">
-                      <CountdownTimer className="scale-80" />
+                      <div className="lg:flex md:mt-8 lg:mt-0 scale-100 lg:scale-80 xl:scale-100 ml-0 lg:-ml-25 xl:ml-0">
+                      <CountdownTimer />
                       <div className="flex items-center justify-center md:ml-3 2xl:ml-11 -mt-5 md:mt-0">
                           <h2 className='text-white lg:w-40  2xl:w-auto font-popins mr-4 md:font-semibold  text-[45px] md:text-[25px] 2xl:text-[45px] text-center'>COMPRA YA</h2>
                           {/* Flecha derecha */}

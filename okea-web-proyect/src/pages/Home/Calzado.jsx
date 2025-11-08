@@ -119,16 +119,16 @@ export default function Calzado() {
           {/* Cuadro Imagen2 y Imagen3 */}
           <div className="grid grid-cols-6 gap-4 h-70 md:h-196 w-full">
             {/*Cuadro Imagen2*/} 
-            <div className="col-start-1 md:col-end-5 col-end-7 overflow-hidden  h-70 md:h-196  rounded-4xl  flex justify-end relative bgcover from-top" style={{ backgroundImage: `url(${calzadoimagen2})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+            <div className="col-start-1 md:col-end-7 2xl:col-end-5 col-end-7 overflow-hidden  h-70 md:h-196  rounded-4xl  flex justify-end relative bgcover from-top" style={{ backgroundImage: `url(${calzadoimagen2})`, backgroundSize: "cover", backgroundPosition: "center" }}>
               {/* Capa de blur lateral */}
               <div className="absolute inset-0 backdrop-blur-2xl [mask-image:linear-gradient(to_left,white,transparent)] [mask-repeat:no-repeat] [mask-size:100%]"></div>
     
               {/* Contenido */}
               <div className="relative font-popins text-center w-6/12 bg-gradient-to-l from-[#EB5A45]/100 via-[#2C509E91]/90 to-[#2C509E91]/0 py-24 rounded-4xl">
-                <h2 className=" absolute right-10.5 top-20 md:relative -mt-13 ml-30 text-4xl md:text-8xl font-semibold text-[#DFE162]">OFERTA</h2>
-                <h2 className=" absolute right-12.5 top-16 md:relative  md:pb-10 ml-30 text-4xl md:text-8xl  font-semibold text-[#DFE162]">ÚNICA</h2>
+                <h2 className=" absolute right-10.5 top-20 md:relative -mt-13 md:ml-0 lg:ml-30 2xl:ml-20 text-4xl md:text-8xl font-semibold text-[#DFE162]">OFERTA</h2>
+                <h2 className=" absolute right-12.5 top-16 md:relative  md:pb-10 md:ml-0 lg:ml-30 text-4xl md:text-8xl  font-semibold text-[#DFE162]">ÚNICA</h2>
                 {/*Promocion*/}
-                <div className=" md:px-30 md:w-90  -mt-10  md:pt-16  rounded-br-3xl scale-40 md:scale-120">
+                <div className=" md:right-50.5  md:w-90  -mt-10  md:pt-16  md:-ml-35 lg:ml-40 2xl:ml-30 rounded-br-3xl scale-40 md:scale-120">
                   <h2 className='text-white font-extralight ml-5 font-popins text-3xl text-left'>HASTA </h2>
                   <div className="flex  -mb-5">
                     <h2 className='text-white -mt-4 text-9xl mb-6 ml-2 font-extrabold font-popins col-span-1'>50</h2>
@@ -140,7 +140,7 @@ export default function Calzado() {
                   <h2 className='text-white text-center text-2xl pr-12 font-popins w-90'>EN ZAPATOS ESCOLARES PARA NIÑOS</h2>
                 </div>
                 <div className="flex md:pl-13 justify-center md:mt-11 ">
-                  <button className='rounded-4xl bg-white scale-50 md:scale-100 flex mb-20 -mt-15 md:mt-9 md:mb-0 ml-7 md:ml-0 md:py-1 px-3 '>
+                  <button className='rounded-4xl bg-white scale-50 md:scale-100 flex mb-20 -mt-15 md:mt-9 md:mb-0 ml-7 md:-ml-35 lg:-ml-20 md:py-1 px-1.2 sm:px-3 '>
                     <h2 className='font-popins-light text-sm py-2'>VER PRODUCTO</h2>
                     <div className='  scale-50'>
                         <ArrowRightBlackIconwhitout />
@@ -149,7 +149,7 @@ export default function Calzado() {
                 </div>
               </div>
             </div>
-            <div className="hidden md:flex flex-col col-start-5 col-end-7 h-196 p-4 rounded-4xl overflow-hidden bg-gradient-to-l from-[#DFE162]  via-[#DFE162]/50  to-[#B1C5FF]"            
+            <div className="hidden 2xl:flex flex-col col-start-5 col-end-7 h-196 p-4 rounded-4xl overflow-hidden bg-gradient-to-l from-[#DFE162]  via-[#DFE162]/50  to-[#B1C5FF]"            
             style={{
                background: isLight
                  ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -234,7 +234,7 @@ export default function Calzado() {
           </div>
            {/* 📱 Versión móvil (carrusel deslizable) */}
           <div
-            className="md:hidden flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full mt-4 py-4 px-2 rounded-4xl group"
+            className="2xl:hidden flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full mt-4 py-4 px-2 rounded-4xl group"
           >
             {productos.map((p) => (
               <div key={p.id}>

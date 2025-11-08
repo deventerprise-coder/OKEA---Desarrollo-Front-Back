@@ -115,7 +115,7 @@ export default function Muebles() {
             {/*Contenido Fila 1*/}
             <div className="grid md:grid-cols-5 gap-4 mt-4 mx-40 w-full">
                 {/*Cuadro 1*/}
-                <div className="col-start-1 col-end-5 bg-cover w-full bg-right overflow-hidden h-65.5 md:h-200 rounded-2xl  md:rounded-4xl  bg-no-repeat" style={{ backgroundImage: `url(${mueblesFondo})` }}>
+                <div className=" col-start-1 xl:col-end-5 col-end-7 bg-cover w-full bg-right overflow-hidden h-65.5 md:h-200 rounded-2xl  md:rounded-4xl  bg-no-repeat" style={{ backgroundImage: `url(${mueblesFondo})` }}>
                     <div className="flex justify-between">
                         {/*Promocion*/}
                         <div className="bg-[#EB5A45] h-97 w-100 -mt-31.5 -ml-31.5 md:-mt-0 md:-ml-0 scale-35 md:scale-100 flex justify-center py-11 rounded-br-4xl">    
@@ -132,7 +132,8 @@ export default function Muebles() {
                             </div>
                         </div>    
                         {/*Cuadro Mueble*/}
-                        <div className="flex bg-white/20 scale-32 md:scale-100 rounded-3xl -mt-30 md:mt-7.5 -ml-59.5 md:mr-8.5 py-18 backdrop-blur-2xl">
+                        
+                        <div className="flex bg-white/20 scale-32 md:scale-100 rounded-3xl -mt-30  md:mt-7.5 -ml-64 lg:-ml-59.5 md:mr-8.5 py-18 backdrop-blur-2xl">
                             <div className="bg-white w-57 h-50 rounded-2xl ml-8 mr-5">
                                 <div className="h-86 w-150 bg-no-repeat bg-cover scale-35 -ml-47 -my-19" style={{ backgroundImage: `url(${cuadroMueble1})` }}></div>
                             </div>
@@ -150,6 +151,7 @@ export default function Muebles() {
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     {/*Cuadro Mueble*/}
                     <div className="flex justify-end">
@@ -174,12 +176,12 @@ export default function Muebles() {
                     </div>
                 </div>
                 {/*Cuadro 2*/}
-                <div className='hidden md:block relative  h-200 rounded-4xl overflow-hidden'>
+                <div className='hidden xl:block relative  h-200 rounded-4xl overflow-hidden'>
                     <div className=" h-200  bg-cover bg-left-bottom -ml-26" style={{ backgroundImage: `url(${silla})` }}></div>
                     <div className=" absolute bottom-10 left-13   text-center text-white">
-                        <div className="bg-gradient-to-t from-[#E4E666] to-[#E4E666]/0 h-76.5 w-97 -ml-25 -mb-20 ">
-                            <h1 className='text-popins text-3xl pt-8 font-semibold '>SILLAS DE SALA</h1>
-                            <div className="grid justify-center scale-140 mt-10 ">
+                        <div className="bg-gradient-to-t  from-[#E4E666] to-[#E4E666]/0 h-76.5 w-97 -ml-25 -mb-20 scale-100">
+                            <h1 className='text-popins text-3xl pt-8 font-semibold  lg:-ml-15 2xl:ml-0  lg:scale-70 2xl:scale-100'>SILLAS DE SALA</h1>
+                            <div className="grid justify-center 2xl:scale-140 mt-4 2xl:mt-10 2xl:ml-0 lg:-ml-15">
                                 <h2 className='text-white leading-11 font-extralight ml-1 font-popins pb-2 col-span-2 text-left'>HASTA </h2>
                                 <div className="flex -mt-7 -mb-5">
                                     <h2 className='text-white text-8xl font-extrabold font-popins col-span-1'>30</h2>

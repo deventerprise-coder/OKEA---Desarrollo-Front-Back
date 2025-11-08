@@ -120,8 +120,8 @@ export default function Supermercado() {
             </div>
             {/*Fila*/}
             <div className="grid grid-cols-4 w-full mt-4 gap-4">
-                <div className="hidden md:block col-start-1 col-end-2 h-100  rounded-4xl w-25%  bg-gradient-to-br from-[#EB5A45] via-[#EB5A45] to-[#DFE162]">
-                    <div className="  mt-10 justify-center scale-140 ">
+                <div className="hidden lg:block col-start-1 col-end-2 h-100  rounded-4xl w-25%  bg-gradient-to-br from-[#EB5A45] via-[#EB5A45] to-[#DFE162]">
+                    <div className="  mt-10 justify-center lg:-mt-5 2xl:mt-0 lg:-ml-20 2xl:ml-0  lg:scale-70 2xl:scale-140 ">
                         <h2 className='text-white leading-11 font-extralight ml-23 font-popins col-span-2 text-left'>HASTA </h2>
                         <div className="ml-20 flex -mt-6 -mb-5">
                             <h2 className='text-white text-8xl font-extrabold font-popins'>50</h2>
@@ -132,9 +132,9 @@ export default function Supermercado() {
                        </div>
                         <h2 className='text-[#DAE2FF] text-left ml-20 w-40 mt-5 text-3xl tracking-tight font-popins-light '>SEGUNDA UNIDAD</h2>
                     </div>
-                    <div className="h-70 w-60 ml-43 -mt-30 bg-cover bg-right-bottom" style={{ backgroundImage: `url(${supermercadoImagen1})`}}></div>
+                    <div className="h-70 w-60 lg:ml-15 2xl:ml-43 lg:-mt-20 2xl:-mt-30 bg-cover bg-right-bottom" style={{ backgroundImage: `url(${supermercadoImagen1})`}}></div>
                 </div>
-                <div className="col-span-4 md:col-span-3 mr-40 w-full rounded-4xl overflow-hidden">
+                <div className="col-span-4 md:col-span-4 lg:col-span-3 mr-40 w-full rounded-4xl overflow-hidden">
                     <div className="h-42 md:h-100 w-full bg-cover bg-center" style={{ backgroundImage: `url(${supermercadoImagen2})` }}>
                     </div>
                 </div>
@@ -197,8 +197,8 @@ export default function Supermercado() {
         </div> 
         {/*Fila 3*/}
             <div className="flex w-full h-20 md:h-100 bg-cover bg-center rounded-4xl md:rounded-bl-none md:rounded-br-none justify-between  mt-4" style={{ backgroundImage: `url(${supermercadoImagen3})` }}>
-                <div className="w-16 md:w-75 h-16 md:h-80 bg-no-repeat bg-cover bg-center my-auto rounded-2xl md:rounded-4xl ml-5 md:ml-17.5 md:my-9.5" style={{ backgroundImage: `url(${supermercadoImagen4})` }}></div>
-                <div className="flex flex-col scale-60 md:scale-100 -mr-4 -mt-2 md:pt-25 md:pr-20">
+                <div className="w-16 md:w-75  scale-100 md:scale-50 lg:scale-100 h-16 md:h-80 bg-no-repeat bg-cover bg-center my-auto rounded-2xl md:rounded-4xl ml-5 md:-ml-10.5 lg:ml-17.5 md:my-9.5" style={{ backgroundImage: `url(${supermercadoImagen4})` }}></div>
+                <div className="flex flex-col lg:scale-80 scale-60 2xl:scale-100 md:scale-50 ml-0  lg:-mr-15 2xl:ml-0 -mr-4 -mt-2 md:pt-25 md:-mr-20 lg:pr-20">
                     <div className="flex ml-15 md:-ml-10 font-popins text-[#004143] text-4xl md:text-7xl font-extrabold">
                         <h1 className='mt-1 -rotate-3 skew-x-6'>O</h1>
                         <h1 className='-mt-0.5 -rotate-3 skew-x-6'>F</h1>
