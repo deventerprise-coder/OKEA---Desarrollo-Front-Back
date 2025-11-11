@@ -7,6 +7,11 @@ import { ProdRelacionados } from "../../components/ecomerce/ProdRelacionados";
 import { Panel } from "../../components/ecomerce/Panel";
 import { BreadCrum } from "../../components/ecomerce/BreadCrum";
 import modeloApple from "../../assets/imagenes/categorias/panel/modeloApple.png";
+import modeloApple12 from "../../assets/imagenes/categorias/panel/modeloApple12.png";
+import modeloApple13 from "../../assets/imagenes/categorias/panel/modeloApple13.png";
+import modeloApple14 from "../../assets/imagenes/categorias/panel/modeloApple14.png";
+import modeloApple15 from "../../assets/imagenes/categorias/panel/modeloApple15.png";
+import modeloApple16 from "../../assets/imagenes/categorias/panel/modeloApple16.png";
 import sofaAzul from "../../assets/imagenes/categorias/panel/SofaAzul.png";
 import sofaBlanco from "../../assets/imagenes/categorias/panel/SofaBlanco.png";
 import CalzadoBlanco from "../../assets/imagenes/categorias/panel/CalzadoBlanco.png";
@@ -37,12 +42,12 @@ import { useTheme } from "../../components/ThemeContext";
 export default function Categoria({categoria, subcategoria}) {
     const { isLight } = useTheme();
     const tecDestacados = [
-        { nombre: "Modelo Apple", imagen: modeloApple },
-        { nombre: "Modelo Samsung", imagen: modeloApple },
-        { nombre: "Modelo Apple", imagen: modeloApple },
-        { nombre: "Modelo Samsung", imagen: modeloApple },
-        { nombre: "Modelo Apple", imagen: modeloApple },
-        { nombre: "Modelo Samsung", imagen: modeloApple },
+        { nombre: "iPhone 11", imagen: modeloApple },
+        { nombre: "iPhone 12", imagen: modeloApple12 },
+        { nombre: "iPhone 13", imagen: modeloApple13 },
+        { nombre: "iPhone 14", imagen: modeloApple14 },
+        { nombre: "iPhone 15", imagen: modeloApple15 },
+        { nombre: "iPhone 16", imagen: modeloApple16 },
     ];
     const MueblesDestacados = [
         { nombre: "Sofa Cordoba", imagen: sofaBlanco},
