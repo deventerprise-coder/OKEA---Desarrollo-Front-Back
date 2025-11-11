@@ -334,7 +334,7 @@ export default function DetalleProducto({
                         <AddProductToCarIcon />
                     </button>
                 </div>
-                <div className="grid grid-cols-2 gap-4 order-6 lg:order-none motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
+                <div className="grid grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 order-6 lg:order-none motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                     <section className="flex flex-col items-center gap-3 lg:flex-row lg:items-start">
                         <div className={`rounded-[15px] flex items-center justify-center w-[72px] h-[48px] ${isLight ? 'bg-[#E4E2E6] text-[#001947] hover:ring-2 hover:ring-black' : 'bg-[#1F1959] text-[#E7EAFF] hover:bg-[#D7D6F4]'} transition-colors duration-300 ease-in-out`}>
                             <EnvioEstadarIcon color={isLight ? '#001947' : '#E7EAFF'}/>
@@ -364,7 +364,8 @@ export default function DetalleProducto({
                         <div>
                             <h6 className={`${isLight ? 'text-[#001947]' : 'text-white'} font-[Poppins, sans-serif] font-medium text-[16px]`}>
                                 <span className="lg:hidden">Devoluciones free</span>
-                                <span className="hidden lg:inline">Política de devoluciones</span>
+                                <span className="hidden lg:inline 2xl:hidden">Devoluciones</span>
+                                <span className="hidden 2xl:inline">Política de devoluciones</span>
                             </h6>
                             <p className={`hidden lg:block ${isLight ? 'text-[#ACAAAF]' : 'text-[#B8BEE0]'} font-[Poppins, sans-serif] font-medium text-[12px]`}>
                                 <span className={`hidden lg:block ${isLight ? 'text-[#001947]' : 'text-[#E7EAFF]'}`}>Gratis</span> /  En 30 días
