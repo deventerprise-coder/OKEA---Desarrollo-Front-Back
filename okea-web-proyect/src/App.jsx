@@ -25,6 +25,7 @@ import Recomendados from './pages/Home/Recomendados';
 import Vendidos from './pages/Home/Vendidos';
 import Ultimo from './pages/Home/Ultimo';
 import Cart from './pages/Checkout/Cart';
+import OfertasPage from './pages/Ofertas/OfertasPage';
 
 const categoriaSlugMap = {
   'tecnologia': 'Tecnología',
@@ -105,6 +106,9 @@ function AppContent() {
             </>
           }
         />
+
+        {/* Página completa de Ofertas */}
+        <Route path="/ofertas" element={<OfertasPage />} />
 
         {/* Rutas de catálogo */}
         <Route path="/catalogo/tecnologia" element={<><Categoria categoria="Tecnología" subcategoria="Celulares"/><BloqueDeServicios /><Footer /></>} />

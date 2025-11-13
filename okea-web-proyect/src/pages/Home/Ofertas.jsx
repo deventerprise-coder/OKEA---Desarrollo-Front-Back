@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../components/ThemeContext";
 import { ArrowRightBlackIconwhitout, TagIcon } from "../../assets/iconos/iconoHome";
 
-
 export default function Ofertas() {
+    const navigate = useNavigate();
     // --- Tema ---
     const { isLight } = useTheme();
 
@@ -151,8 +152,12 @@ export default function Ofertas() {
                       <div className="flex items-center justify-center md:ml-3 2xl:ml-11 -mt-5 md:mt-0">
                           <h2 className='text-white lg:w-40  2xl:w-auto font-popins mr-4 md:font-semibold  text-[45px] md:text-[25px] 2xl:text-[45px] text-center'>COMPRA YA</h2>
                           {/* Flecha derecha */}
-                          <button className=" font-bold h-12 w-12 rounded-full mt-1.5 bg-white">
-                          <div className="p-1.5"><ArrowRightBlackIconwhitout/></div>
+                          <button
+                            type="button"
+                            className="font-bold h-12 w-12 rounded-full mt-1.5 bg-white"
+                            onClick={() => navigate("/ofertas")}
+                          >
+                            <div className="p-1.5 cursor-pointer"><ArrowRightBlackIconwhitout/></div>
                           </button>
                       </div>
                     </div>
