@@ -3,10 +3,11 @@ import {FavoritoCardIcon, EstrellaIcon, CarritoProductoIcon} from "../../assets/
 import { useNavigate } from 'react-router-dom';
 import { slugify } from "../../utils/slugify";
 
-export function ProductCard({id,imagen, marca, modelo, descripcion, precio, precioSinDescuento, etiqueta, calificacion, categoria, isLight}) {
+export function ProductCard({id,imagen, imgHover, marca, modelo, descripcion, precio, precioSinDescuento, etiqueta, calificacion, categoria, isLight}) {
   const [liked, setLiked] = useState(false);
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
+  const [imageHover, setImageHover] = useState(false);
 
   const iconColor = added ? "#FFFFFF" : (hover ? "#FFFFFF" : "#484900");
   
@@ -43,7 +44,7 @@ export function ProductCard({id,imagen, marca, modelo, descripcion, precio, prec
       borderRadius: 10,
     }}
      onClick={handleNavigate}>
-      <div className="absolute top-3 left-3 text-white font-semibold px-2 py-1 rounded-full" style={{
+      <div className="absolute top-3 left-3 text-white font-semibold px-2 py-1 rounded-full z-10" style={{
         fontFamily: 'Inter, sans-serif',
         backgroundColor: etiquetaBg,
         fontSize: 14,
@@ -59,16 +60,27 @@ export function ProductCard({id,imagen, marca, modelo, descripcion, precio, prec
           event.stopPropagation();
           setLiked(!liked);
         }}
-        className="absolute top-3 right-3 cursor-pointer"
+        className="absolute top-3 right-3 cursor-pointer z-10"
       >
         {liked ? <FavoritoCardIcon color="#EB5A45"/> : <FavoritoCardIcon color="#C4C6D3"/>}
       </button>
 
-      <div className="w-full flex justify-center items-center h-[300px] lg:h-[350px] bg-white">
-        <img className={`w-full h-full ${categoria === "Calzado" || categoria === "Juguetes" || categoria === "Supermercado" ? "object-contain" : "object-cover"}`}
-        src={imagen}
-        alt="iPhone"
-      />
+      <div className="w-full flex justify-center items-center h-[300px] lg:h-[350px] bg-white relative"
+        onMouseEnter={() => setImageHover(true)}
+        onMouseLeave={() => setImageHover(false)}
+      >
+        <img 
+          className={`w-full h-full ${categoria === "Calzado" || categoria === "Juguetes" || categoria === "Supermercado" ? "object-contain" : "object-cover"} transition-opacity duration-500 ease-in-out`}
+          src={imagen}
+          alt={modelo || "Producto"}
+        />
+        {imgHover && (
+          <img 
+            className={`w-full h-full ${categoria === "Calzado" || categoria === "Juguetes" || categoria === "Supermercado" ? "object-contain" : "object-cover"} absolute top-0 left-0 transition-opacity duration-500 ease-in-out ${imageHover ? 'opacity-100' : 'opacity-0'}`}
+            src={imgHover}
+            alt={`${modelo || "Producto"} hover`}
+          />
+        )}
       </div>
       <div className="w-full text-left px-4 mt-10 ">
         <p className={`text-gray-400 text-xs font-medium           transition-colors duration-500 ease-out`}

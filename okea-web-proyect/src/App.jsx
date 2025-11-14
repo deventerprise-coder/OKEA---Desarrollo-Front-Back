@@ -118,7 +118,7 @@ function AppContent() {
         <Route path="/catalogo/accesorios-de-moda" element={<><Categoria categoria="Accesorios de Moda" subcategoria="Carteras"/><BloqueDeServicios /><Footer /></>} />
         <Route path="/catalogo/salud-y-bienestar" element={<><Categoria categoria="Salud y Bienestar" subcategoria="Cremas"/><BloqueDeServicios /><Footer /></>} />
         <Route path="/catalogo/juguetes" element={<><Categoria categoria="Juguetes" subcategoria="Carros de Juguete"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/decoracion-e-iluminacion" element={<><Categoria categoria="Decoración e Iluminación" subcategoria="Cuadros"/><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/decoracion-e-iluminacion" element={<><Categoria categoria="Decoración" subcategoria="Cuadros"/><BloqueDeServicios /><Footer /></>} />
         <Route path="/catalogo/mascotas" element={<><Categoria categoria="Mascotas" subcategoria="Comida para Perro"/><BloqueDeServicios /><Footer /></>} />
         <Route path="/catalogo/supermercado" element={<><Categoria categoria="Supermercado" subcategoria="Cereales"/><BloqueDeServicios /><Footer /></>} />
         <Route path="/catalogo/electrohogar" element={<><Categoria categoria="Electrohogar" subcategoria="Lavadoras"/><BloqueDeServicios /><Footer /></>} />
