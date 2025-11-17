@@ -6,11 +6,11 @@ import muebles from "../../assets/imagenes/Home/categoriaMuebles.jpg";
 import dormitorio from "../../assets/imagenes/Home/categoriaDormitorio.jpg";
 import calzado from "../../assets/imagenes/Home/categoriaCalzado.jpg";
 import accesorios from "../../assets/imagenes/Home/categoriaAccesorio.jpg";
-import salud from "../../assets/imagenes/Home/categoriaSalud.jpg";
+import salud from "../../assets/imagenes/Home/Categoriasalud.jpg";
 import juguetes from "../../assets/imagenes/Home/categoriaJuguetes.jpg";
 import decoracion from "../../assets/imagenes/Home/categoriaDecoracion.jpg";
 import mascotas from "../../assets/imagenes/Home/categoriaMascotas.jpeg";
-import supermercado from "../../assets/imagenes/Home/categoriaSupermercado.jpg";
+import supermercado from "../../assets/imagenes/Home/Categoriasupermercado.jpg";
 import automotriz from "../../assets/imagenes/Home/categoriaAutomotriz.jpg";
 import { ArrowLeftGrayBlueIcon, ArrowRightGrayBlueIcon, ArrowRightIcon, SofaIcon, TecnologyIcon, TecnologyIconDarkMode, TecnologyResponsive, Banio, FootIcon, AccesorioIcon, SaludIcon, VehiculoIcon, DecoracionIcon, MascotasIcon, WineBottleIcon, WineBottleIconDarkMode, AutomotrizIcon, SofaIconDarkMode, FootIconDarkMode } from "../../assets/iconos/iconoHome";
 

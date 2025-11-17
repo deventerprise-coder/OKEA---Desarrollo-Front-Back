@@ -1,4 +1,4 @@
-import okeaLogoCategorias from '../../assets/iconos/okea_logo_categorias.svg';
+import okeaLogoCategorias from '../../assets/iconos/okea_logo_Categorias.svg';
 import {
   TechnologyIcon,
   LavadoIcon,
@@ -18,7 +18,7 @@ import {
   CloseIcon,
   SalirIcon,
 } from '../../assets/iconos/Icons';
-import { categoriasDetalle } from './categoriasDetalle';
+import { CategoriasDetalle } from './CategoriasDetalle';
 import CategoriaDetalleDropdown from './CategoriaDetalleDropdown';
 import { useState, useEffect } from 'react';
 
@@ -104,7 +104,7 @@ export default function CategoriasDropdown({isVisible, onClose }) {
     }
   };
 
-  const categorias = [
+  const Categorias = [
     "Tecnología",
     "Electrohogar",
     "Muebles y Organización",
@@ -212,7 +212,7 @@ export default function CategoriasDropdown({isVisible, onClose }) {
           Categorías
         </h2>
         <ul className="flex flex-col gap-4">
-          {categorias.map((cat, i) => {
+          {Categorias.map((cat, i) => {
             let IconComponent = TechnologyIcon;
             if (cat === "Electrohogar") IconComponent = LavadoIcon;
             else if (cat === "Muebles y Organización") IconComponent = MuebleIcon;
@@ -260,9 +260,9 @@ export default function CategoriasDropdown({isVisible, onClose }) {
           })}
         </ul>
       </div>
-      {categoriaActiva && categoriasDetalle[categoriaActiva] && (
+      {categoriaActiva && CategoriasDetalle[categoriaActiva] && (
         <CategoriaDetalleDropdown
-          data={categoriasDetalle[categoriaActiva]}
+          data={CategoriasDetalle[categoriaActiva]}
           nombreCategoria={categoriaActiva}
           onClose={() => setCategoriaActiva(null)}
           onCloseAll={() => {

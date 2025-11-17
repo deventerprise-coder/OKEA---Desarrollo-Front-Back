@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 // =======================
 // 1. COMPONENTE PRINCIPAL
 // =======================
-export default function SearchBar({ onToggleCategorias, categoriasDropdownOpen }) {
+export default function SearchBar({ onToggleCategorias, CategoriasDropdownOpen }) {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [theme, setTheme] = useState('light');
@@ -74,7 +74,7 @@ export default function SearchBar({ onToggleCategorias, categoriasDropdownOpen }
             </span>
           </span>
         )}
-        {(!isFocused || categoriasDropdownOpen) && (
+        {(!isFocused || CategoriasDropdownOpen) && (
           <button
             style={getCategoriesButtonStyles()}
             className="ml-[-14px] flex-shrink-0 flex items-center justify-center gap-1 sm:gap-[6px] px-2 sm:px-3 md:px-4 h-[36px] w-[178px] rounded-full hover:brightness-95 cursor-pointer transition-all duration-200"

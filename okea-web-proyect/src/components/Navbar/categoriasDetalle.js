@@ -1,12 +1,12 @@
 
-import { TechnologyIcon, LavadoIcon, MuebleIcon, ToallaIcon, HombreIcon, MujerIcon, CalzadoIcon, AnilloIcon, SaludIcon, JugueteIcon, DecoracionIcon, MascotaIcon, SupermercadoIcon, LlantaIcon, CategoriaPhone, CategoriaTV, CategoriaLaptop, CategoriaImpresora, CategoriaAudifonos, CategoriaCamara, CategoriaRefrigeracion, CategoriaCocina, CategoriaLavado, CategoriaLimpieza, CategoriaBelleza, CategoriaSofa, CategoriaEstanteria, CategoriaClosets, CategoriaEscritorio, CategoriaOrganizadores, CategoriaBancas, CategoriaCama, CategoriaVelador, CategoriaBanio, CategoriaToallas, CategoriaTendencia, CategoriaRopa, CategoriaArticulos, CategoriaZapato, CategoriaConsumible, CategoriaMochila, CategoriaReloj, CategoriaLentes, CategoriaGorras, CategoriaCinturon, CategoriaCreatina, CategoriaSuplementos, CategoriaCorazon, CategoriaAutos, CategoriaVehiculos, CategoriasSaltarinas, CategoriaRiel, CategoriaFigura, CategoriaAdornos, CategoriaFaroles, CategoriaFloreros, CategoriaEspejos, CategoriaHueso, CategoriaPerro, CategoriaGato, CategoriaHigiene, CategoriaDona, CategoriaWhisky, CategoriaEscoba, CategoriaRon, CategoriaLacteos, CategoriaMartillo, CategoriaLlanta} from '../../assets/iconos/Icons';
+import { TechnologyIcon, LavadoIcon, MuebleIcon, ToallaIcon, HombreIcon, MujerIcon, CalzadoIcon, AnilloIcon, SaludIcon, JugueteIcon, DecoracionIcon, MascotaIcon, SupermercadoIcon, LlantaIcon, CategoriaPhone, CategoriaTV, CategoriaLaptop, CategoriaImpresora, CategoriaAudifonos, CategoriaCamara, CategoriaRefrigeracion, CategoriaCocina, CategoriaLavado, CategoriaLimpieza, CategoriaBelleza, Categoriasofa, CategoriaEstanteria, CategoriaClosets, CategoriaEscritorio, CategoriaOrganizadores, CategoriaBancas, CategoriaCama, CategoriaVelador, CategoriaBanio, CategoriaToallas, CategoriaTendencia, CategoriaRopa, CategoriaArticulos, CategoriaZapato, CategoriaConsumible, CategoriaMochila, CategoriaReloj, CategoriaLentes, CategoriaGorras, CategoriaCinturon, CategoriaCreatina, Categoriasuplementos, CategoriaCorazon, CategoriaAutos, CategoriaVehiculos, CategoriasSaltarinas, CategoriaRiel, CategoriaFigura, CategoriaAdornos, CategoriaFaroles, CategoriaFloreros, CategoriaEspejos, CategoriaHueso, CategoriaPerro, CategoriaGato, CategoriaHigiene, CategoriaDona, CategoriaWhisky, CategoriaEscoba, CategoriaRon, CategoriaLacteos, CategoriaMartillo, CategoriaLlanta} from '../../assets/iconos/Icons';
 
-export const categoriasDetalle = {
+export const CategoriasDetalle = {
   "Tecnología": {
     icon: TechnologyIcon,
     color: '#D6D6A7',
     columnas: [
-      // Para colocar los iconos de las demas categorias, solo copiar la logia de esta categoria, e importar los iconos desde icons.jsx
+      // Para colocar los iconos de las demas Categorias, solo copiar la logia de esta categoria, e importar los iconos desde icons.jsx
       { titulo: 'Celulares', items: ['iPhone 15', 'iPhone 15 Plus', 'iPhone 15 Pro', 'iPhone 15 Pro Max', 'iPhone 14', 'iPhone 14 Plus', 'iPhone 14 Pro'], iconRight: CategoriaPhone},
       { titulo: 'Accesorios', items: ['Samsung QLED 4K', 'LG OLED evo', 'Sony Bravia XR', 'TCL QLED 4K', 'Hisense ULED 4K', 'Panasonic OLED', 'Sharp Aquos', 'Vizio Quantum'], iconRight: CategoriaTV },
       { titulo: 'Parlantes', items: ['MacBook Air M2', 'MacBook Pro 14"', 'MacBook Pro 16"', 'Dell XPS 13', 'HP Spectre x360', 'Lenovo ThinkPad X1 Carbon'], iconRight: CategoriaLaptop },
@@ -32,7 +32,7 @@ export const categoriasDetalle = {
     icon: MuebleIcon,
     color: '#E6D6A7',
     columnas: [
-      { titulo: 'Sofás', items: ['Sofá Modular 5 Plazas', 'Sofá Cama Reclinable', 'Sofá Seccional Gris 3C', 'Sillón Relax Eléctrico'], iconRight: CategoriaSofa },
+      { titulo: 'Sofás', items: ['Sofá Modular 5 Plazas', 'Sofá Cama Reclinable', 'Sofá Seccional Gris 3C', 'Sillón Relax Eléctrico'], iconRight: Categoriasofa },
       { titulo: 'Estanterías', items: ['Estante Flotante Blanco', 'Estantería Tipo Escalera', 'Estantería de Esquina', 'Estante Cubos Modulares', 'Estantería Industrial con Rejas', 'Librero Bajo con Puertas'], iconRight: CategoriaEstanteria },
       { titulo: 'Roperos y Closets', items: ['Ropero 3 Puertas con Espejo', 'Closet de Melamina Blanco', 'Closet Infantil con Cajones', 'Armario Telescópico Plegable', 'Ropero con Puertas Correderas', 'Closet con Espejo Corredizo', 'Closet Modular de Plástico'], iconRight: CategoriaClosets },
       { titulo: 'Escritorios y Mesas', items: ['Escritorio Gamer con LED', 'Mesa de Centro Rústica', 'Escritorio Plegable Blanco', 'Mesa Auxiliar Redonda'], iconRight: CategoriaEscritorio },
@@ -102,7 +102,7 @@ export const categoriasDetalle = {
     columnas: [
       { titulo: 'Vitaminas', items: ['Vitamina C', 'Vitamina D', 'Bicicleta Estática', 'Banda de Resistencia', 'Rueda Abdominal', 'Step Aeróbico', 'Rueda Abdominal', 'Step Aeróbico'], iconRight: CategoriaConsumible},
       { titulo: 'Proteínas', items: ['Proteína whey', 'Proteína vegetal','Pistola de Masaje', 'Masajeador de Pies', 'Cojín Vibrador', 'Masajeador de Pies', 'Silla Masajeadora', 'Pistola de Masaje', 'Panasonic OLED'], iconRight: CategoriaConsumible },
-      { titulo: 'Sumplementos', items: ['HP LaserJet Pro M404dn', 'Canon PIXMA TS6420', 'Epson EcoTank ET-2850', 'Brother HL-L2350DW', 'Samsung Xpress M2020W'], iconRight: CategoriaSuplementos},
+      { titulo: 'Sumplementos', items: ['HP LaserJet Pro M404dn', 'Canon PIXMA TS6420', 'Epson EcoTank ET-2850', 'Brother HL-L2350DW', 'Samsung Xpress M2020W'], iconRight: Categoriasuplementos},
       { titulo: 'Creatina', items: ['Omega 3', 'Colágeno', 'Proteína Whey', 'Creatina Monohidratada', 'Multivitamínicos', 'BCAA', 'Probióticos'],  iconRight: CategoriaCreatina },
       { titulo: 'Cuidado del cabello', items: ['Plancha Profesional', 'Cepillo Alisador', 'Tónico Capilar Anticaída', 'Shampoo sin Sulfato'],  iconRight: CategoriaCorazon  },
       { titulo: 'Cuidado Personal', items: ['Balanza Digital Corporal', 'Tensiómetro Automático', 'Báscula de Cocina', 'Monitor de Actividad', 'Tensiómetro Automático', 'Sony ZV-E10', 'Fujifilm X-T5', 'Panasonic Lumix GH6'], iconRight: CategoriaCreatina  }
@@ -111,8 +111,8 @@ export const categoriasDetalle = {
   "Juguetes, Autos y Vehículos": {
     icon: JugueteIcon,
     color: '#D6E6A7',
-    tipo: 'subcategorias', 
-    subcategorias: {
+    tipo: 'subCategorias', 
+    subCategorias: {
       "Niño": { 
         columnas: [
           { titulo: 'Autos', items: ['LEGO City', 'Muñeca Barbie', 'Peluche Gigante', 'Juego de Té', 'Carritos Hot Wheels', 'Cubo Rubik'], iconRight: CategoriaAutos },

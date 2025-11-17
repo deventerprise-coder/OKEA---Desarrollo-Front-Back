@@ -9,7 +9,7 @@ import {
   IconTikTok2,
 } from "../../assets/iconos/Icons";
 
-import { categoriasDetalle } from "./categoriasDetalle";
+import { CategoriasDetalle } from "./CategoriasDetalle";
 import { useState, useEffect } from "react";
 import ThemeToggle from "../Navbar/ThemeToggle";
 import { useNavigate } from "react-router-dom"; 
@@ -136,7 +136,7 @@ export default function MenuDropdownMobile({ isOpen, onClose }) {
     console.log(`Clic en ${platform}`);
   };
 
-  const categorias = Object.keys(categoriasDetalle);
+  const Categorias = Object.keys(CategoriasDetalle);
 
   if (animationState === "closed") return null;
 
@@ -264,8 +264,8 @@ export default function MenuDropdownMobile({ isOpen, onClose }) {
         </h2>
 
         <ul className="flex flex-col gap-2">
-          {categorias.map((cat, i) => {
-            const catData = categoriasDetalle[cat];
+          {Categorias.map((cat, i) => {
+            const catData = CategoriasDetalle[cat];
             const isOpenAccordion = categoriaActiva === cat;
             const IconComponent = catData.icon;
             const maxAccordionHeight = isOpenAccordion
