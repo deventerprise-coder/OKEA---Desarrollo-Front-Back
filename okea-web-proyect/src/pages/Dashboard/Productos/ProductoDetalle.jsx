@@ -3,7 +3,7 @@ import * as productos from "../../../mocks/detalleProdList";
 import { BreadCrum } from "../../../components/ecomerce/BreadCrum";
 import DetalleProducto from "../../../components/ecomerce/DetalleProducto";
 import CustomerReview from "../../../components/CustomerReview";
-import { ProdRelacionados } from "../../../components/ecomerce/ProdRelacionados";
+import { ProdRelacionados } from "../../../components/ecomerce/ProdRelacionados.jsx";
 import PreguntasFrecuentes from "../../../components/PreguntasFrecuentes";
 import Footer from "../../../components/Footer/Footer";
 import { ChevronDownIcon } from "../../../assets/iconos/Icons";

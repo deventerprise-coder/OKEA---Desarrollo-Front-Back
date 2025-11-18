@@ -3,7 +3,7 @@ import {SidebarMenu} from "../../components/ecomerce/Filtro";
 import {ProductCard} from "../../components/ecomerce/ProductCard";
 import {Products} from "../../components/ecomerce/Productos";
 import { PaginacionBar } from "../../components/ecomerce/PaginacionBar";
-import { ProdRelacionados } from "../../components/ecomerce/ProdRelacionados";
+import { ProdRelacionados } from "../../components/ecomerce/ProdRelacionados.jsx";
 import { Panel } from "../../components/ecomerce/Panel";
 import { BreadCrum } from "../../components/ecomerce/BreadCrum";
 import modeloApple from "../../assets/imagenes/Categorias/Panel/modeloApple.png";
