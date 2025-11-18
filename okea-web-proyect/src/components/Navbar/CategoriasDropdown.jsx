@@ -18,7 +18,7 @@ import {
   CloseIcon,
   SalirIcon,
 } from '../../assets/iconos/Icons';
-import { CategoriasDetalle } from './CategoriasDetalle.jsx';
+import { CategoriasDetalle } from './categoriasDetalle.js';
 import CategoriaDetalleDropdown from './CategoriaDetalleDropdown.jsx';
 import { useState, useEffect } from 'react';
 
