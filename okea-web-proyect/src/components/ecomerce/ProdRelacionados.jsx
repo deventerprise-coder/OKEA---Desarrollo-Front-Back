@@ -1,4 +1,4 @@
-import { CardproductosRel } from "./CardproductosRel";
+import { CardProductosRel } from "./CardProductosRel.jsx";
 import { FlechaDerechaProdRel, FlechaIzquierdaProdRel } from "../../assets/iconos/Icons.jsx";
 //import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png";
 import ProdRelacionado1 from "../../assets/imagenes/Home/prodrelacionado1.png";
