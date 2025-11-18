@@ -10,7 +10,7 @@ import salud from "../../assets/imagenes/Home/categoriaSalud.jpg";
 import juguetes from "../../assets/imagenes/Home/categoriaJuguetes.jpg";
 import decoracion from "../../assets/imagenes/Home/categoriaDecoracion.jpg";
 import mascotas from "../../assets/imagenes/Home/categoriaMascotas.jpeg";
-import supermercado from "../../assets/imagenes/Home/Categoriasupermercado.jpg";
+import supermercado from "../../assets/imagenes/Home/CategoriaSupermercado.jpg";
 import automotriz from "../../assets/imagenes/Home/categoriaAutomotriz.jpg";
 import { ArrowLeftGrayBlueIcon, ArrowRightGrayBlueIcon, ArrowRightIcon, SofaIcon, TecnologyIcon, TecnologyIconDarkMode, TecnologyResponsive, Banio, FootIcon, AccesorioIcon, SaludIcon, VehiculoIcon, DecoracionIcon, MascotasIcon, WineBottleIcon, WineBottleIconDarkMode, AutomotrizIcon, SofaIconDarkMode, FootIconDarkMode } from "../../assets/iconos/iconoHome";
 
