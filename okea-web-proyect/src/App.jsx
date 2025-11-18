@@ -13,7 +13,7 @@ import BloqueDeServicios from './components/BloqueDeServicios';
 import MarcasDestacadas from './components/MarcasDestacadas';
 import ScrollToTop from './components/ScrollToTop';
 import Categoria from './pages/Catalogo/Catergoria';
-import ProductoDetalle from './pages/Dashboard/productos/ProductoDetalle';
+import ProductoDetalle from './pages/Dashboard/Productos/ProductoDetalle';
 import Presentacion from './pages/Home/Presentacion';
 import CategoriaHome from './pages/Home/CategoriaHome';
 import Ofertas from './pages/Home/Ofertas';
