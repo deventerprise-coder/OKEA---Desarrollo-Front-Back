@@ -17,7 +17,7 @@ import salud from "../../assets/imagenes/Home/categoriaSalud.jpg";
 import juguetes from "../../assets/imagenes/Home/categoriaJuguetes.jpg";
 import decoracion from "../../assets/imagenes/Home/categoriaDecoracion.jpg";
 import mascotas from "../../assets/imagenes/Home/categoriaMascotas.jpeg";
-import supermercado from "../../assets/imagenes/Home/CategoriaSupermercado.jpg";
+import supermercado from "../../assets/imagenes/Home/categoriaSupermercado.jpg";
 import automotriz from "../../assets/imagenes/Home/categoriaAutomotriz.jpg";
 import tecnologiaImagen1 from "../../assets/imagenes/Home/tecnologiaImagen1.png";
 import tecnologiaImagen2 from "../../assets/imagenes/Home/tecnologiaImagen2.png";
