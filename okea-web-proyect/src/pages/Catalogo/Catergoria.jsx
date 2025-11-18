@@ -1,7 +1,7 @@
 import React from "react";
 import {SidebarMenu} from "../../components/ecomerce/Filtro";
 import {ProductCard} from "../../components/ecomerce/ProductCard";
-import {Products} from "../../components/ecomerce/productos";
+import {Products} from "../../components/ecomerce/Productos";
 import { PaginacionBar } from "../../components/ecomerce/PaginacionBar";
 import { ProdRelacionados } from "../../components/ecomerce/ProdRelacionados";
 import { Panel } from "../../components/ecomerce/Panel";
