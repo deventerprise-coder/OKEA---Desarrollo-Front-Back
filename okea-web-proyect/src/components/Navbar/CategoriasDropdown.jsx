@@ -18,8 +18,8 @@ import {
   CloseIcon,
   SalirIcon,
 } from '../../assets/iconos/Icons';
-import { CategoriasDetalle } from './CategoriasDetalle';
-import CategoriaDetalleDropdown from './CategoriaDetalleDropdown';
+import { CategoriasDetalle } from './CategoriasDetalle.jsx';
+import CategoriaDetalleDropdown from './CategoriaDetalleDropdown.jsx';
 import { useState, useEffect } from 'react';
 
 const animations = `
