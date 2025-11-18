@@ -75,7 +75,7 @@ import SupermercadoProdHover1 from "../assets/imagenes/Categorias/productos/supe
 import SupermercadoProdHover2 from "../assets/imagenes/Categorias/productos/supermercadoProdHover2.png";
 import SupermercadoProdHover3 from "../assets/imagenes/Categorias/productos/supermercadoProdHover3.png";
 import SupermercadoProdHover4 from "../assets/imagenes/Categorias/productos/supermercadoProdHover4.png";
-import ElectrohogarProd1 from "../assets/imagenes/Categorias/productos/ElectrohogarProd1.png";
+import ElectrohogarProd1 from "../assets/imagenes/Categorias/productos/ElectrohogarProd1_TEMP.png";
 import ElectrohogarProd2 from "../assets/imagenes/Categorias/productos/ElectrohogarProd2.png";
 import ElectrohogarProd3 from "../assets/imagenes/Categorias/productos/ElectroHogarProd3.png";
 import ElectrohogarProd4 from "../assets/imagenes/Categorias/productos/ElectrohogarProd4.png";
