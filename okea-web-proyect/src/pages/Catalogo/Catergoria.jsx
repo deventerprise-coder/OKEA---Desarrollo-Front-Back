@@ -1,7 +1,7 @@
 import React from "react";
 import {SidebarMenu} from "../../components/ecomerce/Filtro";
 import {ProductCard} from "../../components/ecomerce/ProductCard";
-import {Products} from "../../components/ecomerce/Productos";
+import {Products} from "../../components/ecomerce/productos";
 import { PaginacionBar } from "../../components/ecomerce/PaginacionBar";
 import { ProdRelacionados } from "../../components/ecomerce/ProdRelacionados";
 import { Panel } from "../../components/ecomerce/Panel";
@@ -153,7 +153,7 @@ export default function Categoria({categoria, subcategoria}) {
     : categoria === "Electrohogar" ? DestacadosElectrohogar
     : DestacadosModa;
 
-    const ProductosList = categoria === "Tecnología" ? products.productsTecnologia
+    const productosList = categoria === "Tecnología" ? products.productsTecnologia
     : categoria === "Muebles y Organización" ? products.productsMuebles
     : categoria === "Calzado" ? products.productsCalzado
     : categoria === "Dormitorio y Baños" ? products.productsDormitorio
@@ -174,7 +174,7 @@ export default function Categoria({categoria, subcategoria}) {
       <div className="lg:flex w-full overflow-x-hidden lg:mt-8">
         <SidebarMenu categoria={categoria} subcategoria={subcategoria} isLight={isLight}/>
         <aside className="flex flex-col items-center w-full lg:w-auto flex-1 overflow-x-hidden">
-          <Products products={ProductosList} categoria={categoria} isLight={isLight}/>
+          <Products products={productosList} categoria={categoria} isLight={isLight}/>
         </aside>
       </div>
       <div className="flex items-center justify-center mt-20 mb-20 w-full overflow-x-hidden">

@@ -66,7 +66,7 @@ const [circleGrow, setCircleGrow] = useState(false);
 // --- Estados categorías ---
 const [currentCat, setCurrentCat] = useState(0);
 
-//estado para Productos
+//estado para productos
 const [liked, setLiked] = useState(false);
 const [addedItems, setAddedItems] = useState({});
 
@@ -577,7 +577,7 @@ return (
                             <h2 className='text-white  font-popins font-light col-span-1'>DCTO.</h2>
                         </div>
                     </div>
-                    <h2 className='text-[#DFE162] text-center -ml-2 tracking-tight font-popins col-span-2 h-12 w-53'>En diferentes Productos y marcas</h2>
+                    <h2 className='text-[#DFE162] text-center -ml-2 tracking-tight font-popins col-span-2 h-12 w-53'>En diferentes productos y marcas</h2>
                 </div>
                 {/* Aquí se llama al componente CountdownTimer */}
                 <CountdownTimer />

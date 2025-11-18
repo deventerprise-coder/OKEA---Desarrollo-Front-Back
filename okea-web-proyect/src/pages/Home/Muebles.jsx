@@ -49,7 +49,7 @@ export default function Muebles() {
       transition: 'all 0.3s ease'
     };
     };
-    //estado para Productos
+    //estado para productos
     const [liked, setLiked] = useState(false);
     const [addedItems, setAddedItems] = useState({});
 
@@ -66,8 +66,8 @@ export default function Muebles() {
      }));
   };  
 
-      // lista de Productos
-      const Productos = Array.from({ length: 6 }, (_, i) => ({
+      // lista de productos
+      const productos = Array.from({ length: 6 }, (_, i) => ({
         id: `producto${i + 1}Calzado`,
         image: muebleMesitaNoche,
         discount: "-50%",
@@ -208,7 +208,7 @@ export default function Muebles() {
                         <h1 className=''><ArrowLeftNormal/></h1>
                     </button>
                     <div className="carrusel w-100% md:flex gap-4">
-                      {Productos.map((p) => (
+                      {productos.map((p) => (
                         <ProductCard
                           key={p.id}
                           id={p.id}
@@ -230,7 +230,7 @@ export default function Muebles() {
           <div
             className="md:hidden flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full mt-4 py-4 px-2 rounded-4xl group"
           >
-            {Productos.map((p) => (
+            {productos.map((p) => (
               <div key={p.id}>
                   <ProductCard
                   key={p.id}

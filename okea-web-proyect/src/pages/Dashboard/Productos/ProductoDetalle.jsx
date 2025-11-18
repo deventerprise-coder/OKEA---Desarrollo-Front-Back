@@ -1,5 +1,5 @@
 import React from "react";
-import * as Productos from "../../../mocks/detalleProdList";
+import * as productos from "../../../mocks/detalleProdList";
 import { BreadCrum } from "../../../components/ecomerce/BreadCrum";
 import DetalleProducto from "../../../components/ecomerce/DetalleProducto";
 import CustomerReview from "../../../components/CustomerReview";
@@ -10,26 +10,26 @@ import { ChevronDownIcon } from "../../../assets/iconos/Icons";
 import { useTheme } from "../../../components/ThemeContext";
 import { slugify } from "../../../utils/slugify";
 const relatedSections = [
-    "Productos similares:",
+    "productos similares:",
     "Más opciones:"
 ];
 const customerReviews = Array.from({ length: 6 }, (_, i) => ({ id: i }));
 
 const catalogMap = {
-    "Tecnología": Productos.productoTecnologia,
-    "Muebles y Organización": Productos.productoMuebles,
-    "Calzado": Productos.productoCalzado,
-    "Dormitorio y Baños": Productos.productoDormitorio,
-    "Accesorios de Moda": Productos.productoAccesorios,
-    "Salud y Bienestar": Productos.productoSalud,
-    "Juguetes": Productos.productoJuguetes,
-    "Decoración": Productos.productoDecoracion,
-    "Mascotas": Productos.productoMascotas,
-    "Supermercado": Productos.productoSupermercado,
-    "Electrohogar": Productos.productoElectroHogar,
-    "Moda Hombre": Productos.productoModaH,
-    "Moda Mujer": Productos.productoModaM,
-    "Automotriz": Productos.productoAutomotriz,
+    "Tecnología": productos.productoTecnologia,
+    "Muebles y Organización": productos.productoMuebles,
+    "Calzado": productos.productoCalzado,
+    "Dormitorio y Baños": productos.productoDormitorio,
+    "Accesorios de Moda": productos.productoAccesorios,
+    "Salud y Bienestar": productos.productoSalud,
+    "Juguetes": productos.productoJuguetes,
+    "Decoración": productos.productoDecoracion,
+    "Mascotas": productos.productoMascotas,
+    "Supermercado": productos.productoSupermercado,
+    "Electrohogar": productos.productoElectroHogar,
+    "Moda Hombre": productos.productoModaH,
+    "Moda Mujer": productos.productoModaM,
+    "Automotriz": productos.productoAutomotriz,
 };
 
 const buildProductFromState = (productoState, categoria) => {
@@ -59,10 +59,10 @@ const buildProductFromState = (productoState, categoria) => {
 
 export default function ProductoDetalle({CategoriaProducto, productoSlug, productoState}) {
     const { isLight } = useTheme();
-    const ProductosList = catalogMap[CategoriaProducto] || Productos.productoTecnologia;
+    const productosList = catalogMap[CategoriaProducto] || productos.productoTecnologia;
     //Compara el id del producto que esta en detalleProdList.js con el id de ProductoSlug que esta en ProductCard.jsx
     //Por mientras se dejara en comparacion de nombres ya que no se tienen id reales.
-    let productoData = ProductosList.find((item) => slugify(item.NombreProducto || "") === productoSlug);
+    let productoData = productosList.find((item) => slugify(item.NombreProducto || "") === productoSlug);
 
     const productoFromState = buildProductFromState(productoState, CategoriaProducto);
 
@@ -70,8 +70,8 @@ export default function ProductoDetalle({CategoriaProducto, productoSlug, produc
         productoData = productoFromState;
     }
 
-    if (!productoData && ProductosList.length > 0) {
-        productoData = ProductosList[0];
+    if (!productoData && productosList.length > 0) {
+        productoData = productosList[0];
     } else if (productoData && productoFromState) {
         productoData = {
             ...productoData,

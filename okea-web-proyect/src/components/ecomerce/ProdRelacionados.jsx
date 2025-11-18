@@ -1,4 +1,4 @@
-import { CardProductosRel } from "./CardProductosRel";
+import { CardproductosRel } from "./CardproductosRel";
 import { FlechaDerechaProdRel, FlechaIzquierdaProdRel } from "../../assets/iconos/Icons.jsx";
 //import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png";
 import ProdRelacionado1 from "../../assets/imagenes/Home/prodrelacionado1.png";
@@ -44,7 +44,7 @@ export function ProdRelacionados() {
     };
   };
 
-    const Productos = [
+    const productos = [
         { id: "producto1Muebles", index: 1 , image: ProdRelacionado1, title: "Wooden Sofa Chair"},
         { id: "producto2Muebles", index: 2 , image: ProdRelacionado2, title: "Wooden Sofa Chair"},
         { id: "producto3Muebles", index: 3 , image: ProdRelacionado3, title: "Wooden Sofa Chair"},
@@ -72,7 +72,7 @@ export function ProdRelacionados() {
     };
     return(
         <div className="w-full max-w-[1568px] mx-auto px-4">
-            <h1 className={`text-[22px] sm:text-[45px] mb-10 flex justify-center mb-20 font-medium ${isLight ? 'text-[#434651]' : 'text-[#FFFFFF]'} transition-colors duration-500 ease-in-out`} style={{fontFamily: 'Inter'}}>Productos Relacionados</h1>
+            <h1 className={`text-[22px] sm:text-[45px] mb-10 flex justify-center mb-20 font-medium ${isLight ? 'text-[#434651]' : 'text-[#FFFFFF]'} transition-colors duration-500 ease-in-out`} style={{fontFamily: 'Inter'}}>productos Relacionados</h1>
             
             <div className="w-full">
                 <div className="hidden md:flex w-full">
@@ -91,7 +91,7 @@ export function ProdRelacionados() {
                                 msOverflowStyle: 'none'
                             }}
                         >
-                            {Productos.map((producto) => (
+                            {productos.map((producto) => (
                                 <div key={producto.id} className="flex-shrink-0">
                                     <ProductCard
                                         id={producto.id}
@@ -129,7 +129,7 @@ export function ProdRelacionados() {
                             msOverflowStyle: 'none'
                         }}
                     >
-                        {Productos.map((producto) => (
+                        {productos.map((producto) => (
                             <div key={producto.id} className="flex-shrink-0 w-[280px]">
                                 <ProductCard
                                     id={producto.id}

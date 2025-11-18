@@ -80,8 +80,8 @@ export default function Vendidos() {
     transition: "all 0.3s ease",
   });
 
-  // 🧺 Lista de Productos
-  const Productos = Array.from({ length: 6 }, (_, i) => ({
+  // 🧺 Lista de productos
+  const productos = Array.from({ length: 6 }, (_, i) => ({
     id: `producto${i + 1}Vendidos`,
     image: muebleMesitaNoche,
     discount: "-50%",
@@ -120,7 +120,7 @@ export default function Vendidos() {
             ></div>
           </div>
 
-          {/* 🧱 Fila 2: Carrusel de Productos */}
+          {/* 🧱 Fila 2: Carrusel de productos */}
           <div className="cuadroImagen3 mt-4">
             <div
               className="relative overflow-hidden hidden md:flex px-4 w-full py-4 mt-4 h-100 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
@@ -136,7 +136,7 @@ export default function Vendidos() {
               </button>
 
               <div className="carrusel w-100% flex gap-4">
-                {Productos.map((p) => (
+                {productos.map((p) => (
                   <ProductCardV2
                     key={p.id}
                     {...p}
@@ -157,7 +157,7 @@ export default function Vendidos() {
 
             {/* 📱 Versión móvil (carrusel deslizable) */}
             <div className="md:hidden flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full mt-4 py-4 px-2 rounded-4xl group">
-              {Productos.map((p) => (
+              {productos.map((p) => (
                 <div key={p.id}>
                   <ProductCardV2
                     key={p.id}

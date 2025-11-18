@@ -41,7 +41,7 @@ export default function Recomendados() {
     }));
   };
 
-  // 🛒 función que agrega Productos y cambia el botón a verde
+  // 🛒 función que agrega productos y cambia el botón a verde
   const handleAgregarAlCarrito = (producto) => {
     agregarAlCarrito({
       id: producto.id,
@@ -67,8 +67,8 @@ export default function Recomendados() {
     }, 3000);
   };
 
-  // Lista de Productos (demo)
-  const Productos = Array.from({ length: 7 }, (_, i) => ({
+  // Lista de productos (demo)
+  const productos = Array.from({ length: 7 }, (_, i) => ({
     id: `producto${i + 1}Recomendados`,
     image: muebleMesitaNoche,
     discount: "-50%",
@@ -105,7 +105,7 @@ export default function Recomendados() {
             </button>
 
             <div className="carrusel w-100% flex gap-4">
-              {Productos.map((p) => (
+              {productos.map((p) => (
                 <ProductCardV2
                   key={p.id}
                   {...p}
@@ -126,7 +126,7 @@ export default function Recomendados() {
 
           {/* 📱 Móvil */}
           <div className="md:hidden flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full mt-4 py-4 px-2 rounded-4xl group">
-            {Productos.map((p) => (
+            {productos.map((p) => (
               <div key={p.id}>
                 <ProductCardV2
                   key={p.id}

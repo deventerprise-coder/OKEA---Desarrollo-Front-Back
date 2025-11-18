@@ -10,7 +10,7 @@ export default function PageMockup() {
       <section className="px-6 py-30 bg-gradient-to-r from-[#B3C7FF] to-[#DFE162] text-center">
         <h1 className="text-4xl font-bold text-[#1C4390] mb-4">¡Bienvenido a OKEA!</h1>
         <p className="text-gray-800 max-w-2xl mx-auto text-lg">
-          Tu plataforma digital para encontrar todo tipo de Productos, desde los más simples hasta los más sotisficados
+          Tu plataforma digital para encontrar todo tipo de productos, desde los más simples hasta los más sotisficados
         </p>
       </section>
 
