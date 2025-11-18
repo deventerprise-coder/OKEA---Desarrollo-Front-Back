@@ -1,5 +1,5 @@
 import iphoneImg from "../assets/imagenes/Iphone.png";
-import iphoneImgBlanco from "../assets/imagenes/Categorias/productos/modeloAppleBlanco.png";
+import iphoneImgBlanco from "../assets/imagenes/Categorias/productos/ModeloAppleBlanco.png";
 import iphoneImgVerde from "../assets/imagenes/Categorias/productos/modeloAppleVerde.png";
 import iphoneImgJade from "../assets/imagenes/Categorias/productos/modeloAppleJade.png";
 import modeloAppleHover from "../assets/imagenes/Categorias/productos/modeloAppleHover.png";
