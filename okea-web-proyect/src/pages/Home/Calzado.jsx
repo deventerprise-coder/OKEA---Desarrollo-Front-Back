@@ -49,8 +49,8 @@ export default function Calzado() {
     };
     };
 
-    // lista de productos
-    const productos = Array.from({ length: 6 }, (_, i) => ({
+    // lista de Productos
+    const Productos = Array.from({ length: 6 }, (_, i) => ({
       id: `producto${i + 1}Calzado`,
       image: muebleMesitaNoche,
       discount: "-50%",
@@ -62,7 +62,7 @@ export default function Calzado() {
     }));
 
 
-    //estado para productos
+    //estado para Productos
     const [liked, setLiked] = useState(false);
     const [addedItems, setAddedItems] = useState({});
 
@@ -236,7 +236,7 @@ export default function Calzado() {
           <div
             className="2xl:hidden flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full mt-4 py-4 px-2 rounded-4xl group"
           >
-            {productos.map((p) => (
+            {Productos.map((p) => (
               <div key={p.id}>
                   <ProductCard
                   key={p.id}

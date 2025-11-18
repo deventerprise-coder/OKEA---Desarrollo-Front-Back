@@ -44,7 +44,7 @@ export function ProdRelacionados() {
     };
   };
 
-    const productos = [
+    const Productos = [
         { id: "producto1Muebles", index: 1 , image: ProdRelacionado1, title: "Wooden Sofa Chair"},
         { id: "producto2Muebles", index: 2 , image: ProdRelacionado2, title: "Wooden Sofa Chair"},
         { id: "producto3Muebles", index: 3 , image: ProdRelacionado3, title: "Wooden Sofa Chair"},
@@ -91,7 +91,7 @@ export function ProdRelacionados() {
                                 msOverflowStyle: 'none'
                             }}
                         >
-                            {productos.map((producto) => (
+                            {Productos.map((producto) => (
                                 <div key={producto.id} className="flex-shrink-0">
                                     <ProductCard
                                         id={producto.id}
@@ -129,7 +129,7 @@ export function ProdRelacionados() {
                             msOverflowStyle: 'none'
                         }}
                     >
-                        {productos.map((producto) => (
+                        {Productos.map((producto) => (
                             <div key={producto.id} className="flex-shrink-0 w-[280px]">
                                 <ProductCard
                                     id={producto.id}

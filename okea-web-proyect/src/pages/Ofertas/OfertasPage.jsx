@@ -107,7 +107,7 @@ export default function Oferta1() {
 		setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length); // Retrocede al slide anterior
 	};
 	
-	// Estado para manejar productos
+	// Estado para manejar Productos
 	const [liked, setLiked] = useState(false);
 	const [addedItems, setAddedItems] = useState({});
 
@@ -125,7 +125,7 @@ export default function Oferta1() {
 		}));
 	};
 
-	const productos = [
+	const Productos = [
 		{ id: 'p7', image: Producto7Image, title: 'Producto 7', label: 'Label', oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9" },
 		{ id: 'p8', image: Producto8Image, title: 'Producto 8', label: 'Label', oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9" },
 		{ id: 'p9', image: Producto9Image, title: 'Producto 9', label: 'Label', oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9" },
@@ -281,7 +281,7 @@ export default function Oferta1() {
 	<section className="w-full px-3 md:px-6 lg:px-24 mt-2">
 		
 		<div className="carrusel w-full flex flex-nowrap justify-center gap-13 overflow-x-auto pb-4">
-			{productos.map((p) => (
+			{Productos.map((p) => (
 				<div key={p.id} className="flex-shrink-0">
 					<ProductCardV2
 						id={p.id}

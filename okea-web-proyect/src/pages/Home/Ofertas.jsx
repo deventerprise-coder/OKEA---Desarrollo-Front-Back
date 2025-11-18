@@ -142,7 +142,7 @@ export default function Ofertas() {
                                     <h2 className='text-white -mt-3 md:-mt-2 font-popins font-light col-span-1'>DCTO.</h2>
                                 </div>
                             </div>
-                            <h2 className='hidden md:flex text-[#DFE162] text-center -ml-2 tracking-tight font-popins mt-0 md:-mt-4 col-span-2 h-12 w-53'>En diferentes productos y marcas</h2>
+                            <h2 className='hidden md:flex text-[#DFE162] text-center -ml-2 tracking-tight font-popins mt-0 md:-mt-4 col-span-2 h-12 w-53'>En diferentes Productos y marcas</h2>
                             <h2 className='md:hidden flex text-[#DFE162] text-center justify-center -ml-2 -mt-7 font-popins text-2xl col-span-2 h-10 w-53'>En varias marcas</h2>
                           </div>
                         </div>

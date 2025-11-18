@@ -56,7 +56,7 @@ export default function Supermercado() {
     };
   const imagenes = [supermercadoImagen5, supermercadoImagen6, supermercadoImagen7, supermercadoImagen8];
 
-    //estado para productos
+    //estado para Productos
     const [liked, setLiked] = useState(false);
     const [addedItems, setAddedItems] = useState({});
 
@@ -73,8 +73,8 @@ export default function Supermercado() {
      }));
   };  
 
-      // lista de productos
-      const productos = Array.from({ length: 6 }, (_, i) => ({
+      // lista de Productos
+      const Productos = Array.from({ length: 6 }, (_, i) => ({
       id: `producto${i + 1}Recomendados`,
       image: muebleMesitaNoche,
       discount: "-50%",
@@ -154,7 +154,7 @@ export default function Supermercado() {
             </button>
 
             <div className=" carrusel w-100% flex gap-4">
-              {productos.map((p) => (
+              {Productos.map((p) => (
                 <ProductCardV2
                   key={p.id}
                   id={p.id}
@@ -178,7 +178,7 @@ export default function Supermercado() {
           <div
             className="md:hidden flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full mt-4 py-4 px-2 rounded-4xl group"
           >
-            {productos.map((p) => (
+            {Productos.map((p) => (
               <div key={p.id}>
                   <ProductCardV2
                   key={p.id}

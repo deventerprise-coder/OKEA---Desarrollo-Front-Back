@@ -17,7 +17,7 @@ import { Tag24Regular, ChevronLeftRegular, ChevronRightRegular , Password24Regul
 
 const Cart = () => {
   const { carrito, actualizarCantidad, eliminarProducto } = useCart();
-  const [paso, setPaso] = useState(1); // 1 = productos, 2 = formulario, 3 = métodos de pago
+  const [paso, setPaso] = useState(1); // 1 = Productos, 2 = formulario, 3 = métodos de pago
 
   const costoDeEnvio = 10;
   const subTotal = carrito.reduce((acc, producto) =>
@@ -182,7 +182,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
       </span>
     </h2>
 
-    {/* Lista de productos */}
+    {/* Lista de Productos */}
     <ul
   className="divide-y divide-gray-300 max-h-[500px] overflow-y-auto ocultar-scroll
     max-[1024px]:max-h-[440px]
@@ -617,7 +617,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
   <button
     onClick={() =>
       document
-        .getElementById("productosScroll")
+        .getElementById("ProductosScroll")
         .scrollBy({ left: -300, behavior: "smooth" })
     }
     className="absolute left-0 top-1/2 -translate-y-1/2 p-1 text-[#1C4390]
@@ -629,14 +629,14 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
 
   {/* Contenedor con scroll horizontal */}
   <div
-    id="productosScroll"
+    id="ProductosScroll"
     className="flex gap-4 overflow-x-auto scroll-smooth pl-8 pr-10 scrollbar-hide
       max-[412px]:pl-4 max-[412px]:pr-6"
     style={{
       scrollSnapType: "x mandatory",
       scrollbarWidth: "none",
       msOverflowStyle: "none",
-      maxWidth: "561px", // 🔹 muestra 4 productos exactos con su espacio
+      maxWidth: "561px", // 🔹 muestra 4 Productos exactos con su espacio
     }}
   >
     {carrito.map((producto) => (
@@ -679,7 +679,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
   <button
     onClick={() =>
       document
-        .getElementById("productosScroll")
+        .getElementById("ProductosScroll")
         .scrollBy({ left: 300, behavior: "smooth" })
     }
     className="absolute right-0 top-1/2 -translate-y-1/2 p-1 text-[#1C4390]
@@ -1001,7 +1001,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
       <p className="text-sm text-gray-500 mb-6
         max-[412px]:mb-4
       ">
-        Tienes {carrito.length} productos en tu carrito
+        Tienes {carrito.length} Productos en tu carrito
       </p>
       
       <hr className="border-t border-gray-300 my-6 max-[412px]:my-4" />

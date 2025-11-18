@@ -153,7 +153,7 @@ export default function Categoria({categoria, subcategoria}) {
     : categoria === "Electrohogar" ? DestacadosElectrohogar
     : DestacadosModa;
 
-    const productosList = categoria === "Tecnología" ? products.productsTecnologia
+    const ProductosList = categoria === "Tecnología" ? products.productsTecnologia
     : categoria === "Muebles y Organización" ? products.productsMuebles
     : categoria === "Calzado" ? products.productsCalzado
     : categoria === "Dormitorio y Baños" ? products.productsDormitorio
@@ -174,7 +174,7 @@ export default function Categoria({categoria, subcategoria}) {
       <div className="lg:flex w-full overflow-x-hidden lg:mt-8">
         <SidebarMenu categoria={categoria} subcategoria={subcategoria} isLight={isLight}/>
         <aside className="flex flex-col items-center w-full lg:w-auto flex-1 overflow-x-hidden">
-          <Products products={productosList} categoria={categoria} isLight={isLight}/>
+          <Products products={ProductosList} categoria={categoria} isLight={isLight}/>
         </aside>
       </div>
       <div className="flex items-center justify-center mt-20 mb-20 w-full overflow-x-hidden">
