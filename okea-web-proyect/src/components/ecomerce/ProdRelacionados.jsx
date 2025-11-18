@@ -72,7 +72,7 @@ export function ProdRelacionados() {
     };
     return(
         <div className="w-full max-w-[1568px] mx-auto px-4">
-            <h1 className={`text-[22px] sm:text-[45px] mb-10 flex justify-center mb-20 font-medium ${isLight ? 'text-[#434651]' : 'text-[#FFFFFF]'} transition-colors duration-500 ease-in-out`} style={{fontFamily: 'Inter'}}>productos Relacionados</h1>
+            <h1 className={`text-[22px] sm:text-[45px] flex justify-center mb-20 font-medium ${isLight ? 'text-[#434651]' : 'text-[#FFFFFF]'} transition-colors duration-500 ease-in-out`} style={{fontFamily: 'Inter'}}>productos Relacionados</h1>
             
             <div className="w-full">
                 <div className="hidden md:flex w-full">

@@ -10,7 +10,7 @@ import { ChevronDownIcon } from "../../../assets/iconos/Icons";
 import { useTheme } from "../../../components/ThemeContext";
 import { slugify } from "../../../utils/slugify";
 const relatedSections = [
-    "productos similares:",
+    "Productos similares:",
     "Más opciones:"
 ];
 const customerReviews = Array.from({ length: 6 }, (_, i) => ({ id: i }));
@@ -129,7 +129,7 @@ export default function ProductoDetalle({CategoriaProducto, productoSlug, produc
                 Reseñas={productoData.Reseñas}
             />
 
-            <div className="hidden lg:flex w-full flex flex-col items-center px-6 sm:px-12 mt-2 mb-16 gap-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
+            <div className=" lg:flex w-full flex flex-col items-center px-6 sm:px-12 mt-2 mb-16 gap-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                 <h2 className={`w-full max-w-[1568px] mx-auto text-left ${isLight ? 'text-[#0B1B59]' : 'text-white'} text-[32px] sm:text-[36px] leading-[1.1] font-[Poppins,sans-serif] font-semibold`}>
                     Opiniones de clientes:
                 </h2>

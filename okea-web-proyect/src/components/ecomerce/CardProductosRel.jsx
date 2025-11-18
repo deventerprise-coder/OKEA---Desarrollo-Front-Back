@@ -2,7 +2,7 @@ import {HeartIconblack, ShoppingCartIcon } from "../../assets/iconos/iconoHome";
 import { EstrellaIcon, FavoritoCardIcon } from "../../assets/iconos/Icons";
 import { useState } from "react";
 import laptopImg from "../../assets/imagenes/laptop.png";
-export function CardproductosRel() {
+export function CardProductosRel() {
     const [liked, setLiked] = useState(false);
     const [added, setAdded] = useState(false);
     return(
