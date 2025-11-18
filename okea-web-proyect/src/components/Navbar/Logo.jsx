@@ -1,6 +1,6 @@
 
     import okeaLogo from '../../assets/iconos/okea_logo.svg';
-    import okeaLogoDark from '../../assets/iconos/okea_logo_Categorias.svg';
+    import okeaLogoDark from '../../assets/iconos/okea_logo_categorias.svg';
     import { useNavigate } from 'react-router-dom';
     import { useState, useEffect } from 'react';
 

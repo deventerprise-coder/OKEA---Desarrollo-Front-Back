@@ -1,4 +1,4 @@
-import okeaLogoCategorias from '../../assets/iconos/okea_logo_Categorias.svg';
+import okeaLogoCategorias from '../../assets/iconos/okea_logo_categorias.svg';
 import {
   TechnologyIcon,
   LavadoIcon,
