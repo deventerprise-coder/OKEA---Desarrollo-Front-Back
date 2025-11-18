@@ -9,7 +9,7 @@ import {
   IconTikTok2,
 } from "../../assets/iconos/Icons";
 
-import { CategoriasDetalle } from "./CategoriasDetalle";
+import { CategoriasDetalle } from "./CategoriasDetalle.jsx";
 import { useState, useEffect } from "react";
 import ThemeToggle from "../Navbar/ThemeToggle";
 import { useNavigate } from "react-router-dom"; 
