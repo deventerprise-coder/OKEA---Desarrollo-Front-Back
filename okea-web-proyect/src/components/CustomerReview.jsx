@@ -46,10 +46,10 @@ const CustomerReview = ({
     reviewText: "Exelente, el producto llego en buen estado, y buena calidad.",
     rating: 5,
     images: [
-      "/src/assets/imagenes/Reviews/IMGreview1.png",
-      "/src/assets/imagenes/Reviews/IMGreview2.png",
-      "/src/assets/imagenes/Reviews/IMGreview3.png",
-      "/src/assets/imagenes/Reviews/IMGreview4.png"
+      IMGreview1,
+      IMGreview2,
+      IMGreview3,
+      IMGreview4,
     ],
     customerName: "Wade Warren",
     reviewDate: "2025",
