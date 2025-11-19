@@ -7,7 +7,6 @@ import IMGreview2 from "../assets/imagenes/Reviews/IMGreview2.png";
 import IMGreview3 from "../assets/imagenes/Reviews/IMGreview3.png";
 import IMGreview4 from "../assets/imagenes/Reviews/IMGreview4.png";
 
-
 const CustomerReview = ({ 
   reviewText, 
   rating, 
@@ -57,7 +56,7 @@ const CustomerReview = ({
     ],
     customerName: "Wade Warren",
     reviewDate: "2025",
-    customerAvatar: "/src/assets/imagenes/Reviews/UserProfile.png"
+    customerAvatar: UserProfile,
   };
 
   const review = {
