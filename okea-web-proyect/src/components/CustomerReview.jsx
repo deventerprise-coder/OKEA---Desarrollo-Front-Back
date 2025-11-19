@@ -3,6 +3,10 @@ import { useTheme } from "./ThemeContext";
 import { StarIconMejor } from "../assets/iconos/Icons";
 import UserProfile from "../assets/imagenes/Reviews/UserProfile.png";
 import IMGreview1 from "../assets/imagenes/Reviews/IMGreview1.png";
+import IMGreview2 from "../assets/imagenes/Reviews/IMGreview2.png";
+import IMGreview3 from "../assets/imagenes/Reviews/IMGreview3.png";
+import IMGreview4 from "../assets/imagenes/Reviews/IMGreview4.png";
+
 
 const CustomerReview = ({ 
   reviewText, 
