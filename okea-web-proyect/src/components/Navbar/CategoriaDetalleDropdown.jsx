@@ -260,9 +260,9 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
           }}
         >
           
-          {data.tipo === 'subcategorias' ? (
+          {data.tipo === 'subCategorias' ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-              {Object.entries(data.subcategorias).map(([nombreSubcategoria, subcategoriaData]) => (
+              {Object.entries(data.subCategorias).map(([nombreSubcategoria, subcategoriaData]) => (
                 <div key={nombreSubcategoria}>
                   
                   <h2 style={{

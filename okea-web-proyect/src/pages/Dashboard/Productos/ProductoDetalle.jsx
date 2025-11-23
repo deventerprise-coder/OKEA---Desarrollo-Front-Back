@@ -3,7 +3,7 @@ import * as productos from "../../../mocks/detalleProdList";
 import { BreadCrum } from "../../../components/ecomerce/BreadCrum";
 import DetalleProducto from "../../../components/ecomerce/DetalleProducto";
 import CustomerReview from "../../../components/CustomerReview";
-import { ProdRelacionados } from "../../../components/ecomerce/ProdRelacionados";
+import { ProdRelacionados } from "../../../components/ecomerce/ProdRelacionados.jsx";
 import PreguntasFrecuentes from "../../../components/PreguntasFrecuentes";
 import Footer from "../../../components/Footer/Footer";
 import { ChevronDownIcon } from "../../../assets/iconos/Icons";
@@ -129,7 +129,7 @@ export default function ProductoDetalle({CategoriaProducto, productoSlug, produc
                 Reseñas={productoData.Reseñas}
             />
 
-            <div className="hidden lg:flex w-full flex flex-col items-center px-6 sm:px-12 mt-2 mb-16 gap-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
+            <div className=" lg:flex w-full flex flex-col items-center px-6 sm:px-12 mt-2 mb-16 gap-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                 <h2 className={`w-full max-w-[1568px] mx-auto text-left ${isLight ? 'text-[#0B1B59]' : 'text-white'} text-[32px] sm:text-[36px] leading-[1.1] font-[Poppins,sans-serif] font-semibold`}>
                     Opiniones de clientes:
                 </h2>

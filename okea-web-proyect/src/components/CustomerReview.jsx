@@ -3,6 +3,9 @@ import { useTheme } from "./ThemeContext";
 import { StarIconMejor } from "../assets/iconos/Icons";
 import UserProfile from "../assets/imagenes/Reviews/UserProfile.png";
 import IMGreview1 from "../assets/imagenes/Reviews/IMGreview1.png";
+import IMGreview2 from "../assets/imagenes/Reviews/IMGreview2.png";
+import IMGreview3 from "../assets/imagenes/Reviews/IMGreview3.png";
+import IMGreview4 from "../assets/imagenes/Reviews/IMGreview4.png";
 
 const CustomerReview = ({ 
   reviewText, 
@@ -46,14 +49,14 @@ const CustomerReview = ({
     reviewText: "Exelente, el producto llego en buen estado, y buena calidad.",
     rating: 5,
     images: [
-      "/src/assets/imagenes/Reviews/IMGreview1.png",
-      "/src/assets/imagenes/Reviews/IMGreview2.png",
-      "/src/assets/imagenes/Reviews/IMGreview3.png",
-      "/src/assets/imagenes/Reviews/IMGreview4.png"
+      IMGreview1,
+      IMGreview2,
+      IMGreview3,
+      IMGreview4,
     ],
     customerName: "Wade Warren",
     reviewDate: "2025",
-    customerAvatar: "/src/assets/imagenes/Reviews/UserProfile.png"
+    customerAvatar: UserProfile,
   };
 
   const review = {

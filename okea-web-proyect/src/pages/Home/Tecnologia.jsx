@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "../../components/ThemeContext";
-import tecnologiaImagen1 from "../../assets/imagenes/Home/tecnologiaImagen1.png"
-import tecnologiaImagen2 from "../../assets/imagenes/Home/tecnologiaImagen2.png"
-import tecnologiaImagen3 from "../../assets/imagenes/Home/tecnologiaImagen3.png"
-import tecnologiaImagen4 from "../../assets/imagenes/Home/tecnologiaImagen4.png"
-import tecnologiaImagen5 from "../../assets/imagenes/Home/tecnologiaImagen5.png"
-import tecnologiaImagen6 from "../../assets/imagenes/Home/tecnologiaImagen6.png"
+import tecnologiaImagen1 from "../../assets/imagenes/Home/tecnologiaImagen1.png";
+import tecnologiaImagen2 from "../../assets/imagenes/Home/tecnologiaImagen2.png";
+import tecnologiaImagen3 from "../../assets/imagenes/Home/tecnologiaImagen3.png";
+import tecnologiaImagen4 from "../../assets/imagenes/Home/tecnologiaImagen4.png";
+import tecnologiaImagen5 from "../../assets/imagenes/Home/tecnologiaImagen5.png";
+import tecnologiaImagen6 from "../../assets/imagenes/Home/tecnologiaImagen6.png";
 import { ArrowRightIconBlack, CursorIcon, TecnologyIcon, TecnologyIconDarkMode, TruckIcon } from "../../assets/iconos/iconoHome";
 
 export default function Tecnologia() {

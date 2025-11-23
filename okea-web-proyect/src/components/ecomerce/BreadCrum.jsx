@@ -188,7 +188,7 @@ export function BreadCrum({categoria, subcategoria, isLight}) {
                     className={`text-[14px] font-regular ${isLight ? "text-[#333333]" : "text-[#FFFFFF]"} cursor-pointer`} 
                     style={{fontFamily: 'Inter'}}
                     onClick={() => {
-                        const categoriaSlug = categoria === "Tecnología" ? "tecnologia"
+                        const Categoriaslug = categoria === "Tecnología" ? "tecnologia"
                             : categoria === "Electrohogar" ? "electrohogar"
                             : categoria === "Muebles y Organización" ? "muebles-y-organizacion"
                             : categoria === "Dormitorio y Baños" ? "dormitorio-y-banos"
@@ -202,7 +202,7 @@ export function BreadCrum({categoria, subcategoria, isLight}) {
                             : categoria === "Accesorios de Moda" ? "accesorios-de-moda"
                             : categoria === "Decoración" ? "decoracion-e-iluminacion"
                             : "";
-                        if (categoriaSlug) navigate(`/catalogo/${categoriaSlug}`);
+                        if (Categoriaslug) navigate(`/catalogo/${Categoriaslug}`);
                     }}
                 >
                     {categoria}

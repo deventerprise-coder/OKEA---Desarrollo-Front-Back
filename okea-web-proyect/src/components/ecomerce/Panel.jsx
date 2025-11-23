@@ -1,16 +1,16 @@
-import PanelTecnologia from "../../assets/imagenes/categorias/panel/PanelTecnologia.png";
-import PanelMuebles from "../../assets/imagenes/categorias/panel/PanelMuebles.png";
-import PanelCalzado from "../../assets/imagenes/categorias/panel/PanelCalzado.png";
-import PanelDormitorio from "../../assets/imagenes/categorias/panel/PanelDormitorio.png";
-import PanelAccesorios from "../../assets/imagenes/categorias/panel/PanelAccesorios.png";
-import PanelDecoracion from "../../assets/imagenes/categorias/panel/PanelDecoracion.png";
-import PanelElectrohogar from "../../assets/imagenes/categorias/panel/PanelElectrohogar.png";
-import PanelMascotas from "../../assets/imagenes/categorias/panel/PanelMascotas.png";
-import PanelModaH from "../../assets/imagenes/categorias/panel/PanelModaH.png";
-import PanelModaM from "../../assets/imagenes/categorias/panel/PanelModaM.png";
-import PanelSalud from "../../assets/imagenes/categorias/panel/PanelSalud.png";
-import PanelSupermercado from "../../assets/imagenes/categorias/panel/PanelSupermercado.png";
-import PanelJuguetes from "../../assets/imagenes/categorias/panel/PanelJuguetes.png";
+import PanelTecnologia from "../../assets/imagenes/Categorias/Panel/PanelTecnologia.png";
+import PanelMuebles from "../../assets/imagenes/Categorias/Panel/PanelMuebles.png";
+import PanelCalzado from "../../assets/imagenes/Categorias/Panel/PanelCalzado.png";
+import PanelDormitorio from "../../assets/imagenes/Categorias/Panel/PanelDormitorio.png";
+import PanelAccesorios from "../../assets/imagenes/Categorias/Panel/PanelAccesorios.png";
+import PanelDecoracion from "../../assets/imagenes/Categorias/Panel/PanelDecoracion.png";
+import PanelElectrohogar from "../../assets/imagenes/Categorias/Panel/PanelElectrohogar.png";
+import PanelMascotas from "../../assets/imagenes/Categorias/Panel/PanelMascotas.png";
+import PanelModaH from "../../assets/imagenes/Categorias/Panel/PanelModaH.png";
+import PanelModaM from "../../assets/imagenes/Categorias/Panel/PanelModaM.png";
+import PanelSalud from "../../assets/imagenes/Categorias/Panel/PanelSalud.png";
+import PanelSupermercado from "../../assets/imagenes/Categorias/Panel/PanelSupermercado.png";
+import PanelJuguetes from "../../assets/imagenes/Categorias/Panel/PanelJuguetes.png";
 import { useState } from "react";
 
 function ModelosDestcados({nombre, imagen, categoria, isLight}) {

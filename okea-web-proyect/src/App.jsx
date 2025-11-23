@@ -27,7 +27,7 @@ import Ultimo from './pages/Home/Ultimo';
 import Cart from './pages/Checkout/Cart';
 import OfertasPage from './pages/Ofertas/OfertasPage';
 
-const categoriaSlugMap = {
+const CategoriaslugMap = {
   'tecnologia': 'Tecnología',
   'muebles-y-organizacion': 'Muebles y Organización',
   'calzado': 'Calzado',
@@ -47,7 +47,7 @@ const categoriaSlugMap = {
 const ProductoDetalleRoute = () => {
   const { categoria, producto } = useParams();
   const location = useLocation();
-  const CategoriaProducto = categoriaSlugMap[categoria] || (categoria ? categoria.replace(/-/g, ' ') : '');
+  const CategoriaProducto = CategoriaslugMap[categoria] || (categoria ? categoria.replace(/-/g, ' ') : '');
   const productoSlug = producto || '';
   const productoState = location.state?.producto;
 

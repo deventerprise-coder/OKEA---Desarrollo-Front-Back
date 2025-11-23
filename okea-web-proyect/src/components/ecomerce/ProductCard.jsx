@@ -18,9 +18,9 @@ export function ProductCard({id,imagen, imgHover, marca, modelo, descripcion, pr
     : "#EB5A45";
   const navigate = useNavigate();
   const handleNavigate = () => {
-    const categoriaSlug = slugify(categoria || "");
+    const Categoriaslug = slugify(categoria || "");
     const productSlug = slugify(/*id || */modelo || marca || descripcion || "producto");
-    navigate(`/producto/detalle/${categoriaSlug}/${productSlug}`, {
+    navigate(`/producto/detalle/${Categoriaslug}/${productSlug}`, {
       state: {
         categoria,
         producto: {

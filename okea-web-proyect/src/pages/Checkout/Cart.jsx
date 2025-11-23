@@ -178,7 +178,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
         {`Tienes ${carrito.length} producto${carrito.length !== 1 ? 's' : ''} en tu carrito`}
       </span>
       <span className="max-[412px]:hidden">
-        Productos pedidos
+        productos pedidos
       </span>
     </h2>
 
@@ -598,7 +598,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
           className="text-lg font-semibold text-gray-800
             max-[412px]:text-base"
         >
-          Productos pedidos
+          productos pedidos
         </h2>
 
         <button

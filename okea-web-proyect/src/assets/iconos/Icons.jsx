@@ -754,7 +754,7 @@ export const CategoriaCorazon = (props) => (
 );
 
 
-export const CategoriaSuplementos = (props) => (
+export const Categoriasuplementos = (props) => (
   <svg
     width="24"
     height="24"
@@ -1515,7 +1515,7 @@ export const CategoriaEstanteria = () => (
   </svg>
 );
 
-export const CategoriaSofa = () => (
+export const Categoriasofa = () => (
   <svg
     width="24"
     height="24"

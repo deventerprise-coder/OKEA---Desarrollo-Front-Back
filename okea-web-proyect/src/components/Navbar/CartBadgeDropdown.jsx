@@ -105,7 +105,7 @@ export default function CartBadgeDropdown({ isVisible, isMobile }) {
 				</button>
 			</div>
 
-			{/* Productos reales */}
+			{/* productos reales */}
 			<div className="flex flex-col gap-3 overflow-y-auto flex-1" style={{ maxHeight: 420 }}>
 				{carrito.length === 0 ? (
 					<p className="text-center text-white opacity-75 font-light">Tu carrito está vacío</p>

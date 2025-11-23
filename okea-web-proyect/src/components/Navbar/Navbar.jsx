@@ -21,7 +21,7 @@ import MenuDropdownMobile from "./MenuDropdownMobile";
 
 
 // ====================================================================
-// PANEL DE CONTROL DE NAVBAR
+// Panel DE CONTROL DE NAVBAR
 // ====================================================================
 
 const NAVBAR_CONFIG = {
@@ -113,7 +113,7 @@ const NAVBAR_CONFIG = {
 	},
 };
 // ====================================================================
-// FIN DEL PANEL DE CONTROL DE NAVBAR
+// FIN DEL Panel DE CONTROL DE NAVBAR
 // ====================================================================
 
 const initialDropdownPosition = { top: 0, left: 0 };
@@ -574,7 +574,7 @@ export default function Navbar() {
 									closeDynamicDropdowns();
 									setIsMenuOpen(true);
 								} else {
-									handleToggleDropdown("categorias");
+									handleToggleDropdown("Categorias");
 								}
 							}}
 						/>
@@ -734,11 +734,11 @@ export default function Navbar() {
 					isVisible={isLocationOptionsVisible}
 				/>
 			)}
-			{activeDropdown === "categorias" && (
+			{activeDropdown === "Categorias" && (
 				<CategoriasDropdown
 					isOpen={isAnyDropdownOpen}
 					isVisible={isDropdownVisible}
-					onClose={() => handleToggleDropdown("categorias")}
+					onClose={() => handleToggleDropdown("Categorias")}
 				/>
 			)}
 		</>
