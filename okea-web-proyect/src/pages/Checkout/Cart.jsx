@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "../../components/CartContext";
-import { FaTrashAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+//import { FaTrashAlt } from "react-icons/fa";
+//import { useNavigate } from "react-router-dom";
 import visa from "../../assets/iconos/VISAIcono.svg";
 import mastercard from "../../assets/iconos/MCIcon.svg";
 import logo_okea from "../../assets/iconos/okea_logo.svg";
@@ -31,7 +31,7 @@ const Cart = () => {
     if (producto.cantidad > 1) actualizarCantidad(id, -1);
   };
 
-const [mostrarCalendario, setMostrarCalendario] = useState(false);
+//const [mostrarCalendario, setMostrarCalendario] = useState(false);
 const [fechaSeleccionada, setFechaSeleccionada] = useState("");
 
   
