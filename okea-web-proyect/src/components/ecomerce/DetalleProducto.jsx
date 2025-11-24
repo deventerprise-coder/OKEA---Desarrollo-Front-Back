@@ -60,8 +60,8 @@ export default function DetalleProducto({
     }, [selectedImageIndex]);
     return (
         <>
-            <div className={`flex flex-col lg:flex-row lg:pt-0 justify-center items-start gap-6 lg:gap-8 xl:px-8 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>
-                <div className={`w-full mt-2 pb-20 pl-[10%] lg:w-[60%] flex lg:flex-col xl:flex-row gap-4 rounded-tl-[32px] rounded-tr-[32px] lg:rounded-t-none lg:mt-0 ${isLight ? 'bg-white lg:bg-transparent' : 'bg-[#9E9CAF] lg:bg-transparent'} motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>
+            <div className={`flex flex-col lg:flex-row lg:pt-0 justify-center items-start gap-6 lg:gap-8 xl:px-0 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>
+                <div className={`w-full mt-2 pb-20 pl-16 lg:pl-10 xl:pl-1 2xl:pl-[10%] lg:w-[60%] flex lg:flex-col xl:flex-row gap-4 rounded-tl-[32px] rounded-tr-[32px] lg:rounded-t-none lg:mt-0 ${isLight ? 'bg-white lg:bg-transparent' : 'bg-[#9E9CAF] lg:bg-transparent'} motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out`}>
 
                     <div className="hidden md:order-1 pl-6 mt-22 lg:mt-0 lg:order-2 xl:order-none md:flex md:flex-col lg:flex-row xl:flex-col items-center gap-2 lg:pr-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                         <div className="hidden lg:flex xl:hidden">
@@ -140,7 +140,7 @@ export default function DetalleProducto({
                         <img
                             src={productImages[selectedImageIndex]}
                             alt="Producto"
-                            className="w-[65%] h-[90%] p-4 lg:w-full lg:h-full relative left-[5%] md:left-0 lg:p-0 lg:right-0 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out"
+                            className="w-[65%] h-[90%] p-4 lg:w-full lg:h-full relative object-contain left-[5%] md:left-0 lg:p-0 lg:right-0 motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out"
                         />
                         <div className="absolute top-[20%] md:top-[25%] right-[15%] lg:hidden motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out">
                             <div className="flex flex-col gap-3">
