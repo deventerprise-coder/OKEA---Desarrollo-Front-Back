@@ -269,7 +269,7 @@ export default function CategoriaHome() {
                                             <h1 className="text-center font-bold md:text-sm lg:text-lg 2xl:text-2xl font-popins text-white md:mt-20 lg:mt-11 2xl:mt-5 lg:mb-1 2xl:mb-2 duration-500 group-hover:scale-125 transition">
                                                 {item.title}
                                             </h1>
-                                            <p className="text-center md:text-[10px] lg:text-[12px] 2xl:text-0 font-popins-light text-[#DAE2FF] text-balance duration-500 group-hover:translate-y-1.5">
+                                            <p className="text-center md:text-[10px] lg:hidden xl:block xl:text-[13px] font-popins-light text-[#DAE2FF] text-balance duration-500 group-hover:translate-y-1.5 px-2">
                                                 {item.desc}
                                             </p>
                                         </div>

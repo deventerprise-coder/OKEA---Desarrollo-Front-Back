@@ -4,6 +4,7 @@ import samsungImg from "../assets/imagenes/MarcasDestacadas/samsung.png";
 import bataImg from "../assets/imagenes/MarcasDestacadas/bata.png";
 import xiaomiImg from "../assets/imagenes/MarcasDestacadas/xiaomi.png";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const marcas = [
     { nombre: "iPhone", imagen: iphoneImg },
@@ -20,7 +21,6 @@ export default function MarcasDestacadas() {
         return document.documentElement.getAttribute('data-theme') || 'light';
     });
     const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
-
     useEffect(() => {
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
@@ -114,7 +114,7 @@ export default function MarcasDestacadas() {
 
 function MarcaCard({ imagen, nombre, theme, isMobile }) { 
     const [hovered, setHovered] = useState(false);
-
+    const navigate = useNavigate();
     const getCardStyles = () => {
         const cardWidth = isMobile ? "100%" : 320; 
         const cardHeight = isMobile ? 300 : 400; 
@@ -158,6 +158,7 @@ function MarcaCard({ imagen, nombre, theme, isMobile }) {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             style={getCardStyles()}
+            onClick={() => {nombre === "iPhone" ? navigate("/catalogo/tecnologia"): nombre === "Samsung" ? navigate("/catalogo/tecnologia") : nombre === "Xiaomi" ? navigate("/catalogo/tecnologia") : nombre === "Nike" ? navigate("/catalogo/calzado") : nombre === "Bata" ? navigate("/catalogo/calzado") : null}}
         >
             <img
                 src={imagen}

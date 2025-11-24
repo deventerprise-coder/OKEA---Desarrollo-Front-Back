@@ -7,6 +7,16 @@ export default function Ofertas() {
     const navigate = useNavigate();
     // --- Tema ---
     const { isLight } = useTheme();
+    
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
+    const isFlexCol = windowWidth >= 1024 && windowWidth <= 1090;
 
     const getBackgroundStyle = () => {
     return {
@@ -149,8 +159,8 @@ export default function Ofertas() {
                       {/* Aquí se llama al componente CountdownTimer */}
                       <div className="lg:flex md:mt-8 lg:mt-0 scale-100 lg:scale-70 xl:scale-80 2xl:scale-100 ml-0 lg:-ml-[15vw] xl:-ml-[5vw] 2xl:ml-0">
                       <CountdownTimer />
-                      <div className="flex items-center justify-center md:ml-3 2xl:ml-11 -mt-5 md:mt-0">
-                          <h2 className='text-white lg:w-40  2xl:w-auto font-popins mr-4 md:font-semibold  text-[45px] md:text-[25px] 2xl:text-[45px] text-center'>COMPRA YA</h2>
+                      <div className={`flex items-center justify-center md:ml-3 2xl:ml-11 -mt-5 md:mt-0 ${isFlexCol ? 'flex-col' : 'flex-row'}`}>
+                          <h2 className='text-white px-1 lg:w-40 2xl:w-auto font-popins mr-4 md:font-semibold  text-[45px] md:text-[25px] 2xl:text-[45px] text-center'>COMPRA YA</h2>
                           {/* Flecha derecha */}
                           <button
                             type="button"
