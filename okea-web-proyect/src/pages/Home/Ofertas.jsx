@@ -136,8 +136,8 @@ export default function Ofertas() {
               <div className="text-center mt-8 md:mt-14 lg:mt-20">
                 <h1 className=' text-4xl md:text-[57px] tracking-tight  w-full  text-[#434651] mb-8 md:mb-4' style={getTextStyle()}>Ofertas del día</h1>
                 <div className="w-full items-center flex justify-center">
-                  <div className="overflow-hidden w-full h-64 md:h-52 rounded-4xl  bg-[#EB5A45] py-4 px-2 md:px-[2vw] lg:px-[1vw] xl:px-[2vw] 2xl:px-[2vw] md:flex items-center">
-                      <div className=" md:scale-60  lg:scale-70  xl:scale-80 2xl:scale-100 hidden md:block size-29 mr-2 md:-ml-30 lg:-ml-[2vw] xl:-ml-[2vw] 2xl:ml-[2vw]">
+                  <div className="overflow-hidden w-full h-64 md:h-52 2xl:rounded-none 2xl:rounded-tl-4xl 2xl:rounded-bl-4xl rounded-4xl  bg-[#EB5A45] py-4 px-2 md:px-[2vw] lg:px-[1vw] xl:px-[2vw] 2xl:px-[2vw] md:flex items-center">
+                      <div className=" md:scale-60  lg:scale-70  xl:scale-80 2xl:scale-100 hidden md:block size-29 mr-2 md:-ml-30 lg:-ml-[2vw] xl:-ml-[2vw] 2xl:-ml-[1vw]">
                          <TagIcon /> 
                       </div>   
                       <div className="flex md:scale-80  lg:scale-70  xl:scale-80 2xl:scale-100 w-full md:w-125 ml-0 lg:-ml-[10vw] xl:-ml-[5vw] 2xl:ml-0" >         
@@ -159,12 +159,12 @@ export default function Ofertas() {
                       {/* Aquí se llama al componente CountdownTimer */}
                       <div className="lg:flex md:mt-8 lg:mt-0 scale-100 lg:scale-70 xl:scale-80 2xl:scale-100 ml-0 lg:-ml-[15vw] xl:-ml-[5vw] 2xl:ml-0">
                       <CountdownTimer />
-                      <div className={`flex items-center justify-center md:ml-3 2xl:ml-11 -mt-5 md:mt-0 ${isFlexCol ? 'flex-col' : 'flex-row'}`}>
+                      <div className={`flex items-center justify-center md:ml-3 2xl:ml-5 -mt-5 md:mt-0 ${isFlexCol ? 'flex-col' : 'flex-row'}`}>
                           <h2 className='text-white px-1 lg:w-40 2xl:w-auto font-popins mr-4 md:font-semibold  text-[45px] md:text-[25px] 2xl:text-[45px] text-center'>COMPRA YA</h2>
                           {/* Flecha derecha */}
                           <button
                             type="button"
-                            className="font-bold h-12 w-12 rounded-full mt-1.5 bg-white"
+                            className="font-bold h-12 w-12 rounded-full mt-1.5 bg-white 2xl:hidden"
                             onClick={() => navigate("/ofertas")}
                           >
                             <div className="p-1.5 cursor-pointer"><ArrowRightBlackIconwhitout/></div>
@@ -172,6 +172,15 @@ export default function Ofertas() {
                       </div>
                     </div>
                   </div>
+                    <div className="hidden 2xl:flex bg-[#EB5A45] h-52 items-center justify-center rounded-br-4xl rounded-tr-4xl pr-4">
+                      <button
+                          type="button"
+                          className="font-bold h-12 w-12 rounded-full mt-1.5 bg-white"
+                          onClick={() => navigate("/ofertas")}
+                        >
+                          <div className="p-1.5 cursor-pointer"><ArrowRightBlackIconwhitout/></div>
+                      </button>
+                    </div>
                 </div>
               </div>
             </section>
