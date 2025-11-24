@@ -12,12 +12,12 @@ import supermercadoImagen8 from "../../assets/imagenes/Home/supermercadoImagen8.
 import ProductCard from "../../components/ProductCard";
 import ProductCardV2 from "../../components/ProductCardV2";
 import { ArrowLeftNormal, ArrowRightIconBlack, ArrowRightNormal, WineBottleIcon, WineBottleIconDarkMode } from "../../assets/iconos/iconoHome";
-
+import { useNavigate } from "react-router-dom";
 
 export default function Supermercado() {
     // --- Tema ---
     const { isLight } = useTheme();
-
+    const navigate = useNavigate();
     const getBackgroundStyle = () => {
     return {
       backgroundColor: isLight ? '#ffffff' : '#120F31',
@@ -91,7 +91,7 @@ export default function Supermercado() {
       <section className="Supermercado">
         <div className="mt-4 md:mt-16 items-center  flex-col justify-center px-4 sm:px-6/12 md:3/12 lg:px-40">
             {/*Título*/}
-            <div className=" hidden md:flex justify-center w-full py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+            <div className=" hidden md:flex justify-center items-center w-full py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF] px-2"
             style={{
                 background: isLight
                   ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -103,8 +103,8 @@ export default function Supermercado() {
                 </div>
                 <h1 className='text-4xl p-0.5 font-popins  text-[#434651]'style={getTextStyle()}>Supermercado</h1>
                 <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
-                <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]' style={getTextStyle()}>Todo lo que necesitas, en un solo lugar</p>
-                <button className='flex  bg-[#DFE162]  text-[#484900] py-2.5 px-4  h-10 rounded-4xl'>
+                <p className='font-popins-light md:text-xl md:text-center xl:text-2xl text-2xl font-extralight py-1.5 text-[#747782]' style={getTextStyle()}>Todo lo que necesitas, en un solo lugar</p>
+                <button className='flex  bg-[#DFE162] min-w-[116px] text-[#484900] py-2.5 px-4  h-10 rounded-4xl cursor-pointer' onClick={() => navigate("/catalogo/supermercado")}>
                     <h1 className='font-popins text-sm'>Ver todo</h1>
                     <div className='scale-60 -my-0.5'>
                         <ArrowRightIconBlack />
@@ -120,7 +120,7 @@ export default function Supermercado() {
             </div>
             {/*Fila*/}
             <div className="grid grid-cols-4 w-full mt-4 gap-4">
-                <div className="hidden lg:block col-start-1 col-end-2 h-100  rounded-4xl w-25%  bg-gradient-to-br from-[#EB5A45] via-[#EB5A45] to-[#DFE162]">
+                <div className="hidden lg:block col-start-1 col-end-2 h-100  rounded-4xl w-25%  bg-gradient-to-br from-[#EB5A45] via-[#EB5A45] to-[#DFE162] cursor-pointer" onClick={() => navigate("/catalogo/supermercado")}>
                     <div className="  mt-10 justify-center lg:-mt-5 2xl:mt-0 lg:-ml-20 2xl:ml-0  lg:scale-70 2xl:scale-140 ">
                         <h2 className='text-white leading-11 font-extralight ml-23 font-popins col-span-2 text-left'>HASTA </h2>
                         <div className="ml-20 flex -mt-6 -mb-5">
@@ -134,7 +134,7 @@ export default function Supermercado() {
                     </div>
                     <div className="h-70 w-60 lg:ml-15 2xl:ml-43 lg:-mt-20 2xl:-mt-30 bg-cover bg-right-bottom" style={{ backgroundImage: `url(${supermercadoImagen1})`}}></div>
                 </div>
-                <div className="col-span-4 md:col-span-4 lg:col-span-3 mr-40 w-full rounded-4xl overflow-hidden">
+                <div className="col-span-4 md:col-span-4 lg:col-span-3 mr-40 w-full rounded-4xl overflow-hidden cursor-pointer" onClick={() => navigate("/catalogo/supermercado")}>
                     <div className="h-42 md:h-100 w-full bg-cover bg-center" style={{ backgroundImage: `url(${supermercadoImagen2})` }}>
                     </div>
                 </div>
@@ -196,7 +196,7 @@ export default function Supermercado() {
           </div>
         </div> 
         {/*Fila 3*/}
-            <div className="flex w-full h-20 md:h-100 bg-cover bg-center rounded-4xl md:rounded-bl-none md:rounded-br-none justify-between  mt-4" style={{ backgroundImage: `url(${supermercadoImagen3})` }}>
+            <div className="flex w-full h-20 md:h-100 bg-cover bg-center rounded-4xl md:rounded-bl-none md:rounded-br-none justify-between  mt-4 cursor-pointer" style={{ backgroundImage: `url(${supermercadoImagen3})` }} onClick={() => navigate("/producto/detalle/supermercado/entera")}>
                 <div className="w-16 md:w-75  scale-100 md:scale-50 lg:scale-100 h-16 md:h-80 bg-no-repeat bg-cover bg-center my-auto rounded-2xl md:rounded-4xl ml-5 md:-ml-10.5 lg:ml-17.5 md:my-9.5" style={{ backgroundImage: `url(${supermercadoImagen4})` }}></div>
                 <div className="flex flex-col lg:scale-80 scale-60 2xl:scale-100 md:scale-50 ml-0  lg:-mr-15 2xl:ml-0 -mr-4 -mt-2 md:pt-25 md:-mr-20 lg:pr-20">
                     <div className="flex ml-15 md:-ml-10 font-popins text-[#004143] text-4xl md:text-7xl font-extrabold">
@@ -213,10 +213,10 @@ export default function Supermercado() {
                 </div>
             </div>
             <div className=" hidden md:grid grid-cols-4 gap-4  w-full h-100 bg-cover  overflow-hidden mt-4">
-                <div className="col-span-1 bg-cover rounded-bl-4xl" style={{ backgroundImage: `url(${supermercadoImagen5})` }}></div>       
-                <div className="col-span-1 bg-cover" style={{ backgroundImage: `url(${supermercadoImagen6})` }}></div>
-                <div className="col-span-1 bg-cover" style={{ backgroundImage: `url(${supermercadoImagen7})` }}></div>
-                <div className="col-span-1 bg-cover rounded-br-4xl" style={{ backgroundImage: `url(${supermercadoImagen8})` }}></div>
+                <div className="col-span-1 bg-cover rounded-bl-4xl cursor-pointer" style={{ backgroundImage: `url(${supermercadoImagen5})` }} onClick={() => navigate("/producto/detalle/supermercado/entera")}></div>       
+                <div className="col-span-1 bg-cover cursor-pointer" style={{ backgroundImage: `url(${supermercadoImagen6})` }} onClick={() => navigate("/producto/detalle/supermercado/entera")}></div>
+                <div className="col-span-1 bg-cover cursor-pointer" style={{ backgroundImage: `url(${supermercadoImagen7})` }} onClick={() => navigate("/producto/detalle/supermercado/entera")}></div>
+                <div className="col-span-1 bg-cover rounded-br-4xl cursor-pointer" style={{ backgroundImage: `url(${supermercadoImagen8})` }} onClick={() => navigate("/producto/detalle/supermercado/entera")}></div>
             </div>
              {/* Vista Móvil (Carrusel deslizable) */}
             <div className="flex md:hidden gap-4 overflow-x-auto scroll-smooth no-scrollbar mt-4 rounded-4xl">

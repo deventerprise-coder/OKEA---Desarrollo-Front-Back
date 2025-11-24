@@ -35,7 +35,7 @@ const NAVBAR_CONFIG = {
 		},
 		SearchBar: { mobile: false, standard: true, large: true, xLarge: true },
 		UserLogin: { mobile: false, standard: false, large: true, xLarge: true },
-		ThemeToggle: { mobile: false, standard: false, large: false, xLarge: true },
+		ThemeToggle: { mobile: false, standard: false, large: true, xLarge: true },
 		CartBadge: { mobile: true, standard: true, large: true, xLarge: true },
 		MenuButton: { mobile: false, standard: false, large: false, xLarge: false },
 		LogoMobile: { mobile: true, standard: false, large: false, xLarge: false },

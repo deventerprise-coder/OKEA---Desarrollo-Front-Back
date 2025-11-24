@@ -7,11 +7,13 @@ import silla from "../../assets/imagenes/Home/muebleSilla.jpg"
 import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png"
 import { ArrowLeftNormal, ArrowRightBlackIconwhitout, ArrowRightIconBlack, ArrowRightNormal, SofaIcon, SofaIconDarkMode } from "../../assets/iconos/iconoHome";
 import ProductCard from "../../components/ProductCard.jsx";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Muebles() {
     // --- Tema ---
     const { isLight } = useTheme();
+    const navigate = useNavigate();
 
     const getBackgroundStyle = () => {
     return {
@@ -85,7 +87,7 @@ export default function Muebles() {
       <section className="Muebles px-4 sm:px-6/12 md:3/12 lg:px-40">
         <div className=" mt-4 md:mt-16 items-center flex flex-col justify-center">
             {/*Titulo*/}
-            <div className="hidden md:flex justify-center w-full py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+            <div className="hidden md:flex justify-center w-full py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF] px-2"
              style={{
             background: isLight
               ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
@@ -97,9 +99,9 @@ export default function Muebles() {
                 </div>
                 <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Muebles</h1>
                 <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
-                <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]' style={getTextStyle()}>Diseño y confort para tu espacio</p>
-                <button className='flex  bg-[#DFE162]  text-[#484900] py-2.5 px-4  h-10 rounded-4xl'>
-                    <h1 className='font-popins text-sm'>Ver todo</h1>
+                <p className='font-popins-light md:text-xl md:text-center xl:text-2xl text-2xl font-extralight py-1.5 text-[#747782]' style={getTextStyle()}>Diseño y confort para tu espacio</p>
+                <button className='flex  bg-[#DFE162] min-w-[116px] text-[#484900] py-2.5 px-4  h-10 rounded-4xl'>
+                    <h1 className='font-popins text-sm cursor-pointer' onClick={()=>{navigate("/catalogo/muebles-y-organizacion")}}>Ver todo</h1>
                     <div className='scale-60 -my-0.5'>
                           <ArrowRightIconBlack />
                     </div>
@@ -142,8 +144,8 @@ export default function Muebles() {
                                 <h2 className='text-white text-2xl my-1 font-popins font-bold'>s/ <span className='text-5xl'>1,400</span></h2>
                                 <h2 className='text-white -ml-1 text-xs font-popins-light font-extralight'>precio normal <span className='line-through text-[#C4C6D3]'>s/<span className=' text-xl'>2,800</span></span> </h2>
                                 <div className="flex justify-end">
-                                    <button className='rounded-4xl bg-white  flex mt-9 py-1 px-3 '>
-                                        <h2 className='font-popins-light text-sm py-2'>VER PRODUCTO</h2>
+                                    <button className='rounded-4xl bg-white  flex mt-9 py-1 px-3 cursor-pointer' onClick={() => navigate("/producto/detalle/muebles-y-organizacion/modelo-x")}>
+                                        <h2 className={`font-popins-light text-sm py-2 text-black`}>VER PRODUCTO</h2>
                                         <div className='  scale-50'>
                                            <ArrowRightBlackIconwhitout />
                                         </div>
@@ -161,8 +163,8 @@ export default function Muebles() {
                                     <h2 className='text-white text-2xl my-1 font-popins font-bold'>s/ <span className='text-5xl'>1,400</span></h2>
                                     <h2 className='text-white -ml-1 text-xs font-popins-light font-extralight'>precio normal <span className='line-through text-[#C4C6D3]'>s/<span className=' text-xl'>2,800</span></span> </h2>
                                     <div className="flex justify-end">
-                                        <button className='rounded-4xl bg-white  flex mt-9 py-1 px-3 '>
-                                            <h2 className='font-popins-light text-sm py-2'>VER PRODUCTO</h2>
+                                        <button className='rounded-4xl bg-white  flex mt-9 py-1 px-3 cursor-pointer' onClick={() => navigate("/producto/detalle/muebles-y-organizacion/modelo-x")}>
+                                            <h2 className={`font-popins-light text-sm py-2 text-black`}>VER PRODUCTO</h2>
                                             <div className=' scale-50'>
                                                <ArrowRightBlackIconwhitout />
                                             </div>
@@ -176,11 +178,11 @@ export default function Muebles() {
                     </div>
                 </div>
                 {/*Cuadro 2*/}
-                <div className='hidden xl:block relative  h-200 rounded-4xl overflow-hidden'>
+                <div className='hidden xl:block relative  h-200 rounded-4xl overflow-hidden cursor-pointer' onClick={() => navigate("/catalogo/muebles-y-organizacion")} >
                     <div className=" h-200  bg-cover bg-left-bottom -ml-26" style={{ backgroundImage: `url(${silla})` }}></div>
                     <div className=" absolute bottom-10 left-13   text-center text-white">
-                        <div className="bg-gradient-to-t  from-[#E4E666] to-[#E4E666]/0 h-76.5 w-97 -ml-25 -mb-20 scale-100">
-                            <h1 className='text-popins text-3xl pt-8 font-semibold  lg:-ml-15 2xl:ml-0  lg:scale-70 2xl:scale-100'>SILLAS DE SALA</h1>
+                        <div className="bg-gradient-to-t  from-[#E4E666] to-[#E4E666]/0 h-76.5 w-97 xl:-ml-32 2xl:-ml-25 -mb-20 2xl:scale-100 scale-100 xl:scale-97">
+                            <h1 className='text-popins text-3xl pt-8 font-semibold  xl:-ml-15 2xl:ml-0 xl:text-2xl 2xl:text-3xl xl:scale-90 2xl:scale-100'>SILLAS DE SALA</h1>
                             <div className="grid justify-center 2xl:scale-140 mt-4 2xl:mt-10 2xl:ml-0 lg:-ml-15">
                                 <h2 className='text-white leading-11 font-extralight ml-1 font-popins pb-2 col-span-2 text-left'>HASTA </h2>
                                 <div className="flex -mt-7 -mb-5">

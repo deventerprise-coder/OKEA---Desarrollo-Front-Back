@@ -5,12 +5,13 @@ import vendidosImagen1 from "../../assets/imagenes/Home/vendidosImagen1.png";
 import muebleMesitaNoche from "../../assets/imagenes/Home/muebleMesitaNoche.png";
 import ProductCardV2 from "../../components/ProductCardV2.jsx";
 import { ArrowLeftNormal, ArrowRightNormal } from "../../assets/iconos/iconoHome.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Vendidos() {
   // --- Tema ---
   const { isLight } = useTheme();
   const { agregarAlCarrito, carrito } = useCart(); // 🛒 Carrito global
-
+  const navigate = useNavigate();
   // Estados
   const [liked, setLiked] = useState({});
   const [addedItems, setAddedItems] = useState({});
@@ -106,7 +107,7 @@ export default function Vendidos() {
           </div>
 
           {/* 🖼 Fila 1: Fondo con imagen doble */}
-          <div className="w-full h-23.5 md:h-100 rounded-4xl mt-4 overflow-hidden flex">
+          <div className="w-full h-23.5 md:h-100 rounded-4xl mt-4 overflow-hidden flex cursor-pointer" onClick={() => navigate("/producto/detalle/tecnologia/modelo-x")}>
             {/* Imagen normal */}
             <div
               className="w-190 lg:w-300 z-20 h-full bg-cover bg-center"

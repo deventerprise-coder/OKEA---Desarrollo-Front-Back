@@ -10,9 +10,11 @@ import ultimoImagen7 from "../../assets/imagenes/Home/ultimoImagen7.png";
 import ultimoImagen8 from "../../assets/imagenes/Home/ultimoImagen8.png";
 import ultimoImagen9 from "../../assets/imagenes/Home/ultimoImagen9.png";
 import ultimoImagen10 from "../../assets/imagenes/Home/ultimoImagen10.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Ultimo() {
   const { isLight } = useTheme();
+  const navigate = useNavigate();
 
   const getBackgroundStyle = () => ({
     backgroundColor: isLight ? "#ffffff" : "#120F31",
@@ -55,7 +57,7 @@ export default function Ultimo() {
           </div>
 
           {/* Fila 1 */}
-            <div className="hidden xl:block relative bg-[#FFDAD4] h-100 w-full bg-no-repeat rounded-4xl overflow-hidden bg-center bg-auto" >
+            <div className="hidden xl:block relative bg-[#FFDAD4] h-100 w-full bg-no-repeat rounded-4xl overflow-hidden bg-center bg-auto cursor-pointer" onClick={() => navigate("/producto/detalle/tecnologia/modelo-x")}>
                 <div className="absolute z-0 ml-150 bg-cover size-100"style={{ backgroundImage: `url(${ultimoImagen1})` }}></div>
                 <div className="absolute z-1 ml-190 bg-cover size-100"style={{ backgroundImage: `url(${ultimoImagen2})` }}></div>
                 <div className="absolute backdrop-blur-sm size-90 ml-154 "></div>
@@ -71,8 +73,9 @@ export default function Ultimo() {
           {/* Fila 2 */}
           <div className="w-full">
             <div
-              className="flex w-full h-19.5 flex-shrink-0 lg:h-100 bg-cover rounded-3xl lg:rounded-4xl justify-between overflow-hidden mt-4 bg-center lg:bg-left"
+              className="flex w-full h-19.5 flex-shrink-0 lg:h-100 bg-cover rounded-3xl lg:rounded-4xl justify-between overflow-hidden mt-4 bg-center lg:bg-left cursor-pointer"
               style={{ backgroundImage: `url(${ultimoImagen5})` }}
+              onClick={() => navigate("/catalogo/calzado")}
             ></div>
           </div>
 
@@ -83,8 +86,9 @@ export default function Ultimo() {
               {imagenes.map((img, i) => (
                 <div
                   key={i}
-                  className="bg-cover bg-center rounded-3xl w-full h-100"
+                  className="bg-cover bg-center rounded-3xl w-full h-100 cursor-pointer"
                   style={{ backgroundImage: `url(${img})` }}
+                  onClick={() => navigate("/catalogo/calzado")}
                 ></div>
               ))}
             </div>
@@ -94,16 +98,18 @@ export default function Ultimo() {
               {imagenes.map((img, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 w-50 h-51 bg-cover bg-center rounded-3xl"
+                  className="flex-shrink-0 w-50 h-51 bg-cover bg-center rounded-3xl cursor-pointer"
                   style={{ backgroundImage: `url(${img})` }}
+                  onClick={() => navigate("/catalogo/calzado")}
                 ></div>
               ))}
             </div>
           </div>
           {/* Fila 4 */}
           <div
-            className="hidden xl:block w-full h-200 mt-4 rounded-4xl bg-[45%_50%] overflow-hidden bg-no-repeat bg-cover"
+            className="hidden xl:block w-full h-200 mt-4 rounded-4xl bg-[45%_50%] overflow-hidden bg-no-repeat bg-cover cursor-pointer"
             style={{ backgroundImage: `url(${ultimoImagen10})` }}
+            onClick={() => navigate("/producto/detalle/tecnologia/modelo-x")}
           ></div>
         </div>
       </section>
