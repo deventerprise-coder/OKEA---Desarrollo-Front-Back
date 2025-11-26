@@ -27,12 +27,10 @@ import Producto21Image from "../../assets/imagenes/Ofertas/imagen21.png";
 import Producto22Image from "../../assets/imagenes/Ofertas/imagen22.png";
 import Producto23Image from "../../assets/imagenes/Ofertas/imagen23.png";
 import Frame4Image from "../../assets/imagenes/Ofertas/Frame4.png";
-
 import FooterPequeño from "../../components/Footer/FooterPequeño";
 import FooterGrande from "../../components/Footer/FooterGrande";
 import BloqueDeServicios from "../../components/BloqueDeServicios";
 import MarcasDestacadas from "../../components/MarcasDestacadas";
-import ProductCardV2 from "../../components/ProductCardV2";
 import ProductCard from "../../components/ProductCard.jsx";
 import { TagIconSmall, TagIconSmallDarkMode, ArrowRightIconBlack, ArrowLeftGrayBlueIcon, ArrowRightGrayBlueIcon } from "../../assets/iconos/iconoHome.jsx";
 import { useTheme } from "../../components/ThemeContext";
@@ -42,6 +40,7 @@ export default function Oferta1() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [bannerImage, banner2Image];
   const productCarouselRef = useRef(null);
+  const sneakerCarouselRef = useRef(null);
   const getSectionStyle = (customBg = null) => {
     if (customBg) {
       return {
@@ -56,8 +55,17 @@ export default function Oferta1() {
       transition: 'all 0.3s ease'
     };
   };
+  const scrollSneakers = (direction) => {
+    if (!sneakerCarouselRef.current) return;
+    const distance = 350;
+    const scrollOffset = direction === "left" ? -distance : distance;
+    sneakerCarouselRef.current.scrollBy({
+      left: scrollOffset,
+      behavior: "smooth",
+    });
+  };
 
-  const containerClass = "w-full max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-10";
+  const containerClass = "w-full max-w-[1591px] mx-auto px-4 sm:px-6 lg:px-10";
   const highlightCardClass = `relative flex h-[340px] sm:h-[360px] lg:h-[382px] w-full max-w-[516px] items-center justify-center rounded-[2px] border transition-colors duration-300 ease-in-out ${isLight ? "bg-white border-white/0" : "bg-[#292272] border-white/10"}`;
   const showcaseCardClass = `relative overflow-hidden rounded-[2px] transition-colors duration-300 ease-in-out`;
   const sliderSurfaceClass = `rounded-[2px] border transition-colors duration-300 ease-in-out ${isLight ? "border-white/0 bg-white" : "border-white/10 bg-[#1F1959]"}`;
@@ -314,7 +322,25 @@ export default function Oferta1() {
           </button>
         </div>
       </div>
-
+      <div className={`mt-8 relative group max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10`}>
+      <div className="absolute top-3/4 left-32 flex gap-2 z-10 px-4">
+        <button
+          onClick={() => scrollSneakers("left")}
+          className="absolute z-10 p-2 hover:opacity-75 transition-opacity"
+          aria-label="Anterior"
+        >
+          <ArrowLeftGrayBlueIcon />
+        </button>
+      </div>
+      <div className="absolute top-3/4 right-48 flex gap-2 z-10 px-4">
+        <button
+          onClick={() => scrollSneakers("right")}
+          className="absolute z-10 p-2 hover:opacity-75 transition-opacity"
+          aria-label="Siguiente"
+        >
+          <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
+        </button>
+      </div>
       <div className={`${containerClass} mt-12 grid grid-cols-1 gap-6 lg:grid-cols-6`}>
         {premiumHighlights.map((item) => (
           <div
@@ -333,6 +359,7 @@ export default function Oferta1() {
             )}
           </div>
         ))}
+      </div>
       </div>
 
       <div className="mt-16 items-center flex flex-col justify-center">
@@ -358,6 +385,7 @@ export default function Oferta1() {
         </div>
       </div>
 
+      {/* BANNER GRANDE DE ADIDAS */}
       <div className={`${containerClass} mt-12`}>
         <img
           src={Producto19Image}
@@ -366,12 +394,57 @@ export default function Oferta1() {
         />
       </div>
 
-      <div className={`${containerClass} mt-12 grid gap-6 sm:grid-cols-2 1xl:grid-cols-4`}>
-        {sneakerHighlights.map((item) => (
-          <div key={item.id} className={`${showcaseCardClass} flex h-[463px] items-center justify-center`}>
-            <img src={item.image} alt={item.alt} className="h-full w-full object-contain p-6" />
-          </div>
-        ))}
+      {/* SECCIÓN MODIFICADA: Carrusel de Sneakers con Flechas en el medio */}
+      <div className={`${containerClass} mt-8 relative group`}>
+
+        {/* Controles de navegación (Flechas entre la imagen y el carrusel) */}
+        {/* Se posicionan absolutamente arriba del contenedor del carrusel, ocupando el espacio (gap) */}
+        <div className="absolute -top-32 left-0 flex gap-2 z-10 px-4">
+          {/* Flecha IZQUIERDA: Alineada a la izquierda y subida al hueco superior (-top-12) */}
+          <button
+            onClick={() => scrollSneakers("left")}
+            className="absolute right-2 z-10 p-2 hover:opacity-75 transition-opacity"
+            aria-label="Anterior"
+          >
+            <ArrowLeftGrayBlueIcon />
+          </button>
+        </div>
+        <div className="absolute -top-32 right-0 flex gap-2 z-10 px-4">
+          {/* Flecha DERECHA: Alineada a la derecha y subida al hueco superior (-top-12) */}
+          <button
+            onClick={() => scrollSneakers("right")}
+            className="absolute left-2 z-10 p-2 hover:opacity-75 transition-opacity"
+            aria-label="Siguiente"
+          >
+            <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
+          </button>
+        </div>
+
+        {/* Contenedor del Carrusel (Flex + Overflow) */}
+        <div
+          ref={sneakerCarouselRef}
+          className={`flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory`}
+          style={{ scrollBehavior: 'smooth' }}
+        >
+          {sneakerHighlights.map((item) => (
+            <div
+              key={item.id}
+              // CAMBIOS CLAVE:
+              // 1. min-w para asegurar tamaño en móvil y desktop (25% en desktop aprox)
+              // 2. snap-center para que al deslizar se centre
+              className={`${showcaseCardClass} flex-shrink-0 snap-center
+                w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] 
+                xl:h-[410px] sm:h-[350px] 
+                items-center justify-center overflow-hidden group !rounded-[16px]`}
+            >
+              <img
+                src={item.image}
+                alt={item.alt}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mt-16 space-y-16">
