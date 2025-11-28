@@ -68,8 +68,12 @@ export default function Oferta1() {
   const containerClass = "w-full max-w-[1591px] mx-auto px-4 sm:px-6 lg:px-10";
   const highlightCardClass = `relative flex h-[340px] sm:h-[360px] lg:h-[382px] w-full max-w-[516px] items-center justify-center rounded-[2px] border transition-colors duration-300 ease-in-out ${isLight ? "bg-white border-white/0" : "bg-[#292272] border-white/10"}`;
   const showcaseCardClass = `relative overflow-hidden rounded-[2px] transition-colors duration-300 ease-in-out`;
-  const sliderSurfaceClass = `rounded-[2px] border transition-colors duration-300 ease-in-out ${isLight ? "border-white/0 bg-white" : "border-white/10 bg-[#1F1959]"}`;
+  const sliderSurfaceClass = `rounded-[2px] border transition-colors duration-300 ease-in-out ${isLight ? "border-white/0 bg-white" : "border-white/0 bg-[#120F31]"}`;
   const trackGap = "gap-6 sm:gap-7 lg:gap-8";
+  const bannerSectionClass = "flex w-full max-w-[1591px] flex-wrap items-center justify-center gap-4 rounded-[32px] px-6 py-6 sm:flex-nowrap";
+  const bannerTitleClass = "font-popins text-[#434651] text-[clamp(1.5rem,3vw,2.4rem)] leading-tight";
+  const bannerSubtitleClass = "hidden md:block font-popins-light text-[#747782] text-[clamp(1rem,2vw,1.5rem)]";
+  const bannerCtaClass = "flex items-center gap-2 rounded-full bg-[#DFE162] px-5 py-2.5 text-[#484900]";
 
   const highlightedOffers = [
     { id: "highlight-1", image: Producto2Image, alt: "Producto destacado 1" },
@@ -220,7 +224,7 @@ export default function Oferta1() {
       </div>
 
       <div className={`${containerClass} mt-10`}>
-        <div className={`flex justify-center ${trackGap} rounded-[32px]`}>
+        <div className={`flex flex-col md:flex-row justify-center items-center ${trackGap} rounded-[32px]`}>
           {highlightedOffers.map((offer) => (
             <div key={offer.id} className={`${highlightCardClass} rounded-[32px]`}>
               <img src={offer.image} alt={offer.alt} className="h-full w-full rounded-[16px]" />
@@ -239,42 +243,53 @@ export default function Oferta1() {
       </div>
 
       <div className="mt-16 items-center flex flex-col justify-center">
-      <div className="flex justify-center w-400 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
-        style={{
-          background: isLight
-            ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
-            : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
-          ...getSectionStyle(),
-        }}>
-        <div className="my-1">
+        <div
+          className={`${bannerSectionClass} bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]`}
+          style={{
+            background: isLight
+              ? "linear-gradient(to right, #B3C7FF, #DFE162)"
+              : "linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)",
+            ...getSectionStyle(),
+          }}
+        >
+          <div className="my-1">
             {isLight ? <TagIconSmall /> : <TagIconSmallDarkMode />}
-        </div>
-        <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Favoritos</h1>
-        <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
-        <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]' style={getTextStyle()}>Favoritos que te van a encantar</p>
-        <button className='flex  bg-[#DFE162]  text-[#484900] py-2.5 px-4  h-10 rounded-4xl'>
-          <h1 className='font-popins text-sm'>Ver todo</h1>
-          <div className='scale-60 -my-0.5'>
-            <ArrowRightIconBlack />
           </div>
-        </button>
-      </div>
-        <div className={`${sliderSurfaceClass} mt-6`}>
-          <div className="relative">
+          <h1 className={bannerTitleClass} style={getTextStyle()}>
+            Favoritos
+          </h1>
+          <div className="hidden md:block bg-[#385BAA] h-8 w-px my-2"></div>
+          <p className={`${bannerSubtitleClass} py-1.5`} style={getTextStyle()}>
+            Favoritos que te van a encantar
+          </p>
+          <button className={bannerCtaClass}>
+            <span className="font-popins text-sm">Ver todo</span>
+            <div className="scale-60 -my-0.5">
+              <ArrowRightIconBlack />
+            </div>
+          </button>
+        </div>
+        <div className={`${sliderSurfaceClass} mt-6 w-full max-w-[1591px]`}>
+          <div className="relative px-4">
+
+            {/* Flecha Izquierda: 'hidden md:block' para ocultar en móvil */}
             <button
               type="button"
               aria-label="Desplazar hacia la izquierda"
               onClick={() => scrollProductCarousel("left")}
-              className={`absolute -left-8 top-1/2 -translate-y-1/2`}
+              className={`hidden xl:block absolute -left-4 lg:-left-12 top-1/2 -translate-y-1/2 z-10`}
             >
               <ArrowLeftGrayBlueIcon />
             </button>
+
+            {/* Contenedor Scrollable: 'snap-x snap-mandatory' para efecto magnético en móvil */}
             <div
               ref={productCarouselRef}
-              className={`flex flex-nowrap overflow-x-auto ${trackGap} pb-2 px-5 scrollbar-hide`}
+              className={`flex flex-nowrap overflow-x-auto ${trackGap} pb-4 px-2 scrollbar-hide snap-x snap-mandatory scroll-smooth`}
             >
               {productos.map((p) => (
-                <div key={p.id} className="flex-shrink-0">
+                // Item: 'snap-center' para centrar el producto al soltar el scroll en móvil
+                <div key={p.id} className="flex-shrink-0 snap-center">
                   <ProductCard
                     id={p.id}
                     {...p}
@@ -293,30 +308,36 @@ export default function Oferta1() {
               type="button"
               aria-label="Desplazar hacia la derecha"
               onClick={() => scrollProductCarousel("right")}
-              className={`absolute -right-8 top-1/2 -translate-y-1/2`}
+              className={`hidden xl:block absolute -right-4 lg:-right-12 top-1/2 -translate-y-1/2 z-10`}
             >
-              <ArrowRightGrayBlueIcon slidesCategorias={productCarouselRef}/>
+              <ArrowRightGrayBlueIcon slidesCategorias={productCarouselRef} />
             </button>
           </div>
         </div>
       </div>
       <div className="mt-16 items-center flex flex-col justify-center">
-        <div className="flex justify-center w-400 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+        <div
+          className={`${bannerSectionClass} bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]`}
           style={{
             background: isLight
-              ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
-              : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+              ? "linear-gradient(to right, #B3C7FF, #DFE162)"
+              : "linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)",
             ...getSectionStyle(),
-          }}>
+          }}
+        >
           <div className="my-1">
             {isLight ? <TagIconSmall /> : <TagIconSmallDarkMode />}
           </div>
-          <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Moda Digital</h1>
-          <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
-          <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]' style={getTextStyle()}>Favoritos que te van a encantar</p>
-          <button className='flex  bg-[#DFE162]  text-[#484900] py-2.5 px-4  h-10 rounded-4xl'>
-            <h1 className='font-popins text-sm'>Ver todo</h1>
-            <div className='scale-60 -my-0.5'>
+          <h1 className={bannerTitleClass} style={getTextStyle()}>
+            Moda Digital
+          </h1>
+          <div className="hidden md:block bg-[#385BAA] h-8 w-px my-2"></div>
+          <p className={`${bannerSubtitleClass} py-1.5`} style={getTextStyle()}>
+            Favoritos que te van a encantar
+          </p>
+          <button className={bannerCtaClass}>
+            <span className="font-popins text-sm">Ver todo</span>
+            <div className="scale-60 -my-0.5">
               <ArrowRightIconBlack />
             </div>
           </button>
@@ -326,7 +347,7 @@ export default function Oferta1() {
       <div className="absolute top-3/4 left-32 flex gap-2 z-10 px-4">
         <button
           onClick={() => scrollSneakers("left")}
-          className="absolute z-10 p-2 hover:opacity-75 transition-opacity"
+            className="hidden xl:block absolute z-10 p-2 hover:opacity-75 transition-opacity"
           aria-label="Anterior"
         >
           <ArrowLeftGrayBlueIcon />
@@ -335,7 +356,7 @@ export default function Oferta1() {
       <div className="absolute top-3/4 right-48 flex gap-2 z-10 px-4">
         <button
           onClick={() => scrollSneakers("right")}
-          className="absolute z-10 p-2 hover:opacity-75 transition-opacity"
+          className="hidden xl:block absolute z-10 p-2 hover:opacity-75 transition-opacity"
           aria-label="Siguiente"
         >
           <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
@@ -363,22 +384,28 @@ export default function Oferta1() {
       </div>
 
       <div className="mt-16 items-center flex flex-col justify-center">
-        <div className="flex justify-center w-400 py-6.5 gap-4 h-25 rounded-4xl bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]"
+        <div
+          className={`${bannerSectionClass} bg-gradient-to-l from-[#DFE162] via-[#DFE162]/50 to-[#B1C5FF]`}
           style={{
             background: isLight
-              ? 'linear-gradient(to right, #B3C7FF, #DFE162)'
-              : 'linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)',
+              ? "linear-gradient(to right, #B3C7FF, #DFE162)"
+              : "linear-gradient(to right, #18284F, #087DEB80 30%, #600098 70%)",
             ...getSectionStyle(),
-          }}>
+          }}
+        >
           <div className="my-1">
             {isLight ? <TagIconSmall /> : <TagIconSmallDarkMode />}
           </div>
-          <h1 className='text-4xl p-0.5 font-popins  text-[#434651]' style={getTextStyle()}>Comodidad y Estilo</h1>
-          <div className="bg-[#385BAA] h-8 w-px my-2 "></div>
-          <p className='font-popins-light text-2xl font-extralight py-1.5  text-[#747782]' style={getTextStyle()}>Favoritos que te van a encantar</p>
-          <button className='flex  bg-[#DFE162]  text-[#484900] py-2.5 px-4  h-10 rounded-4xl'>
-            <h1 className='font-popins text-sm'>Ver todo</h1>
-            <div className='scale-60 -my-0.5'>
+          <h1 className={bannerTitleClass} style={getTextStyle()}>
+            Comodidad y Estilo
+          </h1>
+          <div className="hidden md:block bg-[#385BAA] h-8 w-px my-2"></div>
+          <p className={`${bannerSubtitleClass} py-1.5`} style={getTextStyle()}>
+            Favoritos que te van a encantar
+          </p>
+          <button className={bannerCtaClass}>
+            <span className="font-popins text-sm">Ver todo</span>
+            <div className="scale-60 -my-0.5">
               <ArrowRightIconBlack />
             </div>
           </button>
@@ -403,7 +430,7 @@ export default function Oferta1() {
           {/* Flecha IZQUIERDA: Alineada a la izquierda y subida al hueco superior (-top-12) */}
           <button
             onClick={() => scrollSneakers("left")}
-            className="absolute right-2 z-10 p-2 hover:opacity-75 transition-opacity"
+            className="hidden xl:block absolute right-2 z-10 p-2 hover:opacity-75 transition-opacity"
             aria-label="Anterior"
           >
             <ArrowLeftGrayBlueIcon />
@@ -413,7 +440,7 @@ export default function Oferta1() {
           {/* Flecha DERECHA: Alineada a la derecha y subida al hueco superior (-top-12) */}
           <button
             onClick={() => scrollSneakers("right")}
-            className="absolute left-2 z-10 p-2 hover:opacity-75 transition-opacity"
+            className="hidden xl:block absolute left-2 z-10 p-2 hover:opacity-75 transition-opacity"
             aria-label="Siguiente"
           >
             <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
