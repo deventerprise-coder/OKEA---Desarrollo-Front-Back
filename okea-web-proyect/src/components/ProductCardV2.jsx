@@ -1,11 +1,10 @@
 import React from "react";
 import { useTheme } from "./ThemeContext";
-
 import {
   ClockIcon,
   ShoppingCartIcon,
 } from "../assets/iconos/iconoHome";
-import { HeartIconMejor, StarIconMejor, ClockCircleIcon } from "../assets/iconos/Icons";
+import { HeartIconMejor, StarIconMejor } from "../assets/iconos/Icons";
 
 const ProductCardV2 = ({
   id,
@@ -29,49 +28,32 @@ const ProductCardV2 = ({
     const baseStyle = {
       transition: "background-color 300ms ease, color 300ms ease",
     };
-
-    if (added) {
-      return {
-        ...baseStyle,
-        backgroundColor: isLight ? "#22c55e" : "#15803d",
-        color: "#ffffffff",
-      };
-    } else {
-      return {
-        ...baseStyle,
-        backgroundColor: isLight ? "#DFE162" : "#F5F692",
-        color: isLight ? "#484900" : "#251F67",
-      };
-    }
+    return added
+      ? { ...baseStyle, backgroundColor: isLight ? "#22c55e" : "#15803d", color: "#fff" }
+      : { ...baseStyle, backgroundColor: isLight ? "#DFE162" : "#F5F692", color: isLight ? "#484900" : "#251F67" };
   };
 
-  const getPriceStyle = () => {
-    return {
-      color: isLight ? "#EB5A45" : "#F5F692", 
-      transition: "color 300ms ease",
-    };
-  };
+  const getPriceStyle = () => ({
+    color: isLight ? "#EB5A45" : "#F5F692",
+    transition: "color 300ms ease",
+  });
 
-  const getTitleStyle = () => {
-    return {
-      color: isLight ? "#1D1B20" : "#E2E2E9", 
-      transition: "color 300ms ease",
-    };
-  };
+  const getTitleStyle = () => ({
+    color: isLight ? "#1D1B20" : "#E2E2E9",
+    transition: "color 300ms ease",
+  });
 
-  
-  const getSubtitleStyle = () => {
-    return {
-      color: isLight ? "#1D1B20" : "#E5E2E1",
-      transition: "color 300ms ease",
-    };
-  };
+  const getSubtitleStyle = () => ({
+    color: isLight ? "#1D1B20" : "#E5E2E1",
+    transition: "color 300ms ease",
+  });
 
   return (
     <div
       className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group"
       style={getCardStyle()}
     >
+      {/* Imagen */}
       <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
         <div className="w-57 rounded-2xl ml-8 mr-5">
           <div
@@ -81,40 +63,50 @@ const ProductCardV2 = ({
         </div>
 
         {discount && (
-        <div className="absolute top-3 rounded-3xl bg-[#EB5A45] w-15 h-6 font-popins text-sm text-white text-center ml-2 flex items-center justify-center">
+          <div className="absolute top-3 rounded-3xl bg-[#EB5A45] w-15 h-6 font-popins text-sm text-white text-center ml-2 flex items-center justify-center">
             {discount}
-        </div>
+          </div>
         )}
 
+        {/* ❤️ */}
         <div
           className="absolute top-2 right-3 cursor-pointer"
           onClick={() => onLike(id)}
         >
           <HeartIconMejor color={liked ? "#eb5a45" : "#c4c6d3"} />
         </div>
-
-        
       </div>
 
+      {/* Info */}
       <div className="info font-popins pt-4 px-3 z-10">
-        <div className="flex text-black justify-between">
-          <h1 className="text-2xl" style={getTitleStyle()}>
+        {/* 🔹 Título principal (label) — ahora con altura fija */}
+        <div className="flex text-black justify-between items-center">
+          <h1
+            className="text-[18px] font-medium truncate overflow-hidden whitespace-nowrap max-w-[150px]"
+            style={getTitleStyle()}
+            title={label}
+          >
             {label}
           </h1>
-          <div className="flex p-0.5">
+          <div className="flex p-0.5 items-center">
             <StarIconMejor color="#f4604b" />
-            <h1
-              className="py-1 font-popins-light text-sm"
-              style={getTextStyle()}
-            >
+            <h1 className="py-1 text-sm" style={getTextStyle()}>
               {rating}
             </h1>
           </div>
         </div>
 
-        <h1 style={getSubtitleStyle()}>{title}</h1>
+        {/* Subtítulo */}
+        <h1
+          className="text-sm line-clamp-1 text-ellipsis overflow-hidden whitespace-nowrap"
+          style={getSubtitleStyle()}
+          title={title}
+        >
+          {title}
+        </h1>
 
-        <div className="flex">
+        {/* Precio */}
+        <div className="flex items-center">
           <h1 className="text-2xl" style={getPriceStyle()}>
             {price}
           </h1>
@@ -123,9 +115,10 @@ const ProductCardV2 = ({
           </h1>
         </div>
 
+        {/* Botón 🛒 */}
         <button
           onClick={() => onAdd(id)}
-          className="flex py-3 w-full px-3 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600 hover:opacity-90 whitespace-nowrap"
+          className="flex py-3 w-full px-3 mt-3 mb-4 h-10 rounded-4xl items-center justify-center transition-all duration-600 hover:opacity-90 whitespace-nowrap cursor-pointer"
           style={getButtonStyle()}
         >
           <div

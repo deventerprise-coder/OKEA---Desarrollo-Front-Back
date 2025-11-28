@@ -4,7 +4,6 @@ import { useTheme } from "./ThemeContext";
 const TechnicalSpecifications = ({ specifications }) => {
   const { isLight } = useTheme();
 
-  // Color de línea según tema
   const borderColor = isLight ? "#FFFFFF" : "#120F31";
 
   const getTableStyle = () => ({

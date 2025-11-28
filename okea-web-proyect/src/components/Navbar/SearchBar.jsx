@@ -4,21 +4,16 @@ import { useState, useEffect, useRef } from "react";
 // =======================
 // 1. COMPONENTE PRINCIPAL
 // =======================
-export default function SearchBar({ onToggleCategorias, categoriasDropdownOpen }) {
-  // Estado para saber si el input está enfocado
+export default function SearchBar({ onToggleCategorias, CategoriasDropdownOpen }) {
   const [isFocused, setIsFocused] = useState(false);
-  // Estado para el valor del input
   const [inputValue, setInputValue] = useState("");
-  // Estado para el tema actual (claro/oscuro)
   const [theme, setTheme] = useState('light');
-  // Referencia para acceder al input de forma programática
   const inputRef = useRef(null);
 
   // =======================
   // 2. EFECTO: OBSERVAR CAMBIO DE TEMA
   // =======================
   useEffect(() => {
-    // Observa cambios en el atributo data-theme del documento
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-theme') {
@@ -31,18 +26,14 @@ export default function SearchBar({ onToggleCategorias, categoriasDropdownOpen }
       attributes: true,
       attributeFilter: ['data-theme']
     });
-
-    // Limpia el observer al desmontar
     return () => observer.disconnect();
   }, []);
 
   // =======================
   // 3. LÓGICA DE PLACEHOLDER Y ACCIONES
   // =======================
-  // Muestra el placeholder solo si el input no está enfocado y está vacío
   const showPlaceholder = !isFocused && inputValue.trim() === "";
 
-  // Función para enfocar el input al hacer clic en el ícono de búsqueda
   const handleSearchIconClick = () => {
     inputRef.current?.focus();
   };
@@ -50,17 +41,15 @@ export default function SearchBar({ onToggleCategorias, categoriasDropdownOpen }
   // =======================
   // 4. ESTILOS SEGÚN TEMA
   // =======================
-  // Estilos para el contenedor principal del search
   const getThemeStyles = () => {
     return {
       backgroundColor: theme === 'dark' ? 'rgba(41, 34, 114, 1)' : 'white',
       color: theme === 'dark' ? '#49454F' : '#1C4390',
-      width: 'clamp(280px, 35.36vw, 679px)', // Ancho responsivo
-      height: '40px', // Altura fija
+      width: 'clamp(280px, 35.36vw, 679px)', 
+      height: '40px', 
     };
   };
 
-  // Estilos para el botón de categorías
   const getCategoriesButtonStyles = () => {
     return {
       backgroundColor: theme === 'dark' ? '#F5F692' : '#DFE162',
@@ -77,7 +66,6 @@ export default function SearchBar({ onToggleCategorias, categoriasDropdownOpen }
         style={getThemeStyles()}
         className="relative flex items-center rounded-full px-2 sm:px-3 md:px-4 gap-2 sm:gap-[10px] transition-all duration-300"
       >
-        {/* Placeholder que se centra en toda la barra */}
         {showPlaceholder && (
           <span className="absolute inset-0 flex items-center justify-center pointer-events-none px-[40px] sm:px-[200px]">
             <span className="font-poppins font-light text-[12px] sm:text-[14px] md:text-[16px] text-[#CAC4D0] truncate">
@@ -86,9 +74,7 @@ export default function SearchBar({ onToggleCategorias, categoriasDropdownOpen }
             </span>
           </span>
         )}
-
-        {/* Botón Categorías */}
-        {(!isFocused || categoriasDropdownOpen) && (
+        {(!isFocused || CategoriasDropdownOpen) && (
           <button
             style={getCategoriesButtonStyles()}
             className="ml-[-14px] flex-shrink-0 flex items-center justify-center gap-1 sm:gap-[6px] px-2 sm:px-3 md:px-4 h-[36px] w-[178px] rounded-full hover:brightness-95 cursor-pointer transition-all duration-200"

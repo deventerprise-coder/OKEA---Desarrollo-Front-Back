@@ -6,7 +6,7 @@ const animations = `
   @keyframes slideIn {
     from {
       opacity: 0;
-      transform: translateX(-100%);  // Cambiado de 100% a -100%
+      transform: translateX(-100%);
     }
     to {
       opacity: 1;
@@ -32,7 +32,54 @@ const animations = `
   .detail-exit {
     animation: slideOut 0.4s ease-out forwards;
   }
+
+  /* Clases para ocultar la barra de scroll */
+  .hide-scrollbar {
+    /* Firefox */
+    scrollbar-width: none;
+    /* IE y Edge */
+    -ms-overflow-style: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    /* Chrome, Safari y Opera */
+    display: none;
+  }
 `;
+
+const ColumnaItem = ({ col, onNavigateToAll }) => {
+  return (
+    <div className="lg:min-w-[280px]" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div style={{
+        fontFamily: 'Poppins, sans-serif',
+        fontWeight: 300,
+        fontSize: 20,
+        color: '#fff',
+        marginBottom: 8,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 20,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}>
+          {col.icon && <col.icon width={18} height={18} />} 
+          <span>{col.titulo}</span>
+        </div>
+        {col.iconRight && (
+          <span style={{ display: 'flex', alignItems: 'center' }}>
+            <col.iconRight width={18} height={18} />
+          </span>
+        )}
+      </div>
+      
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+        <li style={{ color: '#B8C4E6', fontSize: 14, marginBottom: 6, cursor: 'pointer' }} onClick={onNavigateToAll}>Ver todo</li>
+        {col.items.map((item, i) => (
+          <li key={i} style={{ color: '#fff', fontSize: 13, fontWeight: 300,marginBottom: 15, cursor: 'pointer' }}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClose, onCloseAll }) {
   const [isVisible, setIsVisible] = useState(true);
@@ -40,6 +87,7 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
   const [theme, setTheme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
   });
+
 
   useEffect(() => {
     setTheme(document.documentElement.getAttribute('data-theme') || 'light');
@@ -63,12 +111,12 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
   if (!data) return null;
   const Icon = data.icon;
 
-  const left = 340;
-  const width = 900;
+  const left = 340; 
+
 
   const handleClose = () => {
     setIsVisible(false);
-    setTimeout(onClose, 400); // Espera a que termine la animación
+    setTimeout(onClose, 400); 
   };
 
   const categoriaRuta = nombreCategoria === "Tecnología" ? "tecnologia"
@@ -89,9 +137,8 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
   const handleNavigateToAll = () => {
     navigate(`/catalogo/${categoriaRuta}`);
     if (onCloseAll) {
-      onCloseAll();
-    } else {
-      handleClose();
+      onCloseAll(); 
+      handleClose(); 
     }
   };
 
@@ -104,14 +151,14 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
   return (
     <>
       <style>{animations}</style>
-      {/* Header verde separado */}
+      
       <div
-        className={isVisible ? 'detail-enter' : 'detail-exit'}
+        className={`${isVisible ? 'detail-enter' : 'detail-exit'} max-w-[900px]`}
         style={{
           position: 'fixed',
           top: 0,
           left,
-          width,
+          width: `calc(100vw - ${left}px)`,
           height: 100,
           background: '#E4E66666',
           borderRadius: 32,
@@ -134,6 +181,7 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
         <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Icon width={54} height={54} color="#fff" />
         </span>
+        
         <span style={{
           fontFamily: 'Poppins, sans-serif',
           fontWeight: 400,
@@ -141,8 +189,9 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
           color: '#fff',
           letterSpacing: '0.25px',
         }}>{nombreCategoria || data.nombre || data.titulo || 'Categoría'}</span>
+        
         <button
-          onClick={handleClose}  // Cambiado de onClose a handleClose
+          onClick={handleClose}  
           style={{
             marginLeft: 'auto',
             background: 'none',
@@ -150,40 +199,40 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
             color: '#fff',
             fontSize: 50,
             cursor: 'pointer',
-            fontWeight: 200,           
+            fontWeight: 200,          
             lineHeight: 1,
             letterSpacing: '-2px',   
           }}
         >
           &times;
         </button>
+        
         <span style={{
           marginLeft: 18,
           display: 'flex',
           alignItems: 'center'
         }}>
           <FlechaDerecha
-            width={46}                 
+            width={46}                  
             height={50}
             color="#fff"
             style={{
               opacity: 1,
-              strokeWidth: 1.2         
+              strokeWidth: 1.2      
             }}
           />
         </span>
       </div>
 
-      {/* Contenido separado */}
       <div
-        className={isVisible ? 'detail-enter' : 'detail-exit'}
+        className={`${isVisible ? 'detail-enter' : 'detail-exit'} max-w-[900px]`}
         style={{
           ...getThemeStyles(),
           position: 'fixed',
           top: 116,
-          left,
-          width,
-          height: 908,
+          left: left,
+          width: `calc(100vw - ${left}px)`,
+          height: 908, 
           borderRadius: 32,
           borderWidth: 1,
           borderStyle: 'solid',
@@ -198,32 +247,61 @@ export default function CategoriaDetalleDropdown({ data, nombreCategoria, onClos
           gap: 10,
           backdropFilter: 'blur(16px)',
         }}
-        onClick={e => e.stopPropagation()}
+        onClick={e => e.stopPropagation()} 
       >
-        {/* Grid de 2 filas x 3 columnas */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(2, 1fr)', gap: 32, height: '100%' }}>
-          {data.columnas.map((col, idx) => (
-            <div key={idx} style={{ minWidth: 140, flex: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{
-                fontFamily: 'Poppins, sans-serif',
-                fontWeight: 300,
-                fontSize: 20,
-                color: '#fff',
-                marginBottom: 8,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-              }}>
-                {col.icon && <col.icon width={18} height={18} />} {col.titulo}
-              </div>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                <li style={{ color: '#B8C4E6', fontSize: 14, marginBottom: 6, cursor: 'pointer' }} onClick={handleNavigateToAll}>Ver todo</li>
-                {col.items.map((item, i) => (
-                  <li key={i} style={{ color: '#fff', fontSize: 13, fontWeight: 300,marginBottom: 15, cursor: 'pointer' }}>{item}</li>
-                ))}
-              </ul>
+      
+        <div 
+          className="sm:overflow-x-auto xl:overflow-hidden hide-scrollbar" 
+          style={{ 
+            height: '100%', 
+            paddingBottom: 8,
+            width: '100%',
+            overflowY: 'auto' 
+          }}
+        >
+          
+          {data.tipo === 'subCategorias' ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+              {Object.entries(data.subCategorias).map(([nombreSubcategoria, subcategoriaData]) => (
+                <div key={nombreSubcategoria}>
+                  
+                  <h2 style={{
+                    fontFamily: 'Poppins, sans-serif',
+                    fontWeight: 300,
+                    fontSize: 30,
+                    color: '#fff',
+                    marginBottom: '16px',
+                    paddingBottom: '8px'
+                  }}>
+                    {nombreSubcategoria}
+                  </h2>
+                  
+                  <div 
+                    className="grid sm:grid-cols-[repeat(3,_180px)] sm:gap-x-[100px] sm:gap-y-[32px] md:grid-cols-[repeat(3,_210px)] md:gap-x-[0px] md:gap-y-[32px] lg:grid-cols-[repeat(3,1fr)] lg:w-full"
+                    style={{ width: 'max-content' }}
+                  >
+                    {subcategoriaData.columnas.map((col, idx) => (
+                      <ColumnaItem key={idx} col={col} onNavigateToAll={handleNavigateToAll} />
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          ) : (
+            
+            <div 
+              className="grid sm:grid-cols-[repeat(3,_180px)] sm:gap-x-[100px] sm:gap-y-[32px] md:grid-cols-[repeat(3,_210px)] md:gap-x-[0px] md:gap-y-[32px] lg:grid-cols-[repeat(3,1fr)] lg:w-full"
+              style={{
+                width: 'max-content',
+                minHeight: '100%' 
+              }}
+            >
+              {data.columnas.map((col, idx) => (
+                <ColumnaItem key={idx} col={col} onNavigateToAll={handleNavigateToAll} />
+              ))}
+            </div>
+          )}
+          
         </div>
       </div>
     </>

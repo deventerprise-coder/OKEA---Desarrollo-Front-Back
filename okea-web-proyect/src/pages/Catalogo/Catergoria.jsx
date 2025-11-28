@@ -3,46 +3,51 @@ import {SidebarMenu} from "../../components/ecomerce/Filtro";
 import {ProductCard} from "../../components/ecomerce/ProductCard";
 import {Products} from "../../components/ecomerce/Productos";
 import { PaginacionBar } from "../../components/ecomerce/PaginacionBar";
-import { ProdRelacionados } from "../../components/ecomerce/ProdRelacionados";
+import { ProdRelacionados } from "../../components/ecomerce/ProdRelacionados.jsx";
 import { Panel } from "../../components/ecomerce/Panel";
 import { BreadCrum } from "../../components/ecomerce/BreadCrum";
-import modeloApple from "../../assets/imagenes/categorias/panel/modeloApple.png";
-import sofaAzul from "../../assets/imagenes/categorias/panel/SofaAzul.png";
-import sofaBlanco from "../../assets/imagenes/categorias/panel/SofaBlanco.png";
-import CalzadoBlanco from "../../assets/imagenes/categorias/panel/CalzadoBlanco.png";
-import CalzadoMarron from "../../assets/imagenes/categorias/panel/CalzadoMarron.png";
-import Colchon1 from "../../assets/imagenes/categorias/panel/Colchon1.png";
-import Colchon2 from "../../assets/imagenes/categorias/panel/Colchon2.png";
-import Lentes from "../../assets/imagenes/categorias/panel/Lentes.png";
-import PoloAcces from "../../assets/imagenes/categorias/panel/PoloAcces.png";
-import Salud1 from "../../assets/imagenes/categorias/panel/Salud1.png";
-import Salud2 from "../../assets/imagenes/categorias/panel/Salud2.png";
-import Mattel from "../../assets/imagenes/categorias/panel/Mattel.png";
-import Hasbro from "../../assets/imagenes/categorias/panel/Hasbro.png";
-import Lego from "../../assets/imagenes/categorias/panel/Lego.png";
-import Supermecado1 from "../../assets/imagenes/categorias/panel/Supermercado1.png";
-import Supermecado2 from "../../assets/imagenes/categorias/panel/Supermercado2.png";
-import Moda1 from "../../assets/imagenes/categorias/panel/Moda1.png";
-import Moda2 from "../../assets/imagenes/categorias/panel/Moda2.png";
-import Moda3 from "../../assets/imagenes/categorias/panel/Moda3.png";
-import Electrohogar1 from "../../assets/imagenes/categorias/panel/Electrohogar1.png";
-import Electrohogar2 from "../../assets/imagenes/categorias/panel/Electrohogar2.png";
-import Electrohogar3 from "../../assets/imagenes/categorias/panel/Electrohogar3.png";
-import Mascotas1 from "../../assets/imagenes/categorias/panel/Mascotas1.png";
-import Mascotas2 from "../../assets/imagenes/categorias/panel/Mascotas2.png";
-import Decoracion1 from "../../assets/imagenes/categorias/panel/Decoracion1.png";
-import Decoracion2 from "../../assets/imagenes/categorias/panel/Decoracion2.png";
+import modeloApple from "../../assets/imagenes/Categorias/Panel/modeloApple.png";
+import modeloApple12 from "../../assets/imagenes/Categorias/Panel/modeloApple12.png";
+import modeloApple13 from "../../assets/imagenes/Categorias/Panel/modeloApple13.png";
+import modeloApple14 from "../../assets/imagenes/Categorias/Panel/modeloApple14.png";
+import modeloApple15 from "../../assets/imagenes/Categorias/Panel/modeloApple15.png";
+import modeloApple16 from "../../assets/imagenes/Categorias/Panel/modeloApple16.png";
+import sofaAzul from "../../assets/imagenes/Categorias/Panel/SofaAzul.png";
+import sofaBlanco from "../../assets/imagenes/Categorias/Panel/SofaBlanco.png";
+import CalzadoBlanco from "../../assets/imagenes/Categorias/Panel/CalzadoBlanco.png";
+import CalzadoMarron from "../../assets/imagenes/Categorias/Panel/CalzadoMarron.png";
+import Colchon1 from "../../assets/imagenes/Categorias/Panel/Colchon1.png";
+import Colchon2 from "../../assets/imagenes/Categorias/Panel/Colchon2.png";
+import Lentes from "../../assets/imagenes/Categorias/Panel/Lentes.png";
+import PoloAcces from "../../assets/imagenes/Categorias/Panel/PoloAcces.png";
+import Salud1 from "../../assets/imagenes/Categorias/Panel/Salud1.png";
+import Salud2 from "../../assets/imagenes/Categorias/Panel/Salud2.png";
+import Mattel from "../../assets/imagenes/Categorias/Panel/Mattel.png";
+import Hasbro from "../../assets/imagenes/Categorias/Panel/Hasbro.png";
+import Lego from "../../assets/imagenes/Categorias/Panel/Lego.png";
+import Supermecado1 from "../../assets/imagenes/Categorias/Panel/Supermercado1.png";
+import Supermecado2 from "../../assets/imagenes/Categorias/Panel/Supermercado2.png";
+import Moda1 from "../../assets/imagenes/Categorias/Panel/Moda1.png";
+import Moda2 from "../../assets/imagenes/Categorias/Panel/Moda2.png";
+import Moda3 from "../../assets/imagenes/Categorias/Panel/Moda3.png";
+import Electrohogar1 from "../../assets/imagenes/Categorias/Panel/Electrohogar1.png";
+import Electrohogar2 from "../../assets/imagenes/Categorias/Panel/Electrohogar2.png";
+import Electrohogar3 from "../../assets/imagenes/Categorias/Panel/Electrohogar3.png";
+import Mascotas1 from "../../assets/imagenes/Categorias/Panel/Mascotas1.png";
+import Mascotas2 from "../../assets/imagenes/Categorias/Panel/Mascotas2.png";
+import Decoracion1 from "../../assets/imagenes/Categorias/Panel/Decoracion1.png";
+import Decoracion2 from "../../assets/imagenes/Categorias/Panel/Decoracion2.png";
 import * as products from "../../mocks/productsLists";
 import { useTheme } from "../../components/ThemeContext";
 export default function Categoria({categoria, subcategoria}) {
     const { isLight } = useTheme();
     const tecDestacados = [
-        { nombre: "Modelo Apple", imagen: modeloApple },
-        { nombre: "Modelo Samsung", imagen: modeloApple },
-        { nombre: "Modelo Apple", imagen: modeloApple },
-        { nombre: "Modelo Samsung", imagen: modeloApple },
-        { nombre: "Modelo Apple", imagen: modeloApple },
-        { nombre: "Modelo Samsung", imagen: modeloApple },
+        { nombre: "iPhone 11", imagen: modeloApple },
+        { nombre: "iPhone 12", imagen: modeloApple12 },
+        { nombre: "iPhone 13", imagen: modeloApple13 },
+        { nombre: "iPhone 14", imagen: modeloApple14 },
+        { nombre: "iPhone 15", imagen: modeloApple15 },
+        { nombre: "iPhone 16", imagen: modeloApple16 },
     ];
     const MueblesDestacados = [
         { nombre: "Sofa Cordoba", imagen: sofaBlanco},
@@ -163,16 +168,16 @@ export default function Categoria({categoria, subcategoria}) {
     : products.productsModaMujer;
 
   return (
-    <div className={isLight ? "bg-white text-black" : "bg-[#120F31] text-white"} style={{transition: 'background-color 0.5s, color 0.5s'}}>
+    <div className={`w-full overflow-x-hidden ${isLight ? "bg-white text-black" : "bg-[#120F31] text-white"}`} style={{transition: 'background-color 0.5s, color 0.5s'}}>
       <BreadCrum categoria={categoria} subcategoria={subcategoria} isLight={isLight}/>
-      <Panel Categoria={categoria} destacados={destacadoList}/>
-      <div className="flex mt-40 w-full">
+      <Panel Categoria={categoria} destacados={destacadoList} isLight={isLight}/>
+      <div className="lg:flex w-full overflow-x-hidden lg:mt-8">
         <SidebarMenu categoria={categoria} subcategoria={subcategoria} isLight={isLight}/>
-        <aside className="flex flex-col items-center w-full">
+        <aside className="flex flex-col items-center w-full lg:w-auto flex-1 overflow-x-hidden">
           <Products products={productosList} categoria={categoria} isLight={isLight}/>
         </aside>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center mt-20 mb-20 w-full overflow-x-hidden">
         <ProdRelacionados/>
       </div> 
     </div>
