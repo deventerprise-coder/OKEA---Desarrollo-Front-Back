@@ -179,7 +179,6 @@ export default function Oferta1() {
         }`}
     >
       <div className="relative w-full h-250 mt-8 overflow-hidden">
-        {/* Slides con fade */}
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -194,21 +193,15 @@ export default function Oferta1() {
           </div>
         ))}
 
-        {/* Controles */}
         <div className="absolute bottom-2 w-full flex items-center justify-evenly px-10 z-50">
-          {/* Flecha izquierda */}
           <button onClick={prevSlide} className="text-4xl text-white font-bold rounded-full pb-[3.5px] hover:bg-white/30 transition px-2">
             {"<"}
           </button>
-
-          {/* Indicadores */}
           <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-3 mt-1">
             {slides.map((_, index) => (
               <div key={index} onClick={() => { setCurrentSlide(currentSlide); setCurrentSlide(index); }} className={`w-4 h-4 rounded-full cursor-pointer transition-transform ${currentSlide === index ? "bg-gray-400/50 scale-150" : "bg-gray-400/50"}`}></div>
             ))}
           </div>
-
-          {/* Flecha derecha */}
           <button onClick={nextSlide} className="text-4xl text-white font-bold rounded-full pb-[3.5px] hover:bg-white/30 transition px-2">
             {">"}
           </button>
@@ -272,7 +265,6 @@ export default function Oferta1() {
         <div className={`${sliderSurfaceClass} mt-6 w-full max-w-[1591px]`}>
           <div className="relative px-4">
 
-            {/* Flecha Izquierda: 'hidden md:block' para ocultar en móvil */}
             <button
               type="button"
               aria-label="Desplazar hacia la izquierda"
@@ -281,14 +273,11 @@ export default function Oferta1() {
             >
               <ArrowLeftGrayBlueIcon />
             </button>
-
-            {/* Contenedor Scrollable: 'snap-x snap-mandatory' para efecto magnético en móvil */}
             <div
               ref={productCarouselRef}
               className={`flex flex-nowrap overflow-x-auto ${trackGap} pb-4 px-2 scrollbar-hide snap-x snap-mandatory scroll-smooth`}
             >
               {productos.map((p) => (
-                // Item: 'snap-center' para centrar el producto al soltar el scroll en móvil
                 <div key={p.id} className="flex-shrink-0 snap-center">
                   <ProductCard
                     id={p.id}
@@ -412,7 +401,6 @@ export default function Oferta1() {
         </div>
       </div>
 
-      {/* BANNER GRANDE DE ADIDAS */}
       <div className={`${containerClass} mt-12`}>
         <img
           src={Producto19Image}
@@ -420,14 +408,8 @@ export default function Oferta1() {
           className="w-full rounded-[32px] object-cover shadow-[0_18px_48px_rgba(44,80,158,0.12)]"
         />
       </div>
-
-      {/* SECCIÓN MODIFICADA: Carrusel de Sneakers con Flechas en el medio */}
       <div className={`${containerClass} mt-8 relative group`}>
-
-        {/* Controles de navegación (Flechas entre la imagen y el carrusel) */}
-        {/* Se posicionan absolutamente arriba del contenedor del carrusel, ocupando el espacio (gap) */}
         <div className="absolute -top-32 left-0 flex gap-2 z-10 px-4">
-          {/* Flecha IZQUIERDA: Alineada a la izquierda y subida al hueco superior (-top-12) */}
           <button
             onClick={() => scrollSneakers("left")}
             className="hidden xl:block absolute right-2 z-10 p-2 hover:opacity-75 transition-opacity"
@@ -437,7 +419,6 @@ export default function Oferta1() {
           </button>
         </div>
         <div className="absolute -top-32 right-0 flex gap-2 z-10 px-4">
-          {/* Flecha DERECHA: Alineada a la derecha y subida al hueco superior (-top-12) */}
           <button
             onClick={() => scrollSneakers("right")}
             className="hidden xl:block absolute left-2 z-10 p-2 hover:opacity-75 transition-opacity"
@@ -447,7 +428,6 @@ export default function Oferta1() {
           </button>
         </div>
 
-        {/* Contenedor del Carrusel (Flex + Overflow) */}
         <div
           ref={sneakerCarouselRef}
           className={`flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory`}
@@ -456,9 +436,6 @@ export default function Oferta1() {
           {sneakerHighlights.map((item) => (
             <div
               key={item.id}
-              // CAMBIOS CLAVE:
-              // 1. min-w para asegurar tamaño en móvil y desktop (25% en desktop aprox)
-              // 2. snap-center para que al deslizar se centre
               className={`${showcaseCardClass} flex-shrink-0 snap-center
                 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] 
                 xl:h-[410px] sm:h-[350px] 
