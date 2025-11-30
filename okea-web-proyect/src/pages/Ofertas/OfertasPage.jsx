@@ -1,6 +1,10 @@
 import React, { useRef, useState } from "react";
 
 import bannerImage from "../../assets/imagenes/Ofertas/banner.png";
+import bootsImage from "../../assets/imagenes/Ofertas/bota_banner.png";
+import sneakersImage from "../../assets/imagenes/Ofertas/zapatilla_banner.png";
+import sneakers2Image from "../../assets/imagenes/Ofertas/zapatilla2_banner.png";
+import heelsImage from "../../assets/imagenes/Ofertas/tacon_banner.png";
 import barraImage from "../../assets/imagenes/Ofertas/imagen1.png";
 import Producto2Image from "../../assets/imagenes/Ofertas/imagen2.png";
 import Producto3Image from "../../assets/imagenes/Ofertas/imagen3.png";
@@ -39,6 +43,99 @@ export default function Oferta1() {
   const { isLight } = useTheme();
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [bannerImage, banner2Image];
+  const slidesPresentacion = [
+    <div className="relative w-full h-full xl:h-[1044px] overflow-hidden bg-[#E6DQD0] font-sans" style={{ backgroundColor: '#E2D2C2' }}>
+
+      {/* --- FONDO GEOMÉTRICO --- */}
+
+      {/* Triángulo Rosa/Salmón (Arriba Derecha) */}
+      <div className="absolute -top-[40%] right-[20%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-[#E0B0AF] rotate-30 z-0 mix-blend-multiply opacity-80" />
+      <div className="absolute top-[50%] -right-[5%] w-[400px] h-[400px] md:w-[700px] md:h-[700px] bg-[#C8D1B8] rotate-[45deg] z-10 [clip-path:polygon(50%_0%,0%_100%,100%_100%)]" />
+      {/* Triángulo Verde Oliva (Lateral Derecho) */}
+      <div className="absolute -top-[10%] -right-[5%] w-[400px] h-[400px] md:w-[1000px] md:h-[1800px] bg-[#D6C0B0] rotate-[30deg] z-0" />
+
+      {/* --- CONTENIDO PRINCIPAL --- */}
+      <div className="relative z-10 flex flex-col md:flex-row h-full max-w-[1820x] mx-auto px-4">
+
+        {/* COLUMNA IZQUIERDA: TEXTO */}
+        <div className="w-full md:w-[50%] flex flex-col justify-center items-center pl-4 md:pl-20 pt-4 md:pt-0">
+
+          {/* 1. SUBTÍTULO (Aumentado a text-5xl) */}
+          <h3 className="font-serif italic text-[#7D1C2A] text-xl sm:text-2xl md:text-3xl xl:text-5xl 2xl:text-6xl mb-4 tracking-wide z-20">
+            17 F/W PRE-FALL
+          </h3>
+
+          {/* 2. TÍTULO "SHOES" (Aumentado a text-[200px]) */}
+          <h1 className="font-serif font-semi-bold text-[#111111] text-[60px] sm:text-[100px] md:text-[110px] lg:text-[150px] xl:text-[200px] 2xl:text-[260px] leading-[0.8] tracking-tight mb-8 z-40">
+            SHOES
+          </h1>
+
+          {/* 3. DESCRIPCIÓN (Aumentado a text-2xl) */}
+          <p className="text-[#6D635B] text-center text-sm sm:text-base md:text-xl xl:text-2xl 2xl:text-3xl mb-12 font-medium tracking-wide max-w-[100%] z-20">
+            La colección premium 17 F/W llega antes que a las tiendas
+          </p>
+
+          {/* 4. BOTÓN (Texto aumentado a text-2xl y padding ajustado) */}
+          <div className="bg-[#5D1320] text-white shadow-lg cursor-pointer hover:bg-[#7D1C2A] transition-colors z-20
+            py-3 px-8 md:py-5 mb-10">
+            <span className="text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-2xl font-medium tracking-wide">
+              F/W NUEVA COLECCIÓN
+            </span>
+          </div>
+
+          {/* 5. MARCAS (Aumentado ligeramente a text-sm) */}
+          <div className="text-[#9CA3AF] flex flex-col justify-center items-center text-center text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl font-bold uppercase tracking-[0.2em] leading-loose z-20">
+            <p>ALEXANDER MCQUEEN / GOLDEN GOOSE / REPETTO / STUART WEITZMAN / EYTYS</p>
+          </div>
+        </div>
+
+        {/* COLUMNA DERECHA: IMÁGENES FLOTANTES */}
+        <div className="hidden md:block w-full md:w-[55%] relative h-[500px] md:h-full">
+
+          {/* 1. Tacones Rojos (Arriba Centro-Derecha) */}
+          <div className="absolute 
+            -top-[30%] right-[10%] 
+            lg:-top-[35%] lg:right-[10%] 
+            xl:-top-[25%] xl:right-[5%] 
+            2xl:-top-[30%] 2xl:right-[30%] 
+            w-[350px] lg:w-[400px] xl:w-[500px] 2xl:w-[600px] h-auto rotate-[45deg] z-30 hover:scale-105 transition-transform duration-500 drop-shadow-2xl">
+            <img src={heelsImage} alt="Red Heels" className="w-full" />
+          </div>
+
+          {/* 2. Sneakers Blancos (Arriba Derecha Extremo) */}
+          <div className="absolute
+            -top-[10%] -right-[30%] 
+            lg:-top-[20%] lg:-right-[20%] 
+            xl:-top-[15%] xl:-right-[30%] 
+            2xl:-top-[15%] 2xl:-right-[5%] 
+            w-[400px] lg:w-[500px] xl:w-[650px] 2xl:w-[700px] h-auto -rotate-[45deg] z-50 hover:scale-105 transition-transform duration-500 drop-shadow-xl">
+            <img src={sneakersImage} alt="White Sneakers" className="w-full" />
+          </div>
+
+          {/* 3. Sneakers Sucios/Golden Goose (Centro Abajo) */}
+          <div className="absolute
+            bottom-[15%] -right-[5%] 
+            lg:bottom-[15%] lg:right-[5%] 
+            xl:bottom-[25%] xl:-right-[5%]
+            2xl:bottom-[15%] 2xl:right-[10%] 
+            w-[350px] lg:w-[420px] xl:w-[550px] 2xl:w-[700px] h-auto rotate-[35deg] z-30 hover:scale-105 transition-transform duration-500 drop-shadow-2xl">
+            <img src={sneakers2Image} alt="Golden Goose" className="w-full" />
+          </div>
+
+          {/* 4. Bota Negra (Abajo Derecha Esquina) */}
+          <div className="absolute 
+            -bottom-[5%] -right-[15%] 
+            lg:-bottom-[10%] lg:-right-[5%] 
+            xl:bottom-[5%] xl:right-[2%]
+            2xl:bottom-[1%] 2xl:right-[4%] 
+            w-[250px] lg:w-[280px] xl:w-[320px] 2xl:w-[400px] rotate-[35deg] h-auto z-30 hover:translate-y-[-10px] transition-transform duration-500 drop-shadow-2xl">
+            <img src={bootsImage} alt="Black Boot" className="w-full" />
+          </div>
+
+        </div>
+      </div>
+    </div>,
+  ];
   const productCarouselRef = useRef(null);
   const sneakerCarouselRef = useRef(null);
   const getSectionStyle = (customBg = null) => {
@@ -178,18 +275,13 @@ export default function Oferta1() {
       className={`relative w-full pt-10 pb-20 transition-colors duration-300 ease-in-out ${isLight ? "bg-[#FFFFFF] text-[#0B1B59]" : "bg-[#120F31] text-white"
         }`}
     >
-      <div className="relative w-full h-250 mt-8 overflow-hidden">
-        {slides.map((slide, index) => (
+      <div className="relative w-full h-120 md:h-160 xl:h-230 2xl:h-250 mt-8 overflow-hidden">
+        {slidesPresentacion.map((slide, index) => (
           <div
             key={index}
             className={`absolute w-full h-full transition-opacity duration-1000 ${index === currentSlide ? "opacity-100 z-20" : "opacity-0 z-10"}`}
           >
-            <img
-              src={slide}
-              alt={`Oferta ${index + 1}`}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
+            {slide}
           </div>
         ))}
 
@@ -269,9 +361,21 @@ export default function Oferta1() {
               type="button"
               aria-label="Desplazar hacia la izquierda"
               onClick={() => scrollProductCarousel("left")}
-              className={`hidden xl:block absolute -left-4 lg:-left-12 top-1/2 -translate-y-1/2 z-10`}
+              className={`hidden 2xl:block absolute -left-4 lg:-left-12 top-1/2 -translate-y-1/2 z-10`}
             >
               <ArrowLeftGrayBlueIcon />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollProductCarousel("left")}
+              className={`block 2xl:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20 
+                bg-white/90 hover:bg-white text-gray-800 
+                rounded-full p-2 shadow-lg transition-all`}
+            >
+              {/* Reutilizamos el icono, pero dentro de un círculo blanco */}
+              <div className="scale-75">
+                <ArrowLeftGrayBlueIcon />
+              </div>
             </button>
             <div
               ref={productCarouselRef}
@@ -297,9 +401,20 @@ export default function Oferta1() {
               type="button"
               aria-label="Desplazar hacia la derecha"
               onClick={() => scrollProductCarousel("right")}
-              className={`hidden xl:block absolute -right-4 lg:-right-12 top-1/2 -translate-y-1/2 z-10`}
+              className={`hidden 2xl:block absolute -right-4 lg:-right-12 top-1/2 -translate-y-1/2 z-10`}
             >
               <ArrowRightGrayBlueIcon slidesCategorias={productCarouselRef} />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollProductCarousel("right")}
+              className={`block 2xl:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 
+                bg-white/90 hover:bg-white text-gray-800 
+                rounded-full p-2 shadow-lg transition-all`}
+            >
+              <div className="scale-75">
+                <ArrowRightGrayBlueIcon slidesCategorias={productCarouselRef} />
+              </div>
             </button>
           </div>
         </div>
@@ -333,10 +448,18 @@ export default function Oferta1() {
         </div>
       </div>
       <div className={`mt-8 relative group max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10`}>
+        <button
+          onClick={() => scrollSneakers("left")}
+          className="block 2xl:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all"
+        >
+          <div className="scale-75">
+            <ArrowLeftGrayBlueIcon />
+          </div>
+        </button>
       <div className="absolute top-3/4 left-32 flex gap-2 z-10 px-4">
         <button
           onClick={() => scrollSneakers("left")}
-            className="hidden xl:block absolute z-10 p-2 hover:opacity-75 transition-opacity"
+            className="hidden 2xl:block absolute z-10 p-2 hover:opacity-75 transition-opacity"
           aria-label="Anterior"
         >
           <ArrowLeftGrayBlueIcon />
@@ -345,12 +468,20 @@ export default function Oferta1() {
       <div className="absolute top-3/4 right-48 flex gap-2 z-10 px-4">
         <button
           onClick={() => scrollSneakers("right")}
-          className="hidden xl:block absolute z-10 p-2 hover:opacity-75 transition-opacity"
+          className="hidden 2xl:block absolute z-10 p-2 hover:opacity-75 transition-opacity"
           aria-label="Siguiente"
         >
           <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
         </button>
       </div>
+        <button
+          onClick={() => scrollSneakers("right")}
+          className="block 2xl:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all"
+        >
+          <div className="scale-75">
+            <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
+          </div>
+        </button>
       <div className={`${containerClass} mt-12 grid grid-cols-1 gap-6 lg:grid-cols-6`}>
         {premiumHighlights.map((item) => (
           <div
@@ -409,10 +540,18 @@ export default function Oferta1() {
         />
       </div>
       <div className={`${containerClass} mt-8 relative group`}>
+        <button
+          onClick={() => scrollSneakers("left")}
+          className="block 2xl:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all"
+        >
+          <div className="scale-75">
+            <ArrowLeftGrayBlueIcon />
+          </div>
+        </button>
         <div className="absolute -top-32 left-0 flex gap-2 z-10 px-4">
           <button
             onClick={() => scrollSneakers("left")}
-            className="hidden xl:block absolute right-2 z-10 p-2 hover:opacity-75 transition-opacity"
+            className="hidden 2xl:block absolute right-2 z-10 p-2 hover:opacity-75 transition-opacity"
             aria-label="Anterior"
           >
             <ArrowLeftGrayBlueIcon />
@@ -421,13 +560,20 @@ export default function Oferta1() {
         <div className="absolute -top-32 right-0 flex gap-2 z-10 px-4">
           <button
             onClick={() => scrollSneakers("right")}
-            className="hidden xl:block absolute left-2 z-10 p-2 hover:opacity-75 transition-opacity"
+            className="hidden 2xl:block absolute left-2 z-10 p-2 hover:opacity-75 transition-opacity"
             aria-label="Siguiente"
           >
             <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
           </button>
         </div>
-
+        <button
+          onClick={() => scrollSneakers("right")}
+          className="block 2xl:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all"
+        >
+          <div className="scale-75">
+            <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
+          </div>
+        </button>
         <div
           ref={sneakerCarouselRef}
           className={`flex gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory`}
