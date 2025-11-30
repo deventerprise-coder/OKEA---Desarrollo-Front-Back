@@ -46,36 +46,28 @@ export default function Oferta1() {
   const slidesPresentacion = [
     <div className="relative w-full h-full xl:h-[1044px] overflow-hidden bg-[#E6DQD0] font-sans" style={{ backgroundColor: '#E2D2C2' }}>
 
-      {/* --- FONDO GEOMÉTRICO --- */}
+      
 
-      {/* Triángulo Rosa/Salmón (Arriba Derecha) */}
       <div className="absolute -top-[40%] right-[20%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-[#E0B0AF] rotate-30 z-0 mix-blend-multiply opacity-80" />
       <div className="absolute top-[50%] -right-[5%] w-[400px] h-[400px] md:w-[700px] md:h-[700px] bg-[#C8D1B8] rotate-[45deg] z-10 [clip-path:polygon(50%_0%,0%_100%,100%_100%)]" />
-      {/* Triángulo Verde Oliva (Lateral Derecho) */}
       <div className="absolute -top-[10%] -right-[5%] w-[400px] h-[400px] md:w-[1000px] md:h-[1800px] bg-[#D6C0B0] rotate-[30deg] z-0" />
 
-      {/* --- CONTENIDO PRINCIPAL --- */}
       <div className="relative z-10 flex flex-col md:flex-row h-full max-w-[1820x] mx-auto px-4">
 
-        {/* COLUMNA IZQUIERDA: TEXTO */}
         <div className="w-full md:w-[50%] flex flex-col justify-center items-center pl-4 md:pl-20 pt-4 md:pt-0">
 
-          {/* 1. SUBTÍTULO (Aumentado a text-5xl) */}
           <h3 className="font-serif italic text-[#7D1C2A] text-xl sm:text-2xl md:text-3xl xl:text-5xl 2xl:text-6xl mb-4 tracking-wide z-20">
             17 F/W PRE-FALL
           </h3>
 
-          {/* 2. TÍTULO "SHOES" (Aumentado a text-[200px]) */}
           <h1 className="font-serif font-semi-bold text-[#111111] text-[60px] sm:text-[100px] md:text-[110px] lg:text-[150px] xl:text-[200px] 2xl:text-[260px] leading-[0.8] tracking-tight mb-8 z-40">
             SHOES
           </h1>
 
-          {/* 3. DESCRIPCIÓN (Aumentado a text-2xl) */}
           <p className="text-[#6D635B] text-center text-sm sm:text-base md:text-xl xl:text-2xl 2xl:text-3xl mb-12 font-medium tracking-wide max-w-[100%] z-20">
             La colección premium 17 F/W llega antes que a las tiendas
           </p>
 
-          {/* 4. BOTÓN (Texto aumentado a text-2xl y padding ajustado) */}
           <div className="bg-[#5D1320] text-white shadow-lg cursor-pointer hover:bg-[#7D1C2A] transition-colors z-20
             py-3 px-8 md:py-5 mb-10">
             <span className="text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-2xl font-medium tracking-wide">
@@ -83,16 +75,13 @@ export default function Oferta1() {
             </span>
           </div>
 
-          {/* 5. MARCAS (Aumentado ligeramente a text-sm) */}
           <div className="text-[#9CA3AF] flex flex-col justify-center items-center text-center text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl font-bold uppercase tracking-[0.2em] leading-loose z-20">
             <p>ALEXANDER MCQUEEN / GOLDEN GOOSE / REPETTO / STUART WEITZMAN / EYTYS</p>
           </div>
         </div>
 
-        {/* COLUMNA DERECHA: IMÁGENES FLOTANTES */}
         <div className="hidden md:block w-full md:w-[55%] relative h-[500px] md:h-full">
 
-          {/* 1. Tacones Rojos (Arriba Centro-Derecha) */}
           <div className="absolute 
             -top-[30%] right-[10%] 
             lg:-top-[35%] lg:right-[10%] 
@@ -102,7 +91,6 @@ export default function Oferta1() {
             <img src={heelsImage} alt="Red Heels" className="w-full" />
           </div>
 
-          {/* 2. Sneakers Blancos (Arriba Derecha Extremo) */}
           <div className="absolute
             -top-[10%] -right-[30%] 
             lg:-top-[20%] lg:-right-[20%] 
@@ -112,7 +100,6 @@ export default function Oferta1() {
             <img src={sneakersImage} alt="White Sneakers" className="w-full" />
           </div>
 
-          {/* 3. Sneakers Sucios/Golden Goose (Centro Abajo) */}
           <div className="absolute
             bottom-[15%] -right-[5%] 
             lg:bottom-[15%] lg:right-[5%] 
@@ -122,7 +109,6 @@ export default function Oferta1() {
             <img src={sneakers2Image} alt="Golden Goose" className="w-full" />
           </div>
 
-          {/* 4. Bota Negra (Abajo Derecha Esquina) */}
           <div className="absolute 
             -bottom-[5%] -right-[15%] 
             lg:-bottom-[10%] lg:-right-[5%] 
@@ -262,12 +248,12 @@ export default function Oferta1() {
   };
 
   const productos = [
-    { id: "p7", image: Producto7Image, title: "Producto 7", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-0 %"},
-    { id: "p8", image: Producto8Image, title: "Producto 8", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-0 %"},
-    { id: "p9", image: Producto9Image, title: "Producto 9", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-0 %"},
-    { id: "p10", image: Producto10Image, title: "Producto 10", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-0 %"},
-    { id: "p11", image: Producto111Image, title: "Producto 11", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-50 %", timeLeft: "05|05|00"},
-    { id: "p12", image: Producto121Image, title: "Producto 12", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-50 %", timeLeft: "05|05|00"},
+    { id: "p7", image: Producto7Image, title: "Producto 7", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-0 %" },
+    { id: "p8", image: Producto8Image, title: "Producto 8", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-0 %" },
+    { id: "p9", image: Producto9Image, title: "Producto 9", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-0 %" },
+    { id: "p10", image: Producto10Image, title: "Producto 10", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-0 %" },
+    { id: "p11", image: Producto111Image, title: "Producto 11", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-50 %", timeLeft: "05|05|00" },
+    { id: "p12", image: Producto121Image, title: "Producto 12", label: "Label", oldPrice: "s/ 160.00", price: "s/ 80.00", rating: "4.9", discount: "-50 %", timeLeft: "05|05|00" },
   ];
 
   return (
@@ -372,7 +358,6 @@ export default function Oferta1() {
                 bg-white/90 hover:bg-white text-gray-800 
                 rounded-full p-2 shadow-lg transition-all`}
             >
-              {/* Reutilizamos el icono, pero dentro de un círculo blanco */}
               <div className="scale-75">
                 <ArrowLeftGrayBlueIcon />
               </div>
@@ -456,24 +441,24 @@ export default function Oferta1() {
             <ArrowLeftGrayBlueIcon />
           </div>
         </button>
-      <div className="absolute top-3/4 left-32 flex gap-2 z-10 px-4">
-        <button
-          onClick={() => scrollSneakers("left")}
+        <div className="absolute top-3/4 left-32 flex gap-2 z-10 px-4">
+          <button
+            onClick={() => scrollSneakers("left")}
             className="hidden 2xl:block absolute z-10 p-2 hover:opacity-75 transition-opacity"
-          aria-label="Anterior"
-        >
-          <ArrowLeftGrayBlueIcon />
-        </button>
-      </div>
-      <div className="absolute top-3/4 right-48 flex gap-2 z-10 px-4">
-        <button
-          onClick={() => scrollSneakers("right")}
-          className="hidden 2xl:block absolute z-10 p-2 hover:opacity-75 transition-opacity"
-          aria-label="Siguiente"
-        >
-          <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
-        </button>
-      </div>
+            aria-label="Anterior"
+          >
+            <ArrowLeftGrayBlueIcon />
+          </button>
+        </div>
+        <div className="absolute top-3/4 right-48 flex gap-2 z-10 px-4">
+          <button
+            onClick={() => scrollSneakers("right")}
+            className="hidden 2xl:block absolute z-10 p-2 hover:opacity-75 transition-opacity"
+            aria-label="Siguiente"
+          >
+            <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
+          </button>
+        </div>
         <button
           onClick={() => scrollSneakers("right")}
           className="block 2xl:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all"
@@ -482,25 +467,25 @@ export default function Oferta1() {
             <ArrowRightGrayBlueIcon slidesCategorias={sneakerCarouselRef} />
           </div>
         </button>
-      <div className={`${containerClass} mt-12 grid grid-cols-1 gap-6 lg:grid-cols-6`}>
-        {premiumHighlights.map((item) => (
-          <div
-            key={item.id}
-            className={`${showcaseCardClass} col-span-full ${item.colSpan} flex items-center justify-center ${item.heightClass}`}
-          >
-            <img src={item.image} alt={item.alt} className="h-full w-full rounded-[16px]" />
-            {item.footer && (
-              <div
-                className={`absolute bottom-0 left-0 w-full rounded-b-[16px] px-6 py-4 ${isLight ? "bg-[#DFE162] text-[#000000]" : "bg-[#3A31A9] text-white"
-                  }`}
-              >
-                <h3 className="text-3xl font-bold tracking-tight">{item.footer.title}</h3>
-                <p className="text-md font-semibold leading-none">{item.footer.caption}</p>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+        <div className={`${containerClass} mt-12 grid grid-cols-1 gap-6 lg:grid-cols-6`}>
+          {premiumHighlights.map((item) => (
+            <div
+              key={item.id}
+              className={`${showcaseCardClass} col-span-full ${item.colSpan} flex items-center justify-center ${item.heightClass}`}
+            >
+              <img src={item.image} alt={item.alt} className="h-full w-full rounded-[16px]" />
+              {item.footer && (
+                <div
+                  className={`absolute bottom-0 left-0 w-full rounded-b-[16px] px-6 py-4 ${isLight ? "bg-[#DFE162] text-[#000000]" : "bg-[#3A31A9] text-white"
+                    }`}
+                >
+                  <h3 className="text-3xl font-bold tracking-tight">{item.footer.title}</h3>
+                  <p className="text-md font-semibold leading-none">{item.footer.caption}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mt-16 items-center flex flex-col justify-center">
