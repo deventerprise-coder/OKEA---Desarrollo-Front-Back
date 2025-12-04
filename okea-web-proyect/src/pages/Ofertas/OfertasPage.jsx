@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import bannerImage from "../../assets/imagenes/Ofertas/banner.png";
 import bootsImage from "../../assets/imagenes/Ofertas/bota_banner.png";
 import sneakersImage from "../../assets/imagenes/Ofertas/zapatilla_banner.png";
@@ -10,7 +10,6 @@ import Producto2Image from "../../assets/imagenes/Ofertas/imagen2.png";
 import Producto3Image from "../../assets/imagenes/Ofertas/imagen3.png";
 import Producto4Image from "../../assets/imagenes/Ofertas/imagen4.png";
 import Producto5Image from "../../assets/imagenes/Ofertas/imagen5.png";
-import Producto6Image from "../../assets/imagenes/Ofertas/imagen6.png";
 import banner2Image from "../../assets/imagenes/Categorias/Panel/PanelCalzado.png";
 import Producto7Image from "../../assets/imagenes/Ofertas/imagen7.png";
 import Producto8Image from "../../assets/imagenes/Ofertas/imagen8.png";
@@ -18,29 +17,29 @@ import Producto9Image from "../../assets/imagenes/Ofertas/imagen9.png";
 import Producto10Image from "../../assets/imagenes/Ofertas/imagen10.png";
 import Producto111Image from "../../assets/imagenes/Ofertas/imagen111.png";
 import Producto121Image from "../../assets/imagenes/Ofertas/imagen121.png";
-import Frame1Image from "../../assets/imagenes/Ofertas/Frame1.png";
 import Producto13Image from "../../assets/imagenes/Ofertas/imagen13.jpg";
 import Producto141Image from "../../assets/imagenes/Ofertas/image14.png";
 import Producto15Image from "../../assets/imagenes/Ofertas/imagen15.jpg";
 import Producto16Image from "../../assets/imagenes/Ofertas/imagen16.png";
 import Producto17Image from "../../assets/imagenes/Ofertas/imagen17.png";
-import Frame2Image from "../../assets/imagenes/Ofertas/Frame2.png";
 import Producto19Image from "../../assets/imagenes/Ofertas/imagen19.png";
 import Producto20Image from "../../assets/imagenes/Ofertas/imagen20.png";
 import Producto21Image from "../../assets/imagenes/Ofertas/imagen21.png";
 import Producto22Image from "../../assets/imagenes/Ofertas/imagen22.png";
 import Producto23Image from "../../assets/imagenes/Ofertas/imagen23.png";
-import Frame4Image from "../../assets/imagenes/Ofertas/Frame4.png";
 import FooterPequeño from "../../components/Footer/FooterPequeño";
 import FooterGrande from "../../components/Footer/FooterGrande";
 import BloqueDeServicios from "../../components/BloqueDeServicios";
 import MarcasDestacadas from "../../components/MarcasDestacadas";
 import ProductCard from "../../components/ProductCard.jsx";
+import CardDescuento from './CardDescuento.jsx';
+import BannerOfertop from "./BannerOfertop.jsx";
 import { TagIconSmall, TagIconSmallDarkMode, ArrowRightIconBlack, ArrowLeftGrayBlueIcon, ArrowRightGrayBlueIcon } from "../../assets/iconos/iconoHome.jsx";
 import { useTheme } from "../../components/ThemeContext";
 
 export default function Oferta1() {
   const { isLight } = useTheme();
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [bannerImage, banner2Image];
   const slidesPresentacion = [
@@ -69,7 +68,7 @@ export default function Oferta1() {
           </p>
 
           <div className="bg-[#5D1320] text-white shadow-lg cursor-pointer hover:bg-[#7D1C2A] transition-colors z-20
-            py-3 px-8 md:py-5 mb-10">
+            py-3 px-8 md:py-5 mb-10" onClick={() => navigate("/catalogo/calzado")}>
             <span className="text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-2xl font-medium tracking-wide">
               F/W NUEVA COLECCIÓN
             </span>
@@ -149,7 +148,6 @@ export default function Oferta1() {
   };
 
   const containerClass = "w-full max-w-[1591px] mx-auto px-4 sm:px-6 lg:px-10";
-  const highlightCardClass = `relative flex h-[340px] sm:h-[360px] lg:h-[382px] w-full max-w-[516px] items-center justify-center rounded-[2px] border transition-colors duration-300 ease-in-out ${isLight ? "bg-white border-white/0" : "bg-[#292272] border-white/10"}`;
   const showcaseCardClass = `relative overflow-hidden rounded-[2px] transition-colors duration-300 ease-in-out`;
   const sliderSurfaceClass = `rounded-[2px] border transition-colors duration-300 ease-in-out ${isLight ? "border-white/0 bg-white" : "border-white/0 bg-[#120F31]"}`;
   const trackGap = "gap-6 sm:gap-7 lg:gap-8";
@@ -159,9 +157,9 @@ export default function Oferta1() {
   const bannerCtaClass = "flex items-center gap-2 rounded-full bg-[#DFE162] px-5 py-2.5 text-[#484900]";
 
   const highlightedOffers = [
-    { id: "highlight-1", image: Producto2Image, alt: "Producto destacado 1" },
-    { id: "highlight-2", image: Producto3Image, alt: "Producto destacado 2" },
-    { id: "highlight-3", image: Producto4Image, alt: "Producto destacado 3" },
+    { id: "highlight-1", discount: 50, discountArea: "Sofás", image: Producto2Image, area: "muebles-y-organizacion"},
+    { id: "highlight-2", discount: 30, discountArea: "Sofás", image: Producto3Image, area: "calzado"},
+    { id: "highlight-3", discount: 10, discountArea: "Sofás", image: Producto4Image, area: "tecnologia"},
   ];
 
   const premiumHighlights = [
@@ -287,19 +285,14 @@ export default function Oferta1() {
       </div>
 
       <div className={`${containerClass} mt-16`}>
-        <img
-          src={barraImage}
-          alt="Invita a tus amigos"
-          className="w-full rounded-[16px] object-cover"
-        />
+        <BannerOfertop backgroundImage={barraImage} />
       </div>
 
       <div className={`${containerClass} mt-10`}>
-        <div className={`flex flex-col md:flex-row justify-center items-center ${trackGap} rounded-[32px]`}>
+        <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 justify-center items-center w-fit mx-auto`}>
           {highlightedOffers.map((offer) => (
-            <div key={offer.id} className={`${highlightCardClass} rounded-[32px]`}>
-              <img src={offer.image} alt={offer.alt} className="h-full w-full rounded-[16px]" />
-              <img src={Frame4Image} alt="Etiqueta de descuento" className="absolute left-0 -top-2 w-[140px]" />
+            <div key={offer.id} className="w-full">
+              <CardDescuento discount={offer.discount} discountArea={offer.discountArea} area={offer.area} image={offer.image} />
             </div>
           ))}
         </div>
@@ -309,7 +302,9 @@ export default function Oferta1() {
         <img
           src={Producto5Image}
           alt="Mundo Apple"
-          className="w-full rounded-[32px] object-cover shadow-[0_18px_48px_rgba(44,80,158,0.12)]"
+          draggable="false"
+          className="w-full rounded-[32px] object-cover shadow-[0_18px_48px_rgba(44,80,158,0.12)] cursor-pointer"
+          onClick={() => navigate("/catalogo/tecnologia")}
         />
       </div>
 
@@ -333,7 +328,7 @@ export default function Oferta1() {
           <p className={`${bannerSubtitleClass} py-1.5`} style={getTextStyle()}>
             Favoritos que te van a encantar
           </p>
-          <button className={bannerCtaClass}>
+          <button className={`${bannerCtaClass} lg:hover:bg-green-500 lg:hover:text-black lg:transition-colors lg:duration-300 lg:cursor-pointer`} onClick={() => navigate("/catalogo/calzado")}>
             <span className="font-popins text-sm">Ver todo</span>
             <div className="scale-60 -my-0.5">
               <ArrowRightIconBlack />
@@ -424,7 +419,7 @@ export default function Oferta1() {
           <p className={`${bannerSubtitleClass} py-1.5`} style={getTextStyle()}>
             Favoritos que te van a encantar
           </p>
-          <button className={bannerCtaClass}>
+          <button className={`${bannerCtaClass} lg:hover:bg-green-500 lg:hover:text-black lg:transition-colors lg:duration-300 lg:cursor-pointer`} onClick={() => navigate("/catalogo/tecnologia")}>
             <span className="font-popins text-sm">Ver todo</span>
             <div className="scale-60 -my-0.5">
               <ArrowRightIconBlack />
@@ -473,7 +468,7 @@ export default function Oferta1() {
               key={item.id}
               className={`${showcaseCardClass} col-span-full ${item.colSpan} flex items-center justify-center ${item.heightClass}`}
             >
-              <img src={item.image} alt={item.alt} className="h-full w-full rounded-[16px]" />
+              <img src={item.image} alt={item.alt} draggable="false" className="h-full w-full rounded-[16px] lg:hover:scale-105 lg:transition-transform lg:duration-500 lg:cursor-pointer" onClick={() => navigate(`/catalogo/tecnologia`)} />
               {item.footer && (
                 <div
                   className={`absolute bottom-0 left-0 w-full rounded-b-[16px] px-6 py-4 ${isLight ? "bg-[#DFE162] text-[#000000]" : "bg-[#3A31A9] text-white"
@@ -508,7 +503,7 @@ export default function Oferta1() {
           <p className={`${bannerSubtitleClass} py-1.5`} style={getTextStyle()}>
             Favoritos que te van a encantar
           </p>
-          <button className={bannerCtaClass}>
+          <button className={`${bannerCtaClass} lg:hover:bg-green-500 lg:hover:text-black lg:transition-colors lg:duration-300 lg:cursor-pointer`} onClick={() => navigate("/catalogo/calzado")}>
             <span className="font-popins text-sm">Ver todo</span>
             <div className="scale-60 -my-0.5">
               <ArrowRightIconBlack />
@@ -521,7 +516,9 @@ export default function Oferta1() {
         <img
           src={Producto19Image}
           alt="Colección adidas"
-          className="w-full rounded-[32px] object-cover shadow-[0_18px_48px_rgba(44,80,158,0.12)]"
+          draggable="false"
+          className="w-full rounded-[32px] object-cover shadow-[0_18px_48px_rgba(44,80,158,0.12)] lg:cursor-pointer"
+          onClick={() => navigate(`/catalogo/calzado`)}
         />
       </div>
       <div className={`${containerClass} mt-8 relative group`}>
@@ -575,7 +572,9 @@ export default function Oferta1() {
               <img
                 src={item.image}
                 alt={item.alt}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                draggable="false"
+                className="h-full w-full object-cover lg:transition-transform lg:duration-500 lg:hover:scale-110 lg:cursor-pointer"
+                onClick={() => navigate(`/catalogo/calzado`)}
               />
             </div>
           ))}
