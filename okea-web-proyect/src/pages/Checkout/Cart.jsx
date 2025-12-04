@@ -6,7 +6,7 @@ import visa from "../../assets/iconos/VISAIcono.svg";
 import mastercard from "../../assets/iconos/MCIcon.svg";
 import logo_okea from "../../assets/iconos/okea_logo.svg";
 import AMEXIcon from "../../assets/iconos/AMEXIcon.svg";
-import yape from "../../assets/iconos/yape.svg";    
+import yape from "../../assets/imagenes/yape-carrito.png";    
 import mercadopagomobil from "../../assets/iconos/mercadopagomobil.svg";
 import yapemobil from "../../assets/iconos/yapemobil.svg";
 import Mercadodepago from "../../assets/iconos/Mercadodepago.svg";
@@ -41,7 +41,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
     max-[412px]:bg-white max-[412px]:bg-none max-[412px]:p-0"
 >
   <div
-    className="max-w-7xl mt-40 mx-auto rounded-2xl shadow-lg grid grid-cols-1 md:grid-cols-4
+    className="max-w-7xl mt-40 mx-auto rounded-2xl shadow-lg grid grid-cols-1 md:grid-cols-6 lg:grid-cols-4
       max-[412px]:max-w-full max-[412px]:mx-0 max-[412px]:rounded-none max-[412px]:shadow-none"
   >
 
@@ -55,7 +55,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
     col-span-1
     max-[1280px]:p-5 
     max-[1024px]:col-span-2
-    max-[768px]:col-span-1 max-[768px]:items-center
+    max-[768px]:col-span-2 max-[768px]:items-center
     max-[412px]:p-3 max-[412px]:items-center
     max-[412px]:bg-white max-[412px]:rounded-none
     max-[412px]:-mt-33 max-[412px]:h-full
@@ -74,7 +74,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
   {/* Botones — ocultos en pantallas <= 412px */}
   <div className="flex flex-col gap-2 mt-4 w-full items-start max-[768px]:items-center max-[412px]:hidden">
     <button
-      className={`w-60 h-10 flex justify-between items-center px-4 py-2 rounded-2xl 
+      className={`w-60 h-10 flex justify-between md:w-full md:min-w-52 lg:w-52 items-center px-4 py-2 rounded-2xl 
         ${paso >= 1 ? "bg-[#1C4390] text-white" : "hover:bg-gray-200"}
         max-[1280px]:w-52 max-[768px]:w-60 max-[412px]:w-full`}
     >
@@ -86,7 +86,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
     </button>
 
     <button
-      className={`w-60 h-10 flex justify-between items-center px-4 py-2 rounded-2xl 
+      className={`w-60 h-10 flex justify-between md:w-full md:min-w-52 lg:w-52 items-center px-4 py-2 rounded-2xl 
         ${paso >= 2 ? "bg-[#1C4390] text-white" : "hover:bg-gray-200"}
         max-[1280px]:w-52 max-[768px]:w-60 max-[412px]:w-full`}
     >
@@ -98,7 +98,7 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
     </button>
 
     <button
-      className={`w-60 h-10 flex justify-between items-center px-4 py-2 rounded-2xl 
+      className={`w-60 h-10 flex justify-between md:w-full md:min-w-52 lg:w-52 items-center px-4 py-2 rounded-2xl 
         ${paso >= 3 ? "bg-[#1C4390] text-white" : "hover:bg-gray-200"}
         max-[1280px]:w-52 max-[768px]:w-60 max-[412px]:w-full`}
     >
@@ -130,8 +130,8 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
   className=" 
     bg-gray-100/60 p-6 col-span-2
     max-[1280px]:col-span-3
-    max-[1024px]:col-span-2
-    max-[768px]:col-span-1
+    max-[1024px]:col-span-4
+    max-[768px]:col-span-4
     max-[412px]:p-4
     max-[412px]:bg-white
     max-[412px]:-mt-16
@@ -823,14 +823,14 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
           {/* Grupo derecho */}
          <div
   className="flex items-center justify-between gap-4
-    max-[412px]:flex-col max-[412px]:items-center max-[412px]:gap-3 max-[412px]:w-full max-[412px]:bg-transparent"
+    max-[412px]:flex-col max-[412px]:items-center max-[412px]:gap-3 max-[540px]:gap-1 max-[412px]:w-full max-[412px]:bg-transparent"
 >
   {/* 🟡 Imagen MercadoPago Desktop (vuelve a tu diseño original) */}
   <img
     src={Mercadodepago}
     alt="Mercado Pago"
-    className="h-13 w-33 object-cover rounded-full shadow-md
-      max-[412px]:hidden"
+    className="h-13 w-33 object-cover rounded-full shadow-md max-[540px]:w-[70px] max-[540px]:h-[40px]
+      max-[412px]:hidden max-[960px]:w-[110px]"
   />
 
   {/* 🟡 Imagen MercadoPago Mobile (sin bordes ni fondo) */}
@@ -841,12 +841,13 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
   />
 
   {/* 🟣 Imagen Yape Desktop (vuelve a tu diseño original) */}
-  <img
-    src={yape}
-    alt="Yape"
-    className="h-13 w-33 object-cover rounded-full shadow-md
-      max-[412px]:hidden"
-  />
+  <div className="w-[144px] h-[56px] rounded-full shadow-md bg-[#5F0672] flex items-center justify-center max-[412px]:hidden max-[960px]:w-[110px] max-[540px]:w-[70px] max-[540px]:h-[40px]">
+    <img
+      src={yape}
+      alt="Yape"
+      className="object-contain w-[40px] h-[42px] max-[540px]:w-[30px] max-[540px]:h-[32px]"
+    />
+  </div>
 
   {/* 🟣 Imagen Yape Mobile (sin bordes ni fondo) */}
   <img
@@ -980,9 +981,9 @@ const [fechaSeleccionada, setFechaSeleccionada] = useState("");
 
         {/* Resumen - NO SE TOCA */}
       <aside
-  className={`bg-white rounded-r-3xl p-6 shadow-sm md:col-span-1 flex flex-col
-    max-[1280px]:col-span-3
-    max-[1024px]:col-span-2
+  className={`bg-white rounded-r-3xl p-6 shadow-sm xl:col-span-1 flex flex-col
+    max-[1279px]:col-span-6
+    max-[1024px]:col-span-6
     max-[768px]:col-span-1
     max-[412px]:p-4 max-[412px]:rounded-none 
     max-[412px]:bg-transparent 
