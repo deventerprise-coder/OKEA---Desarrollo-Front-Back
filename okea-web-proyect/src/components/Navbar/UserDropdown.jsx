@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   MiCuentaIcon,
   MisComprasIcon,
@@ -50,6 +51,16 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
   const [theme, setTheme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
   });
+
+  // Navegacion ! 
+
+  const navigate = useNavigate();
+  const handleGoToPerfil = () => {
+    navigate('/perfil');    // Ir a la página de perfil
+    onSelect && onSelect('');   // Cerrar el dropdown
+  }
+
+
 
   // =======================
   // 3. EFECTO: OBSERVAR CAMBIO DE TEMA
@@ -121,47 +132,58 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
     >
       <style>{animations}</style>
 
-      <div className="flex flex-col gap-2 flex-1">
-        {buttons.map((btn, idx) => {
-          const Icon = icons[idx] || null;
-          return (
-            <button
-              key={btn.key}
-              className="group text-white font-poppins font-medium text-[16px] leading-6 tracking-[0.15px] px-4 rounded-full transition flex items-center justify-between"
-              style={{
-                fontFamily: 'Poppins, sans-serif',
-                fontWeight: 400,
-                fontStyle: 'normal',
-                fontSize: 16,
-                lineHeight: '24px',
-                letterSpacing: '0.15px',
-                height: 40,
-                backgroundColor: 'transparent',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#E4E66666';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }}
-              onClick={() => onSelect && onSelect(btn.key)}
-            >
-              <div className="flex items-center gap-3">
-                {Icon && (
-                  <span className="flex items-center justify-center w-5 h-5">
-                    <Icon />
-                  </span>
-                )}
-                <span className="flex items-center">{btn.label}</span>
-              </div>
+<div className="flex flex-col gap-2 flex-1">
+  {buttons.map((btn, idx) => {
+    const Icon = icons[idx] || null;
 
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-                <FlechaDerecha stroke="#FFFFFF" size={25} strokeWidth={0.2} />
-              </div>
-            </button>
-          );
-        })}
-      </div>
+    const handleClick = () => {
+      if (btn.key === 'cuenta') {
+        // 👉 si es "Mi cuenta", ir al perfil y cerrar menú
+        handleGoToPerfil();
+      } else {
+        // 👉 el resto de botones se comportan como antes
+        onSelect && onSelect(btn.key);
+      }
+    };
+
+    return (
+      <button
+        key={btn.key}
+        className="group text-white font-poppins font-medium text-[16px] leading-6 tracking-[0.15px] px-4 rounded-full transition flex items-center justify-between"
+        style={{
+          fontFamily: 'Poppins, sans-serif',
+          fontWeight: 400,
+          fontStyle: 'normal',
+          fontSize: 16,
+          lineHeight: '24px',
+          letterSpacing: '0.15px',
+          height: 40,
+          backgroundColor: 'transparent',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = '#E4E66666';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'transparent';
+        }}
+        onClick={handleClick}   // 👈 aquí usamos nuestra función
+      >
+        <div className="flex items-center gap-3">
+          {Icon && (
+            <span className="flex items-center justify-center w-5 h-5">
+              <Icon />
+            </span>
+          )}
+          <span className="flex items-center">{btn.label}</span>
+        </div>
+
+        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+          <FlechaDerecha stroke="#FFFFFF" size={25} strokeWidth={0.2} />
+        </div>
+      </button>
+    );
+  })}
+</div>
 
       <button
         className="text-white hover:bg-[#16336e] transition flex items-center justify-center gap-3 rounded-full"
