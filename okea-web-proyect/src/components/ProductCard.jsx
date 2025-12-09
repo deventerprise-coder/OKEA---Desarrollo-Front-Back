@@ -72,7 +72,7 @@ const ProductCard = ({
       className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group"
       style={getCardStyle()}
     >
-      <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+      <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden rounded-3xl">
         <div className="w-57 rounded-2xl ml-8 mr-5">
           <div
             className="absolute -bottom-60 h-160 w-150 bg-no-repeat bg-cover scale-25 -ml-56 mb-6 group-hover:scale-35 transition"

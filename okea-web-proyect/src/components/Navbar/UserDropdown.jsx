@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   MiCuentaIcon,
   MisComprasIcon,
@@ -47,6 +48,7 @@ const animations = `
 // 2. COMPONENTE PRINCIPAL UserDropdown
 // =======================
 export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
+  const navigate = useNavigate();
   const [theme, setTheme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
   });
@@ -92,10 +94,10 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
   // 5. DATOS DE BOTONES
   // =======================
   const buttons = [
-    { label: 'Mi cuenta', key: 'cuenta' },
-    { label: 'Mis Compras', key: 'compras' },
-    { label: 'Promociones', key: 'promociones' },
-    { label: 'Favoritos', key: 'favoritos' },
+    { label: 'Mi cuenta', key: 'cuenta', route: '/perfil'},
+    { label: 'Mis Compras', key: 'compras', route: '/perfil'},
+    { label: 'Promociones', key: 'promociones', route: '/perfil'},
+    { label: 'Favoritos', key: 'favoritos', route: '/perfil_favoritos' },
   ];
 
   const icons = [MiCuentaIcon, MisComprasIcon, PromocionesIcon, FavoritosIcon];
@@ -144,7 +146,14 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent';
               }}
-              onClick={() => onSelect && onSelect(btn.key)}
+              onClick={() => {
+                if (btn.route) {
+                  navigate(btn.route);
+                }
+                if (onSelect) {
+                  onSelect(btn.key);
+                }
+              }}
             >
               <div className="flex items-center gap-3">
                 {Icon && (

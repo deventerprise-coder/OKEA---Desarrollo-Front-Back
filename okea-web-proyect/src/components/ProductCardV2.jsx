@@ -21,32 +21,44 @@ const ProductCardV2 = ({
   onAdd,
   getCardStyle,
   getTextStyle,
+  forceLightText = false,
 }) => {
   const { isLight } = useTheme();
+  const useLightTextStyle = isLight || forceLightText;
 
   const getButtonStyle = () => {
     const baseStyle = {
       transition: "background-color 300ms ease, color 300ms ease",
     };
-    return added
-      ? { ...baseStyle, backgroundColor: isLight ? "#22c55e" : "#15803d", color: "#fff" }
-      : { ...baseStyle, backgroundColor: isLight ? "#DFE162" : "#F5F692", color: isLight ? "#484900" : "#251F67" };
-  };
 
+    // Nota: Aquí también aplico la lógica al color del texto del botón si no está agregado
+    if (added) {
+      return { ...baseStyle, backgroundColor: isLight ? "#22c55e" : "#15803d", color: "#fff" };
+    }
+
+    // Si no está agregado:
+    return {
+      ...baseStyle,
+      backgroundColor: useLightTextStyle ? "#DFE162" : "#F5F692",
+      // Aquí forzamos el color de letra del botón también
+      color: useLightTextStyle ? "#484900" : "#251F67"
+    };
+  };
   const getPriceStyle = () => ({
-    color: isLight ? "#EB5A45" : "#F5F692",
+    color: useLightTextStyle ? "#EB5A45" : "#F5F692",
     transition: "color 300ms ease",
   });
 
   const getTitleStyle = () => ({
-    color: isLight ? "#1D1B20" : "#E2E2E9",
+    color: useLightTextStyle ? "#1D1B20" : "#E2E2E9",
     transition: "color 300ms ease",
   });
 
   const getSubtitleStyle = () => ({
-    color: isLight ? "#1D1B20" : "#E5E2E1",
+    color: useLightTextStyle ? "#1D1B20" : "#E5E2E1",
     transition: "color 300ms ease",
   });
+  
 
   return (
     <div
@@ -54,7 +66,7 @@ const ProductCardV2 = ({
       style={getCardStyle()}
     >
       {/* Imagen */}
-      <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden">
+      <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden rounded-3xl">
         <div className="w-57 rounded-2xl ml-8 mr-5">
           <div
             className="absolute -bottom-60 h-160 w-150 bg-no-repeat bg-cover scale-25 -ml-52 mb-6 group-hover:scale-35 transition"

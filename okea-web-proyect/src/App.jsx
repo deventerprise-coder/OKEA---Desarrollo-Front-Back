@@ -26,6 +26,7 @@ import Vendidos from './pages/Home/Vendidos';
 import Ultimo from './pages/Home/Ultimo';
 import Cart from './pages/Checkout/Cart';
 import OfertasPage from './pages/Ofertas/OfertasPage';
+import Perfil_Favoritos from './pages/Dashboard/Usuarios/Perfil_Favoritos'
 
 const CategoriaslugMap = {
   'tecnologia': 'Tecnología',
@@ -142,6 +143,7 @@ function AppContent() {
             </>
           }
         />
+        <Route path="/perfil_favoritos" element={<Perfil_Favoritos />} />
       </Routes>
     </div>
   );

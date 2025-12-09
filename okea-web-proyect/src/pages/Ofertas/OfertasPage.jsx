@@ -199,7 +199,7 @@ export default function Oferta1() {
   ];
 
   const getCardStyle = () => ({
-    backgroundColor: isLight ? "#FFFFFF" : "#292272",
+    backgroundColor: isLight ? "#F4F3FA" : "#292272",
     borderRadius: "16px",
     border: isLight ? "1px solid rgba(231, 234, 255, 0.6)" : "1px solid rgba(255, 255, 255, 0.12)",
     transition: "all 300ms ease",
@@ -466,9 +466,9 @@ export default function Oferta1() {
           {premiumHighlights.map((item) => (
             <div
               key={item.id}
-              className={`${showcaseCardClass} col-span-full ${item.colSpan} flex items-center justify-center ${item.heightClass}`}
+              className={`${showcaseCardClass} col-span-full ${item.colSpan} flex items-center justify-center ${item.heightClass} relative overflow-hidden rounded-[16px]`}
             >
-              <img src={item.image} alt={item.alt} draggable="false" className="h-full w-full rounded-[16px] lg:hover:scale-105 lg:transition-transform lg:duration-500 lg:cursor-pointer" onClick={() => navigate(`/catalogo/tecnologia`)} />
+              <img src={item.image} alt={item.alt} draggable="false" className="h-full w-full lg:hover:scale-105 lg:transition-transform lg:duration-500 lg:cursor-pointer" onClick={() => navigate(`/catalogo/tecnologia`)} />
               {item.footer && (
                 <div
                   className={`absolute bottom-0 left-0 w-full rounded-b-[16px] px-6 py-4 ${isLight ? "bg-[#DFE162] text-[#000000]" : "bg-[#3A31A9] text-white"
