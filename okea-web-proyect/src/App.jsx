@@ -114,7 +114,6 @@ function AppContent() {
             element={
                 <>
               <PerfilPage />
-              <BloqueDeServicios />
               <Footer />
               </>
     }
