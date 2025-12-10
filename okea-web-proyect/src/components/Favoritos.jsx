@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import ProductCardV2 from '../../../components/ProductCardV2';
-import { SearchIconV2 } from "../../../assets/iconos/Icons";
-import Product1 from '../../../assets/imagenes/Usuario/Favoritos/Product1.png';
-import Product2 from '../../../assets/imagenes/Usuario/Favoritos/Product2.png';
-import Product3 from '../../../assets/imagenes/Usuario/Favoritos/Product3.png';
-import Product4 from '../../../assets/imagenes/Usuario/Favoritos/Producto4.png';
-import Product5 from '../../../assets/imagenes/Usuario/Favoritos/Product5.png';
-import Product6 from '../../../assets/imagenes/Usuario/Favoritos/Product6.png';
-import { useTheme } from "../../../components/ThemeContext";
+import ProductCardV2 from './ProductCardV2';
+import { SearchIconV2 } from "../assets/iconos/Icons";
+import Product1 from '../assets/imagenes/Usuario/Favoritos/Product1.png';
+import Product2 from '../assets/imagenes/Usuario/Favoritos/Product2.png';
+import Product3 from '../assets/imagenes/Usuario/Favoritos/Product3.png';
+import Product4 from '../assets/imagenes/Usuario/Favoritos/Producto4.png';
+import Product5 from '../assets/imagenes/Usuario/Favoritos/Product5.png';
+import Product6 from '../assets/imagenes/Usuario/Favoritos/Product6.png';
+import { useTheme } from "./ThemeContext";
 
 const products = [
     {

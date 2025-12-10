@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../../../components/Footer/Footer";
-import Favoritos from "./Favoritos";
+import Favoritos from "../../../components/Favoritos";
 import { useTheme } from "../../../components/ThemeContext";
 
 const Perfil_Favoritos = () => {

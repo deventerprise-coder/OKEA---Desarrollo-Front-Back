@@ -102,7 +102,7 @@ export default function Presentacion() {
                 <span className="font-medium md:font-bold text-sm md:text-base">Act fast before they're gone!</span>
               </p>
             </div>
-            <button className="text-2xl md:text-base mt-5 md:mt-14 py-3 md:py-1 px-8 md:px-15 border-1 border-white text-white rounded-full hover:cursor-pointer">
+          <button className="text-2xl md:text-base mt-5 md:mt-14 py-3 md:py-1 px-8 md:px-15 border-1 border-white text-white rounded-full hover:cursor-pointer">
               Buy now
             </button>
           </div>
