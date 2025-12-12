@@ -3,11 +3,12 @@ import {FavoritoCardIcon, EstrellaIcon, CarritoProductoIcon} from "../../assets/
 import { useNavigate } from 'react-router-dom';
 import { slugify } from "../../utils/slugify";
 
-export function ProductCard({id,imagen, imgHover, marca, modelo, descripcion, precio, precioSinDescuento, etiqueta, calificacion, categoria, isLight}) {
+export function ProductCard({id,imagen, imgHover, marca, modelo, descripcion, precio, precioSinDescuento, etiqueta, calificacion, categoria, colores, isLight}) {
   const [liked, setLiked] = useState(false);
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
   const [imageHover, setImageHover] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(0);
 
   const iconColor = added ? "#FFFFFF" : (hover ? "#FFFFFF" : "#484900");
   
@@ -70,9 +71,13 @@ export function ProductCard({id,imagen, imgHover, marca, modelo, descripcion, pr
         onMouseLeave={() => setImageHover(false)}
       >
         <img 
+          key={selectedColor}
           className={`w-full h-full ${categoria === "Calzado" || categoria === "Juguetes" || categoria === "Supermercado" ? "object-contain" : "object-cover"} transition-opacity duration-500 ease-in-out`}
-          src={imagen}
+          src={colores && colores.length > 0 ? colores[selectedColor].imagen : imagen}
           alt={modelo || "Producto"}
+          style={{
+            animation: 'fadeIn 500ms ease-in-out'
+          }}
         />
         {imgHover && (
           <img 
@@ -116,6 +121,30 @@ export function ProductCard({id,imagen, imgHover, marca, modelo, descripcion, pr
             fontWeight: 500,
           }}>S/{precioSinDescuento}</span>}
         </div>
+
+        {colores && colores.length > 0 && (
+          <div className="flex gap-2 mt-3">
+            {colores.map((colorData, index) => (
+              <button
+                key={index}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedColor(index);
+                }}
+                className={`w-[18px] h-[18px] rounded-full transition-all duration-300 cursor-pointer ${
+                  selectedColor === index 
+                    ? isLight ? 'border-[#333333CC] border-[1px]': 'border-white border-[1px]'
+                    : ''
+                }`}
+                style={{
+                  backgroundColor: colorData.hex,
+                }}
+                aria-label={`Color ${colorData.nombre || index + 1}`}
+                title={colorData.nombre}
+              />
+            ))}
+          </div>
+        )}
 
       </div>
 

@@ -72,13 +72,11 @@ const ProductCard = ({
       className="w-57.5 h-92 bg-white rounded-3xl overflow-hidden hover:border-[#EB5A45] hover:border-[0.5px] transition group"
       style={getCardStyle()}
     >
-      <div className="relative w-57.5 h-50 bg-[#EEEDF4] overflow-hidden rounded-3xl">
-        <div className="w-57 rounded-2xl ml-8 mr-5">
+      <div className="relative full h-50 bg-[#EEEDF4] overflow-hidden rounded-3xl">
           <div
-            className="absolute -bottom-60 h-160 w-150 bg-no-repeat bg-cover scale-25 -ml-56 mb-6 group-hover:scale-35 transition"
+            className="absolute -bottom-60 h-160 w-150 bg-no-repeat bg-cover bg-center scale-25 left-1/2 -translate-x-1/2 mb-6 group-hover:scale-35 transition"
             style={{ backgroundImage: `url(${image})` }}
           />
-        </div>
 
         {discount && (
         <div className="absolute top-3 rounded-3xl bg-[#EB5A45] w-15 h-6 font-popins text-sm text-white text-center ml-2 flex items-center justify-center">
@@ -105,7 +103,7 @@ const ProductCard = ({
         </div>
       </div>
 
-      <div className="info font-popins pt-4 px-3 z-10">
+      <div className="info font-popins pt-4 px-2 z-10">
         <div className="flex text-black justify-between">
           <h1 className="text-2xl" style={getTitleStyle()}>
             {label}

@@ -57,4 +57,13 @@ body {
   display: none; /* Chrome, Safari y Opera */
 }
 
+/* Animación suave para cambio de imagen de color */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 

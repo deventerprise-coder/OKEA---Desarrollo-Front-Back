@@ -2,6 +2,9 @@ import iphoneImg from "../assets/imagenes/Iphone.png";
 import iphoneImgBlanco from "../assets/imagenes/Categorias/productos/ModeloAppleBlanco.png";
 import iphoneImgVerde from "../assets/imagenes/Categorias/productos/modeloAppleVerde.png";
 import iphoneImgJade from "../assets/imagenes/Categorias/productos/modeloAppleJade.png";
+import iphoneImgRosa from "../assets/imagenes/Categorias/productos/iPhoneRosa.png";
+import iphoneImgAmarillo from "../assets/imagenes/Categorias/productos/iPhoneAmarillo.png";
+import iphoneImgPlata from "../assets/imagenes/Categorias/productos/iPhonePlata.png";
 import modeloAppleHover from "../assets/imagenes/Categorias/productos/modeloAppleHover.png";
 import modeloAppleHoverBlanco from "../assets/imagenes/Categorias/productos/modeloAppleHoverBlanco.png";
 import modeloAppleHoverVerde from "../assets/imagenes/Categorias/productos/modeloAppleHoverVerde.png";
@@ -282,51 +285,67 @@ export const productsTecnologia = [{
               },
           {
                   id: 17,
-              imagen: iphoneImg,
-              imgHover: modeloAppleHover,
+              imagen: iphoneImgAmarillo,
               marca: "Marca A",
               modelo: "Modelo X",  
               descripcion: "Descripción del producto 1", 
               precio: "100", 
               precioSinDescuento: "120",
               etiqueta: "-20 %",
-              calificacion: "4.5"
+              calificacion: "4.5",
+              colores: [
+                { hex: "#E4E666", nombre: "Amarillo", imagen: iphoneImgAmarillo },
+                { hex: "#A6A6A6", nombre: "Plateado", imagen: iphoneImgPlata },
+                { hex: "#FAAAEF", nombre: "Rosa", imagen: iphoneImgRosa }
+              ]
           },
           {
               id: 18,
-              imagen: iphoneImgBlanco,
-              imgHover: modeloAppleHoverBlanco,
+              imagen: iphoneImgRosa,
               marca: "Marca B",
               modelo: "Modelo Y",
               descripcion: "Descripción del producto 2",
               precio: "100", 
               precioSinDescuento: "",
               etiqueta: "-20 %",
-              calificacion: "4.5"
+              calificacion: "4.5",
+              colores: [
+                { hex: "#A6A6A6", nombre: "Plateado", imagen: iphoneImgPlata },
+                { hex: "#E4E666", nombre: "Amarillo", imagen: iphoneImgAmarillo },
+                { hex: "#FAAAEF", nombre: "Rosa", imagen: iphoneImgRosa }
+              ]
           },
           {
                   id: 19,
-                  imagen: iphoneImgJade,
-                  imgHover: modeloAppleHoverJade,
+                  imagen: iphoneImgPlata,
                   marca: "Marca B",
                   modelo: "Modelo Y",
                   descripcion: "Descripción del producto 2",
                   precio: "100", 
                   precioSinDescuento: "",
                   etiqueta: "-20 %",
-                  calificacion: "4.5"
+                  calificacion: "4.5",
+                  colores: [
+                    { hex: "#FAAAEF", nombre: "Rosa", imagen: iphoneImgRosa },
+                    { hex: "#E4E666", nombre: "Amarillo", imagen: iphoneImgAmarillo },
+                    { hex: "#A6A6A6", nombre: "Plateado", imagen: iphoneImgPlata }
+              ]
               },
           {
                   id: 20,
-                  imagen: iphoneImgVerde,
-                  imgHover: modeloAppleHoverVerde,
+                  imagen: iphoneImgAmarillo,
                   marca: "Marca B",
                   modelo: "Modelo Y",
                   descripcion: "Descripción del producto 2",
                   precio: "100", 
                   precioSinDescuento: "",
                   etiqueta: "-20 %",
-                  calificacion: "4.5"
+                  calificacion: "4.5",
+                  colores: [
+                { hex: "#E4E666", nombre: "Amarillo", imagen: iphoneImgAmarillo },
+                { hex: "#A6A6A6", nombre: "Plateado", imagen: iphoneImgPlata },
+                { hex: "#FAAAEF", nombre: "Rosa", imagen: iphoneImgRosa }
+              ]
               },
           {
                    id: 21,
@@ -2713,29 +2732,41 @@ export const productsModaHombre = [
         precio: "120", 
         precioSinDescuento: "150",
         etiqueta: "-20 %",
-        calificacion: "4.7"
+        calificacion: "4.7",
+        colores: [
+          { hex: "#A6A6A6", nombre: "Plomo", imagen: ModaH1 }
+        ]
     },
     {
       id: 2,
-      imagen: ModaH2,
+      imagen: ModaH3,
       marca: "Adidas",
       modelo: "Trefoil",  
       descripcion: "Polo deportivo de algodón", 
       precio: "45", 
       precioSinDescuento: "",
       etiqueta: "New",
-      calificacion: "4.5"
+      calificacion: "4.5",
+      colores: [
+          { hex: "#28723B99", nombre: "Verde", imagen: ModaH3 },
+          { hex: "#DBDB8E", nombre: "Amarillo", imagen: iphoneImgAmarillo },
+          { hex: "#AE7EA8", nombre: "Rosa", imagen: iphoneImgRosa },
+          { hex: "#1F3A58", nombre: "Azul", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 3,
-      imagen: ModaH3,
+      imagen: ModaH2,
       marca: "Nike",
       modelo: "Dri-FIT",  
       descripcion: "Camiseta deportiva transpirable", 
       precio: "35", 
       precioSinDescuento: "40",
       etiqueta: "-13 %",
-      calificacion: "4.6"
+      calificacion: "4.6",
+      colores: [
+          { hex: "#385BAA", nombre: "Azul", imagen: ModaH2 },
+        ]
     },
     {
       id: 4,
@@ -2746,7 +2777,11 @@ export const productsModaHombre = [
       precio: "60", 
       precioSinDescuento: "",
       etiqueta: "Standard",
-      calificacion: "4.4"
+      calificacion: "4.4",
+      colores: [
+          { hex: "#251F67", nombre: "Azul", imagen: ModaH4 },
+          { hex: "#28723B99", nombre: "Verde", imagen: iphoneImgAmarillo },
+        ]
     },
     {
         id: 1,
@@ -2757,29 +2792,41 @@ export const productsModaHombre = [
         precio: "120", 
         precioSinDescuento: "150",
         etiqueta: "-20 %",
-        calificacion: "4.7"
+        calificacion: "4.7",
+        colores: [
+          { hex: "#A6A6A6", nombre: "Plomo", imagen: ModaH1 }
+        ]
     },
     {
       id: 2,
-      imagen: ModaH2,
+      imagen: ModaH3,
       marca: "Adidas",
       modelo: "Trefoil",  
       descripcion: "Polo deportivo de algodón", 
       precio: "45", 
       precioSinDescuento: "",
       etiqueta: "New",
-      calificacion: "4.5"
+      calificacion: "4.5",
+      colores: [
+          { hex: "#28723B99", nombre: "Verde", imagen: ModaH3 },
+          { hex: "#DBDB8E", nombre: "Amarillo", imagen: iphoneImgAmarillo },
+          { hex: "#AE7EA8", nombre: "Rosa", imagen: iphoneImgRosa },
+          { hex: "#1F3A58", nombre: "Azul", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 3,
-      imagen: ModaH3,
+      imagen: ModaH2,
       marca: "Nike",
       modelo: "Dri-FIT",  
       descripcion: "Camiseta deportiva transpirable", 
       precio: "35", 
       precioSinDescuento: "40",
       etiqueta: "-13 %",
-      calificacion: "4.6"
+      calificacion: "4.6",
+      colores: [
+          { hex: "#385BAA", nombre: "Azul", imagen: ModaH2 },
+        ]
     },
     {
       id: 4,
@@ -2790,7 +2837,11 @@ export const productsModaHombre = [
       precio: "60", 
       precioSinDescuento: "",
       etiqueta: "Standard",
-      calificacion: "4.4"
+      calificacion: "4.4",
+      colores: [
+          { hex: "#251F67", nombre: "Azul", imagen: ModaH4 },
+          { hex: "#28723B99", nombre: "Verde", imagen: iphoneImgAmarillo },
+        ]
     },
     {
         id: 1,
@@ -2801,29 +2852,41 @@ export const productsModaHombre = [
         precio: "120", 
         precioSinDescuento: "150",
         etiqueta: "-20 %",
-        calificacion: "4.7"
+        calificacion: "4.7",
+        colores: [
+          { hex: "#A6A6A6", nombre: "Plomo", imagen: ModaH1 }
+        ]
     },
     {
       id: 2,
-      imagen: ModaH2,
+      imagen: ModaH3,
       marca: "Adidas",
       modelo: "Trefoil",  
       descripcion: "Polo deportivo de algodón", 
       precio: "45", 
       precioSinDescuento: "",
       etiqueta: "New",
-      calificacion: "4.5"
+      calificacion: "4.5",
+      colores: [
+          { hex: "#28723B99", nombre: "Verde", imagen: ModaH3 },
+          { hex: "#DBDB8E", nombre: "Amarillo", imagen: iphoneImgAmarillo },
+          { hex: "#AE7EA8", nombre: "Rosa", imagen: iphoneImgRosa },
+          { hex: "#1F3A58", nombre: "Azul", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 3,
-      imagen: ModaH3,
+      imagen: ModaH2,
       marca: "Nike",
       modelo: "Dri-FIT",  
       descripcion: "Camiseta deportiva transpirable", 
       precio: "35", 
       precioSinDescuento: "40",
       etiqueta: "-13 %",
-      calificacion: "4.6"
+      calificacion: "4.6",
+      colores: [
+          { hex: "#385BAA", nombre: "Azul", imagen: ModaH2 },
+        ]
     },
     {
       id: 4,
@@ -2834,7 +2897,11 @@ export const productsModaHombre = [
       precio: "60", 
       precioSinDescuento: "",
       etiqueta: "Standard",
-      calificacion: "4.4"
+      calificacion: "4.4",
+      colores: [
+          { hex: "#251F67", nombre: "Azul", imagen: ModaH4 },
+          { hex: "#28723B99", nombre: "Verde", imagen: iphoneImgAmarillo },
+        ]
     },
     {
         id: 1,
@@ -2845,29 +2912,41 @@ export const productsModaHombre = [
         precio: "120", 
         precioSinDescuento: "150",
         etiqueta: "-20 %",
-        calificacion: "4.7"
+        calificacion: "4.7",
+        colores: [
+          { hex: "#A6A6A6", nombre: "Plomo", imagen: ModaH1 }
+        ]
     },
     {
       id: 2,
-      imagen: ModaH2,
+      imagen: ModaH3,
       marca: "Adidas",
       modelo: "Trefoil",  
       descripcion: "Polo deportivo de algodón", 
       precio: "45", 
       precioSinDescuento: "",
       etiqueta: "New",
-      calificacion: "4.5"
+      calificacion: "4.5",
+      colores: [
+          { hex: "#28723B99", nombre: "Verde", imagen: ModaH3 },
+          { hex: "#DBDB8E", nombre: "Amarillo", imagen: iphoneImgAmarillo },
+          { hex: "#AE7EA8", nombre: "Rosa", imagen: iphoneImgRosa },
+          { hex: "#1F3A58", nombre: "Azul", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 3,
-      imagen: ModaH3,
+      imagen: ModaH2,
       marca: "Nike",
       modelo: "Dri-FIT",  
       descripcion: "Camiseta deportiva transpirable", 
       precio: "35", 
       precioSinDescuento: "40",
       etiqueta: "-13 %",
-      calificacion: "4.6"
+      calificacion: "4.6",
+      colores: [
+          { hex: "#385BAA", nombre: "Azul", imagen: ModaH2 },
+        ]
     },
     {
       id: 4,
@@ -2878,7 +2957,11 @@ export const productsModaHombre = [
       precio: "60", 
       precioSinDescuento: "",
       etiqueta: "Standard",
-      calificacion: "4.4"
+      calificacion: "4.4",
+      colores: [
+          { hex: "#251F67", nombre: "Azul", imagen: ModaH4 },
+          { hex: "#28723B99", nombre: "Verde", imagen: iphoneImgAmarillo },
+        ]
     },
     {
         id: 1,
@@ -2889,29 +2972,41 @@ export const productsModaHombre = [
         precio: "120", 
         precioSinDescuento: "150",
         etiqueta: "-20 %",
-        calificacion: "4.7"
+        calificacion: "4.7",
+        colores: [
+          { hex: "#A6A6A6", nombre: "Plomo", imagen: ModaH1 }
+        ]
     },
     {
       id: 2,
-      imagen: ModaH2,
+      imagen: ModaH3,
       marca: "Adidas",
       modelo: "Trefoil",  
       descripcion: "Polo deportivo de algodón", 
       precio: "45", 
       precioSinDescuento: "",
       etiqueta: "New",
-      calificacion: "4.5"
+      calificacion: "4.5",
+      colores: [
+          { hex: "#28723B99", nombre: "Verde", imagen: ModaH3 },
+          { hex: "#DBDB8E", nombre: "Amarillo", imagen: iphoneImgAmarillo },
+          { hex: "#AE7EA8", nombre: "Rosa", imagen: iphoneImgRosa },
+          { hex: "#1F3A58", nombre: "Azul", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 3,
-      imagen: ModaH3,
+      imagen: ModaH2,
       marca: "Nike",
       modelo: "Dri-FIT",  
       descripcion: "Camiseta deportiva transpirable", 
       precio: "35", 
       precioSinDescuento: "40",
       etiqueta: "-13 %",
-      calificacion: "4.6"
+      calificacion: "4.6",
+      colores: [
+          { hex: "#385BAA", nombre: "Azul", imagen: ModaH2 },
+        ]
     },
     {
       id: 4,
@@ -2922,7 +3017,11 @@ export const productsModaHombre = [
       precio: "60", 
       precioSinDescuento: "",
       etiqueta: "Standard",
-      calificacion: "4.4"
+      calificacion: "4.4",
+      colores: [
+          { hex: "#251F67", nombre: "Azul", imagen: ModaH4 },
+          { hex: "#28723B99", nombre: "Verde", imagen: iphoneImgAmarillo },
+        ]
     },
 ];
 
@@ -2936,7 +3035,10 @@ export const productsModaMujer = [
         precio: "80", 
         precioSinDescuento: "100",
         etiqueta: "-20 %",
-        calificacion: "4.6"
+        calificacion: "4.6",
+        colores: [
+          { hex: "#F59082", nombre: "Rojo", imagen: ModaMProd1 },
+        ]
     },
     {
       id: 2,
@@ -2947,7 +3049,13 @@ export const productsModaMujer = [
       precio: "65", 
       precioSinDescuento: "",
       etiqueta: "New",
-      calificacion: "4.5"
+      calificacion: "4.5",
+      colores: [
+          { hex: "#333333CC", nombre: "Plomo", imagen: PoloAcces },
+          { hex: "#AE7EA8", nombre: "Morado", imagen: iphoneImgAmarillo },
+          { hex: "#33333333", nombre: "Negro", imagen: iphoneImgRosa },
+          { hex: "#EE4F4F", nombre: "Rojo", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 3,
@@ -2958,7 +3066,13 @@ export const productsModaMujer = [
       precio: "70", 
       precioSinDescuento: "85",
       etiqueta: "-18 %",
-      calificacion: "4.4"
+      calificacion: "4.4",
+      colores: [
+          { hex: "#33333333", nombre: "Pomo", imagen: ModaMProd3 },
+          { hex: "#251F67", nombre: "Azul", imagen: iphoneImgAmarillo },
+          { hex: "#AE7EA8", nombre: "Morado", imagen: iphoneImgRosa },
+          { hex: "#EE4F4F", nombre: "Rojo", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 4,
@@ -2969,7 +3083,12 @@ export const productsModaMujer = [
       precio: "120", 
       precioSinDescuento: "",
       etiqueta: "Standard",
-      calificacion: "4.7"
+      calificacion: "4.7",
+      colores: [
+          { hex: "#333333CC", nombre: "Plomo", imagen: ModaMProd4 },
+          { hex: "#251F67", nombre: "Azul", imagen: iphoneImgAmarillo },
+          { hex: "#33333333", nombre: "Plomo claro", imagen: iphoneImgRosa },
+        ]
     },
     {
         id: 1,
@@ -2980,7 +3099,10 @@ export const productsModaMujer = [
         precio: "80", 
         precioSinDescuento: "100",
         etiqueta: "-20 %",
-        calificacion: "4.6"
+        calificacion: "4.6",
+        colores: [
+          { hex: "#F59082", nombre: "Rojo", imagen: ModaMProd1 },
+        ]
     },
     {
       id: 2,
@@ -2991,7 +3113,13 @@ export const productsModaMujer = [
       precio: "65", 
       precioSinDescuento: "",
       etiqueta: "New",
-      calificacion: "4.5"
+      calificacion: "4.5",
+      colores: [
+          { hex: "#333333CC", nombre: "Plomo", imagen: PoloAcces },
+          { hex: "#AE7EA8", nombre: "Morado", imagen: iphoneImgAmarillo },
+          { hex: "#33333333", nombre: "Negro", imagen: iphoneImgRosa },
+          { hex: "#EE4F4F", nombre: "Rojo", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 3,
@@ -3002,7 +3130,13 @@ export const productsModaMujer = [
       precio: "70", 
       precioSinDescuento: "85",
       etiqueta: "-18 %",
-      calificacion: "4.4"
+      calificacion: "4.4",
+      colores: [
+          { hex: "#33333333", nombre: "Pomo", imagen: ModaMProd3 },
+          { hex: "#251F67", nombre: "Azul", imagen: iphoneImgAmarillo },
+          { hex: "#AE7EA8", nombre: "Morado", imagen: iphoneImgRosa },
+          { hex: "#EE4F4F", nombre: "Rojo", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 4,
@@ -3013,7 +3147,12 @@ export const productsModaMujer = [
       precio: "120", 
       precioSinDescuento: "",
       etiqueta: "Standard",
-      calificacion: "4.7"
+      calificacion: "4.7",
+      colores: [
+          { hex: "#333333CC", nombre: "Plomo", imagen: ModaMProd4 },
+          { hex: "#251F67", nombre: "Azul", imagen: iphoneImgAmarillo },
+          { hex: "#33333333", nombre: "Plomo claro", imagen: iphoneImgRosa },
+        ]
     },
     {
         id: 1,
@@ -3024,7 +3163,10 @@ export const productsModaMujer = [
         precio: "80", 
         precioSinDescuento: "100",
         etiqueta: "-20 %",
-        calificacion: "4.6"
+        calificacion: "4.6",
+        colores: [
+          { hex: "#F59082", nombre: "Rojo", imagen: ModaMProd1 },
+        ]
     },
     {
       id: 2,
@@ -3035,7 +3177,13 @@ export const productsModaMujer = [
       precio: "65", 
       precioSinDescuento: "",
       etiqueta: "New",
-      calificacion: "4.5"
+      calificacion: "4.5",
+      colores: [
+          { hex: "#333333CC", nombre: "Plomo", imagen: PoloAcces },
+          { hex: "#AE7EA8", nombre: "Morado", imagen: iphoneImgAmarillo },
+          { hex: "#33333333", nombre: "Negro", imagen: iphoneImgRosa },
+          { hex: "#EE4F4F", nombre: "Rojo", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 3,
@@ -3046,7 +3194,13 @@ export const productsModaMujer = [
       precio: "70", 
       precioSinDescuento: "85",
       etiqueta: "-18 %",
-      calificacion: "4.4"
+      calificacion: "4.4",
+      colores: [
+          { hex: "#33333333", nombre: "Pomo", imagen: ModaMProd3 },
+          { hex: "#251F67", nombre: "Azul", imagen: iphoneImgAmarillo },
+          { hex: "#AE7EA8", nombre: "Morado", imagen: iphoneImgRosa },
+          { hex: "#EE4F4F", nombre: "Rojo", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 4,
@@ -3057,7 +3211,12 @@ export const productsModaMujer = [
       precio: "120", 
       precioSinDescuento: "",
       etiqueta: "Standard",
-      calificacion: "4.7"
+      calificacion: "4.7",
+      colores: [
+          { hex: "#333333CC", nombre: "Plomo", imagen: ModaMProd4 },
+          { hex: "#251F67", nombre: "Azul", imagen: iphoneImgAmarillo },
+          { hex: "#33333333", nombre: "Plomo claro", imagen: iphoneImgRosa },
+        ]
     },
     {
         id: 1,
@@ -3068,7 +3227,10 @@ export const productsModaMujer = [
         precio: "80", 
         precioSinDescuento: "100",
         etiqueta: "-20 %",
-        calificacion: "4.6"
+        calificacion: "4.6",
+        colores: [
+          { hex: "#F59082", nombre: "Rojo", imagen: ModaMProd1 },
+        ]
     },
     {
       id: 2,
@@ -3079,7 +3241,13 @@ export const productsModaMujer = [
       precio: "65", 
       precioSinDescuento: "",
       etiqueta: "New",
-      calificacion: "4.5"
+      calificacion: "4.5",
+      colores: [
+          { hex: "#333333CC", nombre: "Plomo", imagen: PoloAcces },
+          { hex: "#AE7EA8", nombre: "Morado", imagen: iphoneImgAmarillo },
+          { hex: "#33333333", nombre: "Negro", imagen: iphoneImgRosa },
+          { hex: "#EE4F4F", nombre: "Rojo", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 3,
@@ -3090,7 +3258,13 @@ export const productsModaMujer = [
       precio: "70", 
       precioSinDescuento: "85",
       etiqueta: "-18 %",
-      calificacion: "4.4"
+      calificacion: "4.4",
+      colores: [
+          { hex: "#33333333", nombre: "Pomo", imagen: ModaMProd3 },
+          { hex: "#251F67", nombre: "Azul", imagen: iphoneImgAmarillo },
+          { hex: "#AE7EA8", nombre: "Morado", imagen: iphoneImgRosa },
+          { hex: "#EE4F4F", nombre: "Rojo", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 4,
@@ -3101,7 +3275,12 @@ export const productsModaMujer = [
       precio: "120", 
       precioSinDescuento: "",
       etiqueta: "Standard",
-      calificacion: "4.7"
+      calificacion: "4.7",
+      colores: [
+          { hex: "#333333CC", nombre: "Plomo", imagen: ModaMProd4 },
+          { hex: "#251F67", nombre: "Azul", imagen: iphoneImgAmarillo },
+          { hex: "#33333333", nombre: "Plomo claro", imagen: iphoneImgRosa },
+        ]
     },
     {
         id: 1,
@@ -3112,7 +3291,10 @@ export const productsModaMujer = [
         precio: "80", 
         precioSinDescuento: "100",
         etiqueta: "-20 %",
-        calificacion: "4.6"
+        calificacion: "4.6",
+        colores: [
+          { hex: "#F59082", nombre: "Rojo", imagen: ModaMProd1 },
+        ]
     },
     {
       id: 2,
@@ -3123,7 +3305,13 @@ export const productsModaMujer = [
       precio: "65", 
       precioSinDescuento: "",
       etiqueta: "New",
-      calificacion: "4.5"
+      calificacion: "4.5",
+      colores: [
+          { hex: "#333333CC", nombre: "Plomo", imagen: PoloAcces },
+          { hex: "#AE7EA8", nombre: "Morado", imagen: iphoneImgAmarillo },
+          { hex: "#33333333", nombre: "Negro", imagen: iphoneImgRosa },
+          { hex: "#EE4F4F", nombre: "Rojo", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 3,
@@ -3134,7 +3322,13 @@ export const productsModaMujer = [
       precio: "70", 
       precioSinDescuento: "85",
       etiqueta: "-18 %",
-      calificacion: "4.4"
+      calificacion: "4.4",
+      colores: [
+          { hex: "#33333333", nombre: "Pomo", imagen: ModaMProd3 },
+          { hex: "#251F67", nombre: "Azul", imagen: iphoneImgAmarillo },
+          { hex: "#AE7EA8", nombre: "Morado", imagen: iphoneImgRosa },
+          { hex: "#EE4F4F", nombre: "Rojo", imagen: iphoneImgRosa }
+        ]
     },
     {
       id: 4,
@@ -3145,6 +3339,11 @@ export const productsModaMujer = [
       precio: "120", 
       precioSinDescuento: "",
       etiqueta: "Standard",
-      calificacion: "4.7"
+      calificacion: "4.7",
+      colores: [
+          { hex: "#333333CC", nombre: "Plomo", imagen: ModaMProd4 },
+          { hex: "#251F67", nombre: "Azul", imagen: iphoneImgAmarillo },
+          { hex: "#33333333", nombre: "Plomo claro", imagen: iphoneImgRosa },
+        ]
     },
 ];

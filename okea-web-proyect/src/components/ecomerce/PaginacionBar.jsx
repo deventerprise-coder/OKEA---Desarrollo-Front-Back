@@ -27,7 +27,7 @@ export default function CustomSelect({isFocused, isLight}) {
       </div>
       {isOpen && (
         <ul
-          className="absolute z-10 mt-1 w-[230px] h-[161px] bg-[#FFFFFFCC] border border-gray-300 rounded-lg shadow-lg 
+          className="absolute z-50 mt-1 w-[230px] h-[161px] bg-[#FFFFFFCC] border border-gray-300 rounded-lg shadow-lg 
                      max-h-60 overflow-auto left-1/2 -translate-x-1/2 backdrop-blur-[30px] py-2"
         >
           {sortOptions.map((option) => (
