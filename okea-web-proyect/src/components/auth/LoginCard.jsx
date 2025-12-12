@@ -6,7 +6,7 @@ import githubIcon from "../../assets/imagenes/login/github.png";
 import facebookIcon from "../../assets/imagenes/login/facebook.png";
 import { EyeShowIcon, EyeHideIcon } from "../../assets/iconos/Icons";
 
-export default function LoginCard({ onForgotPassword }) {
+export default function LoginCard({ onForgotPassword, onMockLogin }) {
   const [activeTab, setActiveTab] = useState("login");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -53,6 +53,11 @@ export default function LoginCard({ onForgotPassword }) {
             className="flex flex-col gap-4"
             onSubmit={(e) => {
               e.preventDefault();
+              if (onMockLogin) {
+                const email = e.target.elements.email?.value || "";
+                const nameFromUser = email.split("@")[0] || "";
+                onMockLogin({ email, name: nameFromUser });
+              }
             }}
           >
             <div className="flex flex-col gap-1">
@@ -60,7 +65,8 @@ export default function LoginCard({ onForgotPassword }) {
                 Correo electrónico
               </label>
               <input
-                type="email"
+                name="email"
+                type="text"
                 placeholder="username@gmail.com"
                 className="h-10 w-full rounded-full bg-[rgba(242,244,255,0.9)] px-4 text-[13px] text-[#4B5563] border border-transparent focus:outline-none focus:border-[#3056D3]"
               />
@@ -70,6 +76,7 @@ export default function LoginCard({ onForgotPassword }) {
               <label className="text-[12px] text-[#4B5563]">Contraseña</label>
               <div className="relative">
                 <input
+                  name="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Contraseña"
                   className="h-10 w-full rounded-full bg-[rgba(242,244,255,0.9)] px-4 pr-10 text-[13px] text-[#4B5563] border border-transparent focus:outline-none focus:border-[#3056D3]"

@@ -23,6 +23,7 @@ export default function ProfileSidebar({
   onSelect,
   onEdit,
   isEditing,
+  userName,
 }) {
   return (
     <aside className="w-full max-w-[300px] flex flex-col gap-6">
@@ -31,7 +32,7 @@ export default function ProfileSidebar({
           <div className="w-32 h-32 rounded-full overflow-hidden bg-[#E6ECFF] flex items-center justify-center">
             <img
               src={perfilImg}
-              alt="Ruben Boyer"
+              alt="Usuario Okea"
               className="w-full h-full object-cover"
             />
           </div>
@@ -41,7 +42,7 @@ export default function ProfileSidebar({
               BIENVENIDO DE VUELTA,
             </p>
             <p className="mt-1 text-[18px] font-semibold text-[#1E3A8A]">
-              RUBEN BOYER
+              {userName || "Usuario OKEA"}
             </p>
           </div>
 

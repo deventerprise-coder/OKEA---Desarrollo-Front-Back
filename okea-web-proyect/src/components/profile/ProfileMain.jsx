@@ -45,17 +45,23 @@ function PasswordField({ placeholder, enabled }) {
   );
 }
 
-export default function ProfileMain({ activeSection, isEditing }) {
+export default function ProfileMain({ activeSection, isEditing, user, onUpdateName }) {
   const personalFields = [
-    { label: "Nombres", value: "Ruben", icon: LocationProfileIcon },
-    { label: "Distrito", value: "Surco", icon: LocationProfileIcon },
-    { label: "Número de teléfono", value: "+51 999333444", icon: PhoneIcon },
-    { label: "Provincia", value: "Lima", icon: ArchiveIcon },
-    { label: "Apellidos", value: "Boyer", icon: LocationProfileIcon },
-    { label: "Email", value: "Ruben.Boyer@gmail.com", icon: MailIcon },
-    { label: "País", value: "Perú", icon: GlobeLocationIcon },
-    { label: "Provincia", value: "15001", icon: ArchiveIcon },
+    { key: "name", label: "Nombres", value: user?.name || "Fabricio", icon: LocationProfileIcon },
+    { key: "district", label: "Distrito", value: "Surco", icon: LocationProfileIcon },
+    { key: "phone", label: "Número de teléfono", value: "+51 912404450", icon: PhoneIcon },
+    { key: "province", label: "Provincia", value: "Lima", icon: ArchiveIcon },
+    { key: "lastName", label: "Apellidos", value: "Aylas", icon: LocationProfileIcon },
+    { key: "email", label: "Email", value: user?.email || "aylasmorenof@gmail.com", icon: MailIcon },
+    { key: "country", label: "País", value: "Perú", icon: GlobeLocationIcon },
+    { key: "postal", label: "Provincia", value: "15001", icon: ArchiveIcon },
   ];
+
+  const handleFieldBlur = (fieldKey, value) => {
+    if (fieldKey === "name" && onUpdateName) {
+      onUpdateName(value);
+    }
+  };
 
   return (
     <section className="flex-1 flex flex-col gap-6">
@@ -82,6 +88,7 @@ export default function ProfileMain({ activeSection, isEditing }) {
                   <input
                     type="text"
                     defaultValue={item.value}
+                    onBlur={(e) => handleFieldBlur(item.key, e.target.value)}
                     className="h-10 w-full rounded-full bg-[#F2F4FF] px-4 text-[13px] text-[#273244] border border-transparent focus:outline-none focus:border-[#3056D3]"
                   />
                 ) : (
@@ -132,8 +139,7 @@ export default function ProfileMain({ activeSection, isEditing }) {
             Mis Compras
           </h3>
           <div className="h-32 sm:h-40 flex items-center justify-center text-xs text-gray-500">
-            Aquí irá el gráfico de compras 
-            
+            Aquí irá el gráfico de compras
           </div>
         </div>
 
@@ -142,9 +148,7 @@ export default function ProfileMain({ activeSection, isEditing }) {
             Pedidos Realizados Mes de Julio
           </h3>
           <div className="h-32 sm:h-40 flex flex-col items-center justify-center text-xs text-gray-500 gap-3">
-    Aquí irá el resumen de pedidos realizados 
-
-
+            Aquí irá el resumen de pedidos realizados
           </div>
         </div>
       </div>

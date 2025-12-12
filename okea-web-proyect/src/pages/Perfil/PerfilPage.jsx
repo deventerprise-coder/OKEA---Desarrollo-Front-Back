@@ -3,7 +3,7 @@ import { useState } from "react";
 import ProfileSidebar from "../../components/profile/ProfileSidebar";
 import ProfileMain from "../../components/profile/ProfileMain";
 
-export default function PerfilPage() {
+export default function PerfilPage({ user, isLoggedIn, onLogout, onUpdateName }) {
   const [activeSection, setActiveSection] = useState("profile");
   const [isEditing, setIsEditing] = useState(false);
 
@@ -13,13 +13,22 @@ export default function PerfilPage() {
         <ProfileSidebar
           activeKey={activeSection}
           onSelect={(key) => {
-            if (key === "logout") return;
+            if (key === "logout") {
+              onLogout && onLogout();
+              return;
+            }
             setActiveSection(key);
           }}
           onEdit={() => setIsEditing((prev) => !prev)}
           isEditing={isEditing}
+          userName={user?.name}
         />
-        <ProfileMain activeSection={activeSection} isEditing={isEditing} />
+        <ProfileMain
+          activeSection={activeSection}
+          isEditing={isEditing}
+          user={user}
+          onUpdateName={onUpdateName}
+        />
       </div>
     </div>
   );
