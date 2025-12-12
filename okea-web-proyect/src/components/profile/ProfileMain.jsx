@@ -1,0 +1,153 @@
+// src/components/profile/ProfileMain.jsx
+import { useState } from "react";
+import {
+  EditIcon,
+  SaveIcon,
+  EyeShowIcon,
+  EyeHideIcon,
+  PhoneIcon,
+  ArchiveIcon,
+  MailIcon,
+  GlobeLocationIcon,
+  LocationProfileIcon,
+} from "../../assets/iconos/Icons";
+
+function PasswordField({ placeholder, enabled }) {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <div className="relative">
+      <input
+        type={visible ? "text" : "password"}
+        placeholder={placeholder}
+        disabled={!enabled}
+        className={`w-full h-10 rounded-full px-4 pr-10 text-[13px] border border-transparent focus:outline-none ${
+          enabled
+            ? "bg-[#F2F4FF] text-[#273244] focus:border-[#3056D3]"
+            : "bg-[#EEF1FF] text-[#A3A7C0] cursor-not-allowed"
+        }`}
+      />
+      <button
+        type="button"
+        disabled={!enabled}
+        onClick={() => enabled && setVisible((v) => !v)}
+        className={`absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center ${
+          enabled ? "text-[#6B7280]" : "text-[#C5C8DD] cursor-not-allowed"
+        }`}
+      >
+        {visible ? (
+          <EyeHideIcon color={enabled ? "#6B7280" : "#C5C8DD"} />
+        ) : (
+          <EyeShowIcon color={enabled ? "#6B7280" : "#C5C8DD"} />
+        )}
+      </button>
+    </div>
+  );
+}
+
+export default function ProfileMain({ activeSection, isEditing }) {
+  const personalFields = [
+    { label: "Nombres", value: "Ruben", icon: LocationProfileIcon },
+    { label: "Distrito", value: "Surco", icon: LocationProfileIcon },
+    { label: "Número de teléfono", value: "+51 999333444", icon: PhoneIcon },
+    { label: "Provincia", value: "Lima", icon: ArchiveIcon },
+    { label: "Apellidos", value: "Boyer", icon: LocationProfileIcon },
+    { label: "Email", value: "Ruben.Boyer@gmail.com", icon: MailIcon },
+    { label: "País", value: "Perú", icon: GlobeLocationIcon },
+    { label: "Provincia", value: "15001", icon: ArchiveIcon },
+  ];
+
+  return (
+    <section className="flex-1 flex flex-col gap-6">
+      <div className="bg-white rounded-[32px] shadow-lg p-4 sm:p-6 lg:p-8">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-[20px] sm:text-[22px] font-semibold text-[#1E3A8A]">
+            Datos Personales
+          </h2>
+          <button className="w-8 h-8 rounded-full bg-transparent flex items-center justify-center text-[#1E3A8A]">
+            {isEditing ? <SaveIcon color="#1E3A8A" /> : <EditIcon color="#1E3A8A" />}
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          {personalFields.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div key={idx} className="flex flex-col gap-1 min-w-0">
+                <span className="text-[12px] text-[#6B7280] flex items-center gap-2 whitespace-nowrap">
+                  {Icon && <Icon color="#6B7280" />}
+                  {item.label}
+                </span>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    defaultValue={item.value}
+                    className="h-10 w-full rounded-full bg-[#F2F4FF] px-4 text-[13px] text-[#273244] border border-transparent focus:outline-none focus:border-[#3056D3]"
+                  />
+                ) : (
+                  <div className="h-10 rounded-full bg-[#F2F4FF] px-4 flex items-center text-[13px] text-[#273244] overflow-hidden text-ellipsis whitespace-nowrap">
+                    {item.value}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="bg-white rounded-[24px] shadow-lg p-4 sm:p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-[16px] font-semibold text-[#1E3A8A]">
+              Cambiar Contraseña
+            </h3>
+            <button className="w-6 h-6 flex items-center justify-center text-[#1E3A8A]">
+              {isEditing ? <SaveIcon color="#1E3A8A" /> : <EditIcon color="#1E3A8A" />}
+            </button>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <PasswordField placeholder="Contraseña actual" enabled={isEditing} />
+            <PasswordField placeholder="8+ caracteres" enabled={isEditing} />
+            <PasswordField
+              placeholder="Confirmar contraseña nueva"
+              enabled={isEditing}
+            />
+          </div>
+
+          <button
+            disabled={!isEditing}
+            className={`mt-5 w-full h-11 rounded-full text-[14px] font-semibold shadow-md transition ${
+              isEditing
+                ? "bg-[#3056D3] text-white"
+                : "bg-[#C7D3FF] text-white cursor-not-allowed"
+            }`}
+          >
+            GUARDAR CONTRASEÑA
+          </button>
+        </div>
+
+        <div className="bg-white rounded-[24px] shadow-lg p-4 sm:p-6">
+          <h3 className="text-[16px] font-semibold text-[#1E3A8A] mb-4">
+            Mis Compras
+          </h3>
+          <div className="h-32 sm:h-40 flex items-center justify-center text-xs text-gray-500">
+            Aquí irá el gráfico de compras 
+            
+          </div>
+        </div>
+
+        <div className="bg-white rounded-[24px] shadow-lg p-4 sm:p-6">
+          <h3 className="text-[16px] font-semibold text-[#1E3A8A] mb-4">
+            Pedidos Realizados Mes de Julio
+          </h3>
+          <div className="h-32 sm:h-40 flex flex-col items-center justify-center text-xs text-gray-500 gap-3">
+    Aquí irá el resumen de pedidos realizados 
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
