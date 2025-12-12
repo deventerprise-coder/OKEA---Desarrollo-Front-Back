@@ -27,6 +27,7 @@ import Ultimo from './pages/Home/Ultimo';
 import Cart from './pages/Checkout/Cart';
 import OfertasPage from './pages/Ofertas/OfertasPage';
 import PerfilPage from './pages/Perfil/PerfilPage';
+import LoginPage from "./pages/auth/LoginPage";
 
 const CategoriaslugMap = {
   'tecnologia': 'Tecnología',
@@ -117,7 +118,20 @@ function AppContent() {
               <Footer />
               </>
     }
+  />        {/*  NUEVA RUTA PERFIL */}
+          <Route
+          path="/login"
+            element={
+                <>
+              <LoginPage />
+              <Footer />
+              </>
+    }
   />
+
+
+
+  
         {/* Página completa de Ofertas */}
         <Route path="/ofertas" element={<OfertasPage />} />
 
