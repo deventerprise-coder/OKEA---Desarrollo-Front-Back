@@ -2556,30 +2556,6 @@ export const CerrarSesionIcon = () => (
 </svg>
 )
 
-export const FavoritosIcon = () => (
-<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M5.5 0.5C2.48654 0.5 0 2.98654 0 6C0 8.04808 1.54382 9.97645 3.42578 11.9541C5.30774 13.9318 7.62419 15.9347 9.46973 17.7803C9.61038 17.9209 9.80112 17.9999 10 17.9999C10.1989 17.9999 10.3896 17.9209 10.5303 17.7803C12.3758 15.9347 14.6923 13.9318 16.5742 11.9541C18.4562 9.97645 20 8.04808 20 6C20 2.98654 17.5135 0.5 14.5 0.5C12.7644 0.5 11.2427 1.42937 10 3.0127C8.75729 1.42937 7.23556 0.5 5.5 0.5ZM5.5 2C6.96429 2 8.19763 2.78085 9.36426 4.64746C9.43172 4.7552 9.52545 4.84403 9.63665 4.9056C9.74786 4.96718 9.87289 4.99949 10 4.99949C10.1271 4.99949 10.2521 4.96718 10.3633 4.9056C10.4746 4.84403 10.5683 4.7552 10.6357 4.64746C11.8024 2.78085 13.0357 2 14.5 2C16.6865 2 18.5 3.81346 18.5 6C18.5 7.20192 17.2938 9.02355 15.4883 10.9209C13.8418 12.6511 11.7952 14.4587 10 16.209C8.20484 14.4587 6.15821 12.6511 4.51172 10.9209C2.70618 9.02355 1.5 7.20192 1.5 6C1.5 3.81346 3.31346 2 5.5 2Z" fill="#DFE162"/>
-</svg>
-)
-
-export const PromocionesIcon = () => (
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M11.9987 0C11.2031 0 10.4403 0.316228 9.87764 0.878906L0.877638 9.87891C-0.287338 11.0439 -0.287338 12.9561 0.877638 14.1211L5.87764 19.1211C6.44032 19.6838 7.20306 20 7.99873 20C8.79441 20 9.55715 19.6838 10.1198 19.1211L19.1198 10.1211C19.6827 9.55821 19.9987 8.7947 19.9987 7.99902V2.5C19.9987 1.12826 18.8705 0 17.4987 0H11.9987ZM11.9987 1.5H17.4987C18.057 1.5 18.4987 1.94174 18.4987 2.5V7.99902C18.4987 8.40535 18.3464 8.77343 18.0593 9.06055L9.05928 18.0605C8.77196 18.3479 8.40506 18.5 7.99873 18.5C7.59241 18.5 7.22551 18.3479 6.93819 18.0605L1.93819 13.0605C1.34816 12.4705 1.34816 11.5295 1.93819 10.9395L10.9382 1.93945C11.2255 1.65213 11.5924 1.5 11.9987 1.5ZM14.9987 3.5C14.1702 3.5 13.4987 4.1715 13.4987 5C13.4987 5.8285 14.1702 6.5 14.9987 6.5C15.8272 6.5 16.4987 5.8285 16.4987 5C16.4987 4.1715 15.8272 3.5 14.9987 3.5Z" fill="#DFE162"/>
-</svg>
-)
-
-export const MisComprasIcon = () => (
-<svg width="18" height="22" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.49995 0.5C6.29966 0.5 4.49995 2.29971 4.49995 4.5H3.14839C2.26019 4.5 1.50289 5.18043 1.40816 6.06348L0.123 18.0635V18.0645C0.0140733 19.0863 0.835177 20 1.86323 20H16.1367C17.1647 20 17.9868 19.086 17.8769 18.0635L16.5917 6.06348C16.497 5.18043 15.7397 4.5 14.8515 4.5H13.5V6H14.8515C14.9853 6 15.0863 6.09068 15.1005 6.22363L16.3857 18.2236C16.4028 18.3831 16.2976 18.5 16.1367 18.5H1.86323C1.70261 18.5 1.59764 18.3833 1.61421 18.2236V18.2227L2.89937 6.22363C2.91363 6.09068 3.01459 6 3.14839 6H4.49995V8.25C4.49855 8.34938 4.51691 8.44806 4.55397 8.54028C4.59103 8.63251 4.64605 8.71645 4.71583 8.78723C4.78562 8.858 4.86877 8.91421 4.96046 8.95257C5.05216 8.99093 5.15056 9.01068 5.24995 9.01068C5.34935 9.01068 5.44775 8.99093 5.53944 8.95257C5.63114 8.91421 5.71429 8.858 5.78407 8.78723C5.85386 8.71645 5.90888 8.63251 5.94594 8.54028C5.983 8.44806 6.00136 8.34938 5.99995 8.25V4.5C5.99995 3.11029 7.11025 2 8.49995 2C9.88966 2 11 3.11029 11 4.5H6.99995V6H11V8.25C10.9985 8.34938 11.0169 8.44806 11.054 8.54028C11.091 8.63251 11.1461 8.71645 11.2158 8.78723C11.2856 8.858 11.3688 8.91421 11.4605 8.95257C11.5522 8.99093 11.6506 9.01068 11.75 9.01068C11.8493 9.01068 11.9478 8.99093 12.0394 8.95257C12.1311 8.91421 12.2143 8.858 12.2841 8.78723C12.3539 8.71645 12.4089 8.63251 12.4459 8.54028C12.483 8.44806 12.5014 8.34938 12.5 8.25V4.5C12.5 2.29971 10.7002 0.5 8.49995 0.5Z" fill="#DFE162"/>
-</svg>
-
-)
-
-export const MiCuentaIcon = () => (
-  <svg width="18" height="22" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8 0C5.24746 0 3 2.24746 3 5C3 7.75254 5.24746 10 8 10C10.7525 10 13 7.75254 13 5C13 2.24746 10.7525 0 8 0ZM8 1.5C9.94188 1.5 11.5 3.05812 11.5 5C11.5 6.94188 9.94188 8.5 8 8.5C6.05812 8.5 4.5 6.94188 4.5 5C4.5 3.05812 6.05812 1.5 8 1.5ZM2.25 12C1.01765 12 0 13.0176 0 14.25V14.8496C0 16.3203 0.936193 17.638 2.35938 18.5449C3.78256 19.4519 5.72791 20 8 20C10.2721 20 12.2174 19.4519 13.6406 18.5449C15.0638 17.638 16 16.3203 16 14.8496V14.25C16 13.0176 14.9824 12 13.75 12H2.25ZM2.25 13.5H13.75C14.2176 13.5 14.5 13.7824 14.5 14.25V14.8496C14.5 15.679 13.9608 16.5622 12.834 17.2803C11.7072 17.9983 10.0279 18.5 8 18.5C5.97209 18.5 4.29283 17.9983 3.16602 17.2803C2.0392 16.5622 1.5 15.679 1.5 14.8496V14.25C1.5 13.7824 1.78235 13.5 2.25 13.5Z" fill="#DFE162"/>
-</svg>
-)
 
 export const SalirIcon =  () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3464,3 +3440,362 @@ export const CarritoProductoIcon = ({color = "#616200"}) => (
   <path d="M1.4583 2.49994C1.37548 2.49877 1.29326 2.51407 1.2164 2.54495C1.13955 2.57584 1.0696 2.62169 1.01061 2.67984C0.951634 2.73799 0.904799 2.80729 0.872831 2.8837C0.840864 2.96011 0.824402 3.04211 0.824402 3.12494C0.824402 3.20777 0.840864 3.28977 0.872831 3.36618C0.904799 3.44259 0.951634 3.51189 1.01061 3.57004C1.0696 3.62819 1.13955 3.67404 1.2164 3.70493C1.29326 3.73581 1.37548 3.75111 1.4583 3.74994H2.6253C2.91101 3.74994 3.15558 3.94705 3.22181 4.25613L3.21937 4.23985L3.34307 4.90228L3.34388 4.90717V4.90798L4.67526 11.936C4.89238 13.2387 6.038 14.1666 7.33314 14.1666H15.1668C16.4619 14.1666 17.5556 13.2285 17.8198 11.9604C17.8206 11.9569 17.8215 11.9533 17.8222 11.9498L19.1561 4.90798C19.1732 4.81762 19.1701 4.7246 19.1472 4.63555C19.1242 4.54651 19.0819 4.46362 19.0232 4.39282C18.9645 4.32201 18.8909 4.26502 18.8077 4.22592C18.7244 4.18682 18.6336 4.16657 18.5416 4.16661H4.4767L4.4474 4.00954C4.44638 4.00438 4.44529 3.99922 4.44414 3.99408C4.26037 3.13649 3.50625 2.49994 2.6253 2.49994H1.4583ZM4.7127 5.41661H17.7872L16.5967 11.7057L16.5958 11.7065C16.443 12.4377 15.8713 12.9166 15.1668 12.9166H7.33314C6.62828 12.9166 6.02439 12.4282 5.90817 11.7309C5.90741 11.7263 5.9066 11.7217 5.90573 11.7171L4.7127 5.41661ZM8.3333 14.9999C8.00178 14.9999 7.68384 15.1316 7.44942 15.3661C7.215 15.6005 7.0833 15.9184 7.0833 16.2499C7.0833 16.5815 7.215 16.8994 7.44942 17.1338C7.68384 17.3682 8.00178 17.4999 8.3333 17.4999C8.66482 17.4999 8.98277 17.3682 9.21719 17.1338C9.45161 16.8994 9.5833 16.5815 9.5833 16.2499C9.5833 15.9184 9.45161 15.6005 9.21719 15.3661C8.98277 15.1316 8.66482 14.9999 8.3333 14.9999ZM14.1666 14.9999C13.8351 14.9999 13.5172 15.1316 13.2828 15.3661C13.0483 15.6005 12.9166 15.9184 12.9166 16.2499C12.9166 16.5815 13.0483 16.8994 13.2828 17.1338C13.5172 17.3682 13.8351 17.4999 14.1666 17.4999C14.4982 17.4999 14.8161 17.3682 15.0505 17.1338C15.2849 16.8994 15.4166 16.5815 15.4166 16.2499C15.4166 15.9184 15.2849 15.6005 15.0505 15.3661C14.8161 15.1316 14.4982 14.9999 14.1666 14.9999Z" fill={color} style={{ transition: 'stroke 500ms ease, fill 500ms ease' }}/>
   </svg>
 )
+
+export const MiCuentaIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <circle
+      cx="12"
+      cy="9"
+      r="4"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M5 20c1.5-2.5 3.5-4 7-4s5.5 1.5 7 4"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const MisComprasIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M6 7h12l-1 11H7L6 7Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M9 7a3 3 0 0 1 6 0"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const FavoritosIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M12 20.5 5.5 14C3.5 12 3.5 8.8 5.7 7c1.3-1 3.2-.9 4.5.3L12 8.9l1.8-1.6c1.3-1.2 3.2-1.3 4.5-.3 2.2 1.8 2.2 5 0 7L12 20.5Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const PromocionesIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <rect
+      x="4"
+      y="5"
+      width="16"
+      height="12"
+      rx="2"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path
+      d="M4 9h16"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+// ========== ICONOS PERFIL ESPECÍFICOS ==========
+
+// Cerrar sesión
+export const ExitIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M14 16l4-4-4-4"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M9 12h9"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+// Tarjetas
+export const UserCardIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <rect
+      x="3"
+      y="5"
+      width="18"
+      height="14"
+      rx="2"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <circle
+      cx="8"
+      cy="11"
+      r="2"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path
+      d="M5.5 15.5C6.3 14.7 7.3 14.25 8.5 14.25C9.7 14.25 10.7 14.7 11.5 15.5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M13.5 11h5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+    <path
+      d="M13.5 14h3"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+// Soporte / Settings
+export const SettingsIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M4 13.5V10.5l2-.5a1.5 1.5 0 0 0 .96-.78L7.8 7l2.7-1.5 1.1 1.8a1.5 1.5 0 0 0 1 .7L16.5 8l1.5 2.5-1.6 1a1.5 1.5 0 0 0-.7 1.1L15.5 16l-2.9 1-1-1.8a1.5 1.5 0 0 0-.98-.7L6 14.5 4 13.5Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+// Icono ubicación para etiquetas (Nombres, Distrito, Apellidos, Provincia)
+export const LocationProfileIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M12 21.5s7-6 7-11.5a7 7 0 1 0-14 0c0 5.5 7 11.5 7 11.5Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle
+      cx="12"
+      cy="10"
+      r="2.5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+  </svg>
+);
+
+// Icono teléfono
+export const PhoneIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M6.5 3h3l1.5 4-2 1.5A10 10 0 0015.5 18l1.5-2 4 1.5v3A2.5 2.5 0 0118.5 23 16.5 16.5 0 011 5.5 2.5 2.5 0 013.5 3h3Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+// Icono archive (Provincia fila 1)
+export const ArchiveIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <rect
+      x="3"
+      y="4"
+      width="18"
+      height="4"
+      rx="1"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path
+      d="M5 8v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10 12h4"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+// Icono mail (Email)
+export const MailIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <rect
+      x="3"
+      y="5"
+      width="18"
+      height="14"
+      rx="2"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path
+      d="M4 7l8 6 8-6"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+// Icono globe location (País)
+export const GlobeLocationIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <circle
+      cx="12"
+      cy="10"
+      r="7"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+    <path
+      d="M12 3a10 10 0 00-3 7c0 1.66.67 3.46 2 5.5l1 1.5 1-1.5c1.33-2.04 2-3.84 2-5.5a10 10 0 00-3-7Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle cx="12" cy="10" r="1.5" fill="currentColor" />
+  </svg>
+);
+
+// Editar
+export const EditIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0L14 4.59"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+// Guardar
+export const SaveIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M5 5h11l3 3v11H5V5Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M9 5v5h6V5"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M9 18h6"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+// Ojo mostrar
+export const EyeShowIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M1.5 12C2.9 8.5 6.1 6 12 6s9.1 2.5 10.5 6c-1.4 3.5-4.6 6-10.5 6S2.9 15.5 1.5 12Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle
+      cx="12"
+      cy="12"
+      r="3"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
+  </svg>
+);
+
+// Ojo ocultar
+export const EyeHideIcon = (props) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path
+      d="M4 4l16 16"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M5 6.5C3.4 7.7 2.3 9.2 1.5 11c1.4 3.5 4.6 6 10.5 6 1.4 0 2.6-.16 3.7-.46"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M9.5 9.5A3 3 0 0 0 14 14"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

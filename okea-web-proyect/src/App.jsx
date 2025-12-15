@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useParams, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams, useLocation, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeContext';
 import { SortProvider } from './components/ecomerce/SortContext';
 import { CartProvider } from "./components/CartContext";
@@ -26,7 +26,11 @@ import Vendidos from './pages/Home/Vendidos';
 import Ultimo from './pages/Home/Ultimo';
 import Cart from './pages/Checkout/Cart';
 import OfertasPage from './pages/Ofertas/OfertasPage';
+
 import Perfil_Favoritos from './pages/Dashboard/Usuarios/Perfil_Favoritos'
+import PerfilPage from './pages/Perfil/PerfilPage';
+import LoginPage from "./pages/auth/LoginPage";
+import { createUserFromLogin, emptyUser } from "./mocks/userMocks";
 
 const CategoriaslugMap = {
   'tecnologia': 'Tecnología',
@@ -65,6 +69,22 @@ function AppContent() {
   const location = useLocation();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 412);
 
+
+
+    const [user, setUser] = useState(emptyUser);
+  const isLoggedIn = !!user.id;
+
+  const handleMockLogin = ({ email, name }) => {
+    const newUser = createUserFromLogin({ email, name });
+    setUser(newUser);
+  };
+
+  const handleLogout = () => setUser(emptyUser);
+
+  const handleUpdateName = (newName) => {
+    setUser((prev) => ({ ...prev, name: newName }));
+  };
+
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 412);
     window.addEventListener("resize", handleResize);
@@ -72,6 +92,9 @@ function AppContent() {
   }, []);
 
   const hideNavFooter = location.pathname === "/carrito" && isMobile;
+    if (!isLoggedIn && location.pathname !== "/login") {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -108,6 +131,34 @@ function AppContent() {
           }
         />
 
+        {/*  NUEVA RUTA PERFIL */}
+        <Route
+          path="/perfil"
+          element={
+            <>
+              <PerfilPage
+                user={user}
+                isLoggedIn={isLoggedIn}
+                onLogout={handleLogout}
+                onUpdateName={handleUpdateName}
+              />
+              <Footer />
+            </>
+          }
+        />       {/*  NUEVA RUTA login */}
+          <Route
+          path="/login"
+            element={
+                <>
+              <LoginPage onMockLogin={handleMockLogin} />
+              <Footer />
+              </>
+    }
+  />
+
+
+
+  
         {/* Página completa de Ofertas */}
         <Route path="/ofertas" element={<OfertasPage />} />
 

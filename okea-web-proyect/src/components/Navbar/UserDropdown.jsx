@@ -9,9 +9,6 @@ import {
   FlechaDerecha,
 } from '../../assets/iconos/Icons';
 
-// =======================
-// 1. ANIMACIONES CSS PARA APARICIÓN/DESAPARICIÓN
-// =======================
 const animations = `
   @keyframes userFadeIn {
     from {
@@ -44,18 +41,18 @@ const animations = `
   }
 `;
 
-// =======================
-// 2. COMPONENTE PRINCIPAL UserDropdown
-// =======================
 export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
   const navigate = useNavigate();
+
   const [theme, setTheme] = useState(() => {
     return document.documentElement.getAttribute('data-theme') || 'light';
   });
 
-  // =======================
-  // 3. EFECTO: OBSERVAR CAMBIO DE TEMA
-  // =======================
+  const handleGoToPerfil = () => {
+    navigate('/perfil');
+    onSelect && onSelect(''); // cerrar dropdown
+  };
+
   useEffect(() => {
     setTheme(document.documentElement.getAttribute('data-theme') || 'light');
 
@@ -75,36 +72,23 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
     return () => observer.disconnect();
   }, []);
 
-  // =======================
-  // 4. ESTILOS SEGÚN TEMA
-  // =======================
-  const getThemeStyles = () => {
-    return {
-      backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : 'rgba(44, 80, 158, 0.5)',
-    };
-  };
+  const getThemeStyles = () => ({
+    backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : 'rgba(44, 80, 158, 0.5)',
+  });
 
-  const getLogoutButtonStyles = () => {
-    return {
-      backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : '#2C509E66',
-    };
-  };
+  const getLogoutButtonStyles = () => ({
+    backgroundColor: theme === 'dark' ? 'rgba(7, 0, 71, 0.4)' : '#2C509E66',
+  });
 
-  // =======================
-  // 5. DATOS DE BOTONES
-  // =======================
   const buttons = [
-    { label: 'Mi cuenta', key: 'cuenta', route: '/perfil'},
-    { label: 'Mis Compras', key: 'compras', route: '/perfil'},
-    { label: 'Promociones', key: 'promociones', route: '/perfil'},
+    { label: 'Mi cuenta', key: 'cuenta', route: '/perfil' },
+    { label: 'Mis Compras', key: 'compras', route: '/perfil' },
+    { label: 'Promociones', key: 'promociones', route: '/perfil' },
     { label: 'Favoritos', key: 'favoritos', route: '/perfil_favoritos' },
   ];
 
   const icons = [MiCuentaIcon, MisComprasIcon, PromocionesIcon, FavoritosIcon];
 
-  // =======================
-  // 6. RENDER
-  // =======================
   return (
     <div
       className={`shadow-lg border flex flex-col backdrop-blur-xl ${
@@ -121,11 +105,27 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
         ...style,
       }}
     >
+      {/* Animaciones */}
       <style>{animations}</style>
 
+      {/* Lista de botones */}
       <div className="flex flex-col gap-2 flex-1">
         {buttons.map((btn, idx) => {
           const Icon = icons[idx] || null;
+
+          const handleClick = () => {
+            if (btn.key === 'cuenta') {
+              // Caso especial: Mi cuenta
+              handleGoToPerfil();
+            } else {
+              if (btn.route) {
+                navigate(btn.route);
+              }
+              // cerrar dropdown también en los demás botones
+              onSelect && onSelect('');
+            }
+          };
+
           return (
             <button
               key={btn.key}
@@ -146,14 +146,7 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent';
               }}
-              onClick={() => {
-                if (btn.route) {
-                  navigate(btn.route);
-                }
-                if (onSelect) {
-                  onSelect(btn.key);
-                }
-              }}
+              onClick={handleClick}
             >
               <div className="flex items-center gap-3">
                 {Icon && (
@@ -172,6 +165,7 @@ export default function UserDropdown({ onLogout, onSelect, style, isVisible }) {
         })}
       </div>
 
+      {/* Botón Cerrar sesión */}
       <button
         className="text-white hover:bg-[#16336e] transition flex items-center justify-center gap-3 rounded-full"
         style={{
