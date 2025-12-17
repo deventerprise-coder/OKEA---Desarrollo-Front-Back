@@ -18,7 +18,7 @@ const Perfil_Favoritos = () => {
         <aside className="hidden xl:block w-[378px] shrink-0">
 
           <div className={`rounded-3xl min-h-[1047px] p-4 flex items-center justify-center text-gray-400 ${isLight ? 'bg-white' : 'bg-[#292272]'}`}>
-            Sidebar (378px)
+            (378px)
           </div>
         </aside>
 
