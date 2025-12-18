@@ -71,7 +71,7 @@ function AppContent() {
 
 
 
-    const [user, setUser] = useState(emptyUser);
+  const [user, setUser] = useState(emptyUser);
   const isLoggedIn = !!user.id;
 
   const handleMockLogin = ({ email, name }) => {
@@ -92,7 +92,7 @@ function AppContent() {
   }, []);
 
   const hideNavFooter = location.pathname === "/carrito" && isMobile;
-    if (!isLoggedIn && location.pathname !== "/login") {
+  if (!isLoggedIn && location.pathname !== "/login") {
     return <Navigate to="/login" replace />;
   }
 
@@ -146,36 +146,36 @@ function AppContent() {
             </>
           }
         />       {/*  NUEVA RUTA login */}
-          <Route
+        <Route
           path="/login"
-            element={
-                <>
+          element={
+            <>
               <LoginPage onMockLogin={handleMockLogin} />
               <Footer />
-              </>
-    }
-  />
+            </>
+          }
+        />
 
 
 
-  
+
         {/* Página completa de Ofertas */}
         <Route path="/ofertas" element={<OfertasPage />} />
 
         {/* Rutas de catálogo */}
-        <Route path="/catalogo/tecnologia" element={<><Categoria categoria="Tecnología" subcategoria="Celulares"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/muebles-y-organizacion" element={<><Categoria categoria="Muebles y Organización" subcategoria="Sofás"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/calzado" element={<><Categoria categoria="Calzado" subcategoria="Zapatillas"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/dormitorio-y-banos" element={<><Categoria categoria="Dormitorio y Baños" subcategoria="Camas"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/accesorios-de-moda" element={<><Categoria categoria="Accesorios de Moda" subcategoria="Carteras"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/salud-y-bienestar" element={<><Categoria categoria="Salud y Bienestar" subcategoria="Cremas"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/juguetes" element={<><Categoria categoria="Juguetes" subcategoria="Carros de Juguete"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/decoracion-e-iluminacion" element={<><Categoria categoria="Decoración" subcategoria="Cuadros"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/mascotas" element={<><Categoria categoria="Mascotas" subcategoria="Comida para Perro"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/supermercado" element={<><Categoria categoria="Supermercado" subcategoria="Cereales"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/electrohogar" element={<><Categoria categoria="Electrohogar" subcategoria="Lavadoras"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/moda-hombre" element={<><Categoria categoria="Moda Hombre" subcategoria="Polos"/><BloqueDeServicios /><Footer /></>} />
-        <Route path="/catalogo/moda-mujer" element={<><Categoria categoria="Moda Mujer" subcategoria="Polos"/><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/tecnologia" element={<><Categoria categoria="Tecnología" subcategoria="Celulares" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/muebles-y-organizacion" element={<><Categoria categoria="Muebles y Organización" subcategoria="Sofás" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/calzado" element={<><Categoria categoria="Calzado" subcategoria="Zapatillas" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/dormitorio-y-banos" element={<><Categoria categoria="Dormitorio y Baños" subcategoria="Camas" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/accesorios-de-moda" element={<><Categoria categoria="Accesorios de Moda" subcategoria="Carteras" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/salud-y-bienestar" element={<><Categoria categoria="Salud y Bienestar" subcategoria="Cremas" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/juguetes" element={<><Categoria categoria="Juguetes" subcategoria="Carros de Juguete" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/decoracion-e-iluminacion" element={<><Categoria categoria="Decoración" subcategoria="Cuadros" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/mascotas" element={<><Categoria categoria="Mascotas" subcategoria="Comida para Perro" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/supermercado" element={<><Categoria categoria="Supermercado" subcategoria="Cereales" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/electrohogar" element={<><Categoria categoria="Electrohogar" subcategoria="Lavadoras" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/moda-hombre" element={<><Categoria categoria="Moda Hombre" subcategoria="Polos" /><BloqueDeServicios /><Footer /></>} />
+        <Route path="/catalogo/moda-mujer" element={<><Categoria categoria="Moda Mujer" subcategoria="Polos" /><BloqueDeServicios /><Footer /></>} />
         <Route path="/producto/detalle/:categoria/:producto" element={<ProductoDetalleRoute />} />
 
         {/* 🛒 Ruta del carrito */}
@@ -194,7 +194,12 @@ function AppContent() {
             </>
           }
         />
-        <Route path="/perfil_favoritos" element={<Perfil_Favoritos />} />
+        <Route path="/perfil_favoritos"
+          element={
+            <Perfil_Favoritos
+              user={user}
+              onLogout={handleLogout}
+            />} />
       </Routes>
     </div>
   );
