@@ -11,15 +11,17 @@ import {
   ExitIcon,
 } from "../../assets/iconos/Icons";
 import { useTheme } from "../ThemeContext";
-import LogoutModal from "../LogoutModal";
+
+// CORRECCIÓN: Asegúrate que la ruta apunte a la carpeta 'auth'
+import LogoutModal from "../auth/LogoutModal"; 
 
 const MENU_ITEMS = [
-  { key:  "profile", label: "Mi Perfil", icon: MiCuentaIcon, path: "/perfil" },
-  { key:  "orders", label: "Mis compras", icon: MisComprasIcon, path: "/mis-compras" },
+  { key: "profile", label: "Mi Perfil", icon: MiCuentaIcon, path: "/perfil" },
+  { key: "orders", label: "Mis compras", icon: MisComprasIcon, path: "/mis-compras" },
   { key: "favorites", label: "Favoritos", icon: FavoritosIcon, path: "/perfil_favoritos" },
   { key: "cards", label: "Tarjetas", icon: UserCardIcon, path: "/tarjetas" },
-  { key: "support", label: "Soporte", icon: SettingsIcon, path:  "/soporte" },
-  { key: "logout", label: "Cerrar sesión", icon:  ExitIcon, path: null },
+  { key: "support", label: "Soporte", icon: SettingsIcon, path: "/soporte" },
+  { key: "logout", label: "Cerrar sesión", icon: ExitIcon, path: null }, // Path null para interceptarlo
 ];
 
 export default function ProfileSidebar({
@@ -28,39 +30,43 @@ export default function ProfileSidebar({
   onEdit,
   isEditing,
   userName,
-  onLogout,
+  onLogout, // Recibimos la función que hace la lógica real de salir
 }) {
   const navigate = useNavigate();
   const { isLight } = useTheme();
+  
+  // Estado para controlar la visibilidad del modal
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleItemClick = (item) => {
-    if (onSelect) {
-      onSelect(item.key);
-    }
-
-    if (item. key === "logout") {
+    // 1. Si es logout, abrimos el modal y NO navegamos
+    if (item.key === "logout") {
       setShowLogoutModal(true);
       return;
     }
 
+    // 2. Comportamiento normal para los otros items
+    if (onSelect) {
+      onSelect(item.key);
+    }
     if (item.path) {
       navigate(item.path);
     }
   };
 
   const handleConfirmLogout = () => {
-    setShowLogoutModal(false);
-    onLogout && onLogout();
+    setShowLogoutModal(false); // Cerramos el modal
+    onLogout && onLogout();    // Ejecutamos la acción real (borrar token, etc.)
   };
 
   return (
     <>
       <aside className="w-full lg:max-w-[280px] xl:max-w-[300px] mx-auto lg:mx-0 flex flex-col gap-4 sm:gap-6">
+        
         {/* Card de perfil */}
         <div
           className={`${
-            isLight ?  "bg-white" : "bg-[#292272]"
+            isLight ? "bg-white" : "bg-[#292272]"
           } rounded-[24px] sm:rounded-[32px] p-3 sm: p-4 shadow-[0_18px_40px_rgba(0,0,0,0.06)]`}
         >
           <div
@@ -88,7 +94,7 @@ export default function ProfileSidebar({
               </p>
               <p
                 className={`mt-1 text-[16px] sm: text-[18px] font-semibold ${
-                  isLight ? "text-[#1E3A8A]" :  "text-white"
+                  isLight ? "text-[#1E3A8A]" : "text-white"
                 }`}
               >
                 {userName || "Usuario OKEA"}
@@ -115,21 +121,23 @@ export default function ProfileSidebar({
           {MENU_ITEMS.map((item) => {
             const isActive = item.key === activeKey;
             const Icon = item.icon;
+            
             const base =
-              "w-full flex items-center gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-[20px] text-[13px] sm:text-[14px] font-medium shadow-md transition-colors";
+              "w-full flex items-center gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-[20px] text-[13px] sm:text-[14px] font-medium shadow-md transition-colors text-left";
             
             const styles = isActive
               ? isLight
                 ? "bg-[#1E3A8A] text-white"
                 : "bg-[#292272] text-white border border-gray-600"
-              :  isLight
+              : isLight
               ? "bg-white text-[#273244]"
-              :  "bg-transparent text-white border border-gray-600";
+              : "bg-transparent text-white border border-gray-600";
             
+            // Lógica de color de icono
             const iconColor = isActive
               ? "#FFFFFF"
               : isLight
-              ? "#E4E666"
+              ? "#E4E666" // Color amarillo original
               : "#FFFFFF";
 
             return (
@@ -149,7 +157,7 @@ export default function ProfileSidebar({
         </nav>
       </aside>
 
-      {/* Modal de confirmación de logout */}
+      {/* Renderizamos el Modal fuera del aside */}
       <LogoutModal
         isOpen={showLogoutModal}
         onClose={() => setShowLogoutModal(false)}

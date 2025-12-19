@@ -14,7 +14,6 @@ export default function LoginCard({ onForgotPassword, onMockLogin }) {
 
   return (
     <div className="w-full max-w-[380px] sm:max-w-[430px] bg-[rgba(255,255,255,0.90)] backdrop-blur-xl rounded-[24px] sm:rounded-[32px] shadow-[0_24px_60px_rgba(0,0,0,0.18)] pt-0 pb-6 sm:pb-8 md:pb-9 px-0">
-      {/* Tabs */}
       <div className="flex mb-4 sm:mb-6 rounded-t-[24px] sm:rounded-t-[32px] overflow-hidden">
         <button
           type="button"
@@ -30,7 +29,7 @@ export default function LoginCard({ onForgotPassword, onMockLogin }) {
         <button
           type="button"
           onClick={() => setActiveTab("register")}
-          className={`flex-1 h-12 sm: h-14 text-[14px] sm:text-[15px] font-semibold transition-colors ${
+          className={`flex-1 h-12 sm:h-14 text-[14px] sm:text-[15px] font-semibold transition-colors ${
             !isLogin
               ? "bg-[#18459F] text-white shadow-[0_8px_18px_rgba(24,69,159,0.45)]"
               : "bg-white text-[#D1D5DB]"
@@ -40,10 +39,8 @@ export default function LoginCard({ onForgotPassword, onMockLogin }) {
         </button>
       </div>
 
-      {/* Contenido */}
       <div className="px-5 sm:px-8 md:px-10">
-        {/* Logo */}
-        <div className="flex justify-center mb-4 sm:mb-6 mt-2">
+        <div className="flex justify-center mb-4 sm: mb-6 mt-2">
           <img
             src={okeaLogo}
             alt="Okea Logo"
@@ -55,15 +52,14 @@ export default function LoginCard({ onForgotPassword, onMockLogin }) {
           <form
             className="flex flex-col gap-3 sm:gap-4"
             onSubmit={(e) => {
-              e.preventDefault();
+              e. preventDefault();
               if (onMockLogin) {
-                const email = e. target.elements.email?.value || "";
+                const email = e.target.elements.email?. value || "";
                 const nameFromUser = email.split("@")[0] || "";
                 onMockLogin({ email, name: nameFromUser });
               }
             }}
           >
-            {/* Email */}
             <div className="flex flex-col gap-1">
               <label className="text-[11px] sm:text-[12px] text-[#4B5563]">
                 Correo electrónico
@@ -76,7 +72,6 @@ export default function LoginCard({ onForgotPassword, onMockLogin }) {
               />
             </div>
 
-            {/* Password */}
             <div className="flex flex-col gap-1">
               <label className="text-[11px] sm:text-[12px] text-[#4B5563]">
                 Contraseña
@@ -84,9 +79,9 @@ export default function LoginCard({ onForgotPassword, onMockLogin }) {
               <div className="relative">
                 <input
                   name="password"
-                  type={showPassword ? "text" :  "password"}
+                  type={showPassword ? "text" : "password"}
                   placeholder="Contraseña"
-                  className="h-9 sm: h-10 w-full rounded-full bg-[rgba(242,244,255,0.9)] px-3 sm:px-4 pr-10 text-[12px] sm:text-[13px] text-[#4B5563] border border-transparent focus: outline-none focus:border-[#3056D3]"
+                  className="h-9 sm:h-10 w-full rounded-full bg-[rgba(242,244,255,0.9)] px-3 sm:px-4 pr-10 text-[12px] sm:text-[13px] text-[#4B5563] border border-transparent focus: outline-none focus:border-[#3056D3]"
                 />
                 <button
                   type="button"
@@ -102,7 +97,6 @@ export default function LoginCard({ onForgotPassword, onMockLogin }) {
               </div>
             </div>
 
-            {/* Forgot password */}
             <button
               type="button"
               onClick={onForgotPassword}
@@ -111,7 +105,6 @@ export default function LoginCard({ onForgotPassword, onMockLogin }) {
               ¿Olvidaste tu contraseña?
             </button>
 
-            {/* Submit */}
             <button
               type="submit"
               className="mt-2 sm:mt-3 h-10 sm:h-11 w-full rounded-full bg-[#18459F] text-white text-[13px] sm:text-[14px] font-semibold shadow-[0_12px_24px_rgba(24,69,159,0.45)]"
@@ -119,7 +112,6 @@ export default function LoginCard({ onForgotPassword, onMockLogin }) {
               Iniciar Sesión
             </button>
 
-            {/* Divider */}
             <div className="flex items-center gap-3 mt-4 sm:mt-5 mb-3 sm:mb-4">
               <div className="flex-1 h-px bg-[#E5E7EB]" />
               <span className="text-[10px] sm:text-[11px] text-[#9CA3AF]">
@@ -128,41 +120,39 @@ export default function LoginCard({ onForgotPassword, onMockLogin }) {
               <div className="flex-1 h-px bg-[#E5E7EB]" />
             </div>
 
-            {/* Social buttons */}
-            <div className="flex justify-center gap-3 sm:gap-4 md:gap-6">
+            <div className="flex justify-center gap-2 sm:gap-3">
               <button
                 type="button"
-                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white shadow-md flex items-center justify-center ring-1 ring-[#E5E7EB]"
+                className="flex items-center justify-center h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-white shadow-md ring-1 ring-[#E5E7EB] hover:shadow-lg transition-shadow"
               >
                 <img
                   src={googleIcon}
                   alt="Google"
-                  className="w-6 h-6 sm:w-7 sm:h-7 object-contain"
+                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
                 />
               </button>
               <button
                 type="button"
-                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white shadow-md flex items-center justify-center ring-1 ring-[#E5E7EB]"
+                className="flex items-center justify-center h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-white shadow-md ring-1 ring-[#E5E7EB] hover:shadow-lg transition-shadow"
               >
                 <img
                   src={githubIcon}
                   alt="GitHub"
-                  className="w-6 h-6 sm:w-7 sm:h-7 object-contain"
+                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
                 />
               </button>
               <button
                 type="button"
-                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white shadow-md flex items-center justify-center ring-1 ring-[#E5E7EB]"
+                className="flex items-center justify-center h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-white shadow-md ring-1 ring-[#E5E7EB] hover:shadow-lg transition-shadow"
               >
                 <img
                   src={facebookIcon}
                   alt="Facebook"
-                  className="w-6 h-6 sm:w-7 sm:h-7 object-contain"
+                  className="w-5 h-5 sm:w-6 sm: h-6 object-contain"
                 />
               </button>
             </div>
 
-            {/* Register link */}
             <p className="mt-2 sm:mt-3 text-center text-[11px] sm:text-[12px] text-[#6B7280]">
               ¿Aún no tienes una cuenta?{" "}
               <button
