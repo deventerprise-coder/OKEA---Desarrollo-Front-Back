@@ -13,15 +13,12 @@ export default function PerfilPage({ user, isLoggedIn, onLogout, onUpdateName })
         <ProfileSidebar
           activeKey={activeSection}
           onSelect={(key) => {
-            if (key === "logout") {
-              onLogout && onLogout();
-              return;
-            }
             setActiveSection(key);
           }}
           onEdit={() => setIsEditing((prev) => !prev)}
           isEditing={isEditing}
           userName={user?.name}
+          onLogout={onLogout}
         />
         <ProfileMain
           activeSection={activeSection}
