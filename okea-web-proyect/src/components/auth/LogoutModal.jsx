@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useTheme } from "../ThemeContext";
+import okeaLogo from "../../assets/iconos/okea_logo.svg";
 
 export default function LogoutModal({ isOpen = true, onClose, onConfirm }) {
   const { isLight } = useTheme();
@@ -49,11 +50,17 @@ export default function LogoutModal({ isOpen = true, onClose, onConfirm }) {
         </h2>
 
         <p
-          className={`text-[11px] sm:text-[12px] text-center mb-6 sm:mb-8 ${
+          className={`text-[11px] sm:text-[12px] text-center mb-6 sm:mb-8 flex items-center justify-center gap-1 ${
             isLight ? "text-[#6B7280]" : "text-[#C4C2E0]"
           }`}
         >
-          ¿Seguro que deseas salir de <span className="font-bold">OKEA</span>?
+          <span>¿Seguro que deseas salir de</span>
+          <img 
+            src={okeaLogo} 
+            alt="OKEA" 
+            className="h-4 sm:h-5 object-contain" 
+          />
+          <span>?</span>
         </p>
 
         <div className="flex w-full gap-3 sm:gap-4">
