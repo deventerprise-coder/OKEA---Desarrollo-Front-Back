@@ -1,4 +1,4 @@
-// src/components/profile/ProfileMain.jsx
+// src/components/profile/ProfileMain. jsx
 import { useState } from "react";
 import {
   EditIcon,
@@ -21,7 +21,7 @@ function PasswordField({ placeholder, enabled }) {
         type={visible ? "text" : "password"}
         placeholder={placeholder}
         disabled={!enabled}
-        className={`w-full h-10 rounded-full px-4 pr-10 text-[13px] border border-transparent focus:outline-none ${
+        className={`w-full h-9 sm:h-10 rounded-full px-3 sm:px-4 pr-10 text-[12px] sm:text-[13px] border border-transparent focus:outline-none ${
           enabled
             ? "bg-[#F2F4FF] text-[#273244] focus:border-[#3056D3]"
             : "bg-[#EEF1FF] text-[#A3A7C0] cursor-not-allowed"
@@ -32,7 +32,7 @@ function PasswordField({ placeholder, enabled }) {
         disabled={!enabled}
         onClick={() => enabled && setVisible((v) => !v)}
         className={`absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center ${
-          enabled ? "text-[#6B7280]" : "text-[#C5C8DD] cursor-not-allowed"
+          enabled ?  "text-[#6B7280]" : "text-[#C5C8DD] cursor-not-allowed"
         }`}
       >
         {visible ? (
@@ -48,13 +48,13 @@ function PasswordField({ placeholder, enabled }) {
 export default function ProfileMain({ activeSection, isEditing, user, onUpdateName }) {
   const personalFields = [
     { key: "name", label: "Nombres", value: user?.name || "Fabricio", icon: LocationProfileIcon },
-    { key: "district", label: "Distrito", value: "Surco", icon: LocationProfileIcon },
-    { key: "phone", label: "Número de teléfono", value: "+51 912404450", icon: PhoneIcon },
+    { key:  "district", label: "Distrito", value: "Surco", icon: LocationProfileIcon },
+    { key: "phone", label: "Número de teléfono", value:  "+51 912404450", icon: PhoneIcon },
     { key: "province", label: "Provincia", value: "Lima", icon: ArchiveIcon },
     { key: "lastName", label: "Apellidos", value: "Aylas", icon: LocationProfileIcon },
-    { key: "email", label: "Email", value: user?.email || "aylasmorenof@gmail.com", icon: MailIcon },
-    { key: "country", label: "País", value: "Perú", icon: GlobeLocationIcon },
-    { key: "postal", label: "Provincia", value: "15001", icon: ArchiveIcon },
+    { key:  "email", label: "Email", value: user?.email || "aylasmorenof@gmail.com", icon: MailIcon },
+    { key:  "country", label: "País", value: "Perú", icon: GlobeLocationIcon },
+    { key:  "postal", label: "Código Postal", value: "15001", icon: ArchiveIcon },
   ];
 
   const handleFieldBlur = (fieldKey, value) => {
@@ -64,23 +64,25 @@ export default function ProfileMain({ activeSection, isEditing, user, onUpdateNa
   };
 
   return (
-    <section className="flex-1 flex flex-col gap-6">
-      <div className="bg-white rounded-[32px] shadow-lg p-4 sm:p-6 lg:p-8">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-[20px] sm:text-[22px] font-semibold text-[#1E3A8A]">
+    <section className="flex-1 flex flex-col gap-4 sm:gap-6">
+      {/* Card de datos personales */}
+      <div className="bg-white rounded-[24px] sm:rounded-[32px] shadow-lg p-4 sm:p-6 lg:p-8">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <h2 className="text-[18px] sm:text-[20px] lg:text-[22px] font-semibold text-[#1E3A8A]">
             Datos Personales
           </h2>
-          <button className="w-8 h-8 rounded-full bg-transparent flex items-center justify-center text-[#1E3A8A]">
+          <button className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-transparent flex items-center justify-center text-[#1E3A8A]">
             {isEditing ? <SaveIcon color="#1E3A8A" /> : <EditIcon color="#1E3A8A" />}
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+        {/* Grid de campos:  1 col móvil, 2 tablet, 4 desktop grande */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
           {personalFields.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div key={idx} className="flex flex-col gap-1 min-w-0">
-                <span className="text-[12px] text-[#6B7280] flex items-center gap-2 whitespace-nowrap">
+                <span className="text-[11px] sm:text-[12px] text-[#6B7280] flex items-center gap-2 whitespace-nowrap overflow-hidden text-ellipsis">
                   {Icon && <Icon color="#6B7280" />}
                   {item.label}
                 </span>
@@ -89,10 +91,10 @@ export default function ProfileMain({ activeSection, isEditing, user, onUpdateNa
                     type="text"
                     defaultValue={item.value}
                     onBlur={(e) => handleFieldBlur(item.key, e.target.value)}
-                    className="h-10 w-full rounded-full bg-[#F2F4FF] px-4 text-[13px] text-[#273244] border border-transparent focus:outline-none focus:border-[#3056D3]"
+                    className="h-9 sm:h-10 w-full rounded-full bg-[#F2F4FF] px-3 sm:px-4 text-[12px] sm:text-[13px] text-[#273244] border border-transparent focus:outline-none focus:border-[#3056D3]"
                   />
                 ) : (
-                  <div className="h-10 rounded-full bg-[#F2F4FF] px-4 flex items-center text-[13px] text-[#273244] overflow-hidden text-ellipsis whitespace-nowrap">
+                  <div className="h-9 sm: h-10 rounded-full bg-[#F2F4FF] px-3 sm:px-4 flex items-center text-[12px] sm:text-[13px] text-[#273244] overflow-hidden text-ellipsis whitespace-nowrap">
                     {item.value}
                   </div>
                 )}
@@ -102,31 +104,30 @@ export default function ProfileMain({ activeSection, isEditing, user, onUpdateNa
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-[24px] shadow-lg p-4 sm:p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-[16px] font-semibold text-[#1E3A8A]">
+      {/* Grid de 3 cards:  Contraseña, Compras, Pedidos */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        {/* Card Cambiar Contraseña */}
+        <div className="bg-white rounded-[20px] sm:rounded-[24px] shadow-lg p-4 sm:p-6">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <h3 className="text-[14px] sm:text-[16px] font-semibold text-[#1E3A8A]">
               Cambiar Contraseña
             </h3>
-            <button className="w-6 h-6 flex items-center justify-center text-[#1E3A8A]">
-              {isEditing ? <SaveIcon color="#1E3A8A" /> : <EditIcon color="#1E3A8A" />}
+            <button className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center text-[#1E3A8A]">
+              {isEditing ? <SaveIcon color="#1E3A8A" /> :  <EditIcon color="#1E3A8A" />}
             </button>
           </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2 sm:gap-3">
             <PasswordField placeholder="Contraseña actual" enabled={isEditing} />
             <PasswordField placeholder="8+ caracteres" enabled={isEditing} />
-            <PasswordField
-              placeholder="Confirmar contraseña nueva"
-              enabled={isEditing}
-            />
+            <PasswordField placeholder="Confirmar contraseña nueva" enabled={isEditing} />
           </div>
 
           <button
             disabled={!isEditing}
-            className={`mt-5 w-full h-11 rounded-full text-[14px] font-semibold shadow-md transition ${
+            className={`mt-4 sm:mt-5 w-full h-10 sm:h-11 rounded-full text-[13px] sm:text-[14px] font-semibold shadow-md transition ${
               isEditing
-                ? "bg-[#3056D3] text-white"
+                ?  "bg-[#3056D3] text-white"
                 : "bg-[#C7D3FF] text-white cursor-not-allowed"
             }`}
           >
@@ -134,20 +135,22 @@ export default function ProfileMain({ activeSection, isEditing, user, onUpdateNa
           </button>
         </div>
 
-        <div className="bg-white rounded-[24px] shadow-lg p-4 sm:p-6">
-          <h3 className="text-[16px] font-semibold text-[#1E3A8A] mb-4">
+        {/* Card Mis Compras */}
+        <div className="bg-white rounded-[20px] sm:rounded-[24px] shadow-lg p-4 sm:p-6">
+          <h3 className="text-[14px] sm:text-[16px] font-semibold text-[#1E3A8A] mb-3 sm:mb-4">
             Mis Compras
           </h3>
-          <div className="h-32 sm:h-40 flex items-center justify-center text-xs text-gray-500">
+          <div className="h-28 sm:h-32 lg:h-40 flex items-center justify-center text-[11px] sm:text-xs text-gray-500">
             Aquí irá el gráfico de compras
           </div>
         </div>
 
-        <div className="bg-white rounded-[24px] shadow-lg p-4 sm:p-6">
-          <h3 className="text-[16px] font-semibold text-[#1E3A8A] mb-4">
+        {/* Card Pedidos Realizados */}
+        <div className="bg-white rounded-[20px] sm:rounded-[24px] shadow-lg p-4 sm:p-6 md:col-span-2 lg:col-span-1">
+          <h3 className="text-[14px] sm:text-[16px] font-semibold text-[#1E3A8A] mb-3 sm:mb-4">
             Pedidos Realizados Mes de Julio
           </h3>
-          <div className="h-32 sm:h-40 flex flex-col items-center justify-center text-xs text-gray-500 gap-3">
+          <div className="h-28 sm:h-32 lg: h-40 flex flex-col items-center justify-center text-[11px] sm: text-xs text-gray-500 gap-3">
             Aquí irá el resumen de pedidos realizados
           </div>
         </div>

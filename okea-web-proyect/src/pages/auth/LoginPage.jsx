@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginCard from "../../components/auth/LoginCard";
 import ForgotPasswordModal from "../../components/auth/ForgotPasswordModal";
+import loginBg from "../../assets/imagenes/login/background.png";
 
 export default function LoginPage({ onMockLogin }) {
   const [showForgot, setShowForgot] = useState(false);
@@ -16,17 +17,20 @@ export default function LoginPage({ onMockLogin }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#E4EDFF] pt-[96px]">
-      <main className="flex-1 flex items-center justify-center">
-        <section className="w-full max-w-[1040px] mx-auto px-4 md:px-6 py-10">
-          <div className="relative rounded-[40px] bg-[#F2F6FF] shadow-[0_24px_80px_rgba(0,0,0,0.15)] flex items-center justify-center py-10 md:py-14">
-            <LoginCard
-              onForgotPassword={() => setShowForgot(true)}
-              onMockLogin={handleLogin}
-            />
-          </div>
-        </section>
-      </main>
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundImage: `url(${loginBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+      className="flex items-center justify-center px-4 py-8 md:py-12"
+    >
+      <LoginCard
+        onForgotPassword={() => setShowForgot(true)}
+        onMockLogin={handleLogin}
+      />
 
       {showForgot && (
         <ForgotPasswordModal onClose={() => setShowForgot(false)} />
